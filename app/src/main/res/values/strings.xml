@@ -2,4 +2,6 @@
     <string name="app_name">YamblzWeather</string>
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
+    <string name="navigation_drawer_open">Открыто боковое меню</string>
+    <string name="navigation_drawer_close">Закрыто боковое меню</string>
 </resources>
