@@ -18,7 +18,10 @@ import java.util.HashMap;
 public class ScreenRouter {
 
     public enum Screen {
-        Weather(new WeatherFragment()), Settings(new SettingsFragment()), About(new AboutFragment()), UNKNOWN(new ExceptionFragment());
+        Weather(new WeatherFragment()),
+        Settings(new SettingsFragment()),
+        About(new AboutFragment()),
+        UNKNOWN(new ExceptionFragment()); // для сервисных целей, чтобы при разработке увидеть, что происходит какой-то неправильный вызов экрана
 
         private static HashMap<Integer, Screen> screenMap;
 
