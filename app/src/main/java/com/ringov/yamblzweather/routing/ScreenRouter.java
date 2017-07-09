@@ -10,6 +10,7 @@ import com.ringov.yamblzweather.main.WeatherFragment;
 import com.ringov.yamblzweather.settings.SettingsFragment;
 
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * Created by ringov on 07.07.17.
@@ -18,23 +19,26 @@ import java.util.HashMap;
 public class ScreenRouter {
 
     public enum Screen {
-        Weather(new WeatherFragment()),
-        Settings(new SettingsFragment()),
-        About(new AboutFragment()),
-        UNKNOWN(new ExceptionFragment()); // для сервисных целей, чтобы при разработке увидеть, что происходит какой-то неправильный вызов экрана
+        Weather(R.id.nav_weather, new WeatherFragment()),
+        Settings(R.id.nav_settings, new SettingsFragment()),
+        About(R.id.nav_about, new AboutFragment()),
+        UNKNOWN(0, new ExceptionFragment()); // для сервисных целей, чтобы при разработке увидеть, что происходит какой-то неправильный вызов экрана
 
         private static HashMap<Integer, Screen> screenMap;
 
         static {
             screenMap = new HashMap();
-            screenMap.put(R.id.nav_weather, Weather);
-            screenMap.put(R.id.nav_settings, Settings);
-            screenMap.put(R.id.nav_about, About);
+            screenMap.put(Weather.getId(), Weather);
+            screenMap.put(Settings.getId(), Settings);
+            screenMap.put(About.getId(), About);
         }
 
+        @IdRes
+        private int mId;
         private Fragment mFragment;
 
-        Screen(Fragment fragment) {
+        Screen(@IdRes int id, Fragment fragment) {
+            this.mId = id;
             this.mFragment = fragment;
         }
 
@@ -45,6 +49,11 @@ public class ScreenRouter {
 
         public Fragment getFragment() {
             return mFragment;
+        }
+
+        @IdRes
+        public int getId() {
+            return mId;
         }
     }
 

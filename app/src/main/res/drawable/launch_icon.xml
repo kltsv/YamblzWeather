@@ -6,5 +6,7 @@
             <solid android:color="@android:color/white" />
         </shape>
     </item>
-    <item android:drawable="@drawable/ic_big_sun" />
+    <item
+        android:drawable="@drawable/ic_big_sun">
+    </item>
 </layer-list>

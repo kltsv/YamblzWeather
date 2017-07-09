@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -24,12 +25,22 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String CRT_SCREEN = "crt_screen";
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
     @BindView(R.id.navigation_view)
     NavigationView mNavigationView;
+
+    private ScreenRouter.Screen crtScreen;
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt(CRT_SCREEN, crtScreen.getId());
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +49,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ButterKnife.bind(this);
         initializeDrawer();
         showScreen(ScreenRouter.Screen.Weather);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        @IdRes int storedId = savedInstanceState.getInt(CRT_SCREEN);
+        showScreen(ScreenRouter.Screen.fromId(storedId));
     }
 
     private void initializeDrawer() {
@@ -70,5 +88,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment fragment = screen.getFragment();
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.container, fragment).commit();
+        crtScreen = screen;
     }
 }
