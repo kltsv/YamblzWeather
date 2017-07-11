@@ -9,13 +9,12 @@ import android.widget.TextView;
 import com.ringov.yamblzweather.BuildConfig;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.base.BaseFragment;
-import com.ringov.yamblzweather.routing.ScreenView;
 
 /**
  * Created by ringov on 07.07.17.
  */
 
-public class AboutFragment extends BaseFragment implements ScreenView<AboutFragment> {
+public class AboutFragment extends BaseFragment {
 
     TextView mTvVersion;
 
@@ -23,11 +22,6 @@ public class AboutFragment extends BaseFragment implements ScreenView<AboutFragm
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         mTvVersion.setText(getString(R.string.version, BuildConfig.VERSION_NAME));
-    }
-
-    @Override
-    public AboutFragment getFragment() {
-        return this;
     }
 
     @Override

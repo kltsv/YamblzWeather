@@ -29,17 +29,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         initializeViews();
-        setSupportActionBar(mToolbar);
-        initializeDrawer();
         if (savedInstanceState == null) {
             showScreen(ScreenRouter.Screen.Weather);
         }
+    }
+
+    private void initializeToolbar(){
+        setSupportActionBar(mToolbar);
+        getSupportActionBar().setTitle(R.string.app_name);
     }
 
     private void initializeViews() {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+
+        initializeToolbar();
+        initializeDrawer();
     }
 
     private void initializeDrawer() {
