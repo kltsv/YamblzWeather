@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'WeatherKey'
+            keyPassword 'wea217!ke.'
+            storeFile file('/media/ringov/DATA/Education/Mobilization2017/StudyingProjects/keystore/weather_key.jks')
+            storePassword 'ya217!'
+        }
+    }
     compileSdkVersion 26
     buildToolsVersion "26.0.0"
     defaultConfig {
@@ -13,12 +21,16 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
         debug {
             applicationIdSuffix ".debug"
         }
+    }
+    lintOptions {
+        disable 'MissingTranslation', 'ExtraTranslation'
     }
 }
 
@@ -30,10 +42,8 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:design:26.0.0-alpha1'
-
     compile 'com.jakewharton:butterknife:8.6.0'
     compile 'com.jakewharton:butterknife-compiler:8.6.0'
-
     compile 'com.android.support:preference-v14:26.0.0-alpha1'
     compile 'com.android.support:preference-v7:26.0.0-alpha1'
 }
