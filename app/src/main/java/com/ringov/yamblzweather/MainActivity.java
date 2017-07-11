@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
+        setSupportActionBar(mToolbar);
+        setTitle(R.string.app_name);
         initializeDrawer();
         if (savedInstanceState == null) {
             showScreen(ScreenRouter.Screen.Weather);

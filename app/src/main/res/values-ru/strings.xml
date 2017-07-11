@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">YamblzWeather</string>
-
     <string name="weather">Погода</string>
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
