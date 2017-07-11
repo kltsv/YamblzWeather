@@ -4,13 +4,10 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 
 import com.ringov.yamblzweather.about.AboutFragment;
-import com.ringov.yamblzweather.exceptions.ExceptionFragment;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.main.WeatherFragment;
 import com.ringov.yamblzweather.settings.SettingsFragment;
-
 import java.util.HashMap;
-import java.util.Set;
 
 /**
  * Created by ringov on 07.07.17.

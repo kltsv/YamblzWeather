@@ -1,5 +1,7 @@
 package com.ringov.yamblzweather.main;
 
+import android.view.View;
+
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.base.BaseFragment;
 import com.ringov.yamblzweather.routing.ScreenView;
@@ -12,6 +14,11 @@ public class WeatherFragment extends BaseFragment implements ScreenView<WeatherF
     @Override
     protected int getLayout() {
         return R.layout.weather_fragment;
+    }
+
+    @Override
+    protected void initializeViews(View view) {
+
     }
 
     @Override
