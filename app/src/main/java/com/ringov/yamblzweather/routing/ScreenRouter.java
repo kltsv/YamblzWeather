@@ -21,8 +21,7 @@ public class ScreenRouter {
     public enum Screen {
         Weather(R.id.nav_weather, new WeatherFragment()),
         Settings(R.id.nav_settings, new SettingsFragment()),
-        About(R.id.nav_about, new AboutFragment()),
-        UNKNOWN(0, new ExceptionFragment()); // для сервисных целей, чтобы при разработке увидеть, что происходит какой-то неправильный вызов экрана
+        About(R.id.nav_about, new AboutFragment());
 
         private static HashMap<Integer, Screen> screenMap;
 
@@ -44,7 +43,7 @@ public class ScreenRouter {
 
         public static Screen fromId(@IdRes int id) {
             Screen screen = screenMap.get(id);
-            return screen != null ? screen : UNKNOWN;
+            return screen;
         }
 
         public Fragment getFragment() {
