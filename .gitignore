@@ -9,3 +9,5 @@
 
 # ignoring keystores
 *.jks
+
+*.apk
