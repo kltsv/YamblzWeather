@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.main_activity);
         initializeViews();
         setSupportActionBar(mToolbar);
-        setTitle(R.string.app_name);
         initializeDrawer();
         if (savedInstanceState == null) {
             showScreen(ScreenRouter.Screen.Weather);
