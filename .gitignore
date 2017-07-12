@@ -6,3 +6,8 @@
 /build
 /captures
 .externalNativeBuild
+
+# ignoring keystores
+*.jks
+
+*.apk
