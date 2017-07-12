@@ -5,4 +5,13 @@ package com.ringov.yamblzweather.viewmodel.model;
  */
 
 public class WeatherInfo {
+    private String weather;
+
+    public WeatherInfo(String weather) {
+        this.weather = weather;
+    }
+
+    public String getWeather() {
+        return weather;
+    }
 }

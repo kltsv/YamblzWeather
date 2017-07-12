@@ -1,9 +1,9 @@
 package com.ringov.yamblzweather.ui.base;
 
+import android.arch.lifecycle.LifecycleFragment;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
  * Created by ringov on 07.07.17.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends LifecycleFragment {
 
     @LayoutRes
     protected abstract int getLayout();
