@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'WeatherKey'
-            keyPassword 'wea217!ke.'
-            storeFile file('/media/ringov/DATA/Education/Mobilization2017/StudyingProjects/keystore/weather_key.jks')
-            storePassword 'ya217!'
+            keyAlias System.getenv("YAMBLZ_WEATHER_KEY_ALIAS")
+            keyPassword System.getenv("YAMBLZ_WEATHER_KEY_PASSWORD")
+            storeFile file('weather_key.jks')
+            storePassword System.getenv("YAMBLZ_WEATHER_STORE_PASSWORD")
         }
     }
     compileSdkVersion 26
