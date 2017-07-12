@@ -3,10 +3,10 @@ package com.ringov.yamblzweather.routing;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 
-import com.ringov.yamblzweather.about.AboutFragment;
+import com.ringov.yamblzweather.ui.about.AboutFragment;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.main.WeatherFragment;
-import com.ringov.yamblzweather.settings.SettingsFragment;
+import com.ringov.yamblzweather.ui.weather.WeatherFragment;
+import com.ringov.yamblzweather.ui.settings.SettingsFragment;
 import java.util.HashMap;
 
 /**

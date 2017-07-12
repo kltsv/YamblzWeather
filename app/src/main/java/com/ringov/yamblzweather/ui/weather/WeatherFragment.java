@@ -1,7 +1,7 @@
-package com.ringov.yamblzweather.main;
+package com.ringov.yamblzweather.ui.weather;
 
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.base.BaseFragment;
+import com.ringov.yamblzweather.ui.base.BaseFragment;
 
 /**
  * Created by ringov on 07.07.17.

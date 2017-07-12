@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.base;
+package com.ringov.yamblzweather.ui.base;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
