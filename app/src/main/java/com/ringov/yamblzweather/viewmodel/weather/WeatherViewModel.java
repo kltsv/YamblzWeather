@@ -17,7 +17,7 @@ public class WeatherViewModel extends BaseViewModel<BaseLiveData<WeatherInfo>, W
     @Inject
     WeatherRepository repository;
 
-    WeatherViewModel() {
+    public WeatherViewModel() {
         App.getComponent().inject(this);
     }
 
