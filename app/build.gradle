@@ -45,4 +45,8 @@ dependencies {
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.android.support:preference-v14:26.0.0-alpha1'
     compile 'com.android.support:preference-v7:26.0.0-alpha1'
+
+    // butter-knife
+    compile 'com.jakewharton:butterknife:8.7.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }

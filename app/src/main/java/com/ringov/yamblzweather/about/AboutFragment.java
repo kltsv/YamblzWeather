@@ -10,12 +10,15 @@ import com.ringov.yamblzweather.BuildConfig;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.base.BaseFragment;
 
+import butterknife.BindView;
+
 /**
  * Created by ringov on 07.07.17.
  */
 
 public class AboutFragment extends BaseFragment {
 
+    @BindView(R.id.tv_version)
     TextView mTvVersion;
 
     @Override
@@ -27,10 +30,5 @@ public class AboutFragment extends BaseFragment {
     @Override
     protected int getLayout() {
         return R.layout.about_fragment;
-    }
-
-    @Override
-    protected void initializeViews(View view) {
-        mTvVersion = view.findViewById(R.id.tv_version);
     }
 }

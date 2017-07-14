@@ -14,38 +14,38 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.ringov.yamblzweather.routing.ScreenRouter;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by ringov on 07.07.17.
  */
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Toolbar mToolbar;
-    private DrawerLayout mDrawer;
-    private NavigationView mNavigationView;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawer;
+    @BindView(R.id.navigation_view)
+    NavigationView mNavigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        initializeViews();
+        ButterKnife.bind(this);
+        initializeToolbar();
+        initializeDrawer();
         if (savedInstanceState == null) {
             showScreen(ScreenRouter.Screen.Weather);
         }
     }
 
-    private void initializeToolbar(){
+    private void initializeToolbar() {
         setSupportActionBar(mToolbar);
         getSupportActionBar().setTitle(R.string.app_name);
-    }
-
-    private void initializeViews() {
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-
-        initializeToolbar();
-        initializeDrawer();
     }
 
     private void initializeDrawer() {
