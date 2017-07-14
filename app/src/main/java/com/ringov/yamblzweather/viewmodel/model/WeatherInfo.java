@@ -7,6 +7,7 @@ package com.ringov.yamblzweather.viewmodel.model;
 public class WeatherInfo {
 
     private double temperature;
+    private WeatherCondition condition;
 
     public double getTemperature() {
         return temperature;
@@ -22,6 +23,11 @@ public class WeatherInfo {
 
         public Builder temperature(double t) {
             weather.temperature = t;
+            return this;
+        }
+
+        public Builder weatherCondition(WeatherCondition condition) {
+            weather.condition = condition;
             return this;
         }
 

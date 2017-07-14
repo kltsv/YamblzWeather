@@ -4,6 +4,12 @@ package com.ringov.yamblzweather.internet.content;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.ringov.yamblzweather.internet.content.Clouds;
+import com.ringov.yamblzweather.internet.content.Coord;
+import com.ringov.yamblzweather.internet.content.Main;
+import com.ringov.yamblzweather.internet.content.Sys;
+import com.ringov.yamblzweather.internet.content.Weather;
+import com.ringov.yamblzweather.internet.content.Wind;
 
 public class WeatherResponse {
 
