@@ -34,7 +34,7 @@
 }
 -keepclasseswithmembernames class * {
     @butterknife.* <methods>;
-
+}
 ## Android architecture components: Lifecycle
 # LifecycleObserver's empty constructor is considered to be unused by proguard
 -keepclassmembers class * implements android.arch.lifecycle.LifecycleObserver {
