@@ -28,8 +28,6 @@ public class App extends Application {
     private AppComponent buildComponent() {
         return DaggerAppComponent.builder()
                 .weatherModule(new WeatherModule())
-                //.appModule(new AppModule(this))     // пока не используется
-                //.aboutModule(new AboutModule())     // пока не используется
                 .build();
     }
 }

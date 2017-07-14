@@ -1,7 +1,5 @@
 package com.ringov.yamblzweather.ui.base;
 
-import android.arch.lifecycle.LifecycleOwner;
-import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -16,17 +14,9 @@ import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
  */
 
 public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Data>, Data>, Data>
-        extends BaseFragment /*implements LifecycleOwner*/ {
-
-    // не используется собственная реализация, потому что данные не обновляются (причину не нашел)
-    //private LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
+        extends BaseFragment {
 
     protected VM viewModel;
-
-/*    @Override
-    public LifecycleRegistry getLifecycle() {
-        return mLifecycleRegistry;
-    }*/
 
     protected abstract Class<VM> getViewModelClass();
 
@@ -35,7 +25,7 @@ public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Da
     }
 
     private void startObserve() {
-        // TODO переписать с лямбдами
+        // TODO rewrite with lambda
         viewModel.getLiveData().observe(this, new Observer<Data>() {
             @Override
             public void onChanged(@Nullable Data data) {
@@ -48,7 +38,7 @@ public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Da
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // порядок имеет значение
+        // order matters
         attachViewModel();
         startObserve();
     }

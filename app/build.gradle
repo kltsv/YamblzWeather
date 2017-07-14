@@ -31,7 +31,7 @@ android {
         }
     }
     lintOptions {
-        // чтобы иметь возможность выборочно переопределять строки (для релизной и дебаг сборок)
+        // in order to be able to set release and debug strings separately
         disable 'MissingTranslation', 'ExtraTranslation'
     }
 }
