@@ -9,4 +9,16 @@
     <string name="navigation_drawer_open">Navigation drawer has been opened</string>
     <string name="navigation_drawer_close">Navigation drawer has been closed</string>
     <string name="version">App version: %s</string>
+
+    <string name="cloudy">Cloudy</string>
+    <string name="clear">Clear</string>
+    <string name="rainy">Rainy</string>
+    <string name="thunderstorm">Thunderstorm</string>
+    <string name="drizzle">Drizzle</string>
+    <string name="snow">Show</string>
+    <string name="atmospherically">Atmospherically</string>
+    <string name="extreme">Extreme</string>
+    <string name="windy">Windy</string>
+    <string name="calm">Calm</string>
+    <string name="other"></string>
 </resources>

@@ -9,4 +9,15 @@
     <string name="navigation_drawer_open">Открыто боковое меню</string>
     <string name="navigation_drawer_close">Закрыто боковое меню</string>
     <string name="version">Версия приложения: %s</string>
+
+    <string name="cloudy">Пасмурно</string>
+    <string name="clear">Ясно</string>
+    <string name="rainy">Дождливо</string>
+    <string name="thunderstorm">Гроза</string>
+    <string name="snow">Снег</string>
+    <string name="atmospherically">Атмосферненько</string>
+    <string name="extreme">Экстримальненько</string>
+    <string name="windy">Ветренно</string>
+    <string name="calm">Спокойно</string>
+    <string name="other"></string>
 </resources>
