@@ -3,7 +3,6 @@ package com.ringov.yamblzweather.ui.weather;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.ui.base.ModelViewFragment;
@@ -18,8 +17,10 @@ import butterknife.BindView;
 
 public class WeatherFragment extends ModelViewFragment<WeatherViewModel, WeatherInfo> {
 
-	@BindView(R.id.tv_weather)
-    TextView tvWeather;
+	@BindView(R.id.tv_temperature)
+    TextView tvTemperature;
+    @BindView(R.id.tv_conditions)
+    TextView tvConditions;
 
     @Override
     protected int getLayout() {
@@ -39,6 +40,7 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
 
     @Override
     protected void showDataChanges(WeatherInfo data) {
-        tvWeather.setText(data.getTemperature() + "");
+        tvTemperature.setText(data.getTemperature() + "");
+        tvConditions.setText(data.getConditions());
     }
 }

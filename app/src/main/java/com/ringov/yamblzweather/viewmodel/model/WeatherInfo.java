@@ -1,5 +1,7 @@
 package com.ringov.yamblzweather.viewmodel.model;
 
+import android.support.annotation.StringRes;
+
 /**
  * Created by ringov on 12.07.17.
  */
@@ -11,6 +13,11 @@ public class WeatherInfo {
 
     public double getTemperature() {
         return temperature;
+    }
+
+    @StringRes
+    public int getConditions() {
+        return condition.getFriendlyName();
     }
 
     public static class Builder {
