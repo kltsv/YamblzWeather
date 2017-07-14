@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.model.weather;
 
 import com.ringov.yamblzweather.internet.APIFactory;
+import com.ringov.yamblzweather.internet.Converter;
 import com.ringov.yamblzweather.internet.WeatherService;
 import com.ringov.yamblzweather.model.base.BaseRepositoryImpl;
 import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
@@ -8,6 +9,8 @@ import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
 
 import javax.inject.Singleton;
 
+import io.reactivex.Observable;
+import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -18,23 +21,12 @@ import io.reactivex.schedulers.Schedulers;
 @Singleton
 public class WeatherRepositoryImpl extends BaseRepositoryImpl implements WeatherRepository {
 
-    private BaseLiveData<WeatherInfo> liveData;
-
-    public WeatherRepositoryImpl() {
-        liveData = new BaseLiveData<>();
-    }
-
     @Override
-    public BaseLiveData<WeatherInfo> getWeatherInfo() {
-        getService().getWeather(524901)
+    public Single<WeatherInfo> getWeatherInfo() {
+        return getService().getWeather(524901)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(response -> {
-                    liveData.updateValue(new WeatherInfo(response.getName()));
-                }, throwable -> {
-                });
-
-        return liveData;
+                .map(Converter::getWeatherInfo);
     }
 
     private WeatherService getService() {

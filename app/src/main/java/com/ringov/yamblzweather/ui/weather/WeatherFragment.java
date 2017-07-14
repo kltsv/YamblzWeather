@@ -20,8 +20,6 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
 
 	@BindView(R.id.tv_weather)
     TextView tvWeather;
-    @BindView(R.id.btn)
-    Button btn;
 
     @Override
     protected int getLayout() {
@@ -31,7 +29,6 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-		btn.setOnClickListener(view1 -> viewModel.getWeatherInfo());
 	}
     
 
@@ -42,6 +39,6 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
 
     @Override
     protected void onDataChanged(WeatherInfo data) {
-        tvWeather.setText(data.getWeather());
+        tvWeather.setText(data.getTemperature() + "");
     }
 }
