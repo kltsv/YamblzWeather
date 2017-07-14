@@ -1,9 +1,15 @@
 package com.ringov.yamblzweather.model.weather;
 
+import com.ringov.yamblzweather.internet.APIFactory;
+import com.ringov.yamblzweather.internet.WeatherService;
 import com.ringov.yamblzweather.model.base.BaseRepositoryImpl;
+import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
 import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
 
 import javax.inject.Singleton;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by ringov on 12.07.17.
@@ -12,18 +18,26 @@ import javax.inject.Singleton;
 @Singleton
 public class WeatherRepositoryImpl extends BaseRepositoryImpl implements WeatherRepository {
 
-    private int counter;
-    private WeatherInfo[] mockInfos;
+    private BaseLiveData<WeatherInfo> liveData;
 
     public WeatherRepositoryImpl() {
-        mockInfos = new WeatherInfo[3];
-        mockInfos[0] = new WeatherInfo("тест 1");
-        mockInfos[1] = new WeatherInfo("тест 2");
-        mockInfos[2] = new WeatherInfo("тест 3");
+        liveData = new BaseLiveData<>();
     }
 
     @Override
-    public WeatherInfo getWeatherInfo() {
-        return mockInfos[(counter++) % mockInfos.length];
+    public BaseLiveData<WeatherInfo> getWeatherInfo() {
+        getService().getWeather(524901)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(response -> {
+                    liveData.updateValue(new WeatherInfo(response.getName()));
+                }, throwable -> {
+                });
+
+        return liveData;
+    }
+
+    private WeatherService getService() {
+        return APIFactory.getRetrofitService(WeatherService.class);
     }
 }

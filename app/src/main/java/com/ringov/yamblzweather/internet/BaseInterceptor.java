@@ -22,7 +22,7 @@ public class BaseInterceptor implements Interceptor {
         Request request = chain.request();
 
         HttpUrl newUrl = request.url().newBuilder()
-                .addPathSegment(Config.API.VERSION_PATH)
+                //.addPathSegment(Config.API.VERSION_PATH)
                 .addQueryParameter(Config.API.KEY_FIELD, Config.API.KEY)
                 .build();
 

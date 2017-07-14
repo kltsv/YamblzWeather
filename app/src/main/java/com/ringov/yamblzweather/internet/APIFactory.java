@@ -6,6 +6,8 @@ import com.ringov.yamblzweather.BuildConfig;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by ringov on 14.07.17.
@@ -22,6 +24,8 @@ public class APIFactory {
     private static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .client(okHttpClient)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
             .build();
 
     @NonNull

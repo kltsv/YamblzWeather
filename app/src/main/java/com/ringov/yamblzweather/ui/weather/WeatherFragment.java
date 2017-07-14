@@ -31,12 +31,7 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-		btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewModel.getWeatherInfo();
-            }
-        });
+		btn.setOnClickListener(view1 -> viewModel.getWeatherInfo());
 	}
     
 

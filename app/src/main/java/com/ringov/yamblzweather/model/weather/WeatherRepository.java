@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.model.weather;
 
 import com.ringov.yamblzweather.model.base.BaseRepository;
+import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
 import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
 
 /**
@@ -8,5 +9,5 @@ import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
  */
 
 public interface WeatherRepository extends BaseRepository {
-    WeatherInfo getWeatherInfo();
+    BaseLiveData<WeatherInfo> getWeatherInfo();
 }
