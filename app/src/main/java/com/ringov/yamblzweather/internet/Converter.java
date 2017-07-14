@@ -1,7 +1,8 @@
 package com.ringov.yamblzweather.internet;
 
+import com.ringov.yamblzweather.db.model.DBWeather;
 import com.ringov.yamblzweather.internet.content.Weather;
-import com.ringov.yamblzweather.internet.content.WeatherResponse;
+import com.ringov.yamblzweather.internet.content.ResponseWeather;
 import com.ringov.yamblzweather.viewmodel.model.WeatherCondition;
 import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 
 public class Converter {
-    public static WeatherInfo getWeatherInfo(WeatherResponse response) {
+    public static WeatherInfo getWeatherInfo(ResponseWeather response) {
         double temperature = ConvertUtils.kelvinToCelsius(response.getMain().getTemp());
         List<Weather> weathers = response.getWeather();
         WeatherCondition weatherCondition = WeatherCondition.Other;
@@ -22,6 +23,13 @@ public class Converter {
         return new WeatherInfo.Builder()
                 .temperature(temperature)
                 .weatherCondition(weatherCondition)
+                .build();
+    }
+
+    public static WeatherInfo getWeatherInfo(DBWeather dbResponse) {
+        return new WeatherInfo.Builder()
+                .temperature(15.9)
+                .weatherCondition(WeatherCondition.Other)
                 .build();
     }
 

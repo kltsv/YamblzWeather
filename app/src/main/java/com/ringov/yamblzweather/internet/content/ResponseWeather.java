@@ -11,7 +11,7 @@ import com.ringov.yamblzweather.internet.content.Sys;
 import com.ringov.yamblzweather.internet.content.Weather;
 import com.ringov.yamblzweather.internet.content.Wind;
 
-public class WeatherResponse {
+public class ResponseWeather {
 
     @SerializedName("coord")
     @Expose

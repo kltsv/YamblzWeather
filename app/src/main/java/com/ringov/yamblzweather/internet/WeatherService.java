@@ -1,7 +1,8 @@
 package com.ringov.yamblzweather.internet;
 
-import com.ringov.yamblzweather.internet.content.WeatherResponse;
+import com.ringov.yamblzweather.internet.content.ResponseWeather;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -13,6 +14,6 @@ import retrofit2.http.Query;
 public interface WeatherService {
 
     @GET("weather")
-    Single<WeatherResponse> getWeather(@Query("id") int cityId);
+    Observable<ResponseWeather> getWeather(@Query("id") int cityId);
 
 }

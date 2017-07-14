@@ -12,5 +12,5 @@ import io.reactivex.Single;
  */
 
 public interface WeatherRepository extends BaseRepository {
-    Single<WeatherInfo> getWeatherInfo();
+    Observable<WeatherInfo> getWeatherInfo();
 }
