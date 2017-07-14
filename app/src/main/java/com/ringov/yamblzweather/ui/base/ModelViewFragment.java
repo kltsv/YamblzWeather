@@ -29,7 +29,7 @@ public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Da
         viewModel.getLiveData().observe(this, new Observer<Data>() {
             @Override
             public void onChanged(@Nullable Data data) {
-                onDataChanged(data);
+                showDataChanges(data);
             }
         });
     }
@@ -43,5 +43,5 @@ public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Da
         startObserve();
     }
 
-    protected abstract void onDataChanged(Data data);
+    protected abstract void showDataChanges(Data data);
 }

@@ -38,7 +38,7 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
     }
 
     @Override
-    protected void onDataChanged(WeatherInfo data) {
+    protected void showDataChanges(WeatherInfo data) {
         tvWeather.setText(data.getTemperature() + "");
     }
 }
