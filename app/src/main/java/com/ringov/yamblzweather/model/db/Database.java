@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.model.db;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
 import com.ringov.yamblzweather.App;
@@ -14,6 +15,11 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class Database {
+    private static final String SB_SHARED_PREFS = "com.ringov.yamblzweather.db_shared_prefs";
+    private static final String TIME_KEY = "time";
+    private static final String CONDITION_KEY = "condition";
+    private static final String TEMPERATURE_KEY = "temperature";
+
     private static Database instance;
 
     public static Database getInstance() {
@@ -27,10 +33,23 @@ public class Database {
 
     }
 
-    public DBWeather getWeather(int cityId) {
-        return new DBWeather.Builder(0)
-                .temperature(11.11)
-                .weatherCondition(0)
+    public void saveWeather(DBWeather weather) {
+        SharedPreferences sp = App.getContext().getSharedPreferences(SB_SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putLong(TIME_KEY, weather.getTime());
+        editor.putInt(CONDITION_KEY, weather.getConditionId());
+        editor.putFloat(TEMPERATURE_KEY, weather.getTemperature());
+        editor.apply();
+    }
+
+    public DBWeather loadWeather(int cityId) {
+        SharedPreferences sp = App.getContext().getSharedPreferences(SB_SHARED_PREFS, Context.MODE_PRIVATE);
+        long time = sp.getLong(TIME_KEY, System.currentTimeMillis());
+        int condition = sp.getInt(CONDITION_KEY, 0);
+        float temperature = sp.getFloat(TEMPERATURE_KEY, 0);
+        return new DBWeather.Builder(time)
+                .temperature(temperature)
+                .weatherCondition(condition)
                 .build();
     }
 

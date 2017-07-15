@@ -6,14 +6,14 @@ package com.ringov.yamblzweather.model.db.data;
 
 public class DBWeather {
     private long time;
-    private double temperature;
+    private float temperature;
     private int condition;
 
     public DBWeather(long time) {
         this.time = time;
     }
 
-    public double getTemperature() {
+    public float getTemperature() {
         return temperature;
     }
 
@@ -33,7 +33,7 @@ public class DBWeather {
             weather = new DBWeather(time);
         }
 
-        public Builder temperature(double t) {
+        public Builder temperature(float t) {
             weather.temperature = t;
             return this;
         }
