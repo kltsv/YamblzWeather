@@ -20,4 +20,19 @@
     <string name="windy">Ветренно</string>
     <string name="calm">Спокойно</string>
     <string name="other"></string>
+
+    <string name="update_intervals_title">Частота обновления</string>
+    <string name="update_intervals_summary">Как часто получать обновления погоды</string>
+
+    <string-array name="update_intervals">
+        <item>2 часа</item>
+        <item>3 часа</item>
+        <item>5 часов</item>
+        <item>8 часов</item>
+        <item>12 часов</item>
+        <item>24 часов</item>
+    </string-array>
+
+    <string name="update_notifications_title">Уведомление об обновлении</string>
+    <string name="update_notifications_summary">Уведомлять о получении обновления погоды</string>
 </resources>

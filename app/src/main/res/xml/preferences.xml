@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- for future functionality
+
     <android.support.v7.preference.SwitchPreferenceCompat
         android:defaultValue="false"
-        android:key="key1"
-        android:title="Настройка 1" />
+        android:key="update_notifications_key"
+        android:summary="@string/update_notifications_summary"
+        android:title="@string/update_notifications_title" />-->
 
-    <android.support.v7.preference.Preference
-        android:key="key2"
-        android:title="Настройка 2" />
+    <android.support.v7.preference.ListPreference
+        android:defaultValue="@string/default_update_intervals_value"
+        android:entries="@array/update_intervals"
+        android:entryValues="@array/update_intervals_values"
+        android:key="update_intervals_key"
+        android:summary="@string/update_intervals_summary"
+        android:title="@string/update_intervals_title" />
 
 </PreferenceScreen>
