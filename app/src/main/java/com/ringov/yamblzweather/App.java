@@ -2,9 +2,7 @@ package com.ringov.yamblzweather;
 
 import android.app.Application;
 
-import com.ringov.yamblzweather.di.about.AboutModule;
 import com.ringov.yamblzweather.di.app.AppComponent;
-import com.ringov.yamblzweather.di.app.AppModule;
 import com.ringov.yamblzweather.di.app.DaggerAppComponent;
 import com.ringov.yamblzweather.di.weather.WeatherModule;
 

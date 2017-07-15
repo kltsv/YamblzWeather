@@ -13,7 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.ringov.yamblzweather.routing.Screen;
 import com.ringov.yamblzweather.routing.ScreenRouter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,16 +34,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @BindView(R.id.navigation_view)
     NavigationView mNavigationView;
 
+    ScreenRouter router;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         ButterKnife.bind(this);
+        initializeRouter();
         initializeToolbar();
         initializeDrawer();
+
         if (savedInstanceState == null) {
-            showScreen(ScreenRouter.Screen.Weather);
+            router.open(Screen.Weather);
         }
+    }
+
+    private void initializeRouter() {
+        router = new ScreenRouter(getSupportFragmentManager(), R.id.container);
     }
 
     private void initializeToolbar() {
@@ -69,14 +80,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         mDrawer.closeDrawer(GravityCompat.START);
-
-        showScreen(ScreenRouter.Screen.fromId(item.getItemId()));
+        router.open(Screen.fromId(item.getItemId()));
         return true;
     }
 
-    private void showScreen(ScreenRouter.Screen screen) {
-        Fragment fragment = screen.getFragment();
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction().replace(R.id.container, fragment).commit();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        router.detach();
     }
 }
