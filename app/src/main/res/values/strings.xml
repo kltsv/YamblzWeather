@@ -48,4 +48,7 @@
     <string name="update_notifications_summary">Notify on weather update</string>
 
     <string name="right_now">Just now</string>
+
+    <string name="temperature" translatable="false">%.0f°</string>
+    <string name="notification_message">%1$s, %2$s</string>
 </resources>

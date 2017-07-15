@@ -44,7 +44,7 @@ public class Database {
 
     public DBWeather loadWeather(int cityId) {
         SharedPreferences sp = App.getContext().getSharedPreferences(SB_SHARED_PREFS, Context.MODE_PRIVATE);
-        long time = sp.getLong(TIME_KEY, System.currentTimeMillis());
+        long time = sp.getLong(TIME_KEY, 0);
         int condition = sp.getInt(CONDITION_KEY, 0);
         float temperature = sp.getFloat(TEMPERATURE_KEY, 0);
         return new DBWeather.Builder(time)

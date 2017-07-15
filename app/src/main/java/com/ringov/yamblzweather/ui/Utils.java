@@ -21,4 +21,8 @@ public class Utils {
             return DateUtils.getRelativeTimeSpanString(time, now, DateUtils.MINUTE_IN_MILLIS).toString();
         }
     }
+
+    public static String getFormattedTemperature(Context context, float temperature) {
+        return context.getString(R.string.temperature, temperature);
+    }
 }

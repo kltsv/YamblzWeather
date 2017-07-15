@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.viewmodel.weather;
 
 import com.ringov.yamblzweather.App;
+import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
 import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
 import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
@@ -21,6 +22,8 @@ public class WeatherViewModel extends BaseViewModel<BaseLiveData<WeatherInfo>, W
         App.getComponent().inject(this);
         addDisposable(repository.getLastWeatherInfo()
                 .subscribe(this::updateData, this::handleError));
+
+        WeatherUpdateJob.schedule();
     }
 
     private void updateData(WeatherInfo weather) {

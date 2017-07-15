@@ -1,10 +1,8 @@
 package com.ringov.yamblzweather.ui.weather;
 
-import android.icu.util.TimeUnit;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.TextView;
 
@@ -55,8 +53,8 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
 
     @Override
     protected void showDataChanges(WeatherInfo data) {
-        tvTemperature.setText(data.getTemperature() + "");
-        tvConditions.setText(data.getConditions());
+        tvTemperature.setText(Utils.getFormattedTemperature(getContext(), data.getTemperature()));
+        tvConditions.setText(data.getCondition());
         tvTime.setText(Utils.getRelativeTime(getContext(), data.getTime()));
         swipeLayout.setRefreshing(false);
     }

@@ -9,15 +9,15 @@ import android.support.annotation.StringRes;
 public class WeatherInfo {
 
     private long time;
-    private double temperature;
+    private float temperature;
     private WeatherCondition condition;
 
-    public double getTemperature() {
+    public float getTemperature() {
         return temperature;
     }
 
     @StringRes
-    public int getConditions() {
+    public int getCondition() {
         return condition.getFriendlyName();
     }
 
@@ -33,7 +33,7 @@ public class WeatherInfo {
             weather = new WeatherInfo();
         }
 
-        public Builder temperature(double t) {
+        public Builder temperature(float t) {
             weather.temperature = t;
             return this;
         }
