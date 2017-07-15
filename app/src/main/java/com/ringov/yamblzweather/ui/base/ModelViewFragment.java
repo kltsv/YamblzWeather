@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
-import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
+import com.ringov.yamblzweather.presenter.base.BaseLiveData;
+import com.ringov.yamblzweather.presenter.base.BaseViewModel;
 
 /**
  * Created by ringov on 12.07.17.

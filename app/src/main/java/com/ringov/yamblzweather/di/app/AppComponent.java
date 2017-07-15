@@ -2,8 +2,8 @@ package com.ringov.yamblzweather.di.app;
 
 import com.ringov.yamblzweather.di.about.AboutModule;
 import com.ringov.yamblzweather.di.weather.WeatherModule;
-import com.ringov.yamblzweather.viewmodel.about.AboutViewModel;
-import com.ringov.yamblzweather.viewmodel.weather.WeatherViewModel;
+import com.ringov.yamblzweather.presenter.about.AboutViewModel;
+import com.ringov.yamblzweather.presenter.weather.WeatherViewModel;
 
 import javax.inject.Singleton;
 
