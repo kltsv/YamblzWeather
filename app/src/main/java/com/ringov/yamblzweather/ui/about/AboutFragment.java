@@ -18,6 +18,8 @@ import butterknife.BindView;
 
 public class AboutFragment extends BaseFragment {
 
+    public static final String TAG = "about";
+
     @BindView(R.id.tv_version)
     TextView mTvVersion;
 

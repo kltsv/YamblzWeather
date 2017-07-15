@@ -1,13 +1,11 @@
 package com.ringov.yamblzweather.ui.weather;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.TextView;
+
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.ui.base.ModelViewFragment;
 import com.ringov.yamblzweather.presenter.model.WeatherInfo;
 import com.ringov.yamblzweather.presenter.weather.WeatherViewModel;
+import com.ringov.yamblzweather.ui.base.ModelViewFragment;
 
 import butterknife.BindView;
 
@@ -16,6 +14,8 @@ import butterknife.BindView;
  */
 
 public class WeatherFragment extends ModelViewFragment<WeatherViewModel, WeatherInfo> {
+
+    public static final String TAG = "weather";
 
 	@BindView(R.id.tv_temperature)
     TextView tvTemperature;
@@ -26,12 +26,6 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
     protected int getLayout() {
         return R.layout.weather_fragment;
     }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-	}
-    
 
     @Override
     protected Class<WeatherViewModel> getViewModelClass() {
