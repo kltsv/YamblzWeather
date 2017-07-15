@@ -1,9 +1,8 @@
 package com.ringov.yamblzweather.model.repositories.weather;
 
 import com.ringov.yamblzweather.model.db.Database;
-import com.ringov.yamblzweather.model.db.data.DBWeather;
 import com.ringov.yamblzweather.model.internet.APIFactory;
-import com.ringov.yamblzweather.model.internet.Converter;
+import com.ringov.yamblzweather.model.Converter;
 import com.ringov.yamblzweather.model.internet.WeatherService;
 import com.ringov.yamblzweather.model.repositories.base.BaseRepositoryImpl;
 import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
@@ -27,6 +26,10 @@ public class WeatherRepositoryImpl extends BaseRepositoryImpl implements Weather
     @Override
     public Observable<WeatherInfo> updateWeatherInfo() {
         return getService().getWeather(cityId)
+                .map(Converter::getDBWeather)
+                .doOnNext(dbWeather -> {
+                    // cache into db
+                })
                 .map(Converter::getWeatherInfo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());

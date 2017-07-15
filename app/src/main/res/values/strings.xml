@@ -46,4 +46,6 @@
 
     <string name="update_notifications_title">Update notifications</string>
     <string name="update_notifications_summary">Notify on weather update</string>
+
+    <string name="right_now">Just now</string>
 </resources>

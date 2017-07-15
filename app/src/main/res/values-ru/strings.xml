@@ -35,4 +35,6 @@
 
     <string name="update_notifications_title">Уведомление об обновлении</string>
     <string name="update_notifications_summary">Уведомлять о получении обновления погоды</string>
+
+    <string name="right_now">Только что</string>
 </resources>

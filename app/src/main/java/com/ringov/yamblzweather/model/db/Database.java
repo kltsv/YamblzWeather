@@ -28,7 +28,10 @@ public class Database {
     }
 
     public DBWeather getWeather(int cityId) {
-        return new DBWeather();
+        return new DBWeather.Builder(0)
+                .temperature(11.11)
+                .weatherCondition(0)
+                .build();
     }
 
     public long getUpdateInterval() {

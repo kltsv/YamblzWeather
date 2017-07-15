@@ -8,6 +8,7 @@ import android.support.annotation.StringRes;
 
 public class WeatherInfo {
 
+    private long time;
     private double temperature;
     private WeatherCondition condition;
 
@@ -18,6 +19,10 @@ public class WeatherInfo {
     @StringRes
     public int getConditions() {
         return condition.getFriendlyName();
+    }
+
+    public long getTime() {
+        return time;
     }
 
     public static class Builder {
@@ -40,6 +45,11 @@ public class WeatherInfo {
 
         public WeatherInfo build() {
             return weather;
+        }
+
+        public Builder time(long time) {
+            weather.time = time;
+            return this;
         }
     }
 }

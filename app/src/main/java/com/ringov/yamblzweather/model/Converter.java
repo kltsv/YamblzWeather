@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.model.internet;
+package com.ringov.yamblzweather.model;
 
 import com.ringov.yamblzweather.model.db.data.DBWeather;
 import com.ringov.yamblzweather.model.internet.data.Weather;
@@ -13,23 +13,24 @@ import java.util.List;
  */
 
 public class Converter {
-    public static WeatherInfo getWeatherInfo(ResponseWeather response) {
+    public static DBWeather getDBWeather(ResponseWeather response) {
         double temperature = ConvertUtils.kelvinToCelsius(response.getMain().getTemp());
         List<Weather> weathers = response.getWeather();
-        WeatherCondition weatherCondition = WeatherCondition.Other;
+        int conditionId = 0;
         if (weathers != null) {
-            weatherCondition = ConvertUtils.weatherIdToCondition(weathers.get(0).getId());
+            conditionId = weathers.get(0).getId();
         }
-        return new WeatherInfo.Builder()
+        return new DBWeather.Builder(System.currentTimeMillis())
                 .temperature(temperature)
-                .weatherCondition(weatherCondition)
+                .weatherCondition(conditionId)
                 .build();
     }
 
     public static WeatherInfo getWeatherInfo(DBWeather dbResponse) {
         return new WeatherInfo.Builder()
-                .temperature(15.9)
-                .weatherCondition(WeatherCondition.Other)
+                .time(dbResponse.getTime())
+                .temperature(dbResponse.getTemperature())
+                .weatherCondition(ConvertUtils.weatherIdToCondition(dbResponse.getConditionId()))
                 .build();
     }
 
