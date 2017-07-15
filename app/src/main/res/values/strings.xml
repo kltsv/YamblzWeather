@@ -25,6 +25,7 @@
     <string name="update_intervals_title">Update interval</string>
     <string name="update_intervals_summary">Update interval summary</string>
 
+    <string name="update_intervals_key" translatable="false">update_intervals_key</string>
     <string-array name="update_intervals">
         <item>2 hours</item>
         <item>3 hours</item>
@@ -33,15 +34,15 @@
         <item>12 hours</item>
         <item>24 hours</item>
     </string-array>
-    <string-array name="update_intervals_values">
-        <item>interval_2hours</item>
-        <item>interval_3hours</item>
-        <item>interval_5hours</item>
-        <item>interval_8hours</item>
-        <item>interval_12hours</item>
-        <item>interval_24hours</item>
+    <string-array name="update_intervals_values" translatable="false">
+        <item>2</item>
+        <item>3</item>
+        <item>5</item>
+        <item>8</item>
+        <item>12</item>
+        <item>24</item>
     </string-array>
-    <string name="default_update_intervals_value">interval_2hours</string>
+    <string name="default_update_intervals_value" translatable="false">2</string>
 
     <string name="update_notifications_title">Update notifications</string>
     <string name="update_notifications_summary">Notify on weather update</string>

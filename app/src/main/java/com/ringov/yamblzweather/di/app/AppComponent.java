@@ -13,7 +13,7 @@ import dagger.Component;
  * Created by ringov on 12.07.17.
  */
 
-@Component(modules = {AppModule.class, WeatherModule.class, AboutModule.class})
+@Component(modules = {WeatherModule.class, AboutModule.class})
 @Singleton
 public interface AppComponent {
     void inject(WeatherViewModel weatherViewModel);
