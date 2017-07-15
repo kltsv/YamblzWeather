@@ -2,11 +2,10 @@ package com.ringov.yamblzweather.model.db;
 
 import android.content.Context;
 import android.preference.PreferenceManager;
-import android.util.TimeUtils;
 
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.model.db.model.DBWeather;
+import com.ringov.yamblzweather.model.db.data.DBWeather;
 
 import java.util.concurrent.TimeUnit;
 

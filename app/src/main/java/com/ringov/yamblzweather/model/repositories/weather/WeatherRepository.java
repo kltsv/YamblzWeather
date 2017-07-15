@@ -1,7 +1,7 @@
 package com.ringov.yamblzweather.model.repositories.weather;
 
 import com.ringov.yamblzweather.model.repositories.base.BaseRepository;
-import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
 
 import io.reactivex.Observable;
 
@@ -10,5 +10,7 @@ import io.reactivex.Observable;
  */
 
 public interface WeatherRepository extends BaseRepository {
-    Observable<WeatherInfo> getWeatherInfo();
+    Observable<WeatherInfo> updateWeatherInfo();
+
+    Observable<WeatherInfo> getLastWeatherInfo();
 }

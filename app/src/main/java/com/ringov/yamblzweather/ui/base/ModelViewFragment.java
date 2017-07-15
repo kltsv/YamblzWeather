@@ -1,6 +1,5 @@
 package com.ringov.yamblzweather.ui.base;
 
-import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +15,7 @@ import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
 public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Data>, Data>, Data>
         extends BaseFragment {
 
-    protected VM viewModel;
+    private VM viewModel;
 
     protected abstract Class<VM> getViewModelClass();
 
@@ -25,13 +24,7 @@ public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Da
     }
 
     private void startObserve() {
-        // TODO rewrite with lambda
-        viewModel.getLiveData().observe(this, new Observer<Data>() {
-            @Override
-            public void onChanged(@Nullable Data data) {
-                showDataChanges(data);
-            }
-        });
+        viewModel.getLiveData().observe(this, data -> showDataChanges(data));
     }
 
     @Override
@@ -41,6 +34,10 @@ public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Da
         // order matters
         attachViewModel();
         startObserve();
+    }
+
+    protected VM getViewModel() {
+        return viewModel;
     }
 
     protected abstract void showDataChanges(Data data);

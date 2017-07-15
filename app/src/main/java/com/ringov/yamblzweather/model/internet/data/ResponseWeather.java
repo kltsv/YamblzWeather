@@ -1,5 +1,5 @@
 
-package com.ringov.yamblzweather.model.internet.content;
+package com.ringov.yamblzweather.model.internet.data;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

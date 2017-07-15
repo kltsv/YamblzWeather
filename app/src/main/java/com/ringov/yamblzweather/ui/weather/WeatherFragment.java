@@ -1,9 +1,13 @@
 package com.ringov.yamblzweather.ui.weather;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.view.View;
 import android.widget.TextView;
 
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
 import com.ringov.yamblzweather.viewmodel.weather.WeatherViewModel;
 import com.ringov.yamblzweather.ui.base.ModelViewFragment;
 
@@ -17,7 +21,9 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
 
     public static final String TAG = "weather";
 
-	@BindView(R.id.tv_temperature)
+    @BindView(R.id.swipe_layout)
+    SwipeRefreshLayout swipeLayout;
+    @BindView(R.id.tv_temperature)
     TextView tvTemperature;
     @BindView(R.id.tv_conditions)
     TextView tvConditions;
@@ -33,8 +39,20 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        swipeLayout.setOnRefreshListener(this::onRefresh);
+    }
+
+    private void onRefresh() {
+        getViewModel().onRefresh();
+    }
+
+    @Override
     protected void showDataChanges(WeatherInfo data) {
         tvTemperature.setText(data.getTemperature() + "");
         tvConditions.setText(data.getConditions());
+
+        swipeLayout.setRefreshing(false);
     }
 }

@@ -1,6 +1,6 @@
 package com.ringov.yamblzweather.model.internet;
 
-import com.ringov.yamblzweather.model.internet.content.ResponseWeather;
+import com.ringov.yamblzweather.model.internet.data.ResponseWeather;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

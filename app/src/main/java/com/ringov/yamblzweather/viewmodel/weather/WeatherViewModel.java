@@ -4,7 +4,7 @@ import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
 import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
 import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
-import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
 
 import javax.inject.Inject;
 
@@ -19,11 +19,16 @@ public class WeatherViewModel extends BaseViewModel<BaseLiveData<WeatherInfo>, W
 
     public WeatherViewModel() {
         App.getComponent().inject(this);
-        addDisposable(repository.getWeatherInfo()
+        addDisposable(repository.getLastWeatherInfo()
                 .subscribe(this::updateData, this::handleError));
     }
 
     private void updateData(WeatherInfo weather) {
         getLiveData().updateValue(weather);
+    }
+
+    public void onRefresh() {
+        addDisposable(repository.updateWeatherInfo()
+                .subscribe(this::updateData, this::handleError));
     }
 }

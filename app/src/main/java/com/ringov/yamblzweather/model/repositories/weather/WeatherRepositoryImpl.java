@@ -1,12 +1,12 @@
 package com.ringov.yamblzweather.model.repositories.weather;
 
 import com.ringov.yamblzweather.model.db.Database;
-import com.ringov.yamblzweather.model.db.model.DBWeather;
+import com.ringov.yamblzweather.model.db.data.DBWeather;
 import com.ringov.yamblzweather.model.internet.APIFactory;
 import com.ringov.yamblzweather.model.internet.Converter;
 import com.ringov.yamblzweather.model.internet.WeatherService;
 import com.ringov.yamblzweather.model.repositories.base.BaseRepositoryImpl;
-import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
 
 import javax.inject.Singleton;
 
@@ -21,22 +21,20 @@ import io.reactivex.schedulers.Schedulers;
 @Singleton
 public class WeatherRepositoryImpl extends BaseRepositoryImpl implements WeatherRepository {
 
-    @Override
-    public Observable<WeatherInfo> getWeatherInfo() {
-        // todo move choosing city to the higher level
-        int cityId = 524901;
+    // todo move choosing city to the higher level
+    private int cityId = 524901;
 
-        DBWeather dbWeather = getDatabase().getWeather(cityId);
-        Observable<WeatherInfo> observable;
-        if (dbWeather != null) {
-            observable = Observable.just(Converter.getWeatherInfo(dbWeather))
-                    .mergeWith(getService().getWeather(cityId).map(Converter::getWeatherInfo));
-        } else {
-            observable = getService().getWeather(cityId).map(Converter::getWeatherInfo);
-        }
-        return observable
+    @Override
+    public Observable<WeatherInfo> updateWeatherInfo() {
+        return getService().getWeather(cityId)
+                .map(Converter::getWeatherInfo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<WeatherInfo> getLastWeatherInfo() {
+        return Observable.just(Converter.getWeatherInfo(getDatabase().getWeather(cityId)));
     }
 
     private WeatherService getService() {

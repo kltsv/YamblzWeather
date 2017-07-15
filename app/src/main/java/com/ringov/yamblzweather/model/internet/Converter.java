@@ -1,10 +1,10 @@
 package com.ringov.yamblzweather.model.internet;
 
-import com.ringov.yamblzweather.model.db.model.DBWeather;
-import com.ringov.yamblzweather.model.internet.content.Weather;
-import com.ringov.yamblzweather.model.internet.content.ResponseWeather;
-import com.ringov.yamblzweather.viewmodel.model.WeatherCondition;
-import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
+import com.ringov.yamblzweather.model.db.data.DBWeather;
+import com.ringov.yamblzweather.model.internet.data.Weather;
+import com.ringov.yamblzweather.model.internet.data.ResponseWeather;
+import com.ringov.yamblzweather.viewmodel.data.WeatherCondition;
+import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
 
 import java.util.List;
 
