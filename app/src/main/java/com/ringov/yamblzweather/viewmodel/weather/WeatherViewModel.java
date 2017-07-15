@@ -1,10 +1,10 @@
-package com.ringov.yamblzweather.presenter.weather;
+package com.ringov.yamblzweather.viewmodel.weather;
 
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
-import com.ringov.yamblzweather.presenter.base.BaseLiveData;
-import com.ringov.yamblzweather.presenter.base.BaseViewModel;
-import com.ringov.yamblzweather.presenter.model.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
+import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
+import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
 
 import javax.inject.Inject;
 

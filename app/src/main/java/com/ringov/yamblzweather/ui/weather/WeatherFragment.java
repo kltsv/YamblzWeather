@@ -3,8 +3,8 @@ package com.ringov.yamblzweather.ui.weather;
 import android.widget.TextView;
 
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.presenter.model.WeatherInfo;
-import com.ringov.yamblzweather.presenter.weather.WeatherViewModel;
+import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.weather.WeatherViewModel;
 import com.ringov.yamblzweather.ui.base.ModelViewFragment;
 
 import butterknife.BindView;

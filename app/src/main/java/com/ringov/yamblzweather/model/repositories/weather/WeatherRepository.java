@@ -1,7 +1,7 @@
 package com.ringov.yamblzweather.model.repositories.weather;
 
 import com.ringov.yamblzweather.model.repositories.base.BaseRepository;
-import com.ringov.yamblzweather.presenter.model.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
 
 import io.reactivex.Observable;
 

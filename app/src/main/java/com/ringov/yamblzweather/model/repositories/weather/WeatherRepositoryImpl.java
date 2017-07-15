@@ -6,7 +6,7 @@ import com.ringov.yamblzweather.model.internet.APIFactory;
 import com.ringov.yamblzweather.model.internet.Converter;
 import com.ringov.yamblzweather.model.internet.WeatherService;
 import com.ringov.yamblzweather.model.repositories.base.BaseRepositoryImpl;
-import com.ringov.yamblzweather.presenter.model.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.model.WeatherInfo;
 
 import javax.inject.Singleton;
 

@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presenter.base;
+package com.ringov.yamblzweather.viewmodel.base;
 
 import android.arch.lifecycle.ViewModel;
 
