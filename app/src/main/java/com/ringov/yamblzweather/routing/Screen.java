@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.routing;
 
 import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.ringov.yamblzweather.R;
@@ -15,9 +16,25 @@ import java.util.HashMap;
  */
 
 public enum Screen {
-    Weather(R.id.nav_weather, ((manager, container) -> manager.beginTransaction().replace(container, new WeatherFragment()).commit())),
-    Settings(R.id.nav_settings, ((manager, container) -> manager.beginTransaction().replace(container, new SettingsFragment()).commit())),
-    About(R.id.nav_about, ((manager, container) -> manager.beginTransaction().replace(container, new AboutFragment()).commit()));
+    Weather(R.id.nav_weather, ((manager, container) -> {
+        if (manager.findFragmentByTag(WeatherFragment.TAG) == null) {
+            openFragment(manager, container, new WeatherFragment(), WeatherFragment.TAG);
+        }
+    })),
+    Settings(R.id.nav_settings, ((manager, container) -> {
+        if (manager.findFragmentByTag(SettingsFragment.TAG) == null) {
+            openFragment(manager, container, new SettingsFragment(), SettingsFragment.TAG);
+        }
+    })),
+    About(R.id.nav_about, ((manager, container) -> {
+        if (manager.findFragmentByTag(AboutFragment.TAG) == null) {
+            openFragment(manager, container, new AboutFragment(), AboutFragment.TAG);
+        }
+    }));
+
+    private static void openFragment(FragmentManager manager, @IdRes int container, Fragment fragment, String tag) {
+        manager.beginTransaction().replace(container, fragment, tag).commit();
+    }
 
     private static HashMap<Integer, Screen> screenMap;
 

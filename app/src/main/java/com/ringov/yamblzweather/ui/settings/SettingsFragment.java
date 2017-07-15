@@ -11,6 +11,8 @@ import com.ringov.yamblzweather.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat {
 
+    public static final String TAG = "settings";
+
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences, rootKey);
