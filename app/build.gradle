@@ -17,8 +17,8 @@ android {
         applicationId "com.ringov.yamblzweather"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 3
-        versionName "0.0.2"
+        versionCode 4
+        versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
