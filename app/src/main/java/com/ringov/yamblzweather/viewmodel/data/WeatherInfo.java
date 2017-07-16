@@ -18,7 +18,7 @@ public class WeatherInfo {
     }
 
     @StringRes
-    public int getCondition() {
+    public int getConditionName() {
         return condition.getFriendlyName();
     }
 

@@ -40,4 +40,6 @@
     <string name="right_now">Только что</string>
 
     <string name="swipe_to_update">свайпните, чтобы обновить</string>
+
+    <string name="default_city">Москва</string>
 </resources>

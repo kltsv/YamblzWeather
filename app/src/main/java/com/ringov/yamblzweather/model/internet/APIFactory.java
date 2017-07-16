@@ -3,6 +3,9 @@ package com.ringov.yamblzweather.model.internet;
 import android.support.annotation.NonNull;
 
 import com.ringov.yamblzweather.BuildConfig;
+import com.ringov.yamblzweather.Config;
+
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -18,6 +21,8 @@ public class APIFactory {
     @NonNull
     private static OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .addInterceptor(new BaseInterceptor())
+            .readTimeout(Config.TIMEOUT, TimeUnit.MILLISECONDS)
+            .connectTimeout(Config.TIMEOUT, TimeUnit.MILLISECONDS)
             .build();
 
     @NonNull

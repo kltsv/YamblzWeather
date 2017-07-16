@@ -4,6 +4,7 @@ import com.ringov.yamblzweather.di.about.AboutModule;
 import com.ringov.yamblzweather.di.settings.SettingsModule;
 import com.ringov.yamblzweather.di.weather.WeatherModule;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
+import com.ringov.yamblzweather.ui.settings.SettingsFragment;
 import com.ringov.yamblzweather.viewmodel.about.AboutViewModel;
 import com.ringov.yamblzweather.viewmodel.weather.WeatherViewModel;
 
@@ -23,4 +24,6 @@ public interface AppComponent {
     void inject(AboutViewModel aboutViewModel);
 
     void inject(WeatherUpdateJob job);
+
+    void inject(SettingsFragment settingsFragment);
 }

@@ -17,8 +17,6 @@ import com.ringov.yamblzweather.model.repositories.settings.SettingsRepository;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
 import com.ringov.yamblzweather.ui.Utils;
 
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Inject;
 
 /**
@@ -28,7 +26,7 @@ import javax.inject.Inject;
 public class WeatherUpdateJob extends Job {
 
     public static final String TAG = "com.ringov.yamblzweather.weather_update_job";
-    public static final double FLEX_FACTOR = 0.1;
+    public static final int FLEX = 300000;
 
     private int cityId = 524901;
 
@@ -42,7 +40,7 @@ public class WeatherUpdateJob extends Job {
     public static void schedule() {
         long interval = Database.getInstance().getUpdateInterval();
         JobRequest job = new JobRequest.Builder(WeatherUpdateJob.TAG)
-                .setPeriodic(interval, (long) (interval * FLEX_FACTOR))
+                .setPeriodic(interval, FLEX)
                 .setRequiredNetworkType(JobRequest.NetworkType.CONNECTED)
                 .setPersisted(true)
                 .setUpdateCurrent(true)
@@ -58,7 +56,7 @@ public class WeatherUpdateJob extends Job {
                 .filter(w -> settings.isNotificationsEnabled())
                 .subscribe(weatherInfo -> {
                     String formattedTemperature = Utils.getFormattedTemperature(getContext(), weatherInfo.getTemperature());
-                    String condition = getContext().getString(weatherInfo.getCondition());
+                    String condition = getContext().getString(weatherInfo.getConditionName());
                     StringBuilder sb = new StringBuilder();
                     sb.append(getContext().getString(R.string.notification_message, formattedTemperature, condition));
 

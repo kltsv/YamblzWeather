@@ -11,8 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|center_vertical|end"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="36sp"
@@ -20,9 +20,21 @@
 
     <ImageView
         android:id="@+id/drawer_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="-64dp"
-        android:layout_marginTop="-56dp"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="-36dp"
+        android:layout_marginTop="-36dp"
         app:srcCompat="@drawable/weather_other" />
+
+    <TextView
+        android:id="@+id/tv_conditions"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|center_vertical|end"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        tools:text="Cloudy" />
 </FrameLayout>

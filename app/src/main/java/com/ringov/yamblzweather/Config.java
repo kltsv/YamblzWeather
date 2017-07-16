@@ -6,6 +6,8 @@ package com.ringov.yamblzweather;
 
 public class Config {
 
+    public static final long TIMEOUT = 10000;
+
     public static class API {
         public static final String KEY_FIELD = "APPID";
         public static final String VERSION_PATH = "data/2.5/";

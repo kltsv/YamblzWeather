@@ -10,7 +10,6 @@ import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
 import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
 import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
 
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.inject.Inject;
@@ -23,29 +22,16 @@ public class WeatherViewModel extends BaseViewModel<BaseLiveData<WeatherInfo>, W
 
     @Inject
     WeatherRepository repository;
-    @Inject
-    SettingsRepository settings;
 
     public WeatherViewModel() {
         App.getComponent().inject(this);
-        addDisposable(repository.getLastWeatherInfo()
+        addDisposable(repository.updateWeatherInfo()
                 .subscribe(this::updateData, this::handleError));
 
         Set<JobRequest> requests = JobManager.instance().getAllJobRequestsForTag(WeatherUpdateJob.TAG);
 
-        long now = System.currentTimeMillis();
         if (requests.isEmpty()) {
             WeatherUpdateJob.schedule();
-        } else {
-            Iterator<JobRequest> iterator = requests.iterator();
-            while (iterator.hasNext()) {
-                JobRequest jr = iterator.next();
-                long lastInterval = jr.getIntervalMs();
-                long settingsInterval = settings.getUpdateInterval();
-                if (lastInterval != settingsInterval) {
-                    jr.cancelAndEdit().setPeriodic(settingsInterval).build();
-                }
-            }
         }
     }
 

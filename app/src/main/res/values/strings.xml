@@ -58,4 +58,6 @@
     <string name="update_notifications_default" translatable="false">false</string>
 
     <string name="swipe_to_update">swipe to update</string>
+
+    <string name="default_city">Moscow</string>
 </resources>

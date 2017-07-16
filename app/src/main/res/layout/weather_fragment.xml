@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/tv_temperature"
             android:layout_centerHorizontal="true"
+            android:padding="48dp"
             app:srcCompat="@drawable/weather_other" />
 
         <TextView
@@ -35,7 +36,7 @@
             android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_margin="8dp"
-            android:text="last update time" />
+            tools:text="last update time" />
 
         <TextView
             android:id="@+id/tv_temperature"
@@ -58,12 +59,22 @@
             tools:text="Extreme" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/down_arrow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/tv_swipe_to_update"
             android:layout_centerHorizontal="true"
             app:srcCompat="@drawable/ic_arrow_down" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp"
+            android:text="@string/default_city" />
 
     </RelativeLayout>
 </android.support.v4.widget.SwipeRefreshLayout>
