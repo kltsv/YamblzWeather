@@ -12,9 +12,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ringov.yamblzweather.routing.Screen;
 import com.ringov.yamblzweather.routing.ScreenRouter;
+import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
 
 import javax.inject.Inject;
 
@@ -25,7 +30,8 @@ import butterknife.ButterKnife;
  * Created by ringov on 07.07.17.
  */
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
+        MainViewUpdater {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -33,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout mDrawer;
     @BindView(R.id.navigation_view)
     NavigationView mNavigationView;
+
+    ImageView drawerImage;
+    TextView drawerTemperature;
 
     ScreenRouter router;
 
@@ -66,6 +75,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         mNavigationView.setNavigationItemSelectedListener(this);
+        View drawerHeaderLayout = mNavigationView.getHeaderView(0);
+        drawerImage = (ImageView) drawerHeaderLayout.findViewById(R.id.drawer_image);
+        drawerTemperature = (TextView) drawerHeaderLayout.findViewById(R.id.tv_temperature);
     }
 
     @Override
@@ -88,5 +100,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onDestroy() {
         super.onDestroy();
         router.detach();
+    }
+
+    @Override
+    public void onWeatherUpdate(WeatherInfo weather) {
+        drawerImage.setImageResource(weather.getConditionImage());
+        drawerTemperature.setText(getString(R.string.temperature, weather.getTemperature()));
     }
 }

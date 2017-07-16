@@ -28,6 +28,7 @@ import javax.inject.Inject;
 public class WeatherUpdateJob extends Job {
 
     public static final String TAG = "com.ringov.yamblzweather.weather_update_job";
+    public static final double FLEX_FACTOR = 0.1;
 
     private int cityId = 524901;
 
@@ -41,7 +42,7 @@ public class WeatherUpdateJob extends Job {
     public static void schedule() {
         long interval = Database.getInstance().getUpdateInterval();
         JobRequest job = new JobRequest.Builder(WeatherUpdateJob.TAG)
-                .setPeriodic(TimeUnit.MINUTES.toMillis(15), TimeUnit.MINUTES.toMillis(5)) // test 15 min
+                .setPeriodic(interval, (long) (interval * FLEX_FACTOR))
                 .setRequiredNetworkType(JobRequest.NetworkType.CONNECTED)
                 .setPersisted(true)
                 .setUpdateCurrent(true)
@@ -68,7 +69,7 @@ public class WeatherUpdateJob extends Job {
                             .setContentIntent(pi)
                             .setContentText(sb.toString())
                             .setAutoCancel(true)
-                            .setSmallIcon(R.mipmap.launch_icon_round)
+                            .setSmallIcon(weatherInfo.getConditionImage())
                             .setShowWhen(true)
                             .setLocalOnly(true)
                             .build();

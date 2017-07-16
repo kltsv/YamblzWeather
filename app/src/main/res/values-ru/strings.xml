@@ -25,6 +25,7 @@
     <string name="update_intervals_summary">Как часто получать обновления погоды</string>
 
     <string-array name="update_intervals">
+        <item>15 минут</item>
         <item>2 часа</item>
         <item>3 часа</item>
         <item>5 часов</item>
@@ -37,4 +38,6 @@
     <string name="update_notifications_summary">Уведомлять о получении обновления погоды</string>
 
     <string name="right_now">Только что</string>
+
+    <string name="swipe_to_update">свайпните, чтобы обновить</string>
 </resources>

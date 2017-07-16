@@ -1,11 +1,14 @@
 package com.ringov.yamblzweather.ui.weather;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ringov.yamblzweather.MainViewUpdater;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.ui.Utils;
 import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
@@ -30,6 +33,18 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
     TextView tvConditions;
     @BindView(R.id.tv_time)
     TextView tvTime;
+    @BindView(R.id.weather_image)
+    ImageView weatherImage;
+
+    MainViewUpdater updater;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof MainViewUpdater) {
+            updater = (MainViewUpdater) context;
+        }
+    }
 
     @Override
     protected int getLayout() {
@@ -56,6 +71,12 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
         tvTemperature.setText(Utils.getFormattedTemperature(getContext(), data.getTemperature()));
         tvConditions.setText(data.getCondition());
         tvTime.setText(Utils.getRelativeTime(getContext(), data.getTime()));
+        weatherImage.setImageResource(data.getConditionImage());
+
+        if (updater != null) {
+            updater.onWeatherUpdate(data);
+        }
+
         swipeLayout.setRefreshing(false);
     }
 }

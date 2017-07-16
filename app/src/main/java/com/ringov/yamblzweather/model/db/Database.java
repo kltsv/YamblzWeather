@@ -58,9 +58,8 @@ public class Database {
         final String KEY = context.getString(R.string.update_intervals_key);
         final String DEFAULT_VALUE = context.getString(R.string.default_update_intervals_value);
         String value = PreferenceManager.getDefaultSharedPreferences(context).getString(KEY, DEFAULT_VALUE);
-        int hours = Integer.parseInt(value);
-        //return TimeUnit.HOURS.toMillis(hours);
-        return TimeUnit.MINUTES.toMillis(15);
+        int minutes = Integer.parseInt(value);
+        return TimeUnit.MINUTES.toMillis(minutes);
     }
 
     public boolean isNotificationEnabled() {

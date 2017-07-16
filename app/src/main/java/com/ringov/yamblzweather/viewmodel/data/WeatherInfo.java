@@ -1,5 +1,6 @@
 package com.ringov.yamblzweather.viewmodel.data;
 
+import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 
 /**
@@ -23,6 +24,11 @@ public class WeatherInfo {
 
     public long getTime() {
         return time;
+    }
+
+    @DrawableRes
+    public int getConditionImage() {
+        return condition.getConditionImage();
     }
 
     public static class Builder {

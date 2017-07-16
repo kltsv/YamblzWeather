@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="160dp"
     android:background="@color/colorPrimary">
 
+    <TextView
+        android:id="@+id/tv_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center_vertical|end"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="36sp"
+        tools:text="@string/temperature" />
+
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_marginLeft="-42dp"
-        android:layout_marginStart="-42dp"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/ic_big_sun" />
+        android:id="@+id/drawer_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="-64dp"
+        android:layout_marginTop="-56dp"
+        app:srcCompat="@drawable/weather_other" />
 </FrameLayout>
