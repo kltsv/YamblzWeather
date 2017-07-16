@@ -33,19 +33,31 @@ public class WeatherRepositoryImpl extends BaseRepositoryImpl implements Weather
     }
 
     @Override
-    public Observable<WeatherInfo> updateWeatherInfo() {
+    public Observable<WeatherInfo> updateWeatherIfDataIsOld() {
         return getCachedWeather()
                 .flatMap(dbWeather -> {
                     // if last value was cached less than 2 minutes ago, do not send request to the network
                     return System.currentTimeMillis() - dbWeather.getTime() < TimeUnit.MINUTES.toMillis(REQUEST_FREQUENCY) ?
                             Observable.just(dbWeather) :
-                            getService().getWeather(cityId)
-                                    .map(Converter::getDBWeather)
-                                    .doOnNext(Database.getInstance()::saveWeather);
+                            updateWeatherAndCache();
                 })
                 .map(Converter::getWeatherInfo)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
+    }
+
+    @Override
+    public Observable<WeatherInfo> updateWeather() {
+        return updateWeatherAndCache()
+                .map(Converter::getWeatherInfo)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io());
+    }
+
+    private Observable<DBWeather> updateWeatherAndCache() {
+        return getService().getWeather(cityId)
+                .map(Converter::getDBWeather)
+                .doOnNext(Database.getInstance()::saveWeather);
     }
 
     @Override

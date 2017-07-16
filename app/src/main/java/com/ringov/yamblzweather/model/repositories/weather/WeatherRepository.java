@@ -10,7 +10,9 @@ import io.reactivex.Observable;
  */
 
 public interface WeatherRepository extends BaseRepository {
-    Observable<WeatherInfo> updateWeatherInfo();
+    Observable<WeatherInfo> updateWeatherIfDataIsOld();
+
+    Observable<WeatherInfo> updateWeather();
 
     Observable<WeatherInfo> getLastWeatherInfo();
 }

@@ -4,7 +4,6 @@ import com.evernote.android.job.JobManager;
 import com.evernote.android.job.JobRequest;
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
-import com.ringov.yamblzweather.model.repositories.settings.SettingsRepository;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
 import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
 import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
@@ -25,7 +24,9 @@ public class WeatherViewModel extends BaseViewModel<BaseLiveData<WeatherInfo>, W
 
     public WeatherViewModel() {
         App.getComponent().inject(this);
-        addDisposable(repository.updateWeatherInfo()
+        addDisposable(repository
+                .getLastWeatherInfo()
+                .concatWith(repository.updateWeather())
                 .subscribe(this::updateData, this::handleError));
 
         Set<JobRequest> requests = JobManager.instance().getAllJobRequestsForTag(WeatherUpdateJob.TAG);
@@ -40,7 +41,7 @@ public class WeatherViewModel extends BaseViewModel<BaseLiveData<WeatherInfo>, W
     }
 
     public void onRefresh() {
-        addDisposable(repository.updateWeatherInfo()
+        addDisposable(repository.updateWeatherIfDataIsOld()
                 .subscribe(this::updateData, this::handleError));
     }
 }

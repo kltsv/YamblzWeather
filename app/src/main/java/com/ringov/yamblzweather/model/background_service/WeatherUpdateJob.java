@@ -28,8 +28,6 @@ public class WeatherUpdateJob extends Job {
     public static final String TAG = "com.ringov.yamblzweather.weather_update_job";
     public static final int FLEX = 300000;
 
-    private int cityId = 524901;
-
     private int notificationId = 0;
 
     @Inject
@@ -52,7 +50,7 @@ public class WeatherUpdateJob extends Job {
     @Override
     protected Result onRunJob(Params params) {
         App.getComponent().inject(this);
-        weatherRepository.updateWeatherInfo()
+        weatherRepository.updateWeatherIfDataIsOld()
                 .filter(w -> settings.isNotificationsEnabled())
                 .subscribe(weatherInfo -> {
                     String formattedTemperature = Utils.getFormattedTemperature(getContext(), weatherInfo.getTemperature());
