@@ -13,6 +13,7 @@ import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.MainActivity;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.model.db.Database;
+import com.ringov.yamblzweather.model.repositories.settings.SettingsRepository;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
 import com.ringov.yamblzweather.ui.Utils;
 
@@ -34,6 +35,8 @@ public class WeatherUpdateJob extends Job {
 
     @Inject
     WeatherRepository weatherRepository;
+    @Inject
+    SettingsRepository settings;
 
     public static void schedule() {
         long interval = Database.getInstance().getUpdateInterval();
@@ -51,8 +54,8 @@ public class WeatherUpdateJob extends Job {
     protected Result onRunJob(Params params) {
         App.getComponent().inject(this);
         weatherRepository.updateWeatherInfo()
+                .filter(w -> settings.isNotificationsEnabled())
                 .subscribe(weatherInfo -> {
-
                     String formattedTemperature = Utils.getFormattedTemperature(getContext(), weatherInfo.getTemperature());
                     String condition = getContext().getString(weatherInfo.getCondition());
                     StringBuilder sb = new StringBuilder();

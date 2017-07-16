@@ -51,4 +51,7 @@
 
     <string name="temperature" translatable="false">%.0f°</string>
     <string name="notification_message">%1$s, %2$s</string>
+
+    <string name="update_notifications_key" translatable="false">update_notifications_key</string>
+    <string name="update_notifications_default" translatable="false">false</string>
 </resources>

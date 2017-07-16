@@ -32,7 +32,7 @@ public class BaseViewModel<LD extends BaseLiveData<D>, D> extends ViewModel {
         liveData.updateValue(data);
     }
 
-    protected void handleError(Throwable t) {
+    public void handleError(Throwable t) {
 
     }
 }

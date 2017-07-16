@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
@@ -10,15 +11,16 @@ android {
             storePassword System.getenv("YAMBLZ_WEATHER_STORE_PASSWORD")
         }
     }
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.ringov.yamblzweather"
         minSdkVersion 17
-        targetSdkVersion 26
+        targetSdkVersion 25
         versionCode 3
         versionName "0.0.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -49,11 +51,11 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:26.0.0-beta2'
-    compile 'com.android.support:design:26.0.0-beta2'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     // lib for preferences
-    compile 'com.android.support:preference-v14:26.0.0-beta2'
-    compile 'com.android.support:preference-v7:26.0.0-beta2'
+    compile 'com.android.support:preference-v14:25.3.1'
+    compile 'com.android.support:preference-v7:25.3.1'
     // butter-knife
     compile 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
@@ -73,4 +75,5 @@ dependencies {
     compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
     //android-job
     compile 'com.evernote:android-job:1.1.11'
+    compile 'com.google.android.gms:play-services-gcm:11.0.2'
 }

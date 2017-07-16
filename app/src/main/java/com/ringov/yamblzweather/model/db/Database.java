@@ -59,6 +59,15 @@ public class Database {
         final String DEFAULT_VALUE = context.getString(R.string.default_update_intervals_value);
         String value = PreferenceManager.getDefaultSharedPreferences(context).getString(KEY, DEFAULT_VALUE);
         int hours = Integer.parseInt(value);
-        return TimeUnit.HOURS.toMillis(hours);
+        //return TimeUnit.HOURS.toMillis(hours);
+        return TimeUnit.MINUTES.toMillis(15);
+    }
+
+    public boolean isNotificationEnabled() {
+        Context context = App.getContext();
+        final String KEY = context.getString(R.string.update_notifications_key);
+        final String DEFAULT_VALUE_STR = context.getString(R.string.update_notifications_default);
+        final boolean DEFAULT_VALUE = Boolean.parseBoolean(DEFAULT_VALUE_STR);
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(KEY, DEFAULT_VALUE);
     }
 }
