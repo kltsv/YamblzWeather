@@ -6,7 +6,7 @@ import com.ringov.yamblzweather.model.db.data.DBWeather;
 import com.ringov.yamblzweather.model.internet.APIFactory;
 import com.ringov.yamblzweather.model.internet.WeatherService;
 import com.ringov.yamblzweather.model.repositories.base.BaseRepositoryImpl;
-import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.UIWeather;
 
 import java.util.concurrent.TimeUnit;
 
@@ -33,7 +33,7 @@ public class WeatherRepositoryImpl extends BaseRepositoryImpl implements Weather
     }
 
     @Override
-    public Observable<WeatherInfo> updateWeatherIfDataIsOld() {
+    public Observable<UIWeather> updateWeatherIfDataIsOld() {
         return getCachedWeather()
                 .flatMap(dbWeather -> {
                     // if last value was cached less than 2 minutes ago, do not send request to the network
@@ -41,15 +41,15 @@ public class WeatherRepositoryImpl extends BaseRepositoryImpl implements Weather
                             Observable.just(dbWeather) :
                             updateWeatherAndCache();
                 })
-                .map(Converter::getWeatherInfo)
+                .map(Converter::getUIWeather)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
     }
 
     @Override
-    public Observable<WeatherInfo> updateWeather() {
+    public Observable<UIWeather> updateWeather() {
         return updateWeatherAndCache()
-                .map(Converter::getWeatherInfo)
+                .map(Converter::getUIWeather)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io());
     }
@@ -61,8 +61,8 @@ public class WeatherRepositoryImpl extends BaseRepositoryImpl implements Weather
     }
 
     @Override
-    public Observable<WeatherInfo> getLastWeatherInfo() {
-        return getCachedWeather().map(Converter::getWeatherInfo);
+    public Observable<UIWeather> getLastWeatherInfo() {
+        return getCachedWeather().map(Converter::getUIWeather);
     }
 
     private WeatherService getService() {

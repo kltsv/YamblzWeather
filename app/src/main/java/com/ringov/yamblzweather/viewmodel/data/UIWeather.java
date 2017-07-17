@@ -7,7 +7,7 @@ import android.support.annotation.StringRes;
  * Created by ringov on 12.07.17.
  */
 
-public class WeatherInfo {
+public class UIWeather {
 
     private long time;
     private float temperature;
@@ -33,10 +33,10 @@ public class WeatherInfo {
 
     public static class Builder {
 
-        private WeatherInfo weather;
+        private UIWeather weather;
 
         public Builder() {
-            weather = new WeatherInfo();
+            weather = new UIWeather();
         }
 
         public Builder temperature(float t) {
@@ -49,7 +49,7 @@ public class WeatherInfo {
             return this;
         }
 
-        public WeatherInfo build() {
+        public UIWeather build() {
             return weather;
         }
 

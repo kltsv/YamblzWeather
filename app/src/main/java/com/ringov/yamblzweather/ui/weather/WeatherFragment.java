@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.ringov.yamblzweather.MainViewUpdater;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.ui.Utils;
-import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.UIWeather;
 import com.ringov.yamblzweather.viewmodel.weather.WeatherViewModel;
 import com.ringov.yamblzweather.ui.base.ModelViewFragment;
 
@@ -21,7 +21,7 @@ import butterknife.BindView;
  * Created by ringov on 07.07.17.
  */
 
-public class WeatherFragment extends ModelViewFragment<WeatherViewModel, WeatherInfo> {
+public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeather> {
 
     public static final String TAG = "weather";
 
@@ -67,7 +67,7 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, Weather
     }
 
     @Override
-    protected void showDataChanges(WeatherInfo data) {
+    protected void showDataChanges(UIWeather data) {
         tvTemperature.setText(Utils.getFormattedTemperature(getContext(), data.getTemperature()));
         tvConditions.setText(data.getConditionName());
         tvTime.setText(Utils.getRelativeTime(getContext(), data.getTime()));

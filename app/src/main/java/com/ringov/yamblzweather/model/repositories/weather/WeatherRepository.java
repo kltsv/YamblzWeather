@@ -1,7 +1,7 @@
 package com.ringov.yamblzweather.model.repositories.weather;
 
 import com.ringov.yamblzweather.model.repositories.base.BaseRepository;
-import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.UIWeather;
 
 import io.reactivex.Observable;
 
@@ -10,9 +10,9 @@ import io.reactivex.Observable;
  */
 
 public interface WeatherRepository extends BaseRepository {
-    Observable<WeatherInfo> updateWeatherIfDataIsOld();
+    Observable<UIWeather> updateWeatherIfDataIsOld();
 
-    Observable<WeatherInfo> updateWeather();
+    Observable<UIWeather> updateWeather();
 
-    Observable<WeatherInfo> getLastWeatherInfo();
+    Observable<UIWeather> getLastWeatherInfo();
 }

@@ -4,7 +4,7 @@ import com.ringov.yamblzweather.model.db.data.DBWeather;
 import com.ringov.yamblzweather.model.internet.data.Weather;
 import com.ringov.yamblzweather.model.internet.data.ResponseWeather;
 import com.ringov.yamblzweather.viewmodel.data.WeatherCondition;
-import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.UIWeather;
 
 import java.util.List;
 
@@ -26,8 +26,8 @@ public class Converter {
                 .build();
     }
 
-    public static WeatherInfo getWeatherInfo(DBWeather dbResponse) {
-        return new WeatherInfo.Builder()
+    public static UIWeather getUIWeather(DBWeather dbResponse) {
+        return new UIWeather.Builder()
                 .time(dbResponse.getTime())
                 .temperature(dbResponse.getTemperature())
                 .weatherCondition(ConvertUtils.weatherIdToCondition(dbResponse.getConditionId()))

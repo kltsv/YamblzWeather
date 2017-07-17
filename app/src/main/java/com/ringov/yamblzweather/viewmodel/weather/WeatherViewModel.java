@@ -5,9 +5,8 @@ import com.evernote.android.job.JobRequest;
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
-import com.ringov.yamblzweather.viewmodel.base.BaseLiveData;
 import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
-import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.UIWeather;
 
 import java.util.Set;
 
@@ -17,7 +16,7 @@ import javax.inject.Inject;
  * Created by ringov on 12.07.17.
  */
 
-public class WeatherViewModel extends BaseViewModel<WeatherInfo> {
+public class WeatherViewModel extends BaseViewModel<UIWeather> {
 
     @Inject
     WeatherRepository repository;
@@ -36,7 +35,7 @@ public class WeatherViewModel extends BaseViewModel<WeatherInfo> {
         }
     }
 
-    private void updateData(WeatherInfo weather) {
+    private void updateData(UIWeather weather) {
         updateValue(weather);
     }
 

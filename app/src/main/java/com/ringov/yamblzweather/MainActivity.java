@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.ringov.yamblzweather.routing.Screen;
 import com.ringov.yamblzweather.routing.ScreenRouter;
-import com.ringov.yamblzweather.viewmodel.data.WeatherInfo;
+import com.ringov.yamblzweather.viewmodel.data.UIWeather;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onWeatherUpdate(WeatherInfo weather) {
+    public void onWeatherUpdate(UIWeather weather) {
         drawerImage.setImageResource(weather.getConditionImage());
         drawerTemperature.setText(getString(R.string.temperature, weather.getTemperature()));
         drawerCondition.setText(weather.getConditionName());
