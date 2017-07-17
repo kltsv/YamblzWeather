@@ -1,6 +1,10 @@
 package com.ringov.yamblzweather.viewmodel.base;
 
+import android.arch.lifecycle.LifecycleOwner;
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModel;
+
+import com.ringov.yamblzweather.ui.base.ModelViewFragment;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -9,7 +13,7 @@ import io.reactivex.disposables.Disposable;
  * Created by ringov on 12.07.17.
  */
 
-public class BaseViewModel<LD extends BaseLiveData<D>, D> extends ViewModel {
+public class BaseViewModel<D> extends ViewModel {
 
     CompositeDisposable disposables;
 
@@ -24,15 +28,15 @@ public class BaseViewModel<LD extends BaseLiveData<D>, D> extends ViewModel {
         disposables.add(disposable);
     }
 
-    public BaseLiveData<D> getLiveData() {
-        return liveData;
-    }
-
     public void updateValue(D data) {
         liveData.updateValue(data);
     }
 
     public void handleError(Throwable t) {
+        // todo handle errors
+    }
 
+    public void observe(LifecycleOwner owner, Observer<D> observer) {
+        liveData.observe(owner, observer);
     }
 }

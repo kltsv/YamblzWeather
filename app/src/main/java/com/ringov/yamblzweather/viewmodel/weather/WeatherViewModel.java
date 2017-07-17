@@ -17,7 +17,7 @@ import javax.inject.Inject;
  * Created by ringov on 12.07.17.
  */
 
-public class WeatherViewModel extends BaseViewModel<BaseLiveData<WeatherInfo>, WeatherInfo> {
+public class WeatherViewModel extends BaseViewModel<WeatherInfo> {
 
     @Inject
     WeatherRepository repository;
@@ -37,7 +37,7 @@ public class WeatherViewModel extends BaseViewModel<BaseLiveData<WeatherInfo>, W
     }
 
     private void updateData(WeatherInfo weather) {
-        getLiveData().updateValue(weather);
+        updateValue(weather);
     }
 
     public void onRefresh() {

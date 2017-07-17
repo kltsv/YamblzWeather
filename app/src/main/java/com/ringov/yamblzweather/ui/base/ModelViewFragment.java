@@ -12,7 +12,7 @@ import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
  * Created by ringov on 12.07.17.
  */
 
-public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Data>, Data>, Data>
+public abstract class ModelViewFragment<VM extends BaseViewModel<Data>, Data>
         extends BaseFragment {
 
     private VM viewModel;
@@ -24,7 +24,7 @@ public abstract class ModelViewFragment<VM extends BaseViewModel<BaseLiveData<Da
     }
 
     private void startObserve() {
-        viewModel.getLiveData().observe(this, data -> showDataChanges(data));
+        viewModel.observe(this, this::showDataChanges);
     }
 
     @Override
