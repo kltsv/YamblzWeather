@@ -21,6 +21,7 @@ public class APIFactory {
     @NonNull
     private static OkHttpClient okHttpClient = new OkHttpClient.Builder()
             .addInterceptor(new BaseInterceptor())
+            .addInterceptor(new ConnectivityInterceptor())
             .readTimeout(Config.TIMEOUT, TimeUnit.MILLISECONDS)
             .connectTimeout(Config.TIMEOUT, TimeUnit.MILLISECONDS)
             .build();

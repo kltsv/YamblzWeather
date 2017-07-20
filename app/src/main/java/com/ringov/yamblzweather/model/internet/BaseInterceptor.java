@@ -20,11 +20,9 @@ public class BaseInterceptor implements Interceptor {
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request request = chain.request();
-
         HttpUrl newUrl = request.url().newBuilder()
                 .addQueryParameter(Config.API.KEY_FIELD, Config.API.KEY)
                 .build();
-
         Request newRequest = request.newBuilder().url(newUrl).build();
         return chain.proceed(newRequest);
     }
