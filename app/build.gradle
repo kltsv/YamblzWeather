@@ -83,4 +83,7 @@ dependencies {
     //android-job
     compile 'com.evernote:android-job:1.1.11'
     compile 'com.google.android.gms:play-services-gcm:11.0.2'
+    //leak canary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
 }
