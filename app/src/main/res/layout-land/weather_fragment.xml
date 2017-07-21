@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/swipe_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/weather_image"
+            android:layout_width="112dp"
+            android:layout_height="112dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="56dp"
+            android:layout_marginStart="56dp"
+            app:srcCompat="@drawable/weather_other" />
+
+        <TextView
+            android:id="@+id/tv_swipe_to_update"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="16dp"
+            android:text="@string/swipe_to_update" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="56dp"
+            tools:text="last update time"
+            android:layout_below="@+id/tv_temperature"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tv_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="32dp"
+            android:textSize="56sp"
+            tools:text="15.3" />
+
+        <TextView
+            android:id="@+id/tv_conditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginEnd="56dp"
+            android:layout_marginRight="56dp"
+            android:textSize="24sp"
+            tools:text="Extreme" />
+
+        <ImageView
+            android:id="@+id/down_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_swipe_to_update"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/ic_arrow_down" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="16dp"
+            android:text="@string/default_city" />
+
+    </RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

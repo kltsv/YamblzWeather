@@ -1,12 +1,13 @@
 package com.ringov.yamblzweather.routing;
 
 import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 
-import com.ringov.yamblzweather.about.AboutFragment;
+import com.ringov.yamblzweather.ui.about.AboutFragment;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.main.WeatherFragment;
-import com.ringov.yamblzweather.settings.SettingsFragment;
+import com.ringov.yamblzweather.ui.weather.WeatherFragment;
+import com.ringov.yamblzweather.ui.settings.SettingsFragment;
+
 import java.util.HashMap;
 
 /**
@@ -15,42 +16,22 @@ import java.util.HashMap;
 
 public class ScreenRouter {
 
-    public enum Screen {
-        Weather(R.id.nav_weather, new WeatherFragment()),
-        Settings(R.id.nav_settings, new SettingsFragment()),
-        About(R.id.nav_about, new AboutFragment());
+    @IdRes
+    private int container;
+    private FragmentManager manager;
 
-        private static HashMap<Integer, Screen> screenMap;
+    public ScreenRouter(FragmentManager manager, @IdRes int container) {
+        this.manager = manager;
+        this.container = container;
+    }
 
-        static {
-            screenMap = new HashMap();
-            screenMap.put(Weather.getId(), Weather);
-            screenMap.put(Settings.getId(), Settings);
-            screenMap.put(About.getId(), About);
-        }
-
-        @IdRes
-        private int mId;
-        private Fragment mFragment;
-
-        Screen(@IdRes int id, Fragment fragment) {
-            this.mId = id;
-            this.mFragment = fragment;
-        }
-
-        public static Screen fromId(@IdRes int id) {
-            Screen screen = screenMap.get(id);
-            return screen;
-        }
-
-        public Fragment getFragment() {
-            return mFragment;
-        }
-
-        @IdRes
-        public int getId() {
-            return mId;
+    public void open(Screen screen) {
+        if (container != 0) {
+            screen.open(manager, container);
         }
     }
 
+    public void detach() {
+        manager = null;
+    }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">ЯмблзПогода</string>
+
     <string name="weather">Погода</string>
     <string name="settings">Настройки</string>
     <string name="about">О приложении</string>
@@ -7,4 +9,38 @@
     <string name="navigation_drawer_open">Открыто боковое меню</string>
     <string name="navigation_drawer_close">Закрыто боковое меню</string>
     <string name="version">Версия приложения: %s</string>
+
+    <string name="cloudy">Пасмурно</string>
+    <string name="clear">Ясно</string>
+    <string name="rainy">Дождливо</string>
+    <string name="thunderstorm">Гроза</string>
+    <string name="snow">Снег</string>
+    <string name="atmospherically">Атмосферненько</string>
+    <string name="extreme">Экстримальненько</string>
+    <string name="windy">Ветренно</string>
+    <string name="calm">Спокойно</string>
+    <string name="other"></string>
+
+    <string name="update_intervals_title">Частота обновления</string>
+    <string name="update_intervals_summary">Как часто получать обновления погоды</string>
+
+    <string-array name="update_intervals">
+        <item>15 минут</item>
+        <item>2 часа</item>
+        <item>3 часа</item>
+        <item>5 часов</item>
+        <item>8 часов</item>
+        <item>12 часов</item>
+        <item>24 часов</item>
+    </string-array>
+
+    <string name="update_notifications_title">Уведомление об обновлении</string>
+    <string name="update_notifications_summary">Уведомлять о получении обновления погоды</string>
+
+    <string name="right_now">Только что</string>
+
+    <string name="swipe_to_update">свайпните, чтобы обновить</string>
+
+    <string name="default_city">Москва</string>
+    <string name="no_internet_connection">Интернет недоступен</string>
 </resources>

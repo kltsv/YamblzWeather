@@ -1,37 +1,54 @@
+import groovy.json.JsonSlurper
+
+def fileName = 'app-credentials.json'
+def appStorePassword = (new JsonSlurper().parseText(file(fileName).text)).storePassword
+def appKeyAlias = (new JsonSlurper().parseText(file(fileName).text)).keyAlias
+def appKeyPassword = (new JsonSlurper().parseText(file(fileName).text)).keyPassword
+
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
         config {
-            keyAlias System.getenv("YAMBLZ_WEATHER_KEY_ALIAS")
-            keyPassword System.getenv("YAMBLZ_WEATHER_KEY_PASSWORD")
             storeFile file('weather_key.jks')
-            storePassword System.getenv("YAMBLZ_WEATHER_STORE_PASSWORD")
+            keyAlias appKeyAlias
+            keyPassword appKeyPassword
+            storePassword appStorePassword
         }
     }
-    compileSdkVersion 26
-    buildToolsVersion "26.0.0"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.0"
     defaultConfig {
         applicationId "com.ringov.yamblzweather"
         minSdkVersion 17
-        targetSdkVersion 26
-        versionCode 3
-        versionName "0.0.2"
+        targetSdkVersion 25
+        versionCode 4
+        versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+            buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
         }
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
+            buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
         }
     }
     lintOptions {
+        // in order to be able to set release and debug strings separately
         disable 'MissingTranslation', 'ExtraTranslation'
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -40,9 +57,33 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:26.0.0-alpha1'
-    compile 'com.android.support:preference-v14:26.0.0-alpha1'
-    compile 'com.android.support:preference-v7:26.0.0-alpha1'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
+    // lib for preferences
+    compile 'com.android.support:preference-v14:25.3.1'
+    compile 'com.android.support:preference-v7:25.3.1'
+    // butter-knife
+    compile 'com.jakewharton:butterknife:8.7.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
+    // dagger 2
+    compile 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+    // architecture components
+    compile 'android.arch.lifecycle:runtime:1.0.0-alpha3'
+    compile 'android.arch.lifecycle:extensions:1.0.0-alpha3'
+    annotationProcessor "android.arch.lifecycle:compiler:1.0.0-alpha3"
+    // retrofit 2
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    // rx
+    compile 'io.reactivex.rxjava2:rxjava:2.1.1'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    //android-job
+    compile 'com.evernote:android-job:1.1.11'
+    compile 'com.google.android.gms:play-services-gcm:11.0.2'
+    //leak canary
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
 }
