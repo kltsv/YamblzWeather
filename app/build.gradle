@@ -1,3 +1,10 @@
+import groovy.json.JsonSlurper
+
+def fileName = 'app-credentials.json'
+def appStorePassword = (new JsonSlurper().parseText(file(fileName).text)).storePassword
+def appKeyAlias = (new JsonSlurper().parseText(file(fileName).text)).keyAlias
+def appKeyPassword = (new JsonSlurper().parseText(file(fileName).text)).keyPassword
+
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.android.application'
@@ -5,10 +12,10 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias System.getenv("YAMBLZ_WEATHER_KEY_ALIAS")
-            keyPassword System.getenv("YAMBLZ_WEATHER_KEY_PASSWORD")
             storeFile file('weather_key.jks')
-            storePassword System.getenv("YAMBLZ_WEATHER_STORE_PASSWORD")
+            keyAlias appKeyAlias
+            keyPassword appKeyPassword
+            storePassword appStorePassword
         }
     }
     compileSdkVersion 25
