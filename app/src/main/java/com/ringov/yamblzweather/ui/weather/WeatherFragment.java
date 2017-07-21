@@ -21,7 +21,7 @@ import butterknife.BindView;
  * Created by ringov on 07.07.17.
  */
 
-public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeather> {
+public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeather, WeatherStateData> implements WeatherView {
 
     public static final String TAG = "weather";
 
@@ -76,7 +76,15 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeath
         if (updater != null) {
             updater.onWeatherUpdate(data);
         }
+    }
 
+    @Override
+    public void showLoading() {
+        swipeLayout.setRefreshing(true);
+    }
+
+    @Override
+    public void hideLoading() {
         swipeLayout.setRefreshing(false);
     }
 }
