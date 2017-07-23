@@ -5,6 +5,7 @@ package com.ringov.yamblzweather.ui.base;
  */
 
 public interface BaseView {
+
     void showLoading();
 
     void hideLoading();

@@ -15,6 +15,7 @@ import com.squareup.leakcanary.LeakCanary;
  */
 
 public class App extends Application {
+
     private static Context context;
 
     private static AppComponent component;
@@ -26,15 +27,15 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this.getApplicationContext();
-
-        component = buildComponent();
-        JobManager.create(this).addJobCreator(new WeatherUpdateJobCreator());
-
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return;
         }
         LeakCanary.install(this);
+
+        context = this.getApplicationContext();
+
+        component = buildComponent();
+        JobManager.create(this).addJobCreator(new WeatherUpdateJobCreator());
     }
 
     private AppComponent buildComponent() {

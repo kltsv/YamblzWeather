@@ -55,8 +55,7 @@ public enum Screen {
     }
 
     public static Screen fromId(@IdRes int id) {
-        Screen screen = screenMap.get(id);
-        return screen;
+        return screenMap.get(id);
     }
 
     @IdRes
@@ -69,6 +68,7 @@ public enum Screen {
     }
 
     private interface Destination {
+
         void open(FragmentManager manager, @IdRes int container);
     }
 }

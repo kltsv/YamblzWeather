@@ -7,7 +7,6 @@ def appKeyPassword = (new JsonSlurper().parseText(file(fileName).text)).keyPassw
 
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
@@ -19,7 +18,7 @@ android {
         }
     }
     compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "25.0.3"
     defaultConfig {
         applicationId "com.ringov.yamblzweather"
         minSdkVersion 17
@@ -34,12 +33,14 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
-            buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
         }
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
             buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
+        }
+        buildTypes.each {
+            it.buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
         }
     }
     lintOptions {

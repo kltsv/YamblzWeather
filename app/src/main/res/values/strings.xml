@@ -20,7 +20,7 @@
     <string name="extreme">Extreme</string>
     <string name="windy">Windy</string>
     <string name="calm">Calm</string>
-    <string name="other"></string>
+    <string name="other">Other</string>
 
     <string name="update_intervals_title">Update interval</string>
     <string name="update_intervals_summary">Update interval summary</string>

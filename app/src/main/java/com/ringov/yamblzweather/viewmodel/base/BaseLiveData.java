@@ -11,5 +11,4 @@ public class BaseLiveData<T> extends LiveData<T> {
     public void updateValue(T value) {
         setValue(value);
     }
-
 }
