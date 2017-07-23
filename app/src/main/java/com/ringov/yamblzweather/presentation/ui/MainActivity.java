@@ -7,27 +7,29 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
+import com.ringov.yamblzweather.presentation.base.BaseActivity;
 import com.ringov.yamblzweather.routing.Screen;
 import com.ringov.yamblzweather.routing.ScreenRouter;
 import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by ringov on 07.07.17.
  */
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,
-        MainViewUpdater {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
+        Consumer<UIWeather> {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -43,13 +45,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ScreenRouter router;
 
     @Override
+    protected int getLayout() {
+        return R.layout.main_activity;
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
-        ButterKnife.bind(this);
         initializeRouter();
         initializeToolbar();
         initializeDrawer();
+
+        addDisposable(App.uiWeatherSubject.subscribe(this));
 
         if (savedInstanceState == null) {
             router.open(Screen.Weather);
@@ -100,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void onWeatherUpdate(UIWeather weather) {
+    public void accept(@io.reactivex.annotations.NonNull UIWeather weather) {
         drawerImage.setImageResource(weather.getConditionImage());
         drawerTemperature.setText(getString(R.string.temperature, weather.getTemperature()));
         drawerCondition.setText(weather.getConditionName());

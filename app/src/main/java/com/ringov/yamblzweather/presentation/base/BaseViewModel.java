@@ -14,9 +14,7 @@ import io.reactivex.disposables.Disposable;
  * Created by ringov on 12.07.17.
  */
 
-public abstract class BaseViewModel<D, S extends StateData> extends ViewModel {
-
-    CompositeDisposable disposables;
+public abstract class BaseViewModel<D, S extends StateData> extends ViewModel implements DisposablesHolder {
 
     private BaseLiveData<D> liveData;
     private BaseLiveData<S> stateData;
@@ -25,8 +23,12 @@ public abstract class BaseViewModel<D, S extends StateData> extends ViewModel {
     public BaseViewModel() {
         liveData = new BaseLiveData<>();
         stateData = new BaseLiveData<>();
-        disposables = new CompositeDisposable();
         state = getInitialState();
+    }
+
+    @Override
+    public void addDisposable(Disposable disposable) {
+        disposables.add(disposable);
     }
 
     protected <T> ObservableTransformer<T, T> updateStateChanges() {
@@ -56,10 +58,6 @@ public abstract class BaseViewModel<D, S extends StateData> extends ViewModel {
 
     private void updateState(S state) {
         stateData.updateValue(state);
-    }
-
-    protected void addDisposable(Disposable disposable) {
-        disposables.add(disposable);
     }
 
     public void updateValue(D data) {

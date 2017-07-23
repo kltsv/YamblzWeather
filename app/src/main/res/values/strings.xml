@@ -63,6 +63,6 @@
     <string name="no_internet_connection">No Internet</string>
 
     <string name="prefs_location_title">Location</string>
-    <string name="prefs_location_description"></string>
+    <string name="prefs_location_description">For what city get weather for</string>
 
 </resources>

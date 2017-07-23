@@ -4,7 +4,7 @@ package com.ringov.yamblzweather;
  * Created by ringov on 14.07.17.
  */
 
-public class Config {
+public final class Config {
 
     public static final long TIMEOUT = 10000;
 

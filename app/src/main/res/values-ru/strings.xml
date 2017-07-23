@@ -43,4 +43,8 @@
 
     <string name="default_city">Москва</string>
     <string name="no_internet_connection">Интернет недоступен</string>
+
+    <string name="prefs_location_title">Местоположение</string>
+    <string name="prefs_location_description">Для какого города показывать погоду</string>
+
 </resources>

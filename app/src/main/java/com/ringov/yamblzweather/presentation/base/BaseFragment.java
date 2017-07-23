@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by ringov on 07.07.17.
  */
 
-public abstract class BaseFragment extends LifecycleFragment {
+public abstract class BaseFragment extends LifecycleFragment implements DisposablesHolder {
 
     private Unbinder unbinder;
 
@@ -33,5 +35,10 @@ public abstract class BaseFragment extends LifecycleFragment {
     @Override public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void addDisposable(Disposable disposable) {
+        disposables.add(disposable);
     }
 }
