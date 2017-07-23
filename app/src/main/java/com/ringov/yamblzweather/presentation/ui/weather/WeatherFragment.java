@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.ui.weather;
+package com.ringov.yamblzweather.presentation.ui.weather;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -8,12 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ringov.yamblzweather.MainViewUpdater;
+import com.ringov.yamblzweather.presentation.ui.MainViewUpdater;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.ui.Utils;
-import com.ringov.yamblzweather.viewmodel.data.UIWeather;
-import com.ringov.yamblzweather.viewmodel.weather.WeatherViewModel;
-import com.ringov.yamblzweather.ui.base.ModelViewFragment;
+import com.ringov.yamblzweather.presentation.Utils;
+import com.ringov.yamblzweather.presentation.data.UIWeather;
+import com.ringov.yamblzweather.presentation.base.ModelViewFragment;
 
 import butterknife.BindView;
 

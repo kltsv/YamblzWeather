@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather;
+package com.ringov.yamblzweather.presentation.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,9 +14,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.routing.Screen;
 import com.ringov.yamblzweather.routing.ScreenRouter;
-import com.ringov.yamblzweather.viewmodel.data.UIWeather;
+import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

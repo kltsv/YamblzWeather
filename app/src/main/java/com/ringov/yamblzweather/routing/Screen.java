@@ -5,9 +5,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.ui.about.AboutFragment;
-import com.ringov.yamblzweather.ui.settings.SettingsFragment;
-import com.ringov.yamblzweather.ui.weather.WeatherFragment;
+import com.ringov.yamblzweather.presentation.ui.about.AboutFragment;
+import com.ringov.yamblzweather.presentation.ui.settings.SettingsFragment;
+import com.ringov.yamblzweather.presentation.ui.weather.WeatherFragment;
 
 import java.util.HashMap;
 

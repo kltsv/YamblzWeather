@@ -1,13 +1,12 @@
-package com.ringov.yamblzweather.viewmodel.weather;
+package com.ringov.yamblzweather.presentation.ui.weather;
 
 import com.evernote.android.job.JobManager;
 import com.evernote.android.job.JobRequest;
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
-import com.ringov.yamblzweather.ui.weather.WeatherStateData;
-import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
-import com.ringov.yamblzweather.viewmodel.data.UIWeather;
+import com.ringov.yamblzweather.presentation.base.BaseViewModel;
+import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import java.util.Set;
 

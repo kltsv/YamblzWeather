@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.ui.about;
+package com.ringov.yamblzweather.presentation.ui.about;
 
 
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.ringov.yamblzweather.BuildConfig;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.ui.base.BaseFragment;
+import com.ringov.yamblzweather.presentation.base.BaseFragment;
 
 import butterknife.BindView;
 

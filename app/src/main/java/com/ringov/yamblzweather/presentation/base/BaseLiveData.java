@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.viewmodel.base;
+package com.ringov.yamblzweather.presentation.base;
 
 import android.arch.lifecycle.LiveData;
 

@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.viewmodel.data;
+package com.ringov.yamblzweather.presentation.data;
 
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;

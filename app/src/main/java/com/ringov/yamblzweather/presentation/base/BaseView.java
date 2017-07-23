@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.ui.base;
+package com.ringov.yamblzweather.presentation.base;
 
 /**
  * Created by ringov on 21.07.17.

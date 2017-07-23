@@ -1,13 +1,10 @@
-package com.ringov.yamblzweather.ui.base;
+package com.ringov.yamblzweather.presentation.base;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
-
-import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
-import com.ringov.yamblzweather.viewmodel.base.StateData;
 
 /**
  * Created by ringov on 12.07.17.

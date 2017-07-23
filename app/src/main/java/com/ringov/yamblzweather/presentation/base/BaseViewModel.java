@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.viewmodel.base;
+package com.ringov.yamblzweather.presentation.base;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModel;
 
 import com.ringov.yamblzweather.model.internet.exceptions.NoInternetConnectionException;
 
-import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;

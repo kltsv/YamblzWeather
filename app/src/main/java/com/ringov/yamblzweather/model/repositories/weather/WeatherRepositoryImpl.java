@@ -6,7 +6,7 @@ import com.ringov.yamblzweather.model.db.data.DBWeather;
 import com.ringov.yamblzweather.model.internet.APIFactory;
 import com.ringov.yamblzweather.model.internet.WeatherService;
 import com.ringov.yamblzweather.model.repositories.base.BaseRepositoryImpl;
-import com.ringov.yamblzweather.viewmodel.data.UIWeather;
+import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import java.util.concurrent.TimeUnit;
 

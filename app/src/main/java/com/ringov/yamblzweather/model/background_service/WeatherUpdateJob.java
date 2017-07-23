@@ -10,12 +10,12 @@ import android.support.v7.app.NotificationCompat;
 import com.evernote.android.job.Job;
 import com.evernote.android.job.JobRequest;
 import com.ringov.yamblzweather.App;
-import com.ringov.yamblzweather.MainActivity;
+import com.ringov.yamblzweather.presentation.ui.MainActivity;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.model.db.Database;
 import com.ringov.yamblzweather.model.repositories.settings.SettingsRepository;
 import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
-import com.ringov.yamblzweather.ui.Utils;
+import com.ringov.yamblzweather.presentation.Utils;
 
 import javax.inject.Inject;
 

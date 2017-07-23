@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.ui;
+package com.ringov.yamblzweather.presentation;
 
 import android.content.Context;
 import android.text.format.DateUtils;

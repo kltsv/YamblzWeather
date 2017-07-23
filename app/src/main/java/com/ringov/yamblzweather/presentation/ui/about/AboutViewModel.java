@@ -1,7 +1,7 @@
-package com.ringov.yamblzweather.viewmodel.about;
+package com.ringov.yamblzweather.presentation.ui.about;
 
-import com.ringov.yamblzweather.viewmodel.base.BaseViewModel;
-import com.ringov.yamblzweather.viewmodel.base.StateData;
+import com.ringov.yamblzweather.presentation.base.BaseViewModel;
+import com.ringov.yamblzweather.presentation.base.StateData;
 
 /**
  * Created by ringov on 12.07.17.

@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.ui.base;
+package com.ringov.yamblzweather.presentation.base;
 
 import android.arch.lifecycle.LifecycleFragment;
 import android.os.Bundle;
