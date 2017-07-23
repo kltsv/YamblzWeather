@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void initializeToolbar() {
         setSupportActionBar(mToolbar);
-        getSupportActionBar().setTitle(R.string.app_name);
     }
 
     private void initializeDrawer() {

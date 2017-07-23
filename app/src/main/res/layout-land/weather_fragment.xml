@@ -33,11 +33,11 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_temperature"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginRight="56dp"
-            tools:text="last update time"
-            android:layout_below="@+id/tv_temperature"
-            android:layout_centerHorizontal="true" />
+            tools:text="last update time" />
 
         <TextView
             android:id="@+id/tv_temperature"
@@ -80,4 +80,5 @@
             android:text="@string/default_city" />
 
     </RelativeLayout>
+
 </android.support.v4.widget.SwipeRefreshLayout>

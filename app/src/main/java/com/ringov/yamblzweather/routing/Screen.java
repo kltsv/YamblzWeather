@@ -16,6 +16,7 @@ import java.util.HashMap;
  */
 
 public enum Screen {
+
     Weather(R.id.nav_weather, ((manager, container) -> {
         if (manager.findFragmentByTag(WeatherFragment.TAG) == null) {
             openFragment(manager, container, new WeatherFragment(), WeatherFragment.TAG);

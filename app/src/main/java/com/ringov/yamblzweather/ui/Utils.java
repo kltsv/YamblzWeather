@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class Utils {
+
     public static String getRelativeTime(Context context, long time) {
         long now = System.currentTimeMillis();
         long diff = now - time;

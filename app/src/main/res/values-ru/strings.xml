@@ -39,7 +39,7 @@
 
     <string name="right_now">Только что</string>
 
-    <string name="swipe_to_update">Потяните, чтобы обновить</string>
+    <string name="swipe_to_update">потяните, чтобы обновить</string>
 
     <string name="default_city">Москва</string>
     <string name="no_internet_connection">Интернет недоступен</string>

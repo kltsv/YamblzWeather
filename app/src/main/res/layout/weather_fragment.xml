@@ -77,4 +77,5 @@
             android:text="@string/default_city" />
 
     </RelativeLayout>
+
 </android.support.v4.widget.SwipeRefreshLayout>

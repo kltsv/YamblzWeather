@@ -59,6 +59,7 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeath
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle(R.string.weather);
         swipeLayout.setOnRefreshListener(this::onRefresh);
     }
 

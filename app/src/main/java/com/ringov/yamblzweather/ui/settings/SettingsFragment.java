@@ -2,6 +2,7 @@ package com.ringov.yamblzweather.ui.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -38,6 +39,12 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         prefs.registerOnSharedPreferenceChangeListener(this);
 
         return super.onCreateView(inflater, container, savedInstanceState);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle(R.string.settings);
     }
 
     @Override

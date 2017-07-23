@@ -10,6 +10,7 @@ import com.ringov.yamblzweather.R;
  */
 
 public enum WeatherCondition {
+
     Cloudy(R.string.cloudy, R.drawable.weather_clouds),
     Clear(R.string.clear, R.drawable.weather_clear),
     Rainy(R.string.rainy, R.drawable.weather_rainy),
