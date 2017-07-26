@@ -31,6 +31,10 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     SettingsRepository settings;
     SharedPreferences prefs;
 
+    public static SettingsFragment newInstance() {
+        return new SettingsFragment();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         App.getComponent().inject(this);

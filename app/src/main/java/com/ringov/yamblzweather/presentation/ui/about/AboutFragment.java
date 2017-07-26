@@ -1,6 +1,5 @@
 package com.ringov.yamblzweather.presentation.ui.about;
 
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -22,6 +21,10 @@ public class AboutFragment extends BaseFragment {
 
     @BindView(R.id.tv_version)
     TextView mTvVersion;
+
+    public static AboutFragment newInstance() {
+        return new AboutFragment();
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

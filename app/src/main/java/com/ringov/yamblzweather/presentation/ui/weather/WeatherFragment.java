@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.Utils;
 import com.ringov.yamblzweather.presentation.data.UIWeather;
@@ -39,6 +38,10 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeath
     TextView locationTv;
 
     private SharedPreferences sharedPrefs;
+
+    public static WeatherFragment newInstance() {
+        return new WeatherFragment();
+    }
 
     @Override
     protected int getLayout() {
@@ -70,8 +73,6 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeath
         tvConditions.setText(data.getConditionName());
         tvTime.setText(Utils.getRelativeTime(getContext(), data.getTime()));
         weatherImage.setImageResource(data.getConditionImage());
-
-        App.uiWeatherSubject.onNext(data);
     }
 
     @Override

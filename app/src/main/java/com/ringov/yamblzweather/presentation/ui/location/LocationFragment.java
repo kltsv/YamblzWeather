@@ -39,6 +39,10 @@ public class LocationFragment extends ModelViewFragment<LocationViewModel, List<
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
 
+    public static LocationFragment newInstance() {
+        return new LocationFragment();
+    }
+
     @Override
     protected int getLayout() {
         return R.layout.location_fragment;

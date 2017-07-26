@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.presentation.ui;
 
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -9,39 +10,31 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.base.BaseActivity;
-import com.ringov.yamblzweather.routing.Screen;
-import com.ringov.yamblzweather.routing.ScreenRouter;
-import com.ringov.yamblzweather.presentation.data.UIWeather;
+import com.ringov.yamblzweather.presentation.ui.about.AboutFragment;
+import com.ringov.yamblzweather.presentation.ui.location.LocationFragment;
+import com.ringov.yamblzweather.presentation.ui.settings.SettingsFragment;
+import com.ringov.yamblzweather.presentation.ui.weather.WeatherFragment;
 
 import butterknife.BindView;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by ringov on 07.07.17.
  */
 
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener,
-        Consumer<UIWeather> {
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    @IdRes
+    private static final int FRAGMENT_CONTAINER = R.id.container;
 
     @BindView(R.id.toolbar)
-    Toolbar mToolbar;
+    Toolbar toolbar;
     @BindView(R.id.drawer_layout)
-    DrawerLayout mDrawer;
+    DrawerLayout drawer;
     @BindView(R.id.navigation_view)
-    NavigationView mNavigationView;
-
-    ImageView drawerImage;
-    TextView drawerTemperature;
-    TextView drawerCondition;
-
-    ScreenRouter router;
+    NavigationView navigationView;
 
     @Override
     protected int getLayout() {
@@ -51,42 +44,31 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeRouter();
         initializeToolbar();
         initializeDrawer();
 
-        addDisposable(App.uiWeatherSubject.subscribe(this));
-
         if (savedInstanceState == null) {
-            router.open(Screen.Weather);
+            replaceFragment(new WeatherFragment(), FRAGMENT_CONTAINER);
         }
     }
 
-    private void initializeRouter() {
-        router = new ScreenRouter(getSupportFragmentManager(), R.id.container);
-    }
-
     private void initializeToolbar() {
-        setSupportActionBar(mToolbar);
+        setSupportActionBar(toolbar);
     }
 
     private void initializeDrawer() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar,
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        mDrawer.addDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        mNavigationView.setNavigationItemSelectedListener(this);
-        View drawerHeaderLayout = mNavigationView.getHeaderView(0);
-        drawerImage = (ImageView) drawerHeaderLayout.findViewById(R.id.drawer_image);
-        drawerTemperature = (TextView) drawerHeaderLayout.findViewById(R.id.tv_temperature);
-        drawerCondition = (TextView) drawerHeaderLayout.findViewById(R.id.tv_conditions);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
-            mDrawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -94,21 +76,22 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        mDrawer.closeDrawer(GravityCompat.START);
-        router.open(Screen.fromId(item.getItemId()));
+        switch (item.getItemId()) {
+            case R.id.nav_weather:
+                replaceFragment(WeatherFragment.newInstance(), FRAGMENT_CONTAINER);
+                break;
+            case R.id.nav_location:
+                replaceFragment(LocationFragment.newInstance(), FRAGMENT_CONTAINER);
+                break;
+            case R.id.nav_settings:
+                replaceFragment(SettingsFragment.newInstance(), FRAGMENT_CONTAINER);
+                break;
+            case R.id.nav_about:
+                replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER);
+                break;
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        router.detach();
-    }
-
-    @Override
-    public void accept(@io.reactivex.annotations.NonNull UIWeather weather) {
-        drawerImage.setImageResource(weather.getConditionImage());
-        drawerTemperature.setText(getString(R.string.temperature, weather.getTemperature()));
-        drawerCondition.setText(weather.getConditionName());
     }
 }

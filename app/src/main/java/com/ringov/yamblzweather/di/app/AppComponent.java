@@ -18,9 +18,16 @@ import dagger.Component;
  * Created by ringov on 12.07.17.
  */
 
-@Component(modules = {WeatherModule.class, AboutModule.class, SettingsModule.class, LocationModule.class})
+@Component(modules = {
+        NavigationModule.class,
+        WeatherModule.class,
+        AboutModule.class,
+        SettingsModule.class,
+        LocationModule.class
+})
 @Singleton
 public interface AppComponent {
+
     void inject(WeatherViewModel weatherViewModel);
 
     void inject(AboutViewModel aboutViewModel);
