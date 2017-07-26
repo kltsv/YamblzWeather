@@ -64,9 +64,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         // update interval if update
         Set<JobRequest> requests = JobManager.instance().getAllJobRequestsForTag(WeatherUpdateJob.TAG);
         if (!requests.isEmpty()) {
-            Iterator<JobRequest> iterator = requests.iterator();
-            while (iterator.hasNext()) {
-                JobRequest jr = iterator.next();
+            for (JobRequest jr : requests) {
                 long lastInterval = jr.getIntervalMs();
                 long settingsInterval = settings.getUpdateInterval();
                 if (lastInterval != settingsInterval) {

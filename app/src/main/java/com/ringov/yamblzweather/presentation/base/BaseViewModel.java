@@ -7,7 +7,6 @@ import android.arch.lifecycle.ViewModel;
 import com.ringov.yamblzweather.model.internet.exceptions.NoInternetConnectionException;
 
 import io.reactivex.ObservableTransformer;
-import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 
 /**
