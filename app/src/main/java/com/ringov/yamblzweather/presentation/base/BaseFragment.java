@@ -35,6 +35,7 @@ public abstract class BaseFragment extends LifecycleFragment implements Disposab
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+        disposables.clear();
     }
 
     @Override

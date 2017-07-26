@@ -76,6 +76,7 @@ ext {
     retrofitVersion = '2.3.0'
     rxJavaVersion = '2.1.1'
     rxAndroidVersion = '2.0.1'
+    rxBindingVersion = '2.0.0'
     androidJobVersion = '1.1.11'
 }
 
@@ -119,6 +120,7 @@ dependencies {
     // rx
     compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding:$rxBindingVersion"
 
     //android-job
     compile "com.evernote:android-job:$androidJobVersion"

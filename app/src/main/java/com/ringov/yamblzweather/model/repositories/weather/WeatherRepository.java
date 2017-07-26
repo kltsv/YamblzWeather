@@ -10,6 +10,7 @@ import io.reactivex.Observable;
  */
 
 public interface WeatherRepository extends BaseRepository {
+
     Observable<UIWeather> updateWeatherIfDataIsOld();
 
     Observable<UIWeather> updateWeather();

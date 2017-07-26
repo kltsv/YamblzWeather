@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.di.app;
 
 import com.ringov.yamblzweather.di.about.AboutModule;
+import com.ringov.yamblzweather.di.location.LocationModule;
 import com.ringov.yamblzweather.di.settings.SettingsModule;
 import com.ringov.yamblzweather.di.weather.WeatherModule;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
@@ -17,7 +18,7 @@ import dagger.Component;
  * Created by ringov on 12.07.17.
  */
 
-@Component(modules = {WeatherModule.class, AboutModule.class, SettingsModule.class})
+@Component(modules = {WeatherModule.class, AboutModule.class, SettingsModule.class, LocationModule.class})
 @Singleton
 public interface AppComponent {
     void inject(WeatherViewModel weatherViewModel);
