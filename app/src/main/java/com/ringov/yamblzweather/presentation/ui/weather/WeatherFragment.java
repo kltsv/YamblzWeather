@@ -1,9 +1,10 @@
 package com.ringov.yamblzweather.presentation.ui.weather;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
+import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +35,10 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeath
     TextView tvTime;
     @BindView(R.id.weather_image)
     ImageView weatherImage;
+    @BindView(R.id.tv_location)
+    TextView locationTv;
+
+    private SharedPreferences sharedPrefs;
 
     @Override
     protected int getLayout() {
@@ -50,6 +55,9 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeath
         super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle(R.string.weather);
         swipeLayout.setOnRefreshListener(this::onRefresh);
+        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        String currentLocation = sharedPrefs.getString(getString(R.string.prefs_location_key), getString(R.string.prefs_location_default));
+        locationTv.setText(currentLocation);
     }
 
     private void onRefresh() {

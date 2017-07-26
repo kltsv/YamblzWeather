@@ -15,12 +15,4 @@
         android:summary="@string/update_intervals_summary"
         android:title="@string/update_intervals_title" />
 
-    <android.support.v7.preference.EditTextPreference
-        android:defaultValue="@string/prefs_location_default"
-        android:dialogLayout="@layout/preference_location_dialog"
-        android:inputType="text"
-        android:key="@string/prefs_location_key"
-        android:summary="@string/prefs_location_description"
-        android:title="@string/prefs_location_title" />
-
 </PreferenceScreen>

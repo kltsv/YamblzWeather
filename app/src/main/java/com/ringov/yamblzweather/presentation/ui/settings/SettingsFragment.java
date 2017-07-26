@@ -16,7 +16,6 @@ import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
 import com.ringov.yamblzweather.model.repositories.settings.SettingsRepository;
 
-import java.util.Iterator;
 import java.util.Set;
 
 import javax.inject.Inject;
