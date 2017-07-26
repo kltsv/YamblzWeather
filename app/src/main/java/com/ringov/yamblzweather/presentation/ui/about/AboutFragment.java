@@ -17,14 +17,24 @@ import butterknife.BindView;
 
 public class AboutFragment extends BaseFragment {
 
-    public static final String TAG = "about";
-
-    @BindView(R.id.tv_version)
-    TextView mTvVersion;
+    public static final String TAG = "AboutFragment";
 
     public static AboutFragment newInstance() {
         return new AboutFragment();
     }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.about_fragment;
+    }
+
+    @Override
+    protected Class<AboutViewModel> getViewModelClass() {
+        return AboutViewModel.class;
+    }
+
+    @BindView(R.id.tv_version)
+    TextView mTvVersion;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -35,7 +45,6 @@ public class AboutFragment extends BaseFragment {
     }
 
     @Override
-    protected int getLayout() {
-        return R.layout.about_fragment;
+    protected void attachInputListeners() {
     }
 }

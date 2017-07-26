@@ -12,13 +12,15 @@ import com.ringov.yamblzweather.navigation.base.Command;
 import com.ringov.yamblzweather.navigation.base.Navigator;
 
 import butterknife.ButterKnife;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by Ivan on 23.07.2017.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements DisposablesHolder, Navigator {
+public abstract class BaseActivity extends AppCompatActivity implements Navigator {
+
+    protected CompositeDisposable disposables = new CompositeDisposable();
 
     @LayoutRes
     protected abstract int getLayout();
@@ -47,15 +49,19 @@ public abstract class BaseActivity extends AppCompatActivity implements Disposab
         App.getNavigationBinder().removeNavigator();
     }
 
+    // Subscribe for user input events in this method
+    protected abstract void attachInputListeners();
+
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        disposables.clear();
+    protected void onStart() {
+        super.onStart();
+        attachInputListeners();
     }
 
     @Override
-    public void addDisposable(Disposable disposable) {
-        disposables.add(disposable);
+    protected void onStop() {
+        super.onStop();
+        disposables.clear();
     }
 
     protected void replaceFragment(Fragment fragment, @IdRes int containerId) {

@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 public class Converter {
+
     public static DBWeather getDBWeather(ResponseWeather response) {
         float temperature = ConvertUtils.kelvinToCelsius(response.getMain().getTemp());
         List<Weather> weathers = response.getWeather();

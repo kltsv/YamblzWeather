@@ -9,10 +9,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.Utils;
+import com.ringov.yamblzweather.presentation.base.BaseFragment;
 import com.ringov.yamblzweather.presentation.data.UIWeather;
-import com.ringov.yamblzweather.presentation.base.ModelViewFragment;
 
 import butterknife.BindView;
 
@@ -20,9 +21,23 @@ import butterknife.BindView;
  * Created by ringov on 07.07.17.
  */
 
-public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeather, WeatherStateData> implements WeatherView {
+public class WeatherFragment extends BaseFragment<WeatherViewModel> {
 
-    public static final String TAG = "weather";
+    public static final String TAG = "WeatherFragment";
+
+    public static WeatherFragment newInstance() {
+        return new WeatherFragment();
+    }
+
+    @Override
+    protected Class<WeatherViewModel> getViewModelClass() {
+        return WeatherViewModel.class;
+    }
+
+    @Override
+    protected int getLayout() {
+        return R.layout.weather_fragment;
+    }
 
     @BindView(R.id.swipe_layout)
     SwipeRefreshLayout swipeLayout;
@@ -39,49 +54,37 @@ public class WeatherFragment extends ModelViewFragment<WeatherViewModel, UIWeath
 
     private SharedPreferences sharedPrefs;
 
-    public static WeatherFragment newInstance() {
-        return new WeatherFragment();
-    }
-
-    @Override
-    protected int getLayout() {
-        return R.layout.weather_fragment;
-    }
-
-    @Override
-    protected Class<WeatherViewModel> getViewModelClass() {
-        return WeatherViewModel.class;
-    }
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle(R.string.weather);
-        swipeLayout.setOnRefreshListener(this::onRefresh);
         sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         String currentLocation = sharedPrefs.getString(getString(R.string.prefs_location_key), getString(R.string.prefs_location_default));
         locationTv.setText(currentLocation);
     }
 
-    private void onRefresh() {
-        getViewModel().onRefresh();
+    @Override
+    protected void attachInputListeners() {
+        getViewModel().observe(this, this::showLoading, this::showWeather, this::showError);
+
+        disposables.add(
+                RxSwipeRefreshLayout
+                        .refreshes(swipeLayout)
+                        .subscribe(o -> getViewModel().onRefresh())
+        );
     }
 
-    @Override
-    protected void showDataChanges(UIWeather data) {
+    private void showLoading(boolean isLoading) {
+        swipeLayout.setRefreshing(isLoading);
+    }
+
+    private void showWeather(UIWeather data) {
         tvTemperature.setText(Utils.getFormattedTemperature(getContext(), data.getTemperature()));
         tvConditions.setText(data.getConditionName());
         tvTime.setText(Utils.getRelativeTime(getContext(), data.getTime()));
         weatherImage.setImageResource(data.getConditionImage());
     }
 
-    @Override
-    public void showLoading() {
-        swipeLayout.setRefreshing(true);
-    }
-
-    @Override
-    public void hideLoading() {
-        swipeLayout.setRefreshing(false);
+    private void showError(Throwable error) {
+        error.printStackTrace();
     }
 }

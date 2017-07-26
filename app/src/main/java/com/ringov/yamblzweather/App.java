@@ -13,6 +13,8 @@ import com.ringov.yamblzweather.navigation.RouterHolder;
 import com.ringov.yamblzweather.navigation.base.NavigatorBinder;
 import com.squareup.leakcanary.LeakCanary;
 
+import timber.log.Timber;
+
 /**
  * Created by ringov on 12.07.17.
  */
@@ -50,6 +52,8 @@ public class App extends Application {
             return;
         }
         LeakCanary.install(this);
+
+        Timber.plant(new Timber.DebugTree());
 
         component = buildComponent();
         JobManager.create(this).addJobCreator(new WeatherUpdateJobCreator());

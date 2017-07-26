@@ -26,7 +26,7 @@ import javax.inject.Inject;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
-    public static final String TAG = "settings";
+    public static final String TAG = "SettingsFragment";
     @Inject
     SettingsRepository settings;
     SharedPreferences prefs;

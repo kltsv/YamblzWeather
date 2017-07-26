@@ -16,6 +16,7 @@ import dagger.Provides;
 
 @Module
 public class SettingsModule {
+
     @Provides
     @NonNull
     @Singleton

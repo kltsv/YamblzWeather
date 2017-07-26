@@ -78,6 +78,7 @@ ext {
     rxAndroidVersion = '2.0.1'
     rxBindingVersion = '2.0.0'
     androidJobVersion = '1.1.11'
+    timberVersion = '4.5.1'
 }
 
 dependencies {
@@ -121,8 +122,12 @@ dependencies {
     compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     compile "com.jakewharton.rxbinding2:rxbinding:$rxBindingVersion"
+    compile "com.jakewharton.rxbinding2:rxbinding-support-v4:${rxBindingVersion}"
 
     //android-job
     compile "com.evernote:android-job:$androidJobVersion"
     compile "com.google.android.gms:play-services-gcm:11.0.2"
+
+    // Logging
+    compile "com.jakewharton.timber:timber:${timberVersion}"
 }

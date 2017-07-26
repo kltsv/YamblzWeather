@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.presentation.base;
 
 import android.arch.lifecycle.LifecycleFragment;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -10,18 +11,23 @@ import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by ringov on 07.07.17.
  */
 
-public abstract class BaseFragment extends LifecycleFragment implements DisposablesHolder {
+public abstract class BaseFragment<VM extends BaseViewModel> extends LifecycleFragment {
 
+    private VM viewModel;
     private Unbinder unbinder;
+
+    protected CompositeDisposable disposables = new CompositeDisposable();
 
     @LayoutRes
     protected abstract int getLayout();
+
+    protected abstract Class<VM> getViewModelClass();
 
     @Nullable
     @Override
@@ -31,15 +37,31 @@ public abstract class BaseFragment extends LifecycleFragment implements Disposab
         return view;
     }
 
+    // Subscribe for user input events in this method
+    protected void attachInputListeners() {
+    }
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    public void onStart() {
+        super.onStart();
+        // Order matters
+        viewModel = ViewModelProviders.of(this).get(getViewModelClass());
+        attachInputListeners();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         disposables.clear();
     }
 
     @Override
-    public void addDisposable(Disposable disposable) {
-        disposables.add(disposable);
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
+
+    protected VM getViewModel() {
+        return viewModel;
     }
 }
