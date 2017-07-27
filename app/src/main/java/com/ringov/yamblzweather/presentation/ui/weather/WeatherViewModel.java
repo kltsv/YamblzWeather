@@ -7,7 +7,8 @@ import com.evernote.android.job.JobManager;
 import com.evernote.android.job.JobRequest;
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
-import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
+import com.ringov.yamblzweather.model.repository.location.LocationRepository;
+import com.ringov.yamblzweather.model.repository.weather.WeatherRepository;
 import com.ringov.yamblzweather.presentation.base.BaseLiveData;
 import com.ringov.yamblzweather.presentation.base.BaseViewModel;
 import com.ringov.yamblzweather.presentation.data.UIWeather;
@@ -25,16 +26,20 @@ public class WeatherViewModel extends BaseViewModel {
     private BaseLiveData<Boolean> loadingData = new BaseLiveData<>();
     private BaseLiveData<UIWeather> weatherData = new BaseLiveData<>();
     private BaseLiveData<Throwable> errorData = new BaseLiveData<>();
+    private BaseLiveData<String> cityData = new BaseLiveData<>();
 
     @Inject
-    WeatherRepository repository;
+    WeatherRepository weatherRepository;
+
+    @Inject
+    LocationRepository locationRepository;
 
     public WeatherViewModel() {
         App.getComponent().inject(this);
         disposables.add(
-                repository
+                weatherRepository
                         .getLastWeatherInfo()
-                        .concatWith(repository.updateWeather())
+                        .concatWith(weatherRepository.updateWeather())
                         .doOnSubscribe(disposable -> loadingData.updateValue(true))
                         .doFinally(() -> loadingData.updateValue(false))
                         .subscribe(
@@ -48,23 +53,27 @@ public class WeatherViewModel extends BaseViewModel {
         if (requests.isEmpty()) {
             WeatherUpdateJob.schedule();
         }
+
+        cityData.updateValue(locationRepository.getLocation());
     }
 
     void observe(
             LifecycleOwner owner,
             Observer<Boolean> loadingObserver,
             Observer<UIWeather> weatherObserver,
-            Observer<Throwable> errorObserver
+            Observer<Throwable> errorObserver,
+            Observer<String> cityObserver
     ) {
         loadingData.observe(owner, loadingObserver);
         weatherData.observe(owner, weatherObserver);
         errorData.observe(owner, errorObserver);
+        cityData.observe(owner, cityObserver);
     }
 
     // View callbacks
     void onRefresh() {
         disposables.add(
-                repository.updateWeatherIfDataIsOld()
+                weatherRepository.updateWeatherIfDataIsOld()
                         .doOnSubscribe(disposable -> loadingData.updateValue(true))
                         .doFinally(() -> loadingData.updateValue(false))
                         .subscribe(

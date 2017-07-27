@@ -1,6 +1,5 @@
 package com.ringov.yamblzweather.di.app;
 
-import com.ringov.yamblzweather.di.about.AboutModule;
 import com.ringov.yamblzweather.di.location.LocationModule;
 import com.ringov.yamblzweather.di.settings.SettingsModule;
 import com.ringov.yamblzweather.di.weather.WeatherModule;
@@ -21,7 +20,6 @@ import dagger.Component;
 @Component(modules = {
         NavigationModule.class,
         WeatherModule.class,
-        AboutModule.class,
         SettingsModule.class,
         LocationModule.class
 })

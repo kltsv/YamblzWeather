@@ -1,13 +1,12 @@
 package com.ringov.yamblzweather.presentation.ui.weather;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ringov.yamblzweather.R;
@@ -52,25 +51,26 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
     @BindView(R.id.tv_location)
     TextView locationTv;
 
-    private SharedPreferences sharedPrefs;
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(R.string.weather);
-        sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getContext());
-        String currentLocation = sharedPrefs.getString(getString(R.string.prefs_location_key), getString(R.string.prefs_location_default));
-        locationTv.setText(currentLocation);
     }
 
     @Override
     protected void attachInputListeners() {
-        getViewModel().observe(this, this::showLoading, this::showWeather, this::showError);
+        getViewModel().observe(
+                this, this::showLoading, this::showWeather, this::showError, this::showCity);
 
+        // Listen for swipe to refresh
         disposables.add(
                 RxSwipeRefreshLayout
                         .refreshes(swipeLayout)
                         .subscribe(o -> getViewModel().onRefresh())
         );
+    }
+
+    private void showCity(String city) {
+        locationTv.setText(city);
     }
 
     private void showLoading(boolean isLoading) {
@@ -85,6 +85,6 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
     }
 
     private void showError(Throwable error) {
-        error.printStackTrace();
+        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

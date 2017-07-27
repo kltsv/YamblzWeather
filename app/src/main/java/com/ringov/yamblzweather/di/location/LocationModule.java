@@ -2,8 +2,8 @@ package com.ringov.yamblzweather.di.location;
 
 import android.support.annotation.NonNull;
 
-import com.ringov.yamblzweather.model.repositories.location.LocationRepository;
-import com.ringov.yamblzweather.model.repositories.location.LocationRepositoryImpl;
+import com.ringov.yamblzweather.model.repository.location.LocationRepository;
+import com.ringov.yamblzweather.model.repository.location.LocationRepositoryImpl;
 
 import javax.inject.Singleton;
 

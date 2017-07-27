@@ -2,8 +2,8 @@ package com.ringov.yamblzweather.di.settings;
 
 import android.support.annotation.NonNull;
 
-import com.ringov.yamblzweather.model.repositories.settings.SettingsRepository;
-import com.ringov.yamblzweather.model.repositories.settings.SettingsRepositoryImpl;
+import com.ringov.yamblzweather.model.repository.settings.SettingsRepository;
+import com.ringov.yamblzweather.model.repository.settings.SettingsRepositoryImpl;
 
 import javax.inject.Singleton;
 

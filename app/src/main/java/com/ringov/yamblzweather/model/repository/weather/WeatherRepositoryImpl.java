@@ -25,7 +25,6 @@ public class WeatherRepositoryImpl extends BaseRepositoryImpl implements Weather
 
     private static final int REQUEST_FREQUENCY = 2; // not frequently than once in two minutes
 
-
     private Observable<DBWeather> getCachedWeather() {
         return Observable.just(getDatabase().loadWeather());
     }

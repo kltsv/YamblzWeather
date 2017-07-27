@@ -49,5 +49,6 @@
 
     <string name="location_title">Location</string>
     <string name="location_description">For what city show weather for</string>
+    <string name="location_changed">Location changed</string>
 
 </resources>

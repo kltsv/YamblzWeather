@@ -50,7 +50,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigato
     }
 
     // Subscribe for user input events in this method
-    protected abstract void attachInputListeners();
+    protected void attachInputListeners() {
+    }
 
     @Override
     protected void onStart() {

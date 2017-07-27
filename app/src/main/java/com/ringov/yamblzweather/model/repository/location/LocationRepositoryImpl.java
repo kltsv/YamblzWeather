@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Single;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class LocationRepositoryImpl extends BaseRepositoryImpl implements LocationRepository {
 
@@ -22,14 +24,15 @@ public class LocationRepositoryImpl extends BaseRepositoryImpl implements Locati
 
     @Override
     public Single<List<String>> getSuggestions(String input) {
-        return Single.create(emitter -> {
-            ArrayList<String> list = new ArrayList<>();
+        List<String> list = new ArrayList<>();
 
-            list.add("Moscow");
-            list.add("London");
-            list.add("Paris");
+        list.add("Moscow");
+        list.add("London");
+        list.add("Paris");
 
-            emitter.onSuccess(list);
-        });
+        return Single
+                .just(list)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
     }
 }

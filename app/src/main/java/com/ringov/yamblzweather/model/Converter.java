@@ -1,8 +1,8 @@
 package com.ringov.yamblzweather.model;
 
 import com.ringov.yamblzweather.model.db.data.DBWeather;
-import com.ringov.yamblzweather.model.internet.data.Weather;
-import com.ringov.yamblzweather.model.internet.data.ResponseWeather;
+import com.ringov.yamblzweather.model.networking.data.Weather;
+import com.ringov.yamblzweather.model.networking.data.ResponseWeather;
 import com.ringov.yamblzweather.presentation.data.WeatherCondition;
 import com.ringov.yamblzweather.presentation.data.UIWeather;
 

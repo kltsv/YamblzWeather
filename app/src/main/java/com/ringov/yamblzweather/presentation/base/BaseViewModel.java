@@ -6,7 +6,6 @@ import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by ringov on 12.07.17.
- * Updated by IvanAntsiferov 26.07.17.
  */
 
 public abstract class BaseViewModel extends ViewModel {

@@ -13,8 +13,8 @@ import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.presentation.ui.MainActivity;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.model.db.Database;
-import com.ringov.yamblzweather.model.repositories.settings.SettingsRepository;
-import com.ringov.yamblzweather.model.repositories.weather.WeatherRepository;
+import com.ringov.yamblzweather.model.repository.settings.SettingsRepository;
+import com.ringov.yamblzweather.model.repository.weather.WeatherRepository;
 import com.ringov.yamblzweather.presentation.Utils;
 
 import javax.inject.Inject;

@@ -46,5 +46,6 @@
 
     <string name="location_title">Местоположение</string>
     <string name="location_description">Для какого города показывать погоду</string>
+    <string name="location_changed">Местоположение изменено</string>
 
 </resources>
