@@ -3,6 +3,7 @@ package com.ringov.yamblzweather.presentation.base;
 import android.arch.lifecycle.LifecycleFragment;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -31,6 +32,7 @@ public abstract class BaseFragment<VM extends BaseViewModel> extends LifecycleFr
 
     @Nullable
     @Override
+    @CallSuper
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayout(), container, false);
         unbinder = ButterKnife.bind(this, view);
@@ -42,6 +44,7 @@ public abstract class BaseFragment<VM extends BaseViewModel> extends LifecycleFr
     }
 
     @Override
+    @CallSuper
     public void onStart() {
         super.onStart();
         // Order matters
@@ -50,12 +53,14 @@ public abstract class BaseFragment<VM extends BaseViewModel> extends LifecycleFr
     }
 
     @Override
+    @CallSuper
     public void onStop() {
         super.onStop();
         disposables.clear();
     }
 
     @Override
+    @CallSuper
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();

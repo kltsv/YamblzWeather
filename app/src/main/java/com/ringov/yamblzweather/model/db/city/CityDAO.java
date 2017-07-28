@@ -14,8 +14,8 @@ import java.util.List;
 @Dao
 public interface CityDAO {
 
-    @Query("SELECT * FROM cities WHERE city_name LIKE :suggest LIMIT 5")
-    List<DBCity> getSuggestions(String suggest);
+    @Query("SELECT * FROM cities WHERE city_name LIKE :suggest LIMIT :limit")
+    List<DBCity> getSuggestions(String suggest, int limit);
 
     @Query("SELECT * FROM cities")
     List<DBCity> getAll();

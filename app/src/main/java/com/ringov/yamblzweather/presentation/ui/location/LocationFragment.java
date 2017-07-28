@@ -1,8 +1,10 @@
 package com.ringov.yamblzweather.presentation.ui.location;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
@@ -53,6 +55,13 @@ public class LocationFragment extends BaseFragment<LocationViewModel> {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+
+        closeSoftKeyboard();
+    }
+
+    @Override
     protected void attachInputListeners() {
         getViewModel().observe(
                 this, this::showLoading, this::showSuggestions, this::showError, this::showCity);
@@ -78,6 +87,7 @@ public class LocationFragment extends BaseFragment<LocationViewModel> {
                             String chosenValue = textView.getText().toString();
                             getViewModel().onCitySelected(chosenValue);
                             Toast.makeText(getContext(), R.string.location_changed, Toast.LENGTH_SHORT).show();
+                            closeSoftKeyboard();
                         })
         );
     }
@@ -102,5 +112,10 @@ public class LocationFragment extends BaseFragment<LocationViewModel> {
     private void showError(Throwable error) {
         error.printStackTrace();
         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void closeSoftKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(locationAtv.getWindowToken(), 0);
     }
 }

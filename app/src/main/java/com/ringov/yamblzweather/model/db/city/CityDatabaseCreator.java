@@ -4,9 +4,10 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.persistence.room.Room;
 import android.content.Context;
-import android.os.AsyncTask;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
+import android.support.v7.preference.PreferenceManager;
 
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
@@ -17,6 +18,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
 import static com.ringov.yamblzweather.model.db.city.CityDatabase.DATABASE_NAME;
@@ -75,30 +79,38 @@ public class CityDatabaseCreator {
 
         isDatabaseCreated.setValue(false); // Trigger an update to show a loading screen.
 
-        new AsyncTask<Context, Void, Void>() {
+        Completable.fromCallable(() -> {
+            // Build the database
+            mDb = Room
+                    .databaseBuilder(context.getApplicationContext(), CityDatabase.class, DATABASE_NAME)
+                    .build();
 
-            @Override
-            protected Void doInBackground(Context... params) {
-                Context context = params[0].getApplicationContext();
+            checkIsFirstLaunch(context);
 
-                // Build the database
-                mDb = Room
-                        .databaseBuilder(context.getApplicationContext(), CityDatabase.class, DATABASE_NAME)
-                        .build();
+            return true;
+        })
+                .subscribeOn(Schedulers.computation())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doFinally(() -> Timber.d("Room db created"))
+                .subscribe(() -> isDatabaseCreated.setValue(true));
+    }
 
-                // Populate DB with pre filled data
-                readDataFromRaw();
+    /**
+     * Check if app is launched for first time and populate DB with data if so
+     */
+    private void checkIsFirstLaunch(Context context) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        final String KEY = context.getString(R.string.prefs_first_launch_key);
+        boolean firstLaunch = sharedPrefs.getBoolean(KEY, true);
 
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void ignored) {
-                // Now on the main thread, notify observers that the mDb is created and ready.
-                isDatabaseCreated.setValue(true);
-            }
-
-        }.execute(context.getApplicationContext());
+        if (firstLaunch) {
+            // Populate DB with pre filled data
+            readDataFromRaw();
+            // Set first launch to false
+            SharedPreferences.Editor editor = sharedPrefs.edit();
+            editor.putBoolean(KEY, false);
+            editor.apply();
+        }
     }
 
     private void readDataFromRaw() {
@@ -119,7 +131,7 @@ public class CityDatabaseCreator {
         // Write to room database
         mDb.cityDAO().insertAll(cities);
 
-        Timber.d("Database filled");
+        Timber.d("Database filled with initial data");
     }
 
     // Helper method that reads text file from Raw resources and returns it content as a String
@@ -132,7 +144,7 @@ public class CityDatabaseCreator {
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
                 BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-                String receiveString = "";
+                String receiveString;
                 StringBuilder stringBuilder = new StringBuilder();
 
                 while ((receiveString = bufferedReader.readLine()) != null) {

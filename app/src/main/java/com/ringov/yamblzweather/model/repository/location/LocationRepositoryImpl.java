@@ -16,6 +16,9 @@ import timber.log.Timber;
 
 public class LocationRepositoryImpl extends BaseRepositoryImpl implements LocationRepository {
 
+    // Limit suggestions count
+    private static final int LIMIT = 5;
+
     // Returns city name
     @Override
     public Single<String> getLocation() {
@@ -64,7 +67,7 @@ public class LocationRepositoryImpl extends BaseRepositoryImpl implements Locati
 
         try {
             List<DBCity> cities = CityDatabaseCreator
-                    .getInstance().getDatabase().cityDAO().getSuggestions(suggestFrom + "%");
+                    .getInstance().getDatabase().cityDAO().getSuggestions( "%" + suggestFrom + "%", LIMIT);
             for (DBCity city : cities)
                 citiesNames.add(city.getCity_name());
         } catch (NullPointerException e) {

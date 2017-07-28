@@ -19,4 +19,6 @@
     <string name="prefs_location_key" translatable="false">location_key</string>
     <integer name="prefs_location_default" translatable="false">524901</integer>
 
+    <string name="prefs_first_launch_key" translatable="false">first_launch</string>
+
 </resources>
