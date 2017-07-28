@@ -54,7 +54,11 @@ public class WeatherViewModel extends BaseViewModel {
             WeatherUpdateJob.schedule();
         }
 
-        cityData.updateValue(locationRepository.getLocation());
+        disposables.add(
+                locationRepository
+                        .getLocation()
+                        .subscribe(s -> cityData.updateValue(s), e -> errorData.updateValue(e))
+        );
     }
 
     void observe(

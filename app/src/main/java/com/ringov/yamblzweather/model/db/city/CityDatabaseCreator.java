@@ -67,7 +67,7 @@ public class CityDatabaseCreator {
      * Although this uses an AsyncTask which currently uses a serial executor, it's thread-safe.
      */
     public void createDb(Context context) {
-        Timber.d("Creating DB from " + Thread.currentThread().getName());
+        Timber.d("Creating DB from " + Thread.currentThread().getName() + " thread");
 
         if (!initializing.compareAndSet(true, false)) {
             return; // Already initializing
@@ -79,19 +79,14 @@ public class CityDatabaseCreator {
 
             @Override
             protected Void doInBackground(Context... params) {
-                Timber.d("Starting bg job " + Thread.currentThread().getName());
-
                 Context context = params[0].getApplicationContext();
 
                 // Build the database
-                CityDatabase db = Room
+                mDb = Room
                         .databaseBuilder(context.getApplicationContext(), CityDatabase.class, DATABASE_NAME)
                         .build();
 
-                Timber.d("DB was populated in thread " + Thread.currentThread().getName());
-
-                mDb = db;
-
+                // Populate DB with pre filled data
                 readDataFromRaw();
 
                 return null;
@@ -119,7 +114,7 @@ public class CityDatabaseCreator {
 
         // Compose two arrays into DBCity objects
         for (int i = 0; i < nameArray.length; i++)
-            cities.add(new DBCity(i, nameArray[i], Long.valueOf(idsArray[i])));
+            cities.add(new DBCity(i, nameArray[i], Integer.valueOf(idsArray[i])));
 
         // Write to room database
         mDb.cityDAO().insertAll(cities);

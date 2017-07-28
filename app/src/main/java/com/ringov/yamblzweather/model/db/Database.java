@@ -51,18 +51,18 @@ public class Database {
                 .build();
     }
 
-    public String getUserCity() {
+    public int getUserCityId() {
         Context context = App.getContext();
         final String KEY = context.getString(R.string.prefs_location_key);
-        final String DEFAULT_VALUE = context.getString(R.string.prefs_location_default);
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(KEY, DEFAULT_VALUE);
+        final int DEFAULT_VALUE = context.getResources().getInteger(R.integer.prefs_location_default);
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(KEY, DEFAULT_VALUE);
     }
 
-    public void putUserCity(String city) {
+    public void putUserCity(int cityId) {
         Context context = App.getContext();
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(App.getContext().getString(R.string.prefs_location_key), city);
+        editor.putInt(App.getContext().getString(R.string.prefs_location_key), cityId);
         editor.apply();
     }
 

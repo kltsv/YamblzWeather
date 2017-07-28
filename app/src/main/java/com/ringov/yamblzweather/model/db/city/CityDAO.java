@@ -22,4 +22,10 @@ public interface CityDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<DBCity> cities);
+
+    @Query("SELECT * FROM cities WHERE city_name LIKE :name LIMIT 1")
+    DBCity getByName(String name);
+
+    @Query("SELECT * FROM cities WHERE city_id LIKE :id LIMIT 1")
+    DBCity getById(long id);
 }

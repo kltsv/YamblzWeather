@@ -52,7 +52,7 @@ public class WeatherRepositoryImpl extends BaseRepositoryImpl implements Weather
     }
 
     private Observable<DBWeather> updateWeatherAndCache() {
-        return getService().getWeather(Database.getInstance().getUserCity())
+        return getService().getWeather(Database.getInstance().getUserCityId())
                 .map(Converter::getDBWeather)
                 .doOnNext(Database.getInstance()::saveWeather);
     }

@@ -12,8 +12,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 /**
  * Created by Ivan on 26.07.2017.
  */
@@ -31,7 +29,11 @@ public class LocationViewModel extends BaseViewModel {
     public LocationViewModel() {
         App.getComponent().inject(this);
 
-        cityData.updateValue(repository.getLocation());
+        disposables.add(
+                repository
+                        .getLocation()
+                        .subscribe(s -> cityData.updateValue(s), e -> errorData.updateValue(e))
+        );
     }
 
     void observe(
@@ -53,8 +55,6 @@ public class LocationViewModel extends BaseViewModel {
     }
 
     void onInputChanges(String input) {
-        Timber.d(input);
-
         disposables.add(
                 repository
                         .getSuggestions(input)

@@ -19,9 +19,9 @@ public class DBCity {
     private String city_name;
 
     @ColumnInfo(name = "city_id")
-    private long city_id;
+    private int city_id;
 
-    public DBCity(long _id, String city_name, long city_id) {
+    public DBCity(long _id, String city_name, int city_id) {
         this._id = _id;
         this.city_name = city_name;
         this.city_id = city_id;
@@ -35,7 +35,7 @@ public class DBCity {
         return city_name;
     }
 
-    public long getCity_id() {
+    public int getCity_id() {
         return city_id;
     }
 }

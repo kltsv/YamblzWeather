@@ -17,6 +17,6 @@
     <string name="update_notifications_default" translatable="false">false</string>
 
     <string name="prefs_location_key" translatable="false">location_key</string>
-    <string name="prefs_location_default" translatable="false">Moscow</string>
+    <integer name="prefs_location_default" translatable="false">524901</integer>
 
 </resources>

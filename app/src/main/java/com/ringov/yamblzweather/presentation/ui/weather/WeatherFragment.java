@@ -85,6 +85,7 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
     }
 
     private void showError(Throwable error) {
+        error.printStackTrace();
         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

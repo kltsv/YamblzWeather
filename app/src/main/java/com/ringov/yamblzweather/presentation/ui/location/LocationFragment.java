@@ -62,7 +62,7 @@ public class LocationFragment extends BaseFragment<LocationViewModel> {
                 RxTextView
                         .textChanges(locationAtv)
                         .skipInitialValue() // First emitted value is equals to current chosen city
-                        .filter(charSequence -> charSequence.length() >= 2)
+                        .filter(charSequence -> charSequence.length() >= 3)
                         .debounce(400, TimeUnit.MILLISECONDS)
                         .map(CharSequence::toString)
                         .observeOn(AndroidSchedulers.mainThread()) // Because debounce runs on Computation thread
@@ -100,6 +100,7 @@ public class LocationFragment extends BaseFragment<LocationViewModel> {
     }
 
     private void showError(Throwable error) {
+        error.printStackTrace();
         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

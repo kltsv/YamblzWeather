@@ -10,7 +10,7 @@ import io.reactivex.Single;
 
 public interface LocationRepository {
 
-    String getLocation();
+    Single<String> getLocation();
 
     void changeLocation(String newValue);
 
