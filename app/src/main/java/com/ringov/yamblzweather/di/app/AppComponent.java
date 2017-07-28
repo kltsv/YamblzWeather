@@ -18,7 +18,6 @@ import dagger.Component;
  */
 
 @Component(modules = {
-        NavigationModule.class,
         WeatherModule.class,
         SettingsModule.class,
         LocationModule.class

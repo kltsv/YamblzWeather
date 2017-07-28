@@ -7,10 +7,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
-import com.ringov.yamblzweather.App;
-import com.ringov.yamblzweather.navigation.base.Command;
-import com.ringov.yamblzweather.navigation.base.Navigator;
-
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -18,7 +14,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by Ivan on 23.07.2017.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements Navigator {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected CompositeDisposable disposables = new CompositeDisposable();
 
@@ -30,23 +26,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Navigato
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
         ButterKnife.bind(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        App.getNavigationBinder().setNavigator(this);
-    }
-
-    @Override
-    public boolean executeCommand(Command command) {
-        return false;
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        App.getNavigationBinder().removeNavigator();
     }
 
     // Subscribe for user input events in this method
