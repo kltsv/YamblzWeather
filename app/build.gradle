@@ -66,6 +66,8 @@ ext {
     espressoVersion = '2.2.2'
     junitVersion = '4.12'
     leakCanaryVersion = '1.5.1'
+    mockitoVersion = '2.7.22'
+    junitVersion = '4.12'
 
     supportLibVersion = '25.3.1'
     architectureComponentsVersion = '1.0.0-alpha5'
@@ -83,11 +85,20 @@ ext {
 dependencies {
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
+
     androidTestCompile("com.android.support.test.espresso:espresso-core:$espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:${espressoVersion}") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'design'
+    }
 
-    testCompile 'junit:junit:4.12'
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.mockito:mockito-core:${mockitoVersion}"
 
     //leak canary
     debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
