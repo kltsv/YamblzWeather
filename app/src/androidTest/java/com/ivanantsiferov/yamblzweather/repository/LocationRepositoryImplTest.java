@@ -1,6 +1,5 @@
 package com.ivanantsiferov.yamblzweather.repository;
 
-import android.support.test.espresso.core.deps.guava.base.Strings;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.ringov.yamblzweather.model.repository.location.LocationRepository;
@@ -9,8 +8,6 @@ import com.ringov.yamblzweather.model.repository.location.LocationRepositoryImpl
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 
@@ -39,8 +36,6 @@ public class LocationRepositoryImplTest {
         String input = "mosco";
 
         locationRepository.getSuggestions(input)
-                .subscribe(strings -> {
-                    assertEquals(expected, strings.get(0));
-                });
+                .subscribe(strings -> assertEquals(expected, strings.get(0)));
     }
 }
