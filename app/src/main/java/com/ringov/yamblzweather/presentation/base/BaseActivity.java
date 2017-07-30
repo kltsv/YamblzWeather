@@ -48,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                .replace(containerId, fragment)
+                .replace(containerId, fragment, fragment.getClass().getSimpleName())
                 .commit();
     }
 }
