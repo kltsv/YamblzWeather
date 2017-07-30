@@ -33,11 +33,11 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_temperature"
+            android:layout_centerHorizontal="true"
             android:layout_gravity="center"
             android:layout_marginRight="56dp"
-            tools:text="last update time"
-            android:layout_below="@+id/tv_temperature"
-            android:layout_centerHorizontal="true" />
+            tools:text="last update time" />
 
         <TextView
             android:id="@+id/tv_temperature"
@@ -70,14 +70,14 @@
             app:srcCompat="@drawable/ic_arrow_down" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_margin="16dp"
-            android:text="@string/default_city" />
+            android:layout_margin="16dp" />
 
     </RelativeLayout>
+
 </android.support.v4.widget.SwipeRefreshLayout>

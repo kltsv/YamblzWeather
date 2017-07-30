@@ -19,7 +19,7 @@
     <string name="extreme">Экстримальненько</string>
     <string name="windy">Ветренно</string>
     <string name="calm">Спокойно</string>
-    <string name="other"></string>
+    <string name="other">Другое</string>
 
     <string name="update_intervals_title">Частота обновления</string>
     <string name="update_intervals_summary">Как часто получать обновления погоды</string>
@@ -39,8 +39,12 @@
 
     <string name="right_now">Только что</string>
 
-    <string name="swipe_to_update">свайпните, чтобы обновить</string>
+    <string name="swipe_to_update">потяните, чтобы обновить</string>
 
-    <string name="default_city">Москва</string>
     <string name="no_internet_connection">Интернет недоступен</string>
+
+    <string name="location_title">Местоположение</string>
+    <string name="location_description">Для какого города показывать погоду</string>
+    <string name="location_changed">Местоположение изменено</string>
+
 </resources>

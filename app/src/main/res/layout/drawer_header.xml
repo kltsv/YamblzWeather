@@ -37,4 +37,5 @@
         android:gravity="center"
         android:textColor="@android:color/white"
         tools:text="Cloudy" />
+
 </FrameLayout>

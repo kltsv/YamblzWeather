@@ -1,10 +1,10 @@
 package com.ringov.yamblzweather.model;
 
 import com.ringov.yamblzweather.model.db.data.DBWeather;
-import com.ringov.yamblzweather.model.internet.data.Weather;
-import com.ringov.yamblzweather.model.internet.data.ResponseWeather;
-import com.ringov.yamblzweather.viewmodel.data.WeatherCondition;
-import com.ringov.yamblzweather.viewmodel.data.UIWeather;
+import com.ringov.yamblzweather.model.networking.data.Weather;
+import com.ringov.yamblzweather.model.networking.data.ResponseWeather;
+import com.ringov.yamblzweather.presentation.data.WeatherCondition;
+import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import java.util.List;
 
@@ -13,6 +13,7 @@ import java.util.List;
  */
 
 public class Converter {
+
     public static DBWeather getDBWeather(ResponseWeather response) {
         float temperature = ConvertUtils.kelvinToCelsius(response.getMain().getTemp());
         List<Weather> weathers = response.getWeather();

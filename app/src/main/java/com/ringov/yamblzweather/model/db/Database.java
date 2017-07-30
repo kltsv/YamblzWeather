@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class Database {
+
     private static final String SB_SHARED_PREFS = "com.ringov.yamblzweather.db_shared_prefs";
     private static final String TIME_KEY = "time";
     private static final String CONDITION_KEY = "condition";
@@ -26,11 +27,8 @@ public class Database {
         if (instance == null) {
             instance = new Database();
         }
+
         return instance;
-    }
-
-    public Database() {
-
     }
 
     public void saveWeather(DBWeather weather) {
@@ -42,7 +40,7 @@ public class Database {
         editor.apply();
     }
 
-    public DBWeather loadWeather(int cityId) {
+    public DBWeather loadWeather() {
         SharedPreferences sp = App.getContext().getSharedPreferences(SB_SHARED_PREFS, Context.MODE_PRIVATE);
         long time = sp.getLong(TIME_KEY, 0);
         int condition = sp.getInt(CONDITION_KEY, 0);
@@ -51,6 +49,21 @@ public class Database {
                 .temperature(temperature)
                 .weatherCondition(condition)
                 .build();
+    }
+
+    public int getUserCityId() {
+        Context context = App.getContext();
+        final String KEY = context.getString(R.string.prefs_location_key);
+        final int DEFAULT_VALUE = context.getResources().getInteger(R.integer.prefs_location_default);
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(KEY, DEFAULT_VALUE);
+    }
+
+    public void putUserCity(int cityId) {
+        Context context = App.getContext();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt(App.getContext().getString(R.string.prefs_location_key), cityId);
+        editor.apply();
     }
 
     public long getUpdateInterval() {

@@ -5,6 +5,7 @@ package com.ringov.yamblzweather.model.db.data;
  */
 
 public class DBWeather {
+
     private long time;
     private float temperature;
     private int condition;
