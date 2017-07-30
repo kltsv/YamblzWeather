@@ -1,4 +1,4 @@
-package com.ivanantsiferov.yamblzweather;
+package com.ivanantsiferov.yamblzweather.ui;
 
 import android.support.test.espresso.contrib.DrawerActions;
 import android.support.test.espresso.contrib.NavigationViewActions;
