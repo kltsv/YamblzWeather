@@ -44,7 +44,6 @@ android {
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
-            buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
         }
 
         buildTypes.each {
