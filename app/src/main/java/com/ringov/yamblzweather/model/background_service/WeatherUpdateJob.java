@@ -19,10 +19,6 @@ import com.ringov.yamblzweather.presentation.Utils;
 
 import javax.inject.Inject;
 
-/**
- * Created by ringov on 15.07.17.
- */
-
 public class WeatherUpdateJob extends Job {
 
     public static final String TAG = "com.ringov.yamblzweather.weather_update_job";
@@ -76,6 +72,5 @@ public class WeatherUpdateJob extends Job {
     }
 
     private void handleError(Throwable throwable) {
-
     }
 }

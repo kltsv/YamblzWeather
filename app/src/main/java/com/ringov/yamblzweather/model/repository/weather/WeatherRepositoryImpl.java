@@ -16,10 +16,6 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-/**
- * Created by ringov on 12.07.17.
- */
-
 @Singleton
 public class WeatherRepositoryImpl extends BaseRepositoryImpl implements WeatherRepository {
 

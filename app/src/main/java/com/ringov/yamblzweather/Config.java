@@ -1,10 +1,9 @@
 package com.ringov.yamblzweather;
 
-/**
- * Created by ringov on 14.07.17.
- */
-
 public final class Config {
+
+    private Config() {
+    }
 
     public static final long TIMEOUT = 10000;
 

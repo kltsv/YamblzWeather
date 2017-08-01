@@ -1,8 +1,8 @@
-package com.ringov.yamblzweather.di.app;
+package com.ringov.yamblzweather.dagger.component;
 
-import com.ringov.yamblzweather.di.location.LocationModule;
-import com.ringov.yamblzweather.di.settings.SettingsModule;
-import com.ringov.yamblzweather.di.weather.WeatherModule;
+import com.ringov.yamblzweather.dagger.module.LocationModule;
+import com.ringov.yamblzweather.dagger.module.SettingsModule;
+import com.ringov.yamblzweather.dagger.module.WeatherModule;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
 import com.ringov.yamblzweather.presentation.ui.location.LocationViewModel;
 import com.ringov.yamblzweather.presentation.ui.settings.SettingsFragment;
@@ -12,10 +12,6 @@ import com.ringov.yamblzweather.presentation.ui.weather.WeatherViewModel;
 import javax.inject.Singleton;
 
 import dagger.Component;
-
-/**
- * Created by ringov on 12.07.17.
- */
 
 @Component(modules = {
         WeatherModule.class,

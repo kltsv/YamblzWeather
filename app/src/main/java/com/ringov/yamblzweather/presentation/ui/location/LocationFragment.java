@@ -22,10 +22,6 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-/**
- * Created by Ivan on 26.07.2017.
- */
-
 public class LocationFragment extends BaseFragment<LocationViewModel> {
 
     public static final String TAG = "LocationFragment";

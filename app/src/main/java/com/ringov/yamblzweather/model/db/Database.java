@@ -10,10 +10,6 @@ import com.ringov.yamblzweather.model.db.data.DBWeather;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by ringov on 15.07.17.
- */
-
 public class Database {
 
     private static final String SB_SHARED_PREFS = "com.ringov.yamblzweather.db_shared_prefs";

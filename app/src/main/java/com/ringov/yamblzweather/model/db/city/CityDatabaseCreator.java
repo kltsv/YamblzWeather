@@ -25,10 +25,6 @@ import timber.log.Timber;
 
 import static com.ringov.yamblzweather.model.db.city.CityDatabase.DATABASE_NAME;
 
-/**
- * Created by Ivan on 28.07.2017.
- */
-
 public class CityDatabaseCreator {
 
     private static CityDatabaseCreator instance;

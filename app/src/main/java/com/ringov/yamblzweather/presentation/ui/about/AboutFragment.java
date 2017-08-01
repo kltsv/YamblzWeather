@@ -11,10 +11,6 @@ import com.ringov.yamblzweather.presentation.base.BaseFragment;
 
 import butterknife.BindView;
 
-/**
- * Created by ringov on 07.07.17.
- */
-
 public class AboutFragment extends BaseFragment {
 
     public static final String TAG = "AboutFragment";

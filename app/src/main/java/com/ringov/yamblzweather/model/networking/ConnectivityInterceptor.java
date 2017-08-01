@@ -14,10 +14,6 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Created by ringov on 20.07.17.
- */
-
 public class ConnectivityInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {

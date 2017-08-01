@@ -4,10 +4,6 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by Ivan on 28.07.2017.
- */
-
 @Entity(tableName = "cities")
 public class DBCity {
 

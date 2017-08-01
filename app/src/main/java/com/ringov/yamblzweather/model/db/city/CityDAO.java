@@ -7,10 +7,6 @@ import android.arch.persistence.room.Query;
 
 import java.util.List;
 
-/**
- * Created by Ivan on 28.07.2017.
- */
-
 @Dao
 public interface CityDAO {
 

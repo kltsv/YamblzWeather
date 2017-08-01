@@ -12,10 +12,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-/**
- * Created by Ivan on 26.07.2017.
- */
-
 public class LocationViewModel extends BaseViewModel {
 
     private BaseLiveData<Boolean> loadingData = new BaseLiveData<>();

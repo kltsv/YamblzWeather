@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.di.weather;
+package com.ringov.yamblzweather.dagger.module;
 
 import android.support.annotation.NonNull;
 
@@ -10,15 +10,10 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by ringov on 12.07.17.
- */
-
 @Module
 public class WeatherModule {
 
     @Provides
-    @NonNull
     @Singleton
     WeatherRepository provideWeatherRepository() {
         return new WeatherRepositoryImpl();

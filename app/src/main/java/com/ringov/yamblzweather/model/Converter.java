@@ -8,10 +8,6 @@ import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import java.util.List;
 
-/**
- * Created by ringov on 14.07.17.
- */
-
 public class Converter {
 
     public static DBWeather getDBWeather(ResponseWeather response) {

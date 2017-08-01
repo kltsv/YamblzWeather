@@ -3,10 +3,6 @@ package com.ringov.yamblzweather.presentation.data;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 
-/**
- * Created by ringov on 12.07.17.
- */
-
 public class UIWeather {
 
     private long time;

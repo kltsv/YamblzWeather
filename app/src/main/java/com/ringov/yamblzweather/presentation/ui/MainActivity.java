@@ -20,10 +20,6 @@ import com.ringov.yamblzweather.presentation.ui.weather.WeatherFragment;
 
 import butterknife.BindView;
 
-/**
- * Created by ringov on 07.07.17.
- */
-
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @IdRes

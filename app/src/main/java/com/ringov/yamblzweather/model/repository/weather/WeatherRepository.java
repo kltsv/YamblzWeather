@@ -5,10 +5,6 @@ import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import io.reactivex.Observable;
 
-/**
- * Created by ringov on 12.07.17.
- */
-
 public interface WeatherRepository extends BaseRepository {
 
     Observable<UIWeather> updateWeatherIfDataIsOld();

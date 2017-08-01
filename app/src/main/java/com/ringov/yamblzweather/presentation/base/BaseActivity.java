@@ -10,10 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
- * Created by Ivan on 23.07.2017.
- */
-
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected CompositeDisposable disposables = new CompositeDisposable();

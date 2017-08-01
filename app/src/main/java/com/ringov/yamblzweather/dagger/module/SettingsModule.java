@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.di.settings;
+package com.ringov.yamblzweather.dagger.module;
 
 import android.support.annotation.NonNull;
 
@@ -10,15 +10,10 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 
-/**
- * Created by ringov on 16.07.17.
- */
-
 @Module
 public class SettingsModule {
 
     @Provides
-    @NonNull
     @Singleton
     SettingsRepository provideSettingsRepository() {
         return new SettingsRepositoryImpl();

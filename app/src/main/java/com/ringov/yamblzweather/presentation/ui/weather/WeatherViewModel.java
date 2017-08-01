@@ -17,10 +17,6 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-/**
- * Created by ringov on 12.07.17.
- */
-
 public class WeatherViewModel extends BaseViewModel {
 
     private BaseLiveData<Boolean> loadingData = new BaseLiveData<>();

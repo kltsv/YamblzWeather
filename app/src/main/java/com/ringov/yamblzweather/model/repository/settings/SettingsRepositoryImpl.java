@@ -5,10 +5,6 @@ import com.ringov.yamblzweather.model.repository.base.BaseRepositoryImpl;
 
 import javax.inject.Singleton;
 
-/**
- * Created by ringov on 16.07.17.
- */
-
 @Singleton
 public class SettingsRepositoryImpl extends BaseRepositoryImpl implements SettingsRepository {
 

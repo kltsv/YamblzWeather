@@ -5,10 +5,6 @@ import android.support.annotation.StringRes;
 
 import com.ringov.yamblzweather.R;
 
-/**
- * Created by ringov on 15.07.17.
- */
-
 public enum WeatherCondition {
 
     Cloudy(R.string.cloudy, R.drawable.weather_clouds),

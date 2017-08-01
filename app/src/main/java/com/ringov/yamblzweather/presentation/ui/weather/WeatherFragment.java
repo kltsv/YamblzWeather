@@ -16,10 +16,6 @@ import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import butterknife.BindView;
 
-/**
- * Created by ringov on 07.07.17.
- */
-
 public class WeatherFragment extends BaseFragment<WeatherViewModel> {
 
     public static final String TAG = "WeatherFragment";

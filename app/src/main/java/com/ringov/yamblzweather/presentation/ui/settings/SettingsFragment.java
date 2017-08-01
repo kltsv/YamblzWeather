@@ -20,10 +20,6 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-/**
- * Created by ringov on 07.07.17.
- */
-
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     public static final String TAG = "SettingsFragment";

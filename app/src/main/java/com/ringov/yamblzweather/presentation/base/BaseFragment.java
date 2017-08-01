@@ -14,10 +14,6 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
- * Created by ringov on 07.07.17.
- */
-
 public abstract class BaseFragment<VM extends BaseViewModel> extends LifecycleFragment {
 
     private VM viewModel;

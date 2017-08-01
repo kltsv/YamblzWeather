@@ -7,10 +7,6 @@ import com.ringov.yamblzweather.R;
 
 import java.util.concurrent.TimeUnit;
 
-/**
- * Created by ringov on 15.07.17.
- */
-
 public class Utils {
 
     public static String getRelativeTime(Context context, long time) {

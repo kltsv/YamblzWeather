@@ -5,17 +5,13 @@ import android.app.Application;
 import android.content.Context;
 
 import com.evernote.android.job.JobManager;
-import com.ringov.yamblzweather.di.app.AppComponent;
-import com.ringov.yamblzweather.di.app.DaggerAppComponent;
+import com.ringov.yamblzweather.dagger.component.AppComponent;
+import com.ringov.yamblzweather.dagger.component.DaggerAppComponent;
 import com.ringov.yamblzweather.model.background_service.WeatherUpdateJobCreator;
 import com.ringov.yamblzweather.model.db.city.CityDatabaseCreator;
 import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
-
-/**
- * Created by ringov on 12.07.17.
- */
 
 public class App extends Application {
 
@@ -27,8 +23,7 @@ public class App extends Application {
 
     private static AppComponent component;
     private AppComponent buildComponent() {
-        return DaggerAppComponent.builder()
-                .build();
+        return DaggerAppComponent.builder().build();
     }
     public static AppComponent getComponent() {
         return component;
