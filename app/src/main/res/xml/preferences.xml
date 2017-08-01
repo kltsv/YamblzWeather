@@ -2,17 +2,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.v7.preference.SwitchPreferenceCompat
-        android:defaultValue="@string/update_notifications_default"
-        android:key="@string/update_notifications_key"
-        android:summary="@string/update_notifications_summary"
-        android:title="@string/update_notifications_title" />
+        android:defaultValue="@string/prefs_update_notifications_default"
+        android:key="@string/prefs_update_notifications_key"
+        android:summary="@string/prefs_update_notifications_summary"
+        android:title="@string/prefs_update_notifications_title" />
 
     <android.support.v7.preference.ListPreference
-        android:defaultValue="@string/default_update_intervals_value"
-        android:entries="@array/update_intervals"
-        android:entryValues="@array/update_intervals_values"
-        android:key="@string/update_intervals_key"
-        android:summary="@string/update_intervals_summary"
-        android:title="@string/update_intervals_title" />
+        android:defaultValue="@string/prefs_update_intervals_default"
+        android:entries="@array/prefs_update_intervals"
+        android:entryValues="@array/prefs_update_intervals_values"
+        android:key="@string/prefs_update_intervals_key"
+        android:summary="@string/prefs_update_intervals_summary"
+        android:title="@string/prefs_update_intervals_title" />
 
 </PreferenceScreen>

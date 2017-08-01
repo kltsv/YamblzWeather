@@ -4,7 +4,7 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 
 import com.ringov.yamblzweather.App;
-import com.ringov.yamblzweather.model.repository.location.LocationRepository;
+import com.ringov.yamblzweather.domain.location.LocationRepository;
 import com.ringov.yamblzweather.presentation.base.BaseLiveData;
 import com.ringov.yamblzweather.presentation.base.BaseViewModel;
 

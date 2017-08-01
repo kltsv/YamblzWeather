@@ -1,6 +1,6 @@
 package com.ivanantsiferov.yamblzweather.db;
 
-import com.ringov.yamblzweather.model.db.city.DBCity;
+import com.ringov.yamblzweather.data.db.city.DBCity;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,8 +2,8 @@ package com.ivanantsiferov.yamblzweather.db;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ringov.yamblzweather.model.db.Database;
-import com.ringov.yamblzweather.model.db.data.DBWeather;
+import com.ringov.yamblzweather.data.db.Database;
+import com.ringov.yamblzweather.data.db.data.DBWeather;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

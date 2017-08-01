@@ -1,8 +1,8 @@
 package com.ivanantsiferov.yamblzweather;
 
 import com.ivanantsiferov.yamblzweather.utils.DataUtil;
-import com.ringov.yamblzweather.model.Converter;
-import com.ringov.yamblzweather.model.db.data.DBWeather;
+import com.ringov.yamblzweather.data.Converter;
+import com.ringov.yamblzweather.data.db.data.DBWeather;
 import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import org.junit.Test;

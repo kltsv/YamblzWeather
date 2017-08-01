@@ -3,7 +3,7 @@ package com.ringov.yamblzweather.dagger.component;
 import com.ringov.yamblzweather.dagger.module.LocationModule;
 import com.ringov.yamblzweather.dagger.module.SettingsModule;
 import com.ringov.yamblzweather.dagger.module.WeatherModule;
-import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
+import com.ringov.yamblzweather.data.background_service.WeatherUpdateJob;
 import com.ringov.yamblzweather.presentation.ui.location.LocationViewModel;
 import com.ringov.yamblzweather.presentation.ui.settings.SettingsFragment;
 import com.ringov.yamblzweather.presentation.ui.about.AboutViewModel;

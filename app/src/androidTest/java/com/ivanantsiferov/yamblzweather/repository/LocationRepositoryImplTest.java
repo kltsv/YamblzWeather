@@ -2,8 +2,8 @@ package com.ivanantsiferov.yamblzweather.repository;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ringov.yamblzweather.model.repository.location.LocationRepository;
-import com.ringov.yamblzweather.model.repository.location.LocationRepositoryImpl;
+import com.ringov.yamblzweather.domain.location.LocationRepository;
+import com.ringov.yamblzweather.domain.location.LocationRepositoryImpl;
 
 import org.junit.Before;
 import org.junit.Test;

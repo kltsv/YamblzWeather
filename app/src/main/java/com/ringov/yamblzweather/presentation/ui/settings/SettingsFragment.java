@@ -13,8 +13,8 @@ import com.evernote.android.job.JobManager;
 import com.evernote.android.job.JobRequest;
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.model.background_service.WeatherUpdateJob;
-import com.ringov.yamblzweather.model.repository.settings.SettingsRepository;
+import com.ringov.yamblzweather.data.background_service.WeatherUpdateJob;
+import com.ringov.yamblzweather.domain.settings.SettingsRepository;
 
 import java.util.Set;
 

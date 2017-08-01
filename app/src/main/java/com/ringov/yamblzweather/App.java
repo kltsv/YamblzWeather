@@ -7,8 +7,8 @@ import android.content.Context;
 import com.evernote.android.job.JobManager;
 import com.ringov.yamblzweather.dagger.component.AppComponent;
 import com.ringov.yamblzweather.dagger.component.DaggerAppComponent;
-import com.ringov.yamblzweather.model.background_service.WeatherUpdateJobCreator;
-import com.ringov.yamblzweather.model.db.city.CityDatabaseCreator;
+import com.ringov.yamblzweather.data.background_service.WeatherUpdateJobCreator;
+import com.ringov.yamblzweather.data.db.city.CityDatabaseCreator;
 import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;

@@ -1,9 +1,7 @@
 package com.ringov.yamblzweather.dagger.module;
 
-import android.support.annotation.NonNull;
-
-import com.ringov.yamblzweather.model.repository.weather.WeatherRepository;
-import com.ringov.yamblzweather.model.repository.weather.WeatherRepositoryImpl;
+import com.ringov.yamblzweather.domain.weather.WeatherRepository;
+import com.ringov.yamblzweather.domain.weather.WeatherRepositoryImpl;
 
 import javax.inject.Singleton;
 

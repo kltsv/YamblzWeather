@@ -5,9 +5,9 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ringov.yamblzweather.model.db.city.CityDAO;
-import com.ringov.yamblzweather.model.db.city.CityDatabase;
-import com.ringov.yamblzweather.model.db.city.DBCity;
+import com.ringov.yamblzweather.data.db.city.CityDAO;
+import com.ringov.yamblzweather.data.db.city.CityDatabase;
+import com.ringov.yamblzweather.data.db.city.DBCity;
 
 import org.junit.After;
 import org.junit.Before;

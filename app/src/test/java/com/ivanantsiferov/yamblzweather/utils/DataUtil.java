@@ -1,6 +1,6 @@
 package com.ivanantsiferov.yamblzweather.utils;
 
-import com.ringov.yamblzweather.model.db.data.DBWeather;
+import com.ringov.yamblzweather.data.db.data.DBWeather;
 
 public final class DataUtil {
 
