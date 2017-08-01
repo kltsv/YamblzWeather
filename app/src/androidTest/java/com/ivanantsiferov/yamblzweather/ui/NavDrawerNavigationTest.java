@@ -48,7 +48,7 @@ public class NavDrawerNavigationTest {
         Thread.sleep(1000);
         // Check if title changed correctly
         String activityTitle = activityTestRule.getActivity().getTitle().toString();
-        String expectedTitle = context.getString(R.string.weather);
+        String expectedTitle = context.getString(R.string.title_weather);
         assertEquals(expectedTitle, activityTitle);
         // Check if weather fragment is showing
         Fragment fragment =
@@ -65,7 +65,7 @@ public class NavDrawerNavigationTest {
         Thread.sleep(1000);
 
         String activityTitle = activityTestRule.getActivity().getTitle().toString();
-        String expectedTitle = context.getString(R.string.location_title);
+        String expectedTitle = context.getString(R.string.title_location);
         assertEquals(expectedTitle, activityTitle);
         Fragment fragment =
                 activityTestRule.getActivity().getSupportFragmentManager()
@@ -81,7 +81,7 @@ public class NavDrawerNavigationTest {
         Thread.sleep(1000);
 
         String activityTitle = activityTestRule.getActivity().getTitle().toString();
-        String expectedTitle = context.getString(R.string.settings);
+        String expectedTitle = context.getString(R.string.title_settings);
         assertEquals(expectedTitle, activityTitle);
         Fragment fragment =
                 activityTestRule.getActivity().getSupportFragmentManager()
@@ -97,7 +97,7 @@ public class NavDrawerNavigationTest {
         Thread.sleep(1000);
 
         String activityTitle = activityTestRule.getActivity().getTitle().toString();
-        String expectedTitle = context.getString(R.string.about);
+        String expectedTitle = context.getString(R.string.title_about);
         assertEquals(expectedTitle, activityTitle);
         Fragment fragment =
                 activityTestRule.getActivity().getSupportFragmentManager()

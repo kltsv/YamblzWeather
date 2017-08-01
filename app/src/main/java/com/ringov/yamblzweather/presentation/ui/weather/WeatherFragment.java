@@ -31,7 +31,7 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
 
     @Override
     protected int getLayout() {
-        return R.layout.weather_fragment;
+        return R.layout.fragment_weather;
     }
 
     @BindView(R.id.swipe_layout)
@@ -49,7 +49,7 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.weather);
+        getActivity().setTitle(R.string.title_weather);
     }
 
     @Override

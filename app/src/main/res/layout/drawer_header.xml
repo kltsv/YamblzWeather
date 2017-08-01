@@ -16,7 +16,7 @@
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="36sp"
-        tools:text="@string/temperature" />
+        tools:text="@string/wthr_temperature" />
 
     <ImageView
         android:id="@+id/drawer_image"

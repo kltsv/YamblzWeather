@@ -13,13 +13,13 @@ public class Utils {
         long now = System.currentTimeMillis();
         long diff = now - time;
         if (diff < TimeUnit.MINUTES.toMillis(1)) {
-            return context.getString(R.string.right_now);
+            return context.getString(R.string.wthr_right_now);
         } else {
             return DateUtils.getRelativeTimeSpanString(time, now, DateUtils.MINUTE_IN_MILLIS).toString();
         }
     }
 
     public static String getFormattedTemperature(Context context, float temperature) {
-        return context.getString(R.string.temperature, temperature);
+        return context.getString(R.string.wthr_temperature, temperature);
     }
 }

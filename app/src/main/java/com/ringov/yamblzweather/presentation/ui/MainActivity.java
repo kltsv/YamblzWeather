@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
     @Override
     protected int getLayout() {
-        return R.layout.main_activity;
+        return R.layout.activity_main;
     }
 
     @Override

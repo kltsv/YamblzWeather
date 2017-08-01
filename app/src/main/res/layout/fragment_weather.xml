@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/swipe_to_update" />
+            android:text="@string/wthr_swipe_to_update" />
 
         <TextView
             android:id="@+id/tv_time"
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:layout_above="@+id/tv_swipe_to_update"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/ic_arrow_down" />
+            app:srcCompat="@drawable/ic_arrow_down_gray_24dp" />
 
         <TextView
             android:id="@+id/tv_location"

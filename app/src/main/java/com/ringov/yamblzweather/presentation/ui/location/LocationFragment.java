@@ -32,7 +32,7 @@ public class LocationFragment extends BaseFragment<LocationViewModel> {
 
     @Override
     protected int getLayout() {
-        return R.layout.location_fragment;
+        return R.layout.fragment_location;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class LocationFragment extends BaseFragment<LocationViewModel> {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.location_title);
+        getActivity().setTitle(R.string.title_location);
     }
 
     @Override

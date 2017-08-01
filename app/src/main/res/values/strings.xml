@@ -2,30 +2,21 @@
 <resources>
     <string name="app_name">Yamblz.Weather</string>
 
-    <string name="weather">Weather</string>
-    <string name="settings">Settings</string>
-    <string name="about">About</string>
+    <!-- Activity titles -->
+    <string name="title_weather">Weather</string>
+    <string name="title_location">Location</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_about">About</string>
 
+    <!-- Nav drawer -->
     <string name="navigation_drawer_open">Navigation drawer has been opened</string>
     <string name="navigation_drawer_close">Navigation drawer has been closed</string>
-    <string name="version">App version: %s</string>
 
-    <string name="cloudy">Cloudy</string>
-    <string name="clear">Clear</string>
-    <string name="rainy">Rainy</string>
-    <string name="thunderstorm">Thunderstorm</string>
-    <string name="drizzle">Drizzle</string>
-    <string name="snow">Show</string>
-    <string name="atmospherically">Atmospherically</string>
-    <string name="extreme">Extreme</string>
-    <string name="windy">Windy</string>
-    <string name="calm">Calm</string>
-    <string name="other">Other</string>
+    <!-- Preference screen -->
+    <string name="prefs_update_intervals_title">Update interval</string>
+    <string name="prefs_update_intervals_summary">Update interval summary</string>
 
-    <string name="update_intervals_title">Update interval</string>
-    <string name="update_intervals_summary">Update interval summary</string>
-
-    <string-array name="update_intervals">
+    <string-array name="prefs_update_intervals">
         <item>15 minutes</item>
         <item>2 hours</item>
         <item>3 hours</item>
@@ -35,20 +26,37 @@
         <item>24 hours</item>
     </string-array>
 
-    <string name="update_notifications_title">Update notifications</string>
-    <string name="update_notifications_summary">Notify on weather update</string>
+    <string name="prefs_update_notifications_title">Update notifications</string>
+    <string name="prefs_update_notifications_summary">Notify on weather update</string>
 
-    <string name="right_now">Just now</string>
+    <!-- Weather fragment -->
+    <string name="wthr_right_now">Just now</string>
+    <string name="wthr_swipe_to_update">swipe to update</string>
 
-    <string name="temperature" translatable="false">%.0f°</string>
-    <string name="notification_message">%1$s, %2$s</string>
+    <string name="wthr_temperature" translatable="false">%.0f°</string>
+    <string name="wthr_notification_message" translatable="false">%1$s, %2$s</string>
 
-    <string name="swipe_to_update">swipe to update</string>
+    <!-- Weather conditions -->
+    <string name="cond_cloudy">Cloudy</string>
+    <string name="cond_clear">Clear</string>
+    <string name="cond_rainy">Rainy</string>
+    <string name="cond_thunderstorm">Thunderstorm</string>
+    <string name="cond_drizzle">Drizzle</string>
+    <string name="cond_snow">Show</string>
+    <string name="cond_atmospherically">Atmospherically</string>
+    <string name="cond_extreme">Extreme</string>
+    <string name="cond_windy">Windy</string>
+    <string name="cond_calm">Calm</string>
+    <string name="cond_other">Other</string>
 
-    <string name="no_internet_connection">No Internet</string>
-
-    <string name="location_title">Location</string>
+    <!-- Location fragment -->
     <string name="location_description">For what city show weather for</string>
     <string name="location_changed">Location changed</string>
+
+    <!-- About fragment -->
+    <string name="about_version">App version: %s</string>
+
+    <!-- Error messages -->
+    <string name="no_internet_connection">No Internet</string>
 
 </resources>

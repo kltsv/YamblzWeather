@@ -64,8 +64,8 @@ public class Database {
 
     public long getUpdateInterval() {
         Context context = App.getContext();
-        final String KEY = context.getString(R.string.update_intervals_key);
-        final String DEFAULT_VALUE = context.getString(R.string.default_update_intervals_value);
+        final String KEY = context.getString(R.string.prefs_update_intervals_key);
+        final String DEFAULT_VALUE = context.getString(R.string.prefs_update_intervals_default);
         String value = PreferenceManager.getDefaultSharedPreferences(context).getString(KEY, DEFAULT_VALUE);
         int minutes = Integer.parseInt(value);
         return TimeUnit.MINUTES.toMillis(minutes);
@@ -73,8 +73,8 @@ public class Database {
 
     public boolean isNotificationEnabled() {
         Context context = App.getContext();
-        final String KEY = context.getString(R.string.update_notifications_key);
-        final String DEFAULT_VALUE_STR = context.getString(R.string.update_notifications_default);
+        final String KEY = context.getString(R.string.prefs_update_notifications_key);
+        final String DEFAULT_VALUE_STR = context.getString(R.string.prefs_update_notifications_default);
         final boolean DEFAULT_VALUE = Boolean.parseBoolean(DEFAULT_VALUE_STR);
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(KEY, DEFAULT_VALUE);
     }
