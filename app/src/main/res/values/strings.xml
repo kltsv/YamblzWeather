@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">YamblzWeather</string>
+    <string name="app_name">Yamblz.Weather</string>
 
     <string name="weather">Weather</string>
     <string name="settings">Settings</string>

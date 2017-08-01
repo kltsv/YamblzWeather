@@ -17,15 +17,15 @@ android {
         applicationId "com.ringov.yamblzweather"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 4
-        versionName "0.1"
+        versionCode 6
+        versionName "0.2.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
 
     signingConfigs {
         
-        config {
+        release {
             storeFile file('weather_key.jks')
             keyAlias appKeyAlias
             keyPassword appKeyPassword
@@ -37,8 +37,9 @@ android {
 
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
 
         debug {
@@ -49,11 +50,6 @@ android {
         buildTypes.each {
             it.buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
         }
-    }
-
-    lintOptions {
-        // in order to be able to set release and debug strings separately
-        disable 'MissingTranslation', 'ExtraTranslation'
     }
 
     compileOptions {
