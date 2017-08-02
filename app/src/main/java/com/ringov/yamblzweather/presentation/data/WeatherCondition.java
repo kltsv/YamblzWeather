@@ -19,9 +19,9 @@ public enum WeatherCondition {
     Other(R.string.cond_other, R.drawable.weather_other);
 
     @StringRes
-    private int friendlyName;
+    private final int friendlyName;
     @DrawableRes
-    private int image;
+    private final int image;
 
     WeatherCondition(@StringRes int friendlyName, @DrawableRes int conditionImage) {
         this.friendlyName = friendlyName;

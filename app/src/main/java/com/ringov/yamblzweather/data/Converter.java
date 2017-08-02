@@ -10,6 +10,8 @@ import java.util.List;
 
 public class Converter {
 
+    private static final float ABSOLUTE_ZERO = 273.15f;
+
     public static DBWeather getDBWeather(ResponseWeather response) {
         float temperature = ConvertUtils.kelvinToCelsius(response.getMain().getTemp());
         List<Weather> weathers = response.getWeather();
@@ -32,8 +34,9 @@ public class Converter {
     }
 
     private static class ConvertUtils {
-        public static float kelvinToCelsius(float celsius) {
-            return celsius - 273.15f;
+
+        static float kelvinToCelsius(float celsius) {
+            return celsius - ABSOLUTE_ZERO;
         }
 
         private static WeatherCondition weatherIdToCondition(int id) {

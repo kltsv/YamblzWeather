@@ -5,7 +5,7 @@ public final class Config {
     private Config() {
     }
 
-    public static final long TIMEOUT = 10000;
+    public static final int TIMEOUT = 10000;
 
     public static class API {
         public static final String KEY_FIELD = "APPID";

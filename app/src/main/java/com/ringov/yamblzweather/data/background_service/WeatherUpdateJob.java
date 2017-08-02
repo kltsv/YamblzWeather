@@ -51,15 +51,13 @@ public class WeatherUpdateJob extends Job {
                 .subscribe(weatherInfo -> {
                     String formattedTemperature = Utils.getFormattedTemperature(getContext(), weatherInfo.getTemperature());
                     String condition = getContext().getString(weatherInfo.getConditionName());
-                    StringBuilder sb = new StringBuilder();
-                    sb.append(getContext().getString(R.string.wthr_notification_message, formattedTemperature, condition));
 
                     PendingIntent pi = PendingIntent.getActivity(getContext(), 0,
                             new Intent(getContext(), MainActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
                     Notification notification = new NotificationCompat.Builder(getContext())
                             .setContentTitle(getContext().getString(R.string.app_name))
                             .setContentIntent(pi)
-                            .setContentText(sb.toString())
+                            .setContentText(getContext().getString(R.string.wthr_notification_message, formattedTemperature, condition))
                             .setAutoCancel(true)
                             .setSmallIcon(weatherInfo.getConditionImage())
                             .setShowWhen(true)
