@@ -7,6 +7,7 @@ import android.content.Context;
 import com.evernote.android.job.JobManager;
 import com.ringov.yamblzweather.dagger.component.AppComponent;
 import com.ringov.yamblzweather.dagger.component.DaggerAppComponent;
+import com.ringov.yamblzweather.dagger.module.ApplicationModule;
 import com.ringov.yamblzweather.data.background_service.WeatherUpdateJobCreator;
 import com.ringov.yamblzweather.data.db.city.CityDatabaseCreator;
 import com.squareup.leakcanary.LeakCanary;
@@ -23,7 +24,9 @@ public class App extends Application {
 
     private static AppComponent component;
     private AppComponent buildComponent() {
-        return DaggerAppComponent.builder().build();
+        return DaggerAppComponent.builder()
+                .applicationModule(new ApplicationModule(this))
+                .build();
     }
     public static AppComponent getComponent() {
         return component;

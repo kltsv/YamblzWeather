@@ -4,7 +4,7 @@ import com.ringov.yamblzweather.data.Converter;
 import com.ringov.yamblzweather.data.db.Database;
 import com.ringov.yamblzweather.data.db.data.DBWeather;
 import com.ringov.yamblzweather.data.networking.APIFactory;
-import com.ringov.yamblzweather.data.networking.WeatherService;
+import com.ringov.yamblzweather.data.networking.WeatherAPI;
 import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import java.util.concurrent.TimeUnit;
@@ -57,8 +57,8 @@ public class WeatherRepositoryImpl implements WeatherRepository {
         return getCachedWeather().map(Converter::getUIWeather);
     }
 
-    private WeatherService getService() {
-        return APIFactory.getRetrofitService(WeatherService.class);
+    private WeatherAPI getService() {
+        return APIFactory.getRetrofitService(WeatherAPI.class);
     }
 
     private Database getDatabase() {
