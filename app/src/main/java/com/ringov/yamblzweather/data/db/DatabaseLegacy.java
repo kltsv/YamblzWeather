@@ -10,18 +10,18 @@ import com.ringov.yamblzweather.data.db.data.DBWeather;
 
 import java.util.concurrent.TimeUnit;
 
-public class Database {
+public class DatabaseLegacy {
 
     private static final String SB_SHARED_PREFS = "com.ringov.yamblzweather.db_shared_prefs";
     private static final String TIME_KEY = "time";
     private static final String CONDITION_KEY = "condition";
     private static final String TEMPERATURE_KEY = "temperature";
 
-    private static Database instance;
+    private static DatabaseLegacy instance;
 
-    public static Database getInstance() {
+    public static DatabaseLegacy getInstance() {
         if (instance == null) {
-            instance = new Database();
+            instance = new DatabaseLegacy();
         }
 
         return instance;

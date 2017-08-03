@@ -1,8 +1,8 @@
 package com.ringov.yamblzweather.domain.location;
 
-import com.ringov.yamblzweather.data.db.Database;
-import com.ringov.yamblzweather.data.db.city.CityDatabaseCreator;
-import com.ringov.yamblzweather.data.db.city.DBCity;
+import com.ringov.yamblzweather.data.db.DatabaseLegacy;
+import com.ringov.yamblzweather.data.db.database.AppDatabaseCreator;
+import com.ringov.yamblzweather.data.db.database.entity.DBCity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +22,10 @@ public class LocationRepositoryImpl implements LocationRepository {
     @Override
     public Single<String> getLocation() {
         return Single.fromCallable(() -> {
-            int cityId = Database.getInstance().getUserCityId();
+            int cityId = DatabaseLegacy.getInstance().getUserCityId();
 
             try {
-                DBCity city = CityDatabaseCreator.getInstance().getDatabase().cityDAO().getById(cityId);
+                DBCity city = AppDatabaseCreator.getInstance().getDatabase().cityDAO().getById(cityId);
                 return city.getCity_name();
             } catch (NullPointerException e) {
                 Timber.e(e);
@@ -40,9 +40,9 @@ public class LocationRepositoryImpl implements LocationRepository {
     public void changeLocation(String newValue) {
         Completable.fromCallable(() -> {
             try {
-                DBCity city = CityDatabaseCreator.getInstance().getDatabase().cityDAO().getByName(newValue);
+                DBCity city = AppDatabaseCreator.getInstance().getDatabase().cityDAO().getByName(newValue);
 
-                Database.getInstance().putUserCity(city.getCity_id());
+                DatabaseLegacy.getInstance().putUserCity(city.getCity_id());
                 return true;
             } catch (NullPointerException e) {
                 Timber.e(e);
@@ -65,7 +65,7 @@ public class LocationRepositoryImpl implements LocationRepository {
         List<String> citiesNames = new ArrayList<>();
 
         try {
-            List<DBCity> cities = CityDatabaseCreator
+            List<DBCity> cities = AppDatabaseCreator
                     .getInstance().getDatabase().cityDAO().getSuggestions( "%" + suggestFrom + "%", LIMIT);
             for (DBCity city : cities)
                 citiesNames.add(city.getCity_name());

@@ -1,7 +1,7 @@
 package com.ringov.yamblzweather.domain.weather;
 
 import com.ringov.yamblzweather.data.Converter;
-import com.ringov.yamblzweather.data.db.Database;
+import com.ringov.yamblzweather.data.db.DatabaseLegacy;
 import com.ringov.yamblzweather.data.db.data.DBWeather;
 import com.ringov.yamblzweather.data.networking.APIFactory;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
@@ -47,9 +47,9 @@ public class WeatherRepositoryImpl implements WeatherRepository {
     }
 
     private Observable<DBWeather> updateWeatherAndCache() {
-        return getService().getWeather(Database.getInstance().getUserCityId())
+        return getService().getWeather(DatabaseLegacy.getInstance().getUserCityId())
                 .map(Converter::getDBWeather)
-                .doOnNext(Database.getInstance()::saveWeather);
+                .doOnNext(DatabaseLegacy.getInstance()::saveWeather);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class WeatherRepositoryImpl implements WeatherRepository {
         return APIFactory.getRetrofitService(WeatherAPI.class);
     }
 
-    private Database getDatabase() {
-        return Database.getInstance();
+    private DatabaseLegacy getDatabase() {
+        return DatabaseLegacy.getInstance();
     }
 }

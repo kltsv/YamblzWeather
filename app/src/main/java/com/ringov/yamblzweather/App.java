@@ -9,7 +9,7 @@ import com.ringov.yamblzweather.dagger.component.AppComponent;
 import com.ringov.yamblzweather.dagger.component.DaggerAppComponent;
 import com.ringov.yamblzweather.dagger.module.ApplicationModule;
 import com.ringov.yamblzweather.data.background_service.WeatherUpdateJobCreator;
-import com.ringov.yamblzweather.data.db.city.CityDatabaseCreator;
+import com.ringov.yamblzweather.data.db.database.AppDatabaseCreator;
 import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
@@ -44,7 +44,7 @@ public class App extends Application {
 
         Timber.plant(new Timber.DebugTree());
 
-        CityDatabaseCreator.getInstance().createDb(this);
+        AppDatabaseCreator.getInstance().createDb(this);
 
         component = buildComponent();
         JobManager.create(this).addJobCreator(new WeatherUpdateJobCreator());

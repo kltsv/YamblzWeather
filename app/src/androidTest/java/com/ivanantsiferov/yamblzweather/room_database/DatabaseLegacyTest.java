@@ -1,8 +1,8 @@
-package com.ivanantsiferov.yamblzweather.db;
+package com.ivanantsiferov.yamblzweather.room_database;
 
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ringov.yamblzweather.data.db.Database;
+import com.ringov.yamblzweather.data.db.DatabaseLegacy;
 import com.ringov.yamblzweather.data.db.data.DBWeather;
 
 import org.junit.Test;
@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 import static junit.framework.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
-public class DatabaseTest {
+public class DatabaseLegacyTest {
 
     @Test
     public void saveLoadWeather() {
@@ -21,8 +21,8 @@ public class DatabaseTest {
                 .weatherCondition(200)
                 .build();
 
-        Database.getInstance().saveWeather(expected);
-        DBWeather fromDb = Database.getInstance().loadWeather();
+        DatabaseLegacy.getInstance().saveWeather(expected);
+        DBWeather fromDb = DatabaseLegacy.getInstance().loadWeather();
         assertEquals(expected.getConditionId(), fromDb.getConditionId());
         assertEquals(expected.getTime(), fromDb.getTime());
         assertEquals(expected.getTemperature(), fromDb.getTemperature());
@@ -31,8 +31,8 @@ public class DatabaseTest {
     @Test
     public void putGetCityId() {
         int expected = 524901;
-        Database.getInstance().putUserCity(expected);
-        int cityId = Database.getInstance().getUserCityId();
+        DatabaseLegacy.getInstance().putUserCity(expected);
+        int cityId = DatabaseLegacy.getInstance().getUserCityId();
         assertEquals(expected, cityId);
     }
 }

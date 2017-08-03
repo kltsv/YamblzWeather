@@ -1,6 +1,6 @@
-package com.ivanantsiferov.yamblzweather.db;
+package com.ivanantsiferov.yamblzweather.room_database;
 
-import com.ringov.yamblzweather.data.db.city.DBCity;
+import com.ringov.yamblzweather.data.db.database.entity.DBCity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +18,14 @@ final class CityDatabaseTestUtil {
     }
 
     static DBCity Moscow() {
-        return new DBCity(0, "Moscow", 524901);
+        return new DBCity("Moscow", 524901);
     }
 
     static DBCity Kathmandu() {
-        return new DBCity(1, "Kathmandu", 1283240);
+        return new DBCity("Kathmandu", 1283240);
     }
 
     static DBCity Kiev() {
-        return new DBCity(2, "Kiev", 703448);
+        return new DBCity("Kiev", 703448);
     }
 }

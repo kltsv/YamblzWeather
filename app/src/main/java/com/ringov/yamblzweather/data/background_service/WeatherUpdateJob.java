@@ -10,7 +10,7 @@ import android.support.v7.app.NotificationCompat;
 import com.evernote.android.job.Job;
 import com.evernote.android.job.JobRequest;
 import com.ringov.yamblzweather.App;
-import com.ringov.yamblzweather.data.db.Database;
+import com.ringov.yamblzweather.data.db.DatabaseLegacy;
 import com.ringov.yamblzweather.presentation.ui.MainActivity;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.domain.settings.SettingsRepository;
@@ -32,7 +32,7 @@ public class WeatherUpdateJob extends Job {
     SettingsRepository settings;
 
     public static void schedule() {
-        long interval = Database.getInstance().getUpdateInterval();
+        long interval = DatabaseLegacy.getInstance().getUpdateInterval();
         JobRequest job = new JobRequest.Builder(WeatherUpdateJob.TAG)
                 .setPeriodic(interval, FLEX)
                 .setRequiredNetworkType(JobRequest.NetworkType.CONNECTED)

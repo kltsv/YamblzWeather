@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.data.db.city;
+package com.ringov.yamblzweather.data.db.database;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
@@ -11,6 +11,7 @@ import android.support.v7.preference.PreferenceManager;
 
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
+import com.ringov.yamblzweather.data.db.database.entity.DBCity;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -23,26 +24,24 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import timber.log.Timber;
 
-import static com.ringov.yamblzweather.data.db.city.CityDatabase.DATABASE_NAME;
+public class AppDatabaseCreator {
 
-public class CityDatabaseCreator {
-
-    private static CityDatabaseCreator instance;
+    private static AppDatabaseCreator instance;
 
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
 
-    private CityDatabase mDb;
+    private AppDatabase mDb;
 
     private final AtomicBoolean initializing = new AtomicBoolean(true);
 
     // For Singleton instantiation
     private static final Object LOCK = new Object();
 
-    public synchronized static CityDatabaseCreator getInstance() {
+    public synchronized static AppDatabaseCreator getInstance() {
         if (instance == null) {
             synchronized (LOCK) {
                 if (instance == null) {
-                    instance = new CityDatabaseCreator();
+                    instance = new AppDatabaseCreator();
                 }
             }
         }
@@ -58,7 +57,7 @@ public class CityDatabaseCreator {
     }
 
     @Nullable
-    public CityDatabase getDatabase() {
+    public AppDatabase getDatabase() {
         return mDb;
     }
 
@@ -78,7 +77,7 @@ public class CityDatabaseCreator {
         Completable.fromCallable(() -> {
             // Build the database
             mDb = Room
-                    .databaseBuilder(context.getApplicationContext(), CityDatabase.class, DATABASE_NAME)
+                    .databaseBuilder(context.getApplicationContext(), AppDatabase.class, Contract.DATABASE_NAME)
                     .build();
 
             checkIsFirstLaunch(context);
@@ -122,7 +121,7 @@ public class CityDatabaseCreator {
 
         // Compose two arrays into DBCity objects
         for (int i = 0; i < nameArray.length; i++)
-            cities.add(new DBCity(i, nameArray[i], Integer.valueOf(idsArray[i])));
+            cities.add(new DBCity(nameArray[i], Integer.valueOf(idsArray[i])));
 
         // Write to room database
         mDb.cityDAO().insertAll(cities);
@@ -130,7 +129,7 @@ public class CityDatabaseCreator {
         Timber.d("Database filled with initial data");
     }
 
-    // Helper method that reads text file from Raw resources and returns it content as a String
+    // Helper method that reads text file from Raw resources and returns its content as a String
     private static String fromRawToString(@RawRes int resId) {
         String output = "";
 

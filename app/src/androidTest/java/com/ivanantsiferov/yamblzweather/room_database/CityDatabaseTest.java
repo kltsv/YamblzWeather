@@ -1,13 +1,13 @@
-package com.ivanantsiferov.yamblzweather.db;
+package com.ivanantsiferov.yamblzweather.room_database;
 
 import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.ringov.yamblzweather.data.db.city.CityDAO;
-import com.ringov.yamblzweather.data.db.city.CityDatabase;
-import com.ringov.yamblzweather.data.db.city.DBCity;
+import com.ringov.yamblzweather.data.db.database.AppDatabase;
+import com.ringov.yamblzweather.data.db.database.dao.CityDAO;
+import com.ringov.yamblzweather.data.db.database.entity.DBCity;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,12 +22,12 @@ import static junit.framework.Assert.assertEquals;
 public class CityDatabaseTest {
 
     private CityDAO cityDAO;
-    private CityDatabase db;
+    private AppDatabase db;
 
     @Before
     public void createDb() {
         Context context = InstrumentationRegistry.getTargetContext();
-        db = Room.inMemoryDatabaseBuilder(context, CityDatabase.class).build();
+        db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
         cityDAO = db.cityDAO();
         // Fill DB with data
         List<DBCity> citiesMock = CityDatabaseTestUtil.getAll();

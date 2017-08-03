@@ -1,6 +1,6 @@
 package com.ringov.yamblzweather.domain.settings;
 
-import com.ringov.yamblzweather.data.db.Database;
+import com.ringov.yamblzweather.data.db.DatabaseLegacy;
 
 import javax.inject.Singleton;
 
@@ -9,11 +9,11 @@ public class SettingsRepositoryImpl implements SettingsRepository {
 
     @Override
     public boolean isNotificationsEnabled() {
-        return Database.getInstance().isNotificationEnabled();
+        return DatabaseLegacy.getInstance().isNotificationEnabled();
     }
 
     @Override
     public long getUpdateInterval() {
-        return Database.getInstance().getUpdateInterval();
+        return DatabaseLegacy.getInstance().getUpdateInterval();
     }
 }
