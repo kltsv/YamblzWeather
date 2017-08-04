@@ -14,7 +14,8 @@ public enum WeatherCondition {
     Fog(R.string.cond_fog, R.drawable.im_fog),
     Clear(R.string.cond_clear, R.drawable.im_clear),
     LightClouds(R.string.cond_light_clouds, R.drawable.im_light_clouds),
-    Cloudy(R.string.cond_cloudy, R.drawable.im_clouds);
+    Cloudy(R.string.cond_cloudy, R.drawable.im_clouds),
+    Other(R.string.cond_other, R.drawable.im_splash_logo);
 
     @StringRes
     private final int friendlyName;

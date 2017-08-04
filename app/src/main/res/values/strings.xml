@@ -27,6 +27,7 @@
     <string name="cond_clear">Clear</string>
     <string name="cond_light_clouds">Light clouds</string>
     <string name="cond_cloudy">Cloudy</string>
+    <string name="cond_other">Other</string>
 
     <!-- Location fragment -->
     <string name="location_description">For what city show weather for</string>

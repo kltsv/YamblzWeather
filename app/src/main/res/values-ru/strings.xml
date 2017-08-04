@@ -24,6 +24,7 @@
     <string name="cond_clear">Ясно</string>
     <string name="cond_light_clouds">Легкая облачность</string>
     <string name="cond_cloudy">Облачно</string>
+    <string name="cond_other">Другое</string>
 
     <!-- Location fragment -->
     <string name="location_description">Для какого города показывать погоду</string>

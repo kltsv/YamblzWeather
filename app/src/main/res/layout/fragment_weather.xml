@@ -1,80 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="56dp">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_forecast"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/weather_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/tv_temperature"
-            android:layout_centerHorizontal="true"
-            android:padding="48dp"
-            app:srcCompat="@drawable/im_clear" />
-
-        <TextView
-            android:id="@+id/tv_swipe_to_update"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="@string/wthr_swipe_to_update" />
-
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_conditions"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            tools:text="last update time" />
-
-        <TextView
-            android:id="@+id/tv_temperature"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="8dp"
-            android:textSize="56sp"
-            tools:text="15.3" />
-
-        <TextView
-            android:id="@+id/tv_conditions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_temperature"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center"
-            android:layout_margin="8dp"
-            android:textSize="24sp"
-            tools:text="Extreme" />
-
-        <ImageView
-            android:id="@+id/down_arrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/tv_swipe_to_update"
-            android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/ic_arrow_down_gray_24dp" />
-
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_margin="16dp" />
-
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        app:layoutManager="LinearLayoutManager" />
 
 </android.support.v4.widget.SwipeRefreshLayout>

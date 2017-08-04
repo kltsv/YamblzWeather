@@ -66,4 +66,10 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherI
     public int getItemCount() {
         return items.size();
     }
+
+    public void replace(List<UIWeatherList> items) {
+        this.items.clear();
+        this.items.addAll(items);
+        notifyDataSetChanged();
+    }
 }
