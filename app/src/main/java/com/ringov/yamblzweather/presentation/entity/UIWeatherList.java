@@ -6,6 +6,18 @@ public class UIWeatherList {
     private float temperature;
     private long time;
 
+    public WeatherCondition getCondition() {
+        return condition;
+    }
+
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
     public static class Builder {
 
         private UIWeatherList weather;

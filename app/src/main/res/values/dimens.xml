@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Forecast items -->
+    <dimen name="item_weather_height">40dp</dimen>
+    <dimen name="item_weather_image_size">24dp</dimen>
+    <dimen name="item_weather_side_margin">8dp</dimen>
+
 </resources>

@@ -73,9 +73,9 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
     }
 
     /*private void showWeather(UIWeather data) {
-        tvTemperature.setText(Utils.getFormattedTemperature(getContext(), data.getTemperature()));
+        tvTemperature.setText(UIUtils.getFormattedTemperature(getContext(), data.getTemperature()));
         tvConditions.setText(data.getConditionName());
-        tvTime.setText(Utils.getRelativeTime(getContext(), data.getTime()));
+        tvTime.setText(UIUtils.getRelativeTime(getContext(), data.getTime()));
         weatherImage.setImageResource(data.getConditionImage());
     }*/
 

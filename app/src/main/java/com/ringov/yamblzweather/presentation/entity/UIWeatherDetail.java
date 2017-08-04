@@ -10,6 +10,34 @@ public class UIWeatherDetail {
     private float windSpeed;
     private float windDegree;
 
+    public WeatherCondition getCondition() {
+        return condition;
+    }
+
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
+    public float getPressure() {
+        return pressure;
+    }
+
+    public float getWindSpeed() {
+        return windSpeed;
+    }
+
+    public float getWindDegree() {
+        return windDegree;
+    }
+
     public static class Builder {
 
         private UIWeatherDetail weather;
