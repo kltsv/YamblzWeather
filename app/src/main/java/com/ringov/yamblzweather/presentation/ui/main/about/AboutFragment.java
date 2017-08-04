@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.about;
+package com.ringov.yamblzweather.presentation.ui.main.about;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

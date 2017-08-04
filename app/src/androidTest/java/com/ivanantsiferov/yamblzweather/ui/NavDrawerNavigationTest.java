@@ -8,11 +8,11 @@ import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.app.Fragment;
 
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.presentation.ui.MainActivity;
-import com.ringov.yamblzweather.presentation.ui.about.AboutFragment;
-import com.ringov.yamblzweather.presentation.ui.location.LocationFragment;
-import com.ringov.yamblzweather.presentation.ui.settings.SettingsFragment;
-import com.ringov.yamblzweather.presentation.ui.weather.WeatherFragment;
+import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
+import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
+import com.ringov.yamblzweather.presentation.ui.main.location.LocationFragment;
+import com.ringov.yamblzweather.presentation.ui.main.settings.SettingsFragment;
+import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherFragment;
 
 import org.junit.Before;
 import org.junit.Rule;

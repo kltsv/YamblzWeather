@@ -1,11 +1,13 @@
 package com.ringov.yamblzweather.domain.location;
 
 import com.ringov.yamblzweather.data.db.DatabaseLegacy;
-import com.ringov.yamblzweather.data.db.database.AppDatabaseCreator;
+import com.ringov.yamblzweather.data.db.database.dao.CityDAO;
 import com.ringov.yamblzweather.data.db.database.entity.DBCity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Completable;
 import io.reactivex.Single;
@@ -18,6 +20,13 @@ public class LocationRepositoryImpl implements LocationRepository {
     // Limit suggestions count
     private static final int LIMIT = 5;
 
+    private CityDAO cityDAO;
+
+    @Inject
+    public LocationRepositoryImpl(CityDAO cityDAO) {
+        this.cityDAO = cityDAO;
+    }
+
     // Returns city name
     @Override
     public Single<String> getLocation() {
@@ -25,7 +34,7 @@ public class LocationRepositoryImpl implements LocationRepository {
             int cityId = DatabaseLegacy.getInstance().getUserCityId();
 
             try {
-                DBCity city = AppDatabaseCreator.getInstance().getDatabase().cityDAO().getById(cityId);
+                DBCity city = cityDAO.getById(cityId);
                 return city.getCity_name();
             } catch (NullPointerException e) {
                 Timber.e(e);
@@ -40,7 +49,7 @@ public class LocationRepositoryImpl implements LocationRepository {
     public void changeLocation(String newValue) {
         Completable.fromCallable(() -> {
             try {
-                DBCity city = AppDatabaseCreator.getInstance().getDatabase().cityDAO().getByName(newValue);
+                DBCity city = cityDAO.getByName(newValue);
 
                 DatabaseLegacy.getInstance().putUserCity(city.getCity_id());
                 return true;
@@ -65,8 +74,7 @@ public class LocationRepositoryImpl implements LocationRepository {
         List<String> citiesNames = new ArrayList<>();
 
         try {
-            List<DBCity> cities = AppDatabaseCreator
-                    .getInstance().getDatabase().cityDAO().getSuggestions( "%" + suggestFrom + "%", LIMIT);
+            List<DBCity> cities = cityDAO.getSuggestions( "%" + suggestFrom + "%", LIMIT);
             for (DBCity city : cities)
                 citiesNames.add(city.getCity_name());
         } catch (NullPointerException e) {

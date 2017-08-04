@@ -11,7 +11,7 @@ import com.evernote.android.job.Job;
 import com.evernote.android.job.JobRequest;
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.data.db.DatabaseLegacy;
-import com.ringov.yamblzweather.presentation.ui.MainActivity;
+import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.domain.settings.SettingsRepository;
 import com.ringov.yamblzweather.domain.weather.WeatherRepository;

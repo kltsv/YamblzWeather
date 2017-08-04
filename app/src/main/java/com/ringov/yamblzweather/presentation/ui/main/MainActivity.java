@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui;
+package com.ringov.yamblzweather.presentation.ui.main;
 
 import android.os.Bundle;
 import android.support.annotation.IdRes;
@@ -13,10 +13,10 @@ import android.view.MenuItem;
 
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.base.BaseActivity;
-import com.ringov.yamblzweather.presentation.ui.about.AboutFragment;
-import com.ringov.yamblzweather.presentation.ui.location.LocationFragment;
-import com.ringov.yamblzweather.presentation.ui.settings.SettingsFragment;
-import com.ringov.yamblzweather.presentation.ui.weather.WeatherFragment;
+import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
+import com.ringov.yamblzweather.presentation.ui.main.location.LocationFragment;
+import com.ringov.yamblzweather.presentation.ui.main.settings.SettingsFragment;
+import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherFragment;
 
 import butterknife.BindView;
 

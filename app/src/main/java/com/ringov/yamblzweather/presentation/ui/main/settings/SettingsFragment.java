@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.settings;
+package com.ringov.yamblzweather.presentation.ui.main.settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

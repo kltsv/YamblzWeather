@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.about;
+package com.ringov.yamblzweather.presentation.ui.main.about;
 
 import com.ringov.yamblzweather.presentation.base.BaseViewModel;
 

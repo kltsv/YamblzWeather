@@ -7,7 +7,7 @@ import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.presentation.ui.MainActivity;
+import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
 
 import org.junit.Rule;
 import org.junit.Test;

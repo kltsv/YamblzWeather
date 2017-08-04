@@ -3,12 +3,14 @@ package com.ringov.yamblzweather.domain.weather;
 import com.ringov.yamblzweather.data.Converter;
 import com.ringov.yamblzweather.data.db.DatabaseLegacy;
 import com.ringov.yamblzweather.data.db.data.DBWeather;
+import com.ringov.yamblzweather.data.db.database.dao.WeatherDAO;
 import com.ringov.yamblzweather.data.networking.APIFactory;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
 import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
@@ -19,6 +21,13 @@ import io.reactivex.schedulers.Schedulers;
 public class WeatherRepositoryImpl implements WeatherRepository {
 
     private static final int REQUEST_FREQUENCY = 2; // not frequently than once in two minutes
+
+    private WeatherDAO weatherDAO;
+
+    @Inject
+    public WeatherRepositoryImpl(WeatherDAO weatherDAO) {
+        this.weatherDAO = weatherDAO;
+    }
 
     private Observable<DBWeather> getCachedWeather() {
         return Observable.just(getDatabase().loadWeather());

@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.location;
+package com.ringov.yamblzweather.presentation.ui.main.location;
 
 import android.content.Context;
 import android.os.Bundle;

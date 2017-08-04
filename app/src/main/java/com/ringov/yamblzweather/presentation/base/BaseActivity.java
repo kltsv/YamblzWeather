@@ -1,5 +1,7 @@
 package com.ringov.yamblzweather.presentation.base;
 
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
@@ -10,7 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements LifecycleRegistryOwner {
+
+    private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
+
+    @Override
+    public LifecycleRegistry getLifecycle() {
+        return mRegistry;
+    }
 
     protected CompositeDisposable disposables = new CompositeDisposable();
 
@@ -43,7 +52,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void replaceFragment(Fragment fragment, @IdRes int containerId) {
         getSupportFragmentManager()
                 .beginTransaction()
-                .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(containerId, fragment, fragment.getClass().getSimpleName())
                 .commit();
     }

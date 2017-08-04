@@ -45,5 +45,4 @@ public class NetworkModule {
     WeatherAPI provideWeatherAPI(Retrofit retrofit) {
         return retrofit.create(WeatherAPI.class);
     }
-
 }
