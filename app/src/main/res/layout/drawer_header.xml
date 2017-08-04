@@ -20,11 +20,11 @@
 
     <ImageView
         android:id="@+id/drawer_image"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="-36dp"
-        android:layout_marginTop="-36dp"
-        app:srcCompat="@drawable/weather_other" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-56dp"
+        android:layout_marginTop="-56dp"
+        app:srcCompat="@drawable/im_clear" />
 
     <TextView
         android:id="@+id/tv_conditions"

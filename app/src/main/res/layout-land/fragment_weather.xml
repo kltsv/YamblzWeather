@@ -18,7 +18,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="56dp"
             android:layout_marginStart="56dp"
-            app:srcCompat="@drawable/weather_other" />
+            app:srcCompat="@drawable/im_clear" />
 
         <TextView
             android:id="@+id/tv_swipe_to_update"

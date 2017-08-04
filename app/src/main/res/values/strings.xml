@@ -19,17 +19,14 @@
     <string name="wthr_notification_message" translatable="false">%1$s, %2$s</string>
 
     <!-- Weather conditions -->
-    <string name="cond_cloudy">Cloudy</string>
+    <string name="cond_storm">Storm</string>
+    <string name="cond_light_rain">Light rain</string>
+    <string name="cond_rain">Rain</string>
+    <string name="cond_snow">Snow</string>
+    <string name="cond_fog">Fog</string>
     <string name="cond_clear">Clear</string>
-    <string name="cond_rainy">Rainy</string>
-    <string name="cond_thunderstorm">Thunderstorm</string>
-    <string name="cond_drizzle">Drizzle</string>
-    <string name="cond_snow">Show</string>
-    <string name="cond_atmospherically">Atmospherically</string>
-    <string name="cond_extreme">Extreme</string>
-    <string name="cond_windy">Windy</string>
-    <string name="cond_calm">Calm</string>
-    <string name="cond_other">Other</string>
+    <string name="cond_light_clouds">Light clouds</string>
+    <string name="cond_cloudy">Cloudy</string>
 
     <!-- Location fragment -->
     <string name="location_description">For what city show weather for</string>

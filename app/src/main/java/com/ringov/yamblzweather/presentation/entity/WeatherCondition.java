@@ -7,16 +7,14 @@ import com.ringov.yamblzweather.R;
 
 public enum WeatherCondition {
 
-    Cloudy(R.string.cond_cloudy, R.drawable.weather_clouds),
-    Clear(R.string.cond_clear, R.drawable.weather_clear),
-    Rainy(R.string.cond_rainy, R.drawable.weather_rainy),
-    Thunderstorm(R.string.cond_thunderstorm, R.drawable.weather_storm),
-    Snow(R.string.cond_snow, R.drawable.weather_snow),
-    Atmospherically(R.string.cond_atmospherically, R.drawable.weather_extreme),
-    Extreme(R.string.cond_extreme, R.drawable.weather_extreme),
-    Windy(R.string.cond_windy, R.drawable.weather_wind),
-    Calm(R.string.cond_calm, R.drawable.weather_clear),
-    Other(R.string.cond_other, R.drawable.weather_other);
+    Storm(R.string.cond_storm, R.drawable.im_storm),
+    LightRain(R.string.cond_light_rain, R.drawable.im_light_rain),
+    Rain(R.string.cond_rain, R.drawable.im_rain),
+    Snow(R.string.cond_snow, R.drawable.im_snow),
+    Fog(R.string.cond_fog, R.drawable.im_fog),
+    Clear(R.string.cond_clear, R.drawable.im_clear),
+    LightClouds(R.string.cond_light_clouds, R.drawable.im_light_clouds),
+    Cloudy(R.string.cond_cloudy, R.drawable.im_clouds);
 
     @StringRes
     private final int friendlyName;

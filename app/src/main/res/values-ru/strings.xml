@@ -16,16 +16,14 @@
     <string name="wthr_swipe_to_update">потяните, чтобы обновить</string>
 
     <!-- Weather conditions -->
-    <string name="cond_cloudy">Пасмурно</string>
-    <string name="cond_clear">Ясно</string>
-    <string name="cond_rainy">Дождливо</string>
-    <string name="cond_thunderstorm">Гроза</string>
+    <string name="cond_storm">Шторм</string>
+    <string name="cond_light_rain">Легкий дождь</string>
+    <string name="cond_rain">Дождь</string>
     <string name="cond_snow">Снег</string>
-    <string name="cond_atmospherically">Атмосферненько</string>
-    <string name="cond_extreme">Экстримальненько</string>
-    <string name="cond_windy">Ветренно</string>
-    <string name="cond_calm">Спокойно</string>
-    <string name="cond_other">Другое</string>
+    <string name="cond_fog">Туман</string>
+    <string name="cond_clear">Ясно</string>
+    <string name="cond_light_clouds">Легкая облачность</string>
+    <string name="cond_cloudy">Облачно</string>
 
     <!-- Location fragment -->
     <string name="location_description">Для какого города показывать погоду</string>
