@@ -9,7 +9,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.data.db.database.AppDatabaseCreator;
+import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
 import com.ringov.yamblzweather.presentation.base.BaseActivity;
 import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
 
@@ -59,7 +59,7 @@ public class SplashActivity extends BaseActivity {
     private void onDatabaseLoaded(boolean loaded) {
         if (loaded) {
             startActivity(new Intent(this, MainActivity.class));
-            overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();
         }
     }

@@ -4,13 +4,11 @@ import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 
-import com.evernote.android.job.JobManager;
 import com.ringov.yamblzweather.dagger.component.AppComponent;
 import com.ringov.yamblzweather.dagger.component.DaggerAppComponent;
 import com.ringov.yamblzweather.dagger.module.ApplicationModule;
 import com.ringov.yamblzweather.dagger.module.DatabaseModule;
-import com.ringov.yamblzweather.data.background_service.WeatherUpdateJobCreator;
-import com.ringov.yamblzweather.data.db.database.AppDatabaseCreator;
+import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
 import com.squareup.leakcanary.LeakCanary;
 
 import timber.log.Timber;
@@ -47,8 +45,6 @@ public class App extends Application {
         Timber.plant(new Timber.DebugTree());
 
         AppDatabaseCreator.getInstance().createDb(this);
-
-        JobManager.create(this).addJobCreator(new WeatherUpdateJobCreator());
 
         component = buildComponent();
     }

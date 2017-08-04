@@ -15,7 +15,6 @@ import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.base.BaseActivity;
 import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
 import com.ringov.yamblzweather.presentation.ui.main.location.LocationFragment;
-import com.ringov.yamblzweather.presentation.ui.main.settings.SettingsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherFragment;
 
 import butterknife.BindView;
@@ -69,9 +68,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
                 break;
             case R.id.nav_location:
                 replaceFragment(LocationFragment.newInstance(), FRAGMENT_CONTAINER);
-                break;
-            case R.id.nav_settings:
-                replaceFragment(SettingsFragment.newInstance(), FRAGMENT_CONTAINER);
                 break;
             case R.id.nav_about:
                 replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER);

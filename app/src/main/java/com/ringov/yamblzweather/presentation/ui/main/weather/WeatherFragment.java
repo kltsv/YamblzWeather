@@ -12,7 +12,6 @@ import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.Utils;
 import com.ringov.yamblzweather.presentation.base.BaseFragment;
-import com.ringov.yamblzweather.presentation.data.UIWeather;
 
 import butterknife.BindView;
 
@@ -55,7 +54,7 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
     @Override
     protected void attachInputListeners() {
         getViewModel().observe(
-                this, this::showLoading, this::showWeather, this::showError, this::showCity);
+                this, this::showLoading, /*this::showWeather,*/ this::showError, this::showCity);
 
         // Listen for swipe to refresh
         disposables.add(
@@ -73,12 +72,12 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
         swipeLayout.setRefreshing(isLoading);
     }
 
-    private void showWeather(UIWeather data) {
+    /*private void showWeather(UIWeather data) {
         tvTemperature.setText(Utils.getFormattedTemperature(getContext(), data.getTemperature()));
         tvConditions.setText(data.getConditionName());
         tvTime.setText(Utils.getRelativeTime(getContext(), data.getTime()));
         weatherImage.setImageResource(data.getConditionImage());
-    }
+    }*/
 
     private void showError(Throwable error) {
         error.printStackTrace();

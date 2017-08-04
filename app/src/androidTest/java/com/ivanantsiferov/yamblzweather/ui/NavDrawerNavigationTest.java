@@ -11,7 +11,6 @@ import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
 import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
 import com.ringov.yamblzweather.presentation.ui.main.location.LocationFragment;
-import com.ringov.yamblzweather.presentation.ui.main.settings.SettingsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherFragment;
 
 import org.junit.Before;
@@ -71,22 +70,6 @@ public class NavDrawerNavigationTest {
                 activityTestRule.getActivity().getSupportFragmentManager()
                         .findFragmentByTag(LocationFragment.class.getSimpleName());
         assertTrue(fragment instanceof LocationFragment);
-    }
-
-    @Test
-    public void openSettingsScreen() throws InterruptedException {
-        onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
-        onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_settings));
-
-        Thread.sleep(1000);
-
-        String activityTitle = activityTestRule.getActivity().getTitle().toString();
-        String expectedTitle = context.getString(R.string.title_settings);
-        assertEquals(expectedTitle, activityTitle);
-        Fragment fragment =
-                activityTestRule.getActivity().getSupportFragmentManager()
-                        .findFragmentByTag(SettingsFragment.class.getSimpleName());
-        assertTrue(fragment instanceof SettingsFragment);
     }
 
     @Test

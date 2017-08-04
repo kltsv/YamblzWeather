@@ -1,8 +1,9 @@
 package com.ringov.yamblzweather.dagger.module;
 
-import com.ringov.yamblzweather.data.db.database.AppDatabase;
-import com.ringov.yamblzweather.data.db.database.dao.CityDAO;
-import com.ringov.yamblzweather.data.db.database.dao.WeatherDAO;
+import com.ringov.yamblzweather.data.database.AppDatabase;
+import com.ringov.yamblzweather.data.database.dao.CityDAO;
+import com.ringov.yamblzweather.data.database.dao.FavoriteCityDAO;
+import com.ringov.yamblzweather.data.database.dao.WeatherDAO;
 
 import javax.inject.Singleton;
 
@@ -16,6 +17,12 @@ public class DatabaseModule {
 
     public DatabaseModule(AppDatabase database) {
         this.database = database;
+    }
+
+    @Provides
+    @Singleton
+    FavoriteCityDAO provideFavoriteCityDAO() {
+        return database.favoriteCityDAO();
     }
 
     @Provides

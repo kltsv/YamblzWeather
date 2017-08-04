@@ -107,8 +107,6 @@ dependencies {
     // Support lib
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile "com.android.support:design:$supportLibVersion"
-    compile "com.android.support:preference-v14:$supportLibVersion"
-    compile "com.android.support:preference-v7:$supportLibVersion"
 
     // architecture components
     compile "android.arch.lifecycle:runtime:$architectureComponentsVersion"
@@ -138,10 +136,6 @@ dependencies {
     compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     compile "com.jakewharton.rxbinding2:rxbinding:$rxBindingVersion"
     compile "com.jakewharton.rxbinding2:rxbinding-support-v4:${rxBindingVersion}"
-
-    // Android-job
-    compile "com.evernote:android-job:$androidJobVersion"
-    compile "com.google.android.gms:play-services-gcm:11.0.2"
 
     // Logging
     compile "com.jakewharton.timber:timber:${timberVersion}"

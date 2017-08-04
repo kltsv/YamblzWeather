@@ -1,33 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Ямблз.Погода</string>
+    <string name="app_name">Погода</string>
 
     <!-- Activity titles -->
     <string name="title_weather">Погода</string>
-    <string name="title_settings">Настройки</string>
     <string name="title_location">Местоположение</string>
     <string name="title_about">О приложении</string>
 
     <!-- Nav drawer -->
     <string name="navigation_drawer_open">Открыто боковое меню</string>
     <string name="navigation_drawer_close">Закрыто боковое меню</string>
-
-    <!-- Preference screen -->
-    <string name="prefs_update_intervals_title">Частота обновления</string>
-    <string name="prefs_update_intervals_summary">Как часто получать обновления погоды</string>
-
-    <string-array name="update_intervals">
-        <item>15 минут</item>
-        <item>2 часа</item>
-        <item>3 часа</item>
-        <item>5 часов</item>
-        <item>8 часов</item>
-        <item>12 часов</item>
-        <item>24 часов</item>
-    </string-array>
-
-    <string name="prefs_update_notifications_title">Уведомление об обновлении</string>
-    <string name="prefs_update_notifications_summary">Уведомлять о получении обновления погоды</string>
 
     <!-- Weather fragment -->
     <string name="wthr_right_now">Только что</string>

@@ -4,13 +4,10 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 
 import com.ringov.yamblzweather.App;
-import com.ringov.yamblzweather.domain.location.LocationRepository;
 import com.ringov.yamblzweather.presentation.base.BaseLiveData;
 import com.ringov.yamblzweather.presentation.base.BaseViewModel;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 public class LocationViewModel extends BaseViewModel {
 
@@ -19,17 +16,14 @@ public class LocationViewModel extends BaseViewModel {
     private BaseLiveData<Throwable> errorData = new BaseLiveData<>();
     private BaseLiveData<String> cityData = new BaseLiveData<>();
 
-    @Inject
-    LocationRepository repository;
-
     public LocationViewModel() {
         App.getComponent().inject(this);
 
-        disposables.add(
+        /*disposables.add(
                 repository
                         .getLocation()
                         .subscribe(s -> cityData.updateValue(s), e -> errorData.updateValue(e))
-        );
+        );*/
     }
 
     void observe(
@@ -47,11 +41,11 @@ public class LocationViewModel extends BaseViewModel {
 
     // Callbacks from view
     void onCitySelected(String city) {
-        repository.changeLocation(city);
+        //repository.changeLocation(city);
     }
 
     void onInputChanges(String input) {
-        disposables.add(
+        /*disposables.add(
                 repository
                         .getSuggestions(input)
                         .doOnSubscribe(disposable -> loadingData.updateValue(true))
@@ -60,6 +54,6 @@ public class LocationViewModel extends BaseViewModel {
                                 strings -> suggestionsData.updateValue(strings),
                                 throwable -> errorData.updateValue(throwable)
                         )
-        );
+        );*/
     }
 }
