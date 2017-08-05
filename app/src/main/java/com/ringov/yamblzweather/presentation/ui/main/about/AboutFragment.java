@@ -24,23 +24,13 @@ public class AboutFragment extends BaseFragment {
         return R.layout.fragment_about;
     }
 
-    @Override
-    protected Class<AboutViewModel> getViewModelClass() {
-        return AboutViewModel.class;
-    }
-
     @BindView(R.id.tv_version)
     TextView tvVersion;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         getActivity().setTitle(R.string.title_about);
 
         tvVersion.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME));
-    }
-
-    @Override
-    protected void attachInputListeners() {
     }
 }

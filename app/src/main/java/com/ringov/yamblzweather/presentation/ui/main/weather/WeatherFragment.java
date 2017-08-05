@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.presentation.base.BaseFragment;
+import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import timber.log.Timber;
 
-public class WeatherFragment extends BaseFragment<WeatherViewModel> {
+public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
 
     public static final String TAG = "WeatherFragment";
 

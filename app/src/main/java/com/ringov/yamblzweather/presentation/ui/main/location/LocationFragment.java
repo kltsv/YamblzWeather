@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding2.widget.RxAutoCompleteTextView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.presentation.base.BaseFragment;
+import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class LocationFragment extends BaseFragment<LocationViewModel> {
+public class LocationFragment extends BaseMvvmFragment<LocationViewModel> {
 
     public static final String TAG = "LocationFragment";
 
