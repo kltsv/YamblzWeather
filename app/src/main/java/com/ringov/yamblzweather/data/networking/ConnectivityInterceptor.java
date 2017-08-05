@@ -6,7 +6,7 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
 import com.ringov.yamblzweather.App;
-import com.ringov.yamblzweather.data.networking.exceptions.NoInternetConnectionException;
+import com.ringov.yamblzweather.domain.exceptions.NoInternetConnectionException;
 
 import java.io.IOException;
 

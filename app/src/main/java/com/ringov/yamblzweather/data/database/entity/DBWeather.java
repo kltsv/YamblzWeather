@@ -23,7 +23,7 @@ public class DBWeather {
     private long _id;
 
     @ColumnInfo(name = COLUMN_CITY_ID)
-    private long cityId;
+    private int cityId;
 
     @ColumnInfo(name = COLUMN_TIME)
     private long time;
@@ -46,7 +46,7 @@ public class DBWeather {
     @ColumnInfo(name = COLUMN_WIND_DEGREE)
     private float windDegree;
 
-    public DBWeather(long cityId, long time, float temperature, int condition,
+    public DBWeather(int cityId, long time, float temperature, int condition,
                      int humidity, float pressure, float windSpeed, float windDegree
     ) {
         this.cityId = cityId;
@@ -67,7 +67,7 @@ public class DBWeather {
         this._id = _id;
     }
 
-    public long getCityId() {
+    public int getCityId() {
         return cityId;
     }
 

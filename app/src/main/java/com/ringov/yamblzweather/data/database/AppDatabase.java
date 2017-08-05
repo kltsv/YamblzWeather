@@ -11,7 +11,7 @@ import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
 import com.ringov.yamblzweather.data.database.entity.DBWeather;
 
 @Database(entities = {DBCity.class, DBWeather.class, DBFavoriteCity.class},
-        version = 3, exportSchema = false)
+        version = 4, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract FavoriteCityDAO favoriteCityDAO();

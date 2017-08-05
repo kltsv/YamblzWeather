@@ -3,6 +3,7 @@ package com.ringov.yamblzweather.domain;
 import com.ringov.yamblzweather.data.database.entity.DBWeather;
 import com.ringov.yamblzweather.data.networking.data.ForecastResponse;
 import com.ringov.yamblzweather.data.networking.data.ResponseWeather;
+import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 import com.ringov.yamblzweather.presentation.entity.WeatherCondition;
 
@@ -41,6 +42,27 @@ public final class Mapper {
                 .time(weather.getTime())
                 .temperature(weather.getTemperature())
                 .condition(getConditionById(weather.getCondition()))
+                .build();
+    }
+
+    public static List<UIWeatherList> DBtoUI(List<DBWeather> weatherList) {
+        List<UIWeatherList> converted = new ArrayList<>();
+
+        for (DBWeather weather : weatherList)
+            converted.add(DBtoUI(weather));
+
+        return converted;
+    }
+
+    public static UIWeatherDetail DBWeather_to_UIWeatherDetail(DBWeather dbWeather) {
+        return new UIWeatherDetail.Builder()
+                .condition(getConditionById(dbWeather.getCondition()))
+                .humidity(dbWeather.getHumidity())
+                .pressure(dbWeather.getPressure())
+                .temperature(dbWeather.getTemperature())
+                .time(dbWeather.getTime())
+                .windDegree(dbWeather.getWindDegree())
+                .windSpeed(dbWeather.getWindSpeed())
                 .build();
     }
 

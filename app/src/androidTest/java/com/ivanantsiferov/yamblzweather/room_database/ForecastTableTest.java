@@ -60,6 +60,12 @@ public class ForecastTableTest {
 
         assertEquals(kievCurrentMock.getTemperature(), kievCurrentDb.getTemperature());
         assertEquals(kievCurrentMock.getHumidity(), kievCurrentDb.getHumidity());
+
+        long time = kievCurrentDb.getTime();
+        int cityId = kievCurrentDb.getCityId();
+        DBWeather kievCurrentDbByCityIdAndTime = weatherDAO.getWeather(cityId, time);
+        assertEquals(kievCurrentDb.getCondition(), kievCurrentDbByCityIdAndTime.getCondition());
+        assertEquals(kievCurrentDb.getWindDegree(), kievCurrentDbByCityIdAndTime.getWindDegree());
     }
 
     @Test
@@ -71,6 +77,17 @@ public class ForecastTableTest {
 
         assertEquals(moscowTomorrowMock.getPressure(), moscowTomorrowDb.getPressure());
         assertEquals(moscowTomorrowMock.getWindSpeed(), moscowTomorrowDb.getWindSpeed());
+    }
+
+    @Test
+    public void invalidateOldCache() {
+        long currentTime = System.currentTimeMillis();
+        List<DBWeather> oldWeather = weatherDAO.getByTime(currentTime);
+        assertTrue(oldWeather.size() > 0);
+
+        weatherDAO.deleteAll(oldWeather);
+        List<DBWeather> allFromDb = weatherDAO.getAll();
+        assertEquals(1, allFromDb.size());
     }
 
     @Test

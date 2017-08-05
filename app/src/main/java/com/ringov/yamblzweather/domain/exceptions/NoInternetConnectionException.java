@@ -1,3 +1,3 @@
-package com.ringov.yamblzweather.data.networking.exceptions;
+package com.ringov.yamblzweather.domain.exceptions;
 
 public class NoInternetConnectionException extends BaseException {}

@@ -46,37 +46,37 @@ public class UIWeatherDetail {
             weather = new UIWeatherDetail();
         }
 
-        public UIWeatherDetail.Builder condition(WeatherCondition condition) {
+        public Builder condition(WeatherCondition condition) {
             weather.condition = condition;
             return this;
         }
 
-        public UIWeatherDetail.Builder temperature(float t) {
+        public Builder temperature(float t) {
             weather.temperature = t;
             return this;
         }
 
-        public UIWeatherDetail.Builder time(long time) {
+        public Builder time(long time) {
             weather.time = time;
             return this;
         }
 
-        public UIWeatherDetail.Builder humidity(int humidity) {
+        public Builder humidity(int humidity) {
             weather.humidity = humidity;
             return this;
         }
 
-        public UIWeatherDetail.Builder pressure(float pressure) {
+        public Builder pressure(float pressure) {
             weather.pressure = pressure;
             return this;
         }
 
-        public UIWeatherDetail.Builder windSpeed(float windSpeed) {
+        public Builder windSpeed(float windSpeed) {
             weather.windSpeed = windSpeed;
             return this;
         }
 
-        public UIWeatherDetail.Builder windDegree(float windDegree) {
+        public Builder windDegree(float windDegree) {
             weather.windDegree = windDegree;
             return this;
         }

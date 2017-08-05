@@ -20,9 +20,19 @@ public interface WeatherDAO {
     @Query("SELECT * FROM " + TABLE_FORECAST)
     List<DBWeather> getAll();
 
+    @Query("SELECT * FROM " + TABLE_FORECAST + " WHERE " + COLUMN_TIME + " < :time")
+    List<DBWeather> getByTime(long time);
+
+    @Query("SELECT * FROM " + TABLE_FORECAST + " WHERE " + COLUMN_CITY_ID + " = :cityId")
+    List<DBWeather> getByCiyId(int cityId);
+
     @Query("SELECT * FROM " + TABLE_FORECAST + " WHERE " + COLUMN_CITY_ID + " = :cityId " +
-            " AND " + COLUMN_TIME + " >= :time ORDER BY " + COLUMN_TIME + " ASC")
+            "AND " + COLUMN_TIME + " >= :time ORDER BY " + COLUMN_TIME + " ASC")
     List<DBWeather> getForecast(int cityId, long time);
+
+    @Query("SELECT * FROM " + TABLE_FORECAST + " WHERE " + COLUMN_TIME + " = :time " +
+            "AND " + COLUMN_CITY_ID + " = :cityId")
+    DBWeather getWeather(int cityId, long time);
 
     @Query("SELECT * FROM " + TABLE_FORECAST + " WHERE " + COLUMN_CITY_ID + " = :cityId " +
             "ORDER BY " + COLUMN_TIME + " ASC LIMIT 1")

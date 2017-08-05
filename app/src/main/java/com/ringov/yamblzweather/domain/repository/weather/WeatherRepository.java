@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.domain.weather;
+package com.ringov.yamblzweather.domain.repository.weather;
 
 import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
