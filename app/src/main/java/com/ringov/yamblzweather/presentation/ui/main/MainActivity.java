@@ -31,6 +31,10 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
+    private ActionBarDrawerToggle drawerToggle;
+
+    private boolean toolBarNavigationListenerIsRegistered = false;
+
     @Override
     protected int getLayout() {
         return R.layout.activity_main;
@@ -43,7 +47,9 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         initializeDrawer();
 
         if (savedInstanceState == null) {
-            replaceFragment(new WeatherFragment(), FRAGMENT_CONTAINER);
+            navigateToWeatherScreen();
+        } else if (isNotOnWeatherScreen()) {
+            showBackButton(true);
         }
     }
 
@@ -51,6 +57,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (toolBarNavigationListenerIsRegistered) {
+            navigateToWeatherScreen();
         } else {
             super.onBackPressed();
         }
@@ -64,13 +72,13 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_weather:
-                replaceFragment(WeatherFragment.newInstance(), FRAGMENT_CONTAINER);
+                navigateToWeatherScreen();
                 break;
             case R.id.nav_location:
-                replaceFragment(LocationFragment.newInstance(), FRAGMENT_CONTAINER);
+                navigateToLocationScreen();
                 break;
             case R.id.nav_about:
-                replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER);
+                navigateToAboutScreen();
                 break;
         }
 
@@ -83,11 +91,54 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     }
 
     private void initializeDrawer() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar,
+        drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        drawer.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    /**
+     * See https://stackoverflow.com/questions/36579799/
+     */
+    private void showBackButton(boolean enable) {
+        if (enable) {
+            drawerToggle.setDrawerIndicatorEnabled(false);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            if (!toolBarNavigationListenerIsRegistered) {
+                drawerToggle.setToolbarNavigationClickListener(v -> onBackPressed());
+
+                toolBarNavigationListenerIsRegistered = true;
+            }
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            drawerToggle.setDrawerIndicatorEnabled(true);
+            drawerToggle.setToolbarNavigationClickListener(null);
+            toolBarNavigationListenerIsRegistered = false;
+            drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        }
+    }
+
+    private boolean isNotOnWeatherScreen() {
+        return getSupportFragmentManager().findFragmentByTag(WeatherFragment.TAG) == null;
+    }
+
+    private void navigateToWeatherScreen() {
+        if (isNotOnWeatherScreen()) {
+            showBackButton(false);
+            replaceFragment(WeatherFragment.newInstance(), FRAGMENT_CONTAINER);
+        }
+    }
+
+    private void navigateToLocationScreen() {
+        showBackButton(true);
+        replaceFragment(LocationFragment.newInstance(), FRAGMENT_CONTAINER);
+    }
+
+    private void navigateToAboutScreen() {
+        showBackButton(true);
+        replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER);
     }
 }
