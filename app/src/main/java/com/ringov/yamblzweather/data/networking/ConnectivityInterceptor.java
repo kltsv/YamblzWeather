@@ -5,7 +5,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
-import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.domain.exceptions.NoInternetConnectionException;
 
 import java.io.IOException;
@@ -15,6 +14,12 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class ConnectivityInterceptor implements Interceptor {
+
+    private Context context;
+
+    public ConnectivityInterceptor(Context context) {
+        this.context = context;
+    }
 
     /**
      * Check if device has internet connection and throw corresponding exception
@@ -29,7 +34,7 @@ public class ConnectivityInterceptor implements Interceptor {
     }
 
     private boolean isOnline() {
-        ConnectivityManager connectivityManager = (ConnectivityManager) App.getContext()
+        ConnectivityManager connectivityManager = (ConnectivityManager) context
                 .getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
         return (netInfo != null && netInfo.isConnected());

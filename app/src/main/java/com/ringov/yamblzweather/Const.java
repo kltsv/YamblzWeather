@@ -1,8 +1,8 @@
 package com.ringov.yamblzweather;
 
-public final class Config {
+public final class Const {
 
-    private Config() {
+    private Const() {
     }
 
     public static final int TIMEOUT = 5000;

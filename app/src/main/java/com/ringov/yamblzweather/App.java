@@ -1,8 +1,6 @@
 package com.ringov.yamblzweather;
 
-import android.annotation.SuppressLint;
 import android.app.Application;
-import android.content.Context;
 
 import com.ringov.yamblzweather.dagger.component.AppComponent;
 import com.ringov.yamblzweather.dagger.component.DaggerAppComponent;
@@ -14,13 +12,6 @@ import com.squareup.leakcanary.LeakCanary;
 import timber.log.Timber;
 
 public class App extends Application {
-
-    @SuppressLint("StaticFieldLeak")
-    private static Context context;
-
-    public static Context getContext() {
-        return context;
-    }
 
     public static AppComponent getComponent() {
         return component;
@@ -36,7 +27,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this.getApplicationContext();
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return;

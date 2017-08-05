@@ -2,7 +2,7 @@ package com.ringov.yamblzweather.data.networking;
 
 import android.support.annotation.NonNull;
 
-import com.ringov.yamblzweather.Config;
+import com.ringov.yamblzweather.Const;
 
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ public class BaseInterceptor implements Interceptor {
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request request = chain.request();
         HttpUrl newUrl = request.url().newBuilder()
-                .addQueryParameter(Config.API.KEY_FIELD, Config.API.KEY)
+                .addQueryParameter(Const.API.KEY_FIELD, Const.API.KEY)
                 .build();
         Request newRequest = request.newBuilder().url(newUrl).build();
         return chain.proceed(newRequest);

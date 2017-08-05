@@ -9,8 +9,7 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
 
-import com.ringov.yamblzweather.App;
-import com.ringov.yamblzweather.Config;
+import com.ringov.yamblzweather.Const;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.data.database.entity.DBCity;
 import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
@@ -97,14 +96,14 @@ public class AppDatabaseCreator {
      */
     private void checkIsFirstLaunch(Context context) {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        final String KEY = Config.PREFS_KEYS.FIRST_LAUNCH;
+        final String KEY = Const.PREFS_KEYS.FIRST_LAUNCH;
         boolean firstLaunch = sharedPrefs.getBoolean(KEY, true);
 
         if (firstLaunch) {
             // Populate Cities table with pre filled data
-            readDataFromRaw();
+            readDataFromRaw(context);
             // Select default city
-            DBCity dbCity = mDb.cityDAO().getById(Config.DEFAULT_CITY_ID);
+            DBCity dbCity = mDb.cityDAO().getById(Const.DEFAULT_CITY_ID);
             DBFavoriteCity dbFavoriteCity =
                     new DBFavoriteCity(dbCity.getCity_name(), dbCity.getCity_id(), 1);
             mDb.favoriteCityDAO().insert(dbFavoriteCity);
@@ -115,12 +114,12 @@ public class AppDatabaseCreator {
         }
     }
 
-    private void readDataFromRaw() {
+    private void readDataFromRaw(Context context) {
         ArrayList<DBCity> cities = new ArrayList<>();
 
         // Read two string from text files (City names and city ids)
-        String namesStr = fromRawToString(R.raw.name);
-        String idsStr = fromRawToString(R.raw.id);
+        String namesStr = fromRawToString(context, R.raw.name);
+        String idsStr = fromRawToString(context, R.raw.id);
 
         // Convert string to array
         String[] nameArray = namesStr.split(",");
@@ -137,11 +136,11 @@ public class AppDatabaseCreator {
     }
 
     // Helper method that reads text file from Raw resources and returns its content as a String
-    private static String fromRawToString(@RawRes int resId) {
+    private static String fromRawToString(Context context, @RawRes int resId) {
         String output = "";
 
         try {
-            InputStream inputStream = App.getContext().getResources().openRawResource(resId);
+            InputStream inputStream = context.getResources().openRawResource(resId);
 
             if (inputStream != null) {
                 InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
