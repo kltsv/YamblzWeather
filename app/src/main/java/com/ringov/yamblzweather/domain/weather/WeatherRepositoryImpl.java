@@ -16,6 +16,8 @@ import io.reactivex.Single;
 
 public class WeatherRepositoryImpl implements WeatherRepository {
 
+    // TODO Complete methods
+
     private WeatherDAO weatherDAO;
     private FavoriteCityDAO favoriteCityDAO;
     private WeatherAPI weatherAPI;

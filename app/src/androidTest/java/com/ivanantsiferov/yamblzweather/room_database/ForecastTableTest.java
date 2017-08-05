@@ -17,6 +17,7 @@ import org.junit.runner.RunWith;
 import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class ForecastTableTest {
@@ -70,5 +71,13 @@ public class ForecastTableTest {
 
         assertEquals(moscowTomorrowMock.getPressure(), moscowTomorrowDb.getPressure());
         assertEquals(moscowTomorrowMock.getWindSpeed(), moscowTomorrowDb.getWindSpeed());
+    }
+
+    @Test
+    public void removeAllFromDb() {
+        List<DBWeather> all = weatherDAO.getAll();
+        assertTrue(!all.isEmpty());
+        weatherDAO.deleteAll(all);
+        assertEquals(0, weatherDAO.getAll().size());
     }
 }
