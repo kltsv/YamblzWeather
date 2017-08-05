@@ -3,8 +3,6 @@ package com.ringov.yamblzweather.domain.repository.weather;
 import android.support.annotation.AnyThread;
 import android.support.annotation.WorkerThread;
 
-import com.ringov.yamblzweather.dagger.SchedulerEnum;
-import com.ringov.yamblzweather.dagger.SchedulerType;
 import com.ringov.yamblzweather.data.database.dao.FavoriteCityDAO;
 import com.ringov.yamblzweather.data.database.dao.WeatherDAO;
 import com.ringov.yamblzweather.data.database.entity.DBWeather;
@@ -22,6 +20,7 @@ import javax.inject.Inject;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
+import timber.log.Timber;
 
 public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepository {
 
@@ -34,9 +33,7 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
 
     @Inject
     public WeatherRepositoryImpl(
-            @SchedulerType(scheduler = SchedulerEnum.Main) Scheduler schedulerUI,
-            @SchedulerType(scheduler = SchedulerEnum.IO) Scheduler schedulerIO,
-            @SchedulerType(scheduler = SchedulerEnum.Computation) Scheduler schedulerComputation,
+            Scheduler schedulerUI, Scheduler schedulerIO, Scheduler schedulerComputation,
             WeatherDAO weatherDAO, FavoriteCityDAO favoriteCityDAO, WeatherAPI weatherAPI
     ) {
         super(schedulerUI, schedulerIO, schedulerComputation);
@@ -50,7 +47,8 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
      */
     @Override
     public Single<UIWeatherDetail> getWeather(long time) {
-        return Single.just(weatherDAO.getWeather(getCurrentCityId(), time))
+        return getCurrentCityId()
+                .flatMap(cityId -> Single.fromCallable(() -> weatherDAO.getWeather(cityId, time)))
                 .map(Mapper::DBWeather_to_UIWeatherDetail)
                 .subscribeOn(schedulerComputation)
                 .observeOn(schedulerUI);
@@ -67,6 +65,7 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
         return getFromCache()
                 .filter(weatherList -> weatherList.size() >= 7)
                 .switchIfEmpty(getFromAPI().toMaybe())
+                .observeOn(schedulerComputation)
                 .toSingle()
                 .map(Mapper::DBtoUI)
                 .subscribeOn(schedulerComputation)
@@ -75,7 +74,12 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
 
     @WorkerThread
     private Single<List<DBWeather>> getFromAPI() {
-        return weatherAPI.getForecast(getCurrentCityId())
+        return getCurrentCityId()
+                .flatMap(cityId -> weatherAPI.getForecast(cityId))
+                .map(forecastResponse -> {
+                    Timber.d(forecastResponse.getForecast().size() + "");
+                    return forecastResponse;
+                })
                 .map(Mapper::APItoDB)
                 .doOnSuccess(this::saveCache)
                 .subscribeOn(schedulerIO)
@@ -84,15 +88,17 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
 
     @WorkerThread
     private Single<List<DBWeather>> getFromCache() {
-        return Single.just(weatherDAO.getForecast(getCurrentCityId(), getCurrentTime()))
+        return getCurrentCityId()
+                .flatMap(cityId ->
+                        Single.fromCallable(() -> weatherDAO.getForecast(cityId, getCurrentTime())))
                 .doOnSubscribe(disposable -> clearOldCache())
                 .observeOn(schedulerComputation)
                 .subscribeOn(schedulerComputation);
     }
 
     @WorkerThread
-    private int getCurrentCityId() {
-        return favoriteCityDAO.getEnabled().getCity_id();
+    private Single<Integer> getCurrentCityId() {
+        return Single.fromCallable(() -> favoriteCityDAO.getEnabled().getCity_id());
     }
 
     @AnyThread

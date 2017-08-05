@@ -1,4 +1,5 @@
-package com.ringov.yamblzweather.data.networking.data;
+
+package com.ringov.yamblzweather.data.networking.entity;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -49,4 +50,5 @@ public class Weather {
     public void setIcon(String icon) {
         this.icon = icon;
     }
+
 }

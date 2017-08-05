@@ -10,9 +10,9 @@ import com.ringov.yamblzweather.data.database.entity.DBWeather;
 
 import java.util.List;
 
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CITY_ID;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_TIME;
-import static com.ringov.yamblzweather.data.database.Contract.TABLE_FORECAST;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_TIME;
+import static com.ringov.yamblzweather.data.database.DBContract.TABLE_FORECAST;
 
 @Dao
 public interface WeatherDAO {

@@ -1,21 +1,20 @@
 package com.ringov.yamblzweather.data.networking;
 
-import com.ringov.yamblzweather.data.networking.data.ForecastResponse;
-import com.ringov.yamblzweather.data.networking.data.ResponseWeather;
+import com.ringov.yamblzweather.data.networking.entity.ForecastResponse;
 
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
+import static com.ringov.yamblzweather.data.networking.APIContract.ENDPOINT_DAILY;
+import static com.ringov.yamblzweather.data.networking.APIContract.ENDPOINT_FORECAST;
+import static com.ringov.yamblzweather.data.networking.APIContract.PARAM_CITY_ID;
+
 public interface WeatherAPI {
 
-    @GET("weather")
-    Single<ResponseWeather> getWeather(@Query("id") int cityId);
+    @GET(ENDPOINT_FORECAST)
+    Single<ForecastResponse> getForecast(@Query(PARAM_CITY_ID) int cityId);
 
-    @GET("forecast")
-    Single<ForecastResponse> getForecast(@Query("id") int cityId);
-
-    @GET("forecast/daily")
-    Single<ForecastResponse> getDailyForecast(@Query("id") int cityId);
+    @GET(ENDPOINT_DAILY)
+    Single<ForecastResponse> getDailyForecast(@Query(PARAM_CITY_ID) int cityId);
 }

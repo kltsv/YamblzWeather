@@ -17,6 +17,7 @@ public class App extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Context context;
+
     public static Context getContext() {
         return context;
     }
@@ -25,8 +26,8 @@ public class App extends Application {
         return component;
     }
     private static AppComponent component;
-    private AppComponent buildComponent() {
-        return DaggerAppComponent.builder()
+    public void buildComponent() {
+        component = DaggerAppComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .databaseModule(new DatabaseModule(AppDatabaseCreator.getInstance().getDatabase()))
                 .build();
@@ -45,7 +46,5 @@ public class App extends Application {
         Timber.plant(new Timber.DebugTree());
 
         AppDatabaseCreator.getInstance().createDb(this);
-
-        component = buildComponent();
     }
 }

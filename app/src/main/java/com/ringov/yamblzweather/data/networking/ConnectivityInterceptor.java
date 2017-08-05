@@ -16,6 +16,9 @@ import okhttp3.Response;
 
 public class ConnectivityInterceptor implements Interceptor {
 
+    /**
+     * Check if device has internet connection and throw corresponding exception
+     */
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         if (!isOnline()) {

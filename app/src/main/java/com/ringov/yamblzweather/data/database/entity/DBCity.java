@@ -4,10 +4,10 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CITY_ID;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CITY_NAME;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_ID;
-import static com.ringov.yamblzweather.data.database.Contract.TABLE_CITIES;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_NAME;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.TABLE_CITIES;
 
 @Entity(tableName = TABLE_CITIES)
 public class DBCity {

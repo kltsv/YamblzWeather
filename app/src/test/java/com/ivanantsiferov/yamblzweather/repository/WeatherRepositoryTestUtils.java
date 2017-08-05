@@ -1,9 +1,8 @@
 package com.ivanantsiferov.yamblzweather.repository;
 
 import com.ringov.yamblzweather.data.database.entity.DBWeather;
-import com.ringov.yamblzweather.data.networking.data.ForecastResponse;
-import com.ringov.yamblzweather.data.networking.data.ResponseWeather;
-import com.ringov.yamblzweather.domain.repository.weather.WeatherRepository;
+import com.ringov.yamblzweather.data.networking.entity.ForecastResponse;
+import com.ringov.yamblzweather.data.networking.entity.ResponseWeather;
 
 import java.util.ArrayList;
 import java.util.List;

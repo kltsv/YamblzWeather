@@ -9,9 +9,9 @@ import com.ringov.yamblzweather.data.database.entity.DBCity;
 
 import java.util.List;
 
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CITY_ID;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CITY_NAME;
-import static com.ringov.yamblzweather.data.database.Contract.TABLE_CITIES;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_NAME;
+import static com.ringov.yamblzweather.data.database.DBContract.TABLE_CITIES;
 
 @Dao
 public interface CityDAO {

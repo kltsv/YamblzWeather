@@ -13,6 +13,9 @@ import okhttp3.Response;
 
 public class BaseInterceptor implements Interceptor {
 
+    /**
+     * Add api key to each HTTP request params
+     */
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request request = chain.request();

@@ -131,6 +131,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:3.8.1"
 
     // rx
     compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"

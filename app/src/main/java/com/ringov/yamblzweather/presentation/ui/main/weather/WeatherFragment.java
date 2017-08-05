@@ -10,10 +10,13 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.base.BaseFragment;
+import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
+import timber.log.Timber;
 
 public class WeatherFragment extends BaseFragment<WeatherViewModel> {
 
@@ -52,7 +55,7 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
 
     @Override
     protected void attachInputListeners() {
-
+        getViewModel().observe(this, this::showLoading, this::showForecast, this::showError);
 
         // Listen for swipe to refresh
         disposables.add(
@@ -62,12 +65,16 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
         );
     }
 
+    private void showForecast(List<UIWeatherList> forecast) {
+        weatherAdapter.replace(forecast);
+    }
+
     private void showLoading(boolean isLoading) {
         swipeLayout.setRefreshing(isLoading);
     }
 
     private void showError(Throwable error) {
-        error.printStackTrace();
+        Timber.e(error);
         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }

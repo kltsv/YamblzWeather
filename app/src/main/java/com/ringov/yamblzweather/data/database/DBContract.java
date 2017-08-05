@@ -3,9 +3,9 @@ package com.ringov.yamblzweather.data.database;
 /**
  * Constants for AppDatabase
  */
-public final class Contract {
+public final class DBContract {
 
-    private Contract() {
+    private DBContract() {
     }
 
     public static final String DATABASE_NAME = "weather";

@@ -1,8 +1,8 @@
 package com.ringov.yamblzweather.domain;
 
 import com.ringov.yamblzweather.data.database.entity.DBWeather;
-import com.ringov.yamblzweather.data.networking.data.ForecastResponse;
-import com.ringov.yamblzweather.data.networking.data.ResponseWeather;
+import com.ringov.yamblzweather.data.networking.entity.ForecastResponse;
+import com.ringov.yamblzweather.data.networking.entity.ResponseWeather;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 import com.ringov.yamblzweather.presentation.entity.WeatherCondition;
@@ -15,9 +15,9 @@ public final class Mapper {
     private Mapper() {
     }
 
-    public static DBWeather APItoDB(ResponseWeather responseWeather) {
+    public static DBWeather APItoDB(ResponseWeather responseWeather, int cityId) {
         return new DBWeather(
-                responseWeather.getId(),
+                cityId,
                 responseWeather.getDt(),
                 responseWeather.getMain().getTemp(),
                 responseWeather.getWeather().get(0).getId(),
@@ -31,8 +31,9 @@ public final class Mapper {
     public static List<DBWeather> APItoDB(ForecastResponse forecastResponse) {
         List<DBWeather> weather = new ArrayList<>();
 
+        int cityId = forecastResponse.getCity().getId();
         for (ResponseWeather response : forecastResponse.getForecast())
-            weather.add(APItoDB(response));
+            weather.add(APItoDB(response, cityId));
 
         return weather;
     }

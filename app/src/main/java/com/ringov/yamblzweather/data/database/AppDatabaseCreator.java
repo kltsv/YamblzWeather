@@ -13,6 +13,7 @@ import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.Config;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.data.database.entity.DBCity;
+import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -78,7 +79,7 @@ public class AppDatabaseCreator {
         Completable.fromCallable(() -> {
             // Build the database
             mDb = Room
-                    .databaseBuilder(context.getApplicationContext(), AppDatabase.class, Contract.DATABASE_NAME)
+                    .databaseBuilder(context.getApplicationContext(), AppDatabase.class, DBContract.DATABASE_NAME)
                     .build();
 
             checkIsFirstLaunch(context);
@@ -100,8 +101,13 @@ public class AppDatabaseCreator {
         boolean firstLaunch = sharedPrefs.getBoolean(KEY, true);
 
         if (firstLaunch) {
-            // Populate DB with pre filled data
+            // Populate Cities table with pre filled data
             readDataFromRaw();
+            // Select default city
+            DBCity dbCity = mDb.cityDAO().getById(Config.DEFAULT_CITY_ID);
+            DBFavoriteCity dbFavoriteCity =
+                    new DBFavoriteCity(dbCity.getCity_name(), dbCity.getCity_id(), 1);
+            mDb.favoriteCityDAO().insert(dbFavoriteCity);
             // Set first launch to false
             SharedPreferences.Editor editor = sharedPrefs.edit();
             editor.putBoolean(KEY, false);

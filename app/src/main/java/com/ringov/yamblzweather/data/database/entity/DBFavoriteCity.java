@@ -4,11 +4,11 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CITY_ID;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CITY_NAME;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_ENABLED;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_ID;
-import static com.ringov.yamblzweather.data.database.Contract.TABLE_FAVORITE_CITIES;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_NAME;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_ENABLED;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.TABLE_FAVORITE_CITIES;
 
 @Entity(tableName = TABLE_FAVORITE_CITIES)
 public class DBFavoriteCity {

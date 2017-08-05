@@ -8,6 +8,7 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
+import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
 import com.ringov.yamblzweather.presentation.base.BaseActivity;
@@ -58,6 +59,10 @@ public class SplashActivity extends BaseActivity {
 
     private void onDatabaseLoaded(boolean loaded) {
         if (loaded) {
+            // Build dagger module after DB initialization to avoid NPE
+            App app = (App) getApplication();
+            app.buildComponent();
+            // Open main and finish splash activity
             startActivity(new Intent(this, MainActivity.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             finish();

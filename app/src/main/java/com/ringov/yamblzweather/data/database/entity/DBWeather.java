@@ -4,16 +4,16 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CITY_ID;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_CONDITION;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_HUMIDITY;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_ID;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_PRESSURE;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_TEMPERATURE;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_TIME;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_WIND_DEGREE;
-import static com.ringov.yamblzweather.data.database.Contract.COLUMN_WIND_SPEED;
-import static com.ringov.yamblzweather.data.database.Contract.TABLE_FORECAST;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CONDITION;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_HUMIDITY;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_PRESSURE;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_TEMPERATURE;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_TIME;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_WIND_DEGREE;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_WIND_SPEED;
+import static com.ringov.yamblzweather.data.database.DBContract.TABLE_FORECAST;
 
 @Entity(tableName = TABLE_FORECAST)
 public class DBWeather {

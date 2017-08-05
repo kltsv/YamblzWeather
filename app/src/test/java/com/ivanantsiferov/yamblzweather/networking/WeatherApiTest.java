@@ -1,4 +1,4 @@
-package com.ivanantsiferov.yamblzweather;
+package com.ivanantsiferov.yamblzweather.networking;
 
 import com.ringov.yamblzweather.BuildConfig;
 import com.ringov.yamblzweather.Config;
@@ -41,12 +41,6 @@ public class WeatherApiTest {
                 .build();
 
         weatherAPI = retrofit.create(WeatherAPI.class);
-    }
-
-    @Test
-    public void getWeather() {
-        weatherAPI.getWeather(CITY_ID)
-                .subscribe((responseWeather, throwable) -> assertTrue(responseWeather.getName().equals("Moscow")));
     }
 
     @Test
