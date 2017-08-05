@@ -5,7 +5,7 @@ import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class FavoriteCityTableTestUtil {
+final class FavoriteCityTableTestUtil {
 
     private FavoriteCityTableTestUtil() {
     }

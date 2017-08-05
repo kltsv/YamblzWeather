@@ -3,6 +3,7 @@ package com.ringov.yamblzweather.presentation.base;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
@@ -27,6 +28,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Lifecycl
     protected abstract int getLayout();
 
     @Override
+    @CallSuper
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayout());
@@ -38,12 +40,14 @@ public abstract class BaseActivity extends AppCompatActivity implements Lifecycl
     }
 
     @Override
+    @CallSuper
     protected void onStart() {
         super.onStart();
         attachInputListeners();
     }
 
     @Override
+    @CallSuper
     protected void onStop() {
         super.onStop();
         disposables.clear();
