@@ -12,7 +12,6 @@
     <string name="navigation_drawer_close">Закрыто боковое меню</string>
 
     <!-- Weather fragment -->
-    <string name="wthr_right_now">Только что</string>
     <string name="wthr_swipe_to_update">потяните, чтобы обновить</string>
 
     <!-- Weather conditions -->

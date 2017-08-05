@@ -19,7 +19,15 @@
         android:layout_toEndOf="@id/im_condition" />
 
     <TextView
-        android:id="@+id/tv_temperature"
+        android:id="@+id/tv_temp_max"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/item_weather_side_margin"
+        android:layout_toStartOf="@+id/tv_temp_min" />
+
+    <TextView
+        android:id="@+id/tv_temp_min"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

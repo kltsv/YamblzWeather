@@ -26,7 +26,8 @@ public final class DBContract {
 
     // Weather entity
     public static final String COLUMN_TIME = "time";
-    public static final String COLUMN_TEMPERATURE = "temperature";
+    public static final String COLUMN_TEMP_MAX = "temperature_max";
+    public static final String COLUMN_TEMP_MIN = "temperature_min";
     public static final String COLUMN_CONDITION = "condition";
     public static final String COLUMN_HUMIDITY = "humidity";
     public static final String COLUMN_PRESSURE = "pressure";

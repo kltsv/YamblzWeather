@@ -19,12 +19,13 @@ public final class Mapper {
         return new DBWeather(
                 cityId,
                 responseWeather.getDt(),
-                responseWeather.getMain().getTemp(),
+                responseWeather.getTemp().getMax(),
+                responseWeather.getTemp().getMin(),
                 responseWeather.getWeather().get(0).getId(),
-                responseWeather.getMain().getHumidity(),
-                responseWeather.getMain().getPressure(),
-                responseWeather.getWind().getSpeed(),
-                responseWeather.getWind().getDeg()
+                responseWeather.getHumidity(),
+                responseWeather.getPressure(),
+                responseWeather.getSpeed(),
+                responseWeather.getDeg()
         );
     }
 
@@ -41,7 +42,8 @@ public final class Mapper {
     public static UIWeatherList DBtoUI(DBWeather weather) {
         return new UIWeatherList.Builder()
                 .time(weather.getTime())
-                .temperature(weather.getTemperature())
+                .tempMax(weather.getTempMax())
+                .tempMin(weather.getTempMin())
                 .condition(getConditionById(weather.getCondition()))
                 .build();
     }
@@ -60,7 +62,8 @@ public final class Mapper {
                 .condition(getConditionById(dbWeather.getCondition()))
                 .humidity(dbWeather.getHumidity())
                 .pressure(dbWeather.getPressure())
-                .temperature(dbWeather.getTemperature())
+                .tempMin(dbWeather.getTempMin())
+                .tempMax(dbWeather.getTempMax())
                 .time(dbWeather.getTime())
                 .windDegree(dbWeather.getWindDegree())
                 .windSpeed(dbWeather.getWindSpeed())

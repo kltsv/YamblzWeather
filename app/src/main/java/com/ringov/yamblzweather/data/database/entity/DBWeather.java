@@ -9,7 +9,8 @@ import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CONDITION
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_HUMIDITY;
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_ID;
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_PRESSURE;
-import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_TEMPERATURE;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_TEMP_MAX;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_TEMP_MIN;
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_TIME;
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_WIND_DEGREE;
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_WIND_SPEED;
@@ -28,8 +29,11 @@ public class DBWeather {
     @ColumnInfo(name = COLUMN_TIME)
     private long time;
 
-    @ColumnInfo(name = COLUMN_TEMPERATURE)
-    private float temperature;
+    @ColumnInfo(name = COLUMN_TEMP_MAX)
+    private float tempMax;
+
+    @ColumnInfo(name = COLUMN_TEMP_MIN)
+    private float tempMin;
 
     @ColumnInfo(name = COLUMN_CONDITION)
     private int condition;
@@ -46,12 +50,11 @@ public class DBWeather {
     @ColumnInfo(name = COLUMN_WIND_DEGREE)
     private float windDegree;
 
-    public DBWeather(int cityId, long time, float temperature, int condition,
-                     int humidity, float pressure, float windSpeed, float windDegree
-    ) {
+    public DBWeather(int cityId, long time, float tempMax, float tempMin, int condition, int humidity, float pressure, float windSpeed, float windDegree) {
         this.cityId = cityId;
         this.time = time;
-        this.temperature = temperature;
+        this.tempMax = tempMax;
+        this.tempMin = tempMin;
         this.condition = condition;
         this.humidity = humidity;
         this.pressure = pressure;
@@ -75,8 +78,12 @@ public class DBWeather {
         return time;
     }
 
-    public float getTemperature() {
-        return temperature;
+    public float getTempMax() {
+        return tempMax;
+    }
+
+    public float getTempMin() {
+        return tempMin;
     }
 
     public int getCondition() {

@@ -9,31 +9,59 @@ public class ResponseWeather {
 
     @SerializedName("dt")
     @Expose
-    private long dt;
-    @SerializedName("main")
+    private int dt;
+    @SerializedName("temp")
     @Expose
-    private Main main;
+    private Temp temp;
+    @SerializedName("pressure")
+    @Expose
+    private float pressure;
+    @SerializedName("humidity")
+    @Expose
+    private int humidity;
     @SerializedName("weather")
     @Expose
     private List<Weather> weather = null;
-    @SerializedName("wind")
+    @SerializedName("speed")
     @Expose
-    private Wind wind;
+    private float speed;
+    @SerializedName("deg")
+    @Expose
+    private int deg;
+    @SerializedName("clouds")
+    @Expose
+    private int clouds;
 
-    public long getDt() {
+    public int getDt() {
         return dt;
     }
 
-    public void setDt(long dt) {
+    public void setDt(int dt) {
         this.dt = dt;
     }
 
-    public Main getMain() {
-        return main;
+    public Temp getTemp() {
+        return temp;
     }
 
-    public void setMain(Main main) {
-        this.main = main;
+    public void setTemp(Temp temp) {
+        this.temp = temp;
+    }
+
+    public float getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(float pressure) {
+        this.pressure = pressure;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
     }
 
     public List<Weather> getWeather() {
@@ -44,11 +72,27 @@ public class ResponseWeather {
         this.weather = weather;
     }
 
-    public Wind getWind() {
-        return wind;
+    public float getSpeed() {
+        return speed;
     }
 
-    public void setWind(Wind wind) {
-        this.wind = wind;
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
+
+    public int getDeg() {
+        return deg;
+    }
+
+    public void setDeg(int deg) {
+        this.deg = deg;
+    }
+
+    public int getClouds() {
+        return clouds;
+    }
+
+    public void setClouds(int clouds) {
+        this.clouds = clouds;
     }
 }

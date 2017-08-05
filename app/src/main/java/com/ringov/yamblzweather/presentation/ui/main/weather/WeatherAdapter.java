@@ -34,8 +34,10 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherI
         ImageView conditionImageView;
         @BindView(R.id.tv_date)
         TextView dateTextView;
-        @BindView(R.id.tv_temperature)
-        TextView temperatureTextView;
+        @BindView(R.id.tv_temp_max)
+        TextView tempMaxTextView;
+        @BindView(R.id.tv_temp_min)
+        TextView tempMinTextView;
 
         public WeatherItemVH(final View itemView) {
             super(itemView);
@@ -55,8 +57,11 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherI
     public void onBindViewHolder(WeatherItemVH holder, int position) {
         UIWeatherList item = items.get(position);
 
-        holder.dateTextView.setText(UIUtils.getRelativeTime(context, item.getTime()));
-        holder.temperatureTextView.setText(UIUtils.getFormattedTemperature(context, item.getTemperature()));
+        holder.dateTextView.setText(UIUtils.getFormattedTime(context, item.getTime()));
+        float tempMax = UIUtils.kelvinToCelsius(item.getTempMax());
+        holder.tempMaxTextView.setText(UIUtils.getFormattedTemperature(context, tempMax));
+        float tempMin = UIUtils.kelvinToCelsius(item.getTempMin());
+        holder.tempMinTextView.setText(UIUtils.getFormattedTemperature(context, tempMin));
         Glide.with(holder.itemView.getContext())
                 .load(item.getCondition().getConditionImage())
                 .into(holder.conditionImageView);

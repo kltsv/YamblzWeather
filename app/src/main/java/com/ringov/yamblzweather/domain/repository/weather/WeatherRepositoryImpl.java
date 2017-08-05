@@ -20,7 +20,6 @@ import javax.inject.Inject;
 
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import timber.log.Timber;
 
 public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepository {
 
@@ -75,11 +74,7 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
     @WorkerThread
     private Single<List<DBWeather>> getFromAPI() {
         return getCurrentCityId()
-                .flatMap(cityId -> weatherAPI.getForecast(cityId))
-                .map(forecastResponse -> {
-                    Timber.d(forecastResponse.getForecast().size() + "");
-                    return forecastResponse;
-                })
+                .flatMap(cityId -> weatherAPI.getDailyForecast(cityId))
                 .map(Mapper::APItoDB)
                 .doOnSuccess(this::saveCache)
                 .subscribeOn(schedulerIO)

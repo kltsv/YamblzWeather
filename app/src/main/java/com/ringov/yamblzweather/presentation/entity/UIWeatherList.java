@@ -3,15 +3,20 @@ package com.ringov.yamblzweather.presentation.entity;
 public class UIWeatherList {
 
     private WeatherCondition condition;
-    private float temperature;
+    private float tempMax;
+    private float tempMin;
     private long time;
 
     public WeatherCondition getCondition() {
         return condition;
     }
 
-    public float getTemperature() {
-        return temperature;
+    public float getTempMax() {
+        return tempMax;
+    }
+
+    public float getTempMin() {
+        return tempMin;
     }
 
     public long getTime() {
@@ -31,8 +36,13 @@ public class UIWeatherList {
             return this;
         }
 
-        public Builder temperature(float t) {
-            weather.temperature = t;
+        public Builder tempMax(float t) {
+            weather.tempMax = t;
+            return this;
+        }
+
+        public Builder tempMin(float t) {
+            weather.tempMin = t;
             return this;
         }
 
