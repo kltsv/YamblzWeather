@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="160dp"
+    android:layout_height="@dimen/drawer_header_height"
     android:background="@color/colorPrimary">
 
-    <TextView
-        android:id="@+id/tv_temperature"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|center_vertical|end"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:textSize="36sp"
-        tools:text="@string/wthr_temperature" />
+        android:layout_gravity="center_vertical|end">
+
+        <TextView
+            android:id="@+id/tv_temp_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tv_temp_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_temp_max"
+            android:textColor="@android:color/white" />
+
+    </RelativeLayout>
 
     <ImageView
         android:id="@+id/drawer_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="-56dp"
-        android:layout_marginTop="-56dp"
+        android:layout_gravity="start"
+        android:layout_marginStart="@dimen/drawer_header_image_offset"
+        android:layout_marginTop="@dimen/drawer_header_image_offset"
         app:srcCompat="@drawable/im_clear" />
-
-    <TextView
-        android:id="@+id/tv_conditions"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="right|center_vertical|end"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginTop="48dp"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        tools:text="Cloudy" />
 
 </FrameLayout>

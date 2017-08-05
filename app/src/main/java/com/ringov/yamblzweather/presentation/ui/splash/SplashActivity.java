@@ -11,17 +11,22 @@ import android.widget.ImageView;
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
-import com.ringov.yamblzweather.presentation.base.BaseActivity;
+import com.ringov.yamblzweather.presentation.base.BaseMvvmActivity;
 import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
 
 import butterknife.BindView;
 
-public class SplashActivity extends BaseActivity {
+public class SplashActivity extends BaseMvvmActivity<SplashViewModel> {
 
     @BindView(R.id.im_logo)
     ImageView logoImageView;
 
     RotateAnimation rotateAnimation;
+
+    @Override
+    protected Class<SplashViewModel> getViewModelClass() {
+        return SplashViewModel.class;
+    }
 
     @Override
     protected int getLayout() {

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Navigation drawer -->
+    <dimen name="drawer_header_height">160dp</dimen>
+    <dimen name="drawer_header_image_offset">-56dp</dimen>
+
     <!-- Forecast items -->
     <dimen name="item_weather_height">40dp</dimen>
     <dimen name="item_weather_image_size">24dp</dimen>

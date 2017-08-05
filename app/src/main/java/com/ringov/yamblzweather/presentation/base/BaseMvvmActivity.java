@@ -3,24 +3,32 @@ package com.ringov.yamblzweather.presentation.base;
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
 import android.support.annotation.CallSuper;
+import android.support.annotation.Nullable;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-public abstract class BaseMvvmFragment<VM extends BaseViewModel>
-        extends BaseFragment implements LifecycleRegistryOwner {
+public abstract class BaseMvvmActivity<VM extends BaseViewModel>
+        extends BaseActivity implements LifecycleRegistryOwner {
 
     private VM viewModel;
 
-    protected CompositeDisposable disposables = new CompositeDisposable();
-
     protected abstract Class<VM> getViewModelClass();
 
-    private final LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
+    protected CompositeDisposable disposables = new CompositeDisposable();
+
+    private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
 
     @Override
     public LifecycleRegistry getLifecycle() {
-        return mLifecycleRegistry;
+        return mRegistry;
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        viewModel = ViewModelProviders.of(this).get(getViewModelClass());
     }
 
     // Subscribe for user input events in this method
@@ -29,16 +37,14 @@ public abstract class BaseMvvmFragment<VM extends BaseViewModel>
 
     @Override
     @CallSuper
-    public void onStart() {
+    protected void onStart() {
         super.onStart();
-        // Order matters
-        viewModel = ViewModelProviders.of(this).get(getViewModelClass());
         attachInputListeners();
     }
 
     @Override
     @CallSuper
-    public void onStop() {
+    protected void onStop() {
         super.onStop();
         disposables.clear();
     }
