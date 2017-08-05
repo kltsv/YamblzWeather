@@ -7,7 +7,7 @@ import com.ringov.yamblzweather.data.database.dao.FavoriteCityDAO;
 import com.ringov.yamblzweather.data.database.dao.WeatherDAO;
 import com.ringov.yamblzweather.data.database.entity.DBWeather;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
-import com.ringov.yamblzweather.domain.BaseRepository;
+import com.ringov.yamblzweather.domain.repository.BaseRepository;
 import com.ringov.yamblzweather.domain.Mapper;
 import com.ringov.yamblzweather.domain.exceptions.EmptyForecastException;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;

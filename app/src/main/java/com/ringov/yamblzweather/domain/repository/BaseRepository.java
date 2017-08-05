@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.domain;
+package com.ringov.yamblzweather.domain.repository;
 
 import io.reactivex.Scheduler;
 
