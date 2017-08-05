@@ -63,7 +63,7 @@ public class AppDatabaseTest {
     public void getForecastForFavoriteCity() {
         DBFavoriteCity favoriteCity = favoriteCityDAO.getEnabled();
         List<DBWeather> forecast =
-                weatherDAO.getForecast(favoriteCity.getCity_id(), System.currentTimeMillis());
+                weatherDAO.getForecast(favoriteCity.getCity_id());
         assertTrue(forecast.size() > 0);
         assertEquals(favoriteCity.getCity_id(), forecast.get(0).getCityId());
     }

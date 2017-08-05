@@ -52,13 +52,13 @@ public class ForecastTableTest {
         DBWeather moscowCurrentMock = ForecastTableTestUtil.MoscowCurrent();
         DBWeather moscowCurrentDb = weatherDAO.getCurrentWeather(524901);
 
-        assertEquals(moscowCurrentMock.getTemperature(), moscowCurrentDb.getTemperature());
+        assertEquals(moscowCurrentMock.getHumidity(), moscowCurrentDb.getHumidity());
         assertEquals(moscowCurrentMock.getCondition(), moscowCurrentDb.getCondition());
 
         DBWeather kievCurrentMock = ForecastTableTestUtil.KievCurrent();
         DBWeather kievCurrentDb = weatherDAO.getCurrentWeather(703448);
 
-        assertEquals(kievCurrentMock.getTemperature(), kievCurrentDb.getTemperature());
+        assertEquals(kievCurrentMock.getTempMax(), kievCurrentDb.getTempMax());
         assertEquals(kievCurrentMock.getHumidity(), kievCurrentDb.getHumidity());
 
         long time = kievCurrentDb.getTime();
@@ -70,10 +70,10 @@ public class ForecastTableTest {
 
     @Test
     public void forecastQuery() {
-        List<DBWeather> forecast = weatherDAO.getForecast(524901, System.currentTimeMillis());
+        List<DBWeather> forecast = weatherDAO.getForecast(524901);
 
         DBWeather moscowTomorrowMock = ForecastTableTestUtil.MoscowTomorrow();
-        DBWeather moscowTomorrowDb = forecast.get(0);
+        DBWeather moscowTomorrowDb = forecast.get(1);
 
         assertEquals(moscowTomorrowMock.getPressure(), moscowTomorrowDb.getPressure());
         assertEquals(moscowTomorrowMock.getWindSpeed(), moscowTomorrowDb.getWindSpeed());

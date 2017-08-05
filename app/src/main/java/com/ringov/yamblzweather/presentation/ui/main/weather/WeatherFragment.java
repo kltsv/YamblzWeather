@@ -3,6 +3,7 @@ package com.ringov.yamblzweather.presentation.ui.main.weather;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
@@ -49,6 +50,10 @@ public class WeatherFragment extends BaseFragment<WeatherViewModel> {
 
         weatherAdapter = new WeatherAdapter(getContext(), new ArrayList<>());
 
+        RecyclerView.ItemDecoration itemDecoration = new
+                DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+
+        forecastRecycler.addItemDecoration(itemDecoration);
         forecastRecycler.setHasFixedSize(true);
         forecastRecycler.setAdapter(weatherAdapter);
     }

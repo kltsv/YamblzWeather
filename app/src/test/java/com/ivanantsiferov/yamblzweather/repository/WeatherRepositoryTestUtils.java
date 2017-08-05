@@ -13,7 +13,7 @@ final class WeatherRepositoryTestUtils {
     }
 
     static DBWeather dbWeather() {
-        return new DBWeather(0, 0, 0, 0, 0, 0, 0, 0);
+        return new DBWeather(0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 
     static List<DBWeather> dbWeatherList(int size) {

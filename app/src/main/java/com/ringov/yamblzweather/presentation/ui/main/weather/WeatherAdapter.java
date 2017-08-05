@@ -5,8 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.ringov.yamblzweather.R;
@@ -15,10 +13,10 @@ import com.ringov.yamblzweather.presentation.ui.UIUtils;
 
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+public class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
 
-public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherItemVH> {
+    private static final int TODAY_TYPE = 0;
+    private static final int LIST_TYPE = 1;
 
     private List<UIWeatherList> items;
     private Context context;
@@ -28,29 +26,17 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherI
         this.items = items;
     }
 
-    public static class WeatherItemVH extends RecyclerView.ViewHolder {
-
-        @BindView(R.id.im_condition)
-        ImageView conditionImageView;
-        @BindView(R.id.tv_date)
-        TextView dateTextView;
-        @BindView(R.id.tv_temp_max)
-        TextView tempMaxTextView;
-        @BindView(R.id.tv_temp_min)
-        TextView tempMinTextView;
-
-        public WeatherItemVH(final View itemView) {
-            super(itemView);
-            ButterKnife.bind(this, itemView);
-        }
-    }
-
     @Override
     public WeatherItemVH onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.item_weather, parent, false);
-        return new WeatherItemVH(view);
+        if (viewType == TODAY_TYPE) {
+            View view = inflater.inflate(R.layout.item_weather_today, parent, false);
+            return new WeatherItemTodayVH(view);
+        } else {
+            View view = inflater.inflate(R.layout.item_weather, parent, false);
+            return new WeatherItemVH(view);
+        }
     }
 
     @Override
@@ -65,11 +51,25 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.WeatherI
         Glide.with(holder.itemView.getContext())
                 .load(item.getCondition().getConditionImage())
                 .into(holder.conditionImageView);
+
+        if (holder instanceof WeatherItemTodayVH) {
+            WeatherItemTodayVH h = (WeatherItemTodayVH) holder;
+            h.conditionTextView.setText(item.getCondition().getFriendlyName());
+        }
     }
 
     @Override
     public int getItemCount() {
         return items.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (position == 0) {
+            return TODAY_TYPE;
+        } else {
+            return LIST_TYPE;
+        }
     }
 
     public void replace(List<UIWeatherList> items) {

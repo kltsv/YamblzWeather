@@ -51,7 +51,7 @@ public class WeatherRepositoryTest {
 
         when(weatherDAO.getWeather(CITY_ID, System.currentTimeMillis()))
                 .thenReturn(WeatherRepositoryTestUtils.dbWeather());
-        when(weatherDAO.getForecast(CITY_ID, System.currentTimeMillis()))
+        when(weatherDAO.getForecast(CITY_ID))
                 .thenReturn(WeatherRepositoryTestUtils.dbWeatherList(7));
         when(weatherDAO.getByCiyId(CITY_ID))
                 .thenReturn(WeatherRepositoryTestUtils.dbWeatherList(1));

@@ -28,7 +28,8 @@ final class ForecastTableTestUtil {
                 76,
                 700,
                 3.4f,
-                234.8f
+                234.8f,
+                20f
         );
     }
 
@@ -41,7 +42,8 @@ final class ForecastTableTestUtil {
                 78,
                 756,
                 3.9f,
-                135.2f
+                135.2f,
+                34f
         );
     }
 
@@ -54,7 +56,8 @@ final class ForecastTableTestUtil {
                 71,
                 734,
                 6.1f,
-                178.4f
+                178.4f,
+                90f
         );
     }
 }
