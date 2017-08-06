@@ -3,7 +3,6 @@ package com.ivanantsiferov.yamblzweather.networking;
 import com.ringov.yamblzweather.BuildConfig;
 import com.ringov.yamblzweather.Const;
 import com.ringov.yamblzweather.data.networking.BaseInterceptor;
-import com.ringov.yamblzweather.data.networking.ConnectivityInterceptor;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
 
 import org.junit.Before;
@@ -28,7 +27,6 @@ public class WeatherApiTest {
     public void prepare() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new BaseInterceptor())
-                .addInterceptor(new ConnectivityInterceptor())
                 .readTimeout(Const.TIMEOUT, TimeUnit.MILLISECONDS)
                 .connectTimeout(Const.TIMEOUT, TimeUnit.MILLISECONDS)
                 .build();

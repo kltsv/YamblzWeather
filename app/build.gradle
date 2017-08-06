@@ -126,6 +126,7 @@ dependencies {
     compile "com.google.dagger:dagger-android:$daggerVersion"
     compile "com.google.dagger:dagger-android-support:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     // retrofit 2
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
