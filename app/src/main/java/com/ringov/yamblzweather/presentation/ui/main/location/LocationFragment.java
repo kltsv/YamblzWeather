@@ -1,5 +1,7 @@
 package com.ringov.yamblzweather.presentation.ui.main.location;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,21 +16,27 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding2.widget.RxAutoCompleteTextView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.ringov.yamblzweather.R;
+import com.ringov.yamblzweather.dagger.Injectable;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class LocationFragment extends BaseMvvmFragment<LocationViewModel> {
+public class LocationFragment extends BaseMvvmFragment<LocationViewModel> implements Injectable {
 
     public static final String TAG = "LocationFragment";
 
     public static LocationFragment newInstance() {
         return new LocationFragment();
     }
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     @Override
     protected int getLayout() {
@@ -55,6 +63,11 @@ public class LocationFragment extends BaseMvvmFragment<LocationViewModel> {
         super.onStop();
 
         closeSoftKeyboard();
+    }
+
+    @Override
+    protected void onViewModelAttach() {
+        viewModel =  ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
     }
 
     @Override

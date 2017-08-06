@@ -1,27 +1,26 @@
 package com.ringov.yamblzweather;
 
+import android.app.Activity;
 import android.app.Application;
 
-import com.ringov.yamblzweather.dagger.component.AppComponent;
-import com.ringov.yamblzweather.dagger.component.DaggerAppComponent;
-import com.ringov.yamblzweather.dagger.module.ApplicationModule;
-import com.ringov.yamblzweather.dagger.module.DatabaseModule;
+import com.ringov.yamblzweather.dagger.AppInjector;
 import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
 import com.squareup.leakcanary.LeakCanary;
 
+import javax.inject.Inject;
+
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
 import timber.log.Timber;
 
-public class App extends Application {
+public class App extends Application implements HasActivityInjector {
 
-    public static AppComponent getComponent() {
-        return component;
-    }
-    private static AppComponent component;
-    public void buildComponent() {
-        component = DaggerAppComponent.builder()
-                .applicationModule(new ApplicationModule(this))
-                .databaseModule(new DatabaseModule(AppDatabaseCreator.getInstance().getDatabase()))
-                .build();
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+
+    @Override
+    public DispatchingAndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 
     @Override
@@ -36,5 +35,9 @@ public class App extends Application {
         Timber.plant(new Timber.DebugTree());
 
         AppDatabaseCreator.getInstance().createDb(this);
+    }
+
+    public void initDagger() {
+        AppInjector.init(this);
     }
 }

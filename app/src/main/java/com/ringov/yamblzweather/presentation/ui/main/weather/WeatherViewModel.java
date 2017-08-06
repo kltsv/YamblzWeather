@@ -22,11 +22,12 @@ public class WeatherViewModel extends BaseViewModel {
     private BaseLiveData<Throwable> errorData = new BaseLiveData<>();
     //private BaseLiveData<String> cityData = new BaseLiveData<>();
 
-    @Inject
-    WeatherRepository weatherRepository;
+    private WeatherRepository weatherRepository;
 
-    public WeatherViewModel() {
-        App.getComponent().inject(this);
+    @Inject
+    public WeatherViewModel(WeatherRepository weatherRepo) {
+        this.weatherRepository = weatherRepo;
+
         disposables.add(
                 weatherRepository
                         .getForecast()

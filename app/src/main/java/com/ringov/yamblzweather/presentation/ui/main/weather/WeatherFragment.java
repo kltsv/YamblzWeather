@@ -1,5 +1,7 @@
 package com.ringov.yamblzweather.presentation.ui.main.weather;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,22 +12,28 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ringov.yamblzweather.R;
+import com.ringov.yamblzweather.dagger.Injectable;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import timber.log.Timber;
 
-public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
+public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> implements Injectable {
 
     public static final String TAG = "WeatherFragment";
 
     public static WeatherFragment newInstance() {
         return new WeatherFragment();
     }
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     @Override
     protected Class<WeatherViewModel> getViewModelClass() {
@@ -68,6 +76,11 @@ public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
                         .refreshes(swipeLayout)
                         .subscribe(o -> getViewModel().onRefresh())
         );
+    }
+
+    @Override
+    protected void onViewModelAttach() {
+        viewModel =  ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
     }
 
     private void showForecast(List<UIWeatherList> forecast) {

@@ -2,15 +2,16 @@ package com.ringov.yamblzweather.presentation.base;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
-import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
 import android.support.annotation.CallSuper;
+import android.support.annotation.Nullable;
 
 import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseMvvmFragment<VM extends BaseViewModel>
         extends BaseFragment implements LifecycleRegistryOwner {
 
-    private VM viewModel;
+    protected VM viewModel;
 
     protected CompositeDisposable disposables = new CompositeDisposable();
 
@@ -24,15 +25,21 @@ public abstract class BaseMvvmFragment<VM extends BaseViewModel>
     }
 
     // Subscribe for user input events in this method
+    protected abstract void onViewModelAttach();
+
     protected void attachInputListeners() {
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        onViewModelAttach();
     }
 
     @Override
     @CallSuper
     public void onStart() {
         super.onStart();
-        // Order matters
-        viewModel = ViewModelProviders.of(this).get(getViewModelClass());
         attachInputListeners();
     }
 

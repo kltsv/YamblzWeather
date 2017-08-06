@@ -1,5 +1,8 @@
 package com.ringov.yamblzweather.presentation.ui.splash;
 
+import android.arch.lifecycle.LifecycleRegistry;
+import android.arch.lifecycle.LifecycleRegistryOwner;
+import android.arch.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,22 +13,28 @@ import android.widget.ImageView;
 
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
+import com.ringov.yamblzweather.dagger.Injectable;
 import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
+import com.ringov.yamblzweather.presentation.base.BaseActivity;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmActivity;
 import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 
-public class SplashActivity extends BaseMvvmActivity<SplashViewModel> {
+public class SplashActivity extends BaseActivity implements LifecycleRegistryOwner {
 
     @BindView(R.id.im_logo)
     ImageView logoImageView;
 
     RotateAnimation rotateAnimation;
 
+    private final LifecycleRegistry mRegistry = new LifecycleRegistry(this);
+
     @Override
-    protected Class<SplashViewModel> getViewModelClass() {
-        return SplashViewModel.class;
+    public LifecycleRegistry getLifecycle() {
+        return mRegistry;
     }
 
     @Override
@@ -66,7 +75,7 @@ public class SplashActivity extends BaseMvvmActivity<SplashViewModel> {
         if (loaded) {
             // Build dagger module after DB initialization to avoid NPE
             App app = (App) getApplication();
-            app.buildComponent();
+            app.initDagger();
             // Open main and finish splash activity
             startActivity(new Intent(this, MainActivity.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

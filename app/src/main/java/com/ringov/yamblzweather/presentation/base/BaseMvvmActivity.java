@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 
+import com.ringov.yamblzweather.dagger.Injectable;
+
 import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseMvvmActivity<VM extends BaseViewModel>
-        extends BaseActivity implements LifecycleRegistryOwner {
+        extends BaseActivity implements LifecycleRegistryOwner, Injectable {
 
     private VM viewModel;
 
