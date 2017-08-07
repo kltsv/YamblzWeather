@@ -27,7 +27,7 @@ public class WeatherViewModel extends BaseViewModel {
     private WeatherRepository weatherRepository;
 
     @Inject
-    public WeatherViewModel(Router router, WeatherRepository weatherRepo) {
+    WeatherViewModel(Router router, WeatherRepository weatherRepo) {
         this.router = router;
         this.weatherRepository = weatherRepo;
 
@@ -62,6 +62,6 @@ public class WeatherViewModel extends BaseViewModel {
     }
 
     void openWeatherDetails(UIWeatherList weather) {
-        router.execute(new CommandOpenWeatherDetails(weather.getTime(), weather.getCityId()));
+        router.execute(new CommandOpenWeatherDetails(weather.getTime()));
     }
 }

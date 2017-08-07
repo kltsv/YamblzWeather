@@ -6,18 +6,11 @@ public class CommandOpenWeatherDetails extends Command {
 
     private final long time;
 
-    private final int cityId;
-
-    public CommandOpenWeatherDetails(long time, int cityId) {
+    public CommandOpenWeatherDetails(long time) {
         this.time = time;
-        this.cityId = cityId;
     }
 
     public long getTime() {
         return time;
-    }
-
-    public int getCityId() {
-        return cityId;
     }
 }

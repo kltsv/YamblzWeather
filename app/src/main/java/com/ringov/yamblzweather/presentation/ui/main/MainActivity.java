@@ -219,15 +219,12 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     private boolean openDetailsScreen(Command command) {
         CommandOpenWeatherDetails c = (CommandOpenWeatherDetails) command;
         long time = c.getTime();
-        int cityId = c.getCityId();
 
         if (twoPaneMode) {
-            replaceFragment(DetailsFragment.newInstance(time, cityId), FRAGMENT_DETAILS_CONTAINER);
-            // TODO replace right fragment with details fragment
+            replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_DETAILS_CONTAINER);
         } else {
             Intent intent = new Intent(this, DetailsActivity.class);
             intent.putExtra(DetailsActivity.ARG_TIME, time);
-            intent.putExtra(DetailsActivity.ARG_CITY_ID, cityId);
             startActivity(intent);
         }
 

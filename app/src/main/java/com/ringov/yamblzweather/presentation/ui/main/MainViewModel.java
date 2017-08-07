@@ -13,7 +13,7 @@ public class MainViewModel extends BaseViewModel {
     private Router router;
 
     @Inject
-    public MainViewModel(Router router) {
+    MainViewModel(Router router) {
         this.router = router;
     }
 

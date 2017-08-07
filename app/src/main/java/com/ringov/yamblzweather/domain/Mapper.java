@@ -15,7 +15,7 @@ public final class Mapper {
     private Mapper() {
     }
 
-    public static DBWeather APItoDB(ResponseWeather responseWeather, int cityId) {
+    private static DBWeather APItoDB(ResponseWeather responseWeather, int cityId) {
         return new DBWeather(
                 cityId,
                 responseWeather.getDt(),
@@ -39,13 +39,12 @@ public final class Mapper {
         return weather;
     }
 
-    public static UIWeatherList DBtoUI(DBWeather weather) {
+    private static UIWeatherList DBtoUI(DBWeather weather) {
         return new UIWeatherList.Builder()
                 .time(weather.getTime())
                 .tempMax(weather.getTempMax())
                 .tempMin(weather.getTempMin())
                 .condition(getConditionById(weather.getCondition()))
-                .cityId(weather.getCityId())
                 .build();
     }
 

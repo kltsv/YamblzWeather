@@ -18,7 +18,7 @@ public class LocationViewModel extends BaseViewModel {
     private BaseLiveData<String> cityData = new BaseLiveData<>();
 
     @Inject
-    public LocationViewModel() {
+    LocationViewModel() {
         /*disposables.add(
                 repository
                         .getLocation()

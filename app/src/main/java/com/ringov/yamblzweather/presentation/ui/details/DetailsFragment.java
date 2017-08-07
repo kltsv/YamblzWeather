@@ -14,16 +14,14 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     public static final String TAG = "DetailsFragment";
 
     private static final String ARG_TIME = "ARG_TIME";
-    private static final String ARG_CITY_ID = "ARG_CITY_ID";
 
-    public static DetailsFragment newInstance(long time, int cityId) {
-        if (time == -1 || cityId == -1)
+    public static DetailsFragment newInstance(long time) {
+        if (time == -1)
             throw new IllegalArgumentException("Trying to create instance with wrong arguments");
 
         DetailsFragment fragment = new DetailsFragment();
         Bundle args = new Bundle();
         args.putLong(ARG_TIME, time);
-        args.putInt(ARG_CITY_ID, cityId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -35,8 +33,7 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     protected void onViewModelAttach() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
         long time = getArguments().getLong(ARG_TIME);
-        int cityId = getArguments().getInt(ARG_CITY_ID);
-        viewModel.showWeatherFor(time, cityId);
+        viewModel.showWeatherFor(time);
     }
 
     @Override

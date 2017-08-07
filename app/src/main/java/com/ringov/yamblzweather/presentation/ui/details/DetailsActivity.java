@@ -19,7 +19,6 @@ import dagger.android.support.HasSupportFragmentInjector;
 public class DetailsActivity extends BaseActivity implements HasSupportFragmentInjector {
 
     public final static String ARG_TIME = "ARG_TIME";
-    public final static String ARG_CITY_ID = "ARG_CITY_ID";
 
     @Override
     public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
@@ -48,8 +47,7 @@ public class DetailsActivity extends BaseActivity implements HasSupportFragmentI
 
         if (savedInstanceState == null) {
             long time = getIntent().getLongExtra(ARG_TIME, -1);
-            int cityId = getIntent().getIntExtra(ARG_CITY_ID, -1);
-            replaceFragment(DetailsFragment.newInstance(time, cityId), FRAGMENT_CONTAINER);
+            replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_CONTAINER);
         }
     }
 
