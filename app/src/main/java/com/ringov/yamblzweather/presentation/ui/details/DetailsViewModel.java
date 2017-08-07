@@ -37,12 +37,14 @@ public class DetailsViewModel extends BaseViewModel {
     // View callbacks
     void showWeatherFor(long time) {
         disposables.add(
-                weatherRepository.getWeather(time)
-                        .subscribe(uiWeatherDetail -> {
-
-                        }, throwable -> {
-
-                        })
+                weatherRepository
+                        .getWeather(time)
+                        .doOnSubscribe(d -> loadingData.updateValue(true))
+                        .doFinally(() -> loadingData.updateValue(false))
+                        .subscribe(
+                                uiWeatherDetail -> weatherData.updateValue(uiWeatherDetail),
+                                throwable -> errorData.updateValue(throwable)
+                        )
         );
     }
 }

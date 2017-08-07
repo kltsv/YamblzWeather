@@ -26,11 +26,11 @@ public abstract class BaseMvvmFragment<VM extends BaseViewModel>
         return mLifecycleRegistry;
     }
 
+    // Get instance of ViewModel in this method and pass arguments to it if needed
     protected abstract void onViewModelAttach();
 
     // Subscribe for user input events in this method
-    protected void attachInputListeners() {
-    }
+    protected abstract void attachInputListeners();
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

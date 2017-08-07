@@ -3,11 +3,19 @@ package com.ringov.yamblzweather.presentation.ui.details;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
+import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
 
 public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
 
@@ -26,8 +34,25 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
         return fragment;
     }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.fragment_details;
+    }
+
+    @Override
+    protected Class<DetailsViewModel> getViewModelClass() {
+        return DetailsViewModel.class;
+    }
+
     @Inject
     ViewModelProvider.Factory viewModelFactory;
+
+    @BindView(R.id.progress_bar)
+    ProgressBar progressBar;
+    @BindView(R.id.tv_error)
+    TextView errorTextView;
+    @BindView(R.id.im_condition)
+    ImageView conditionImageView;
 
     @Override
     protected void onViewModelAttach() {
@@ -37,12 +62,26 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     }
 
     @Override
-    protected int getLayout() {
-        return R.layout.fragment_details;
+    protected void attachInputListeners() {
+        viewModel.observe(this, this::showLoading, this::showError, this::showWeatherDetails);
     }
 
-    @Override
-    protected Class<DetailsViewModel> getViewModelClass() {
-        return DetailsViewModel.class;
+
+    private void showLoading(boolean loading) {
+        if (loading)
+            progressBar.setVisibility(View.VISIBLE);
+        else
+            progressBar.setVisibility(View.GONE);
+    }
+
+    private void showError(Throwable error) {
+        errorTextView.setText(error.getMessage());
+        errorTextView.setVisibility(View.VISIBLE);
+    }
+
+    private void showWeatherDetails(UIWeatherDetail weather) {
+        Glide.with(getContext())
+                .load(weather.getCondition().getConditionImage())
+                .into(conditionImageView);
     }
 }
