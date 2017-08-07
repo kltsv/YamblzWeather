@@ -38,7 +38,7 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
 
     @Override
     protected int getLayout() {
-        return R.layout.details_fragment;
+        return R.layout.fragment_details;
     }
 
     @Override

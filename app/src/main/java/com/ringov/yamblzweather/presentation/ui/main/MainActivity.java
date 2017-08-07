@@ -37,6 +37,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
+import timber.log.Timber;
 
 public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         NavigationView.OnNavigationItemSelectedListener,
@@ -219,7 +220,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     private boolean openDetailsScreen(Command command) {
         CommandOpenWeatherDetails c = (CommandOpenWeatherDetails) command;
         long time = c.getTime();
-
+        Timber.d("Open weather details, two pane = " + twoPaneMode);
         if (twoPaneMode) {
             replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_DETAILS_CONTAINER);
         } else {
