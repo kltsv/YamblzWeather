@@ -34,8 +34,7 @@ public abstract class BaseMvvmActivity<VM extends BaseViewModel>
     }
 
     // Subscribe for user input events in this method
-    protected void attachInputListeners() {
-    }
+    protected abstract void attachInputListeners();
 
     protected abstract void onViewModelAttach();
 

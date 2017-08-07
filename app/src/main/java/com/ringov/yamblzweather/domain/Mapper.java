@@ -6,6 +6,7 @@ import com.ringov.yamblzweather.data.networking.entity.ResponseWeather;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 import com.ringov.yamblzweather.presentation.entity.WeatherCondition;
+import com.ringov.yamblzweather.presentation.entity.WindDirection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,11 +66,12 @@ public final class Mapper {
                 .tempMin(dbWeather.getTempMin())
                 .tempMax(dbWeather.getTempMax())
                 .time(dbWeather.getTime())
-                .windDegree(dbWeather.getWindDegree())
+                .windDirection(getWindDirectionByDegrees(dbWeather.getWindDegree()))
                 .windSpeed(dbWeather.getWindSpeed())
                 .build();
     }
 
+    // Enum converters
     private static WeatherCondition getConditionById(int weatherId) {
         if (weatherId >= 200 && weatherId <= 232) {
             return WeatherCondition.Storm;
@@ -95,6 +97,28 @@ public final class Mapper {
             return WeatherCondition.Cloudy;
         } else {
             return WeatherCondition.Other;
+        }
+    }
+
+    private static WindDirection getWindDirectionByDegrees(float degrees) {
+        if (degrees >= 337.5 || degrees < 22.5) {
+            return WindDirection.North;
+        } else if (degrees >= 22.5 && degrees < 67.5) {
+            return WindDirection.NorthEast;
+        } else if (degrees >= 67.5 && degrees < 112.5) {
+            return WindDirection.East;
+        } else if (degrees >= 112.5 && degrees < 157.5) {
+            return WindDirection.SouthEast;
+        } else if (degrees >= 157.5 && degrees < 202.5) {
+            return WindDirection.South;
+        } else if (degrees >= 202.5 && degrees < 247.5) {
+            return WindDirection.SouthWest;
+        } else if (degrees >= 247.5 && degrees < 292.5) {
+            return WindDirection.West;
+        } else if (degrees >= 292.5 && degrees < 337.5) {
+            return WindDirection.NorthWest;
+        } else {
+            throw new IllegalArgumentException("Trying to get wind direction with wrong arguments");
         }
     }
 }

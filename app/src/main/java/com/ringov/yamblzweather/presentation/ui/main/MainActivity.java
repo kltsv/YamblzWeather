@@ -86,11 +86,6 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     }
 
     @Override
-    protected void onViewModelAttach() {
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
-    }
-
-    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeToolbar();
@@ -156,6 +151,14 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
         else return false;
     }
+
+    @Override
+    protected void onViewModelAttach() {
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
+    }
+
+    @Override
+    protected void attachInputListeners() {}
 
     private void initializeToolbar() {
         setSupportActionBar(toolbar);

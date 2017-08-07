@@ -14,6 +14,16 @@
     <!-- Weather fragment -->
     <string name="wthr_swipe_to_update">потяните, чтобы обновить</string>
 
+    <!-- Weather details fragment -->
+    <string name="wthr_dtls_wind_direction_north">С</string>
+    <string name="wthr_dtls_wind_direction_north_east">СВ</string>
+    <string name="wthr_dtls_wind_direction_east">В</string>
+    <string name="wthr_dtls_wind_direction_south_east">ЮВ</string>
+    <string name="wthr_dtls_wind_direction_south">Ю</string>
+    <string name="wthr_dtls_wind_direction_south_west">ЮЗ</string>
+    <string name="wthr_dtls_wind_direction_west">З</string>
+    <string name="wthr_dtls_wind_direction_north_west">СЗ</string>
+
     <!-- Weather conditions -->
     <string name="cond_storm">Шторм</string>
     <string name="cond_light_rain">Легкий дождь</string>

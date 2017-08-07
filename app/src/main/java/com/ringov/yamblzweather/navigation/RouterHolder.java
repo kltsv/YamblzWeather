@@ -1,5 +1,8 @@
 package com.ringov.yamblzweather.navigation;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+
 import com.ringov.yamblzweather.navigation.base.Command;
 import com.ringov.yamblzweather.navigation.base.Navigator;
 import com.ringov.yamblzweather.navigation.base.NavigatorBinder;
@@ -20,6 +23,7 @@ public class RouterHolder implements Router, NavigatorBinder {
 
     private PublishSubject<Command> commandsFeed;
 
+    @Nullable
     private Navigator navigator;
 
     private ArrayList<Command> commandsQueue;
@@ -41,13 +45,13 @@ public class RouterHolder implements Router, NavigatorBinder {
 
     // Router
     @Override
-    public void execute(Command command) {
+    public void execute(@NonNull Command command) {
         commandsFeed.onNext(command);
     }
 
     // NavigatorBinder
     @Override
-    public void setNavigator(Navigator navigator) {
+    public void setNavigator(@NonNull Navigator navigator) {
         this.navigator = navigator;
         commandsFeed.onNext(new CommandNavigatorAttached());
     }

@@ -9,7 +9,7 @@ public class UIWeatherDetail {
     private int humidity;
     private float pressure;
     private float windSpeed;
-    private float windDegree;
+    private WindDirection windDirection;
 
     public WeatherCondition getCondition() {
         return condition;
@@ -39,8 +39,8 @@ public class UIWeatherDetail {
         return windSpeed;
     }
 
-    public float getWindDegree() {
-        return windDegree;
+    public WindDirection getWindDirection() {
+        return windDirection;
     }
 
     public static class Builder {
@@ -86,8 +86,8 @@ public class UIWeatherDetail {
             return this;
         }
 
-        public Builder windDegree(float windDegree) {
-            weather.windDegree = windDegree;
+        public Builder windDirection(WindDirection windDirection) {
+            weather.windDirection = windDirection;
             return this;
         }
 

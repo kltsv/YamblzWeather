@@ -17,6 +17,16 @@
     <string name="wthr_temperature" translatable="false">%.0f°</string>
     <string name="wthr_notification_message" translatable="false">%1$s, %2$s</string>
 
+    <!-- Weather details fragment -->
+    <string name="wthr_dtls_wind_direction_north">N</string>
+    <string name="wthr_dtls_wind_direction_north_east">NE</string>
+    <string name="wthr_dtls_wind_direction_east">E</string>
+    <string name="wthr_dtls_wind_direction_south_east">SE</string>
+    <string name="wthr_dtls_wind_direction_south">S</string>
+    <string name="wthr_dtls_wind_direction_south_west">SW</string>
+    <string name="wthr_dtls_wind_direction_west">W</string>
+    <string name="wthr_dtls_wind_direction_north_west">NW</string>
+
     <!-- Weather conditions -->
     <string name="cond_storm">Storm</string>
     <string name="cond_light_rain">Light rain</string>
