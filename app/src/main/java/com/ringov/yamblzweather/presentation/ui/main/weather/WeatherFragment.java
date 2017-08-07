@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.dagger.Injectable;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
@@ -24,7 +23,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import timber.log.Timber;
 
-public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> implements Injectable {
+public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
 
     public static final String TAG = "WeatherFragment";
 
@@ -76,11 +75,23 @@ public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> implemen
                         .refreshes(swipeLayout)
                         .subscribe(o -> getViewModel().onRefresh())
         );
+
+        // Listen for item clicks
+        disposables.add(
+                weatherAdapter.getOnItemClickObservable()
+                        .subscribe(item -> viewModel.openWeatherDetails(item))
+        );
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        weatherAdapter.destroy();
     }
 
     @Override
     protected void onViewModelAttach() {
-        viewModel =  ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
     }
 
     private void showForecast(List<UIWeatherList> forecast) {

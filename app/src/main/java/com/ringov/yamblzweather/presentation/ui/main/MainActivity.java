@@ -1,5 +1,8 @@
 package com.ringov.yamblzweather.presentation.ui.main;
 
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -11,9 +14,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.presentation.base.BaseActivity;
+import com.ringov.yamblzweather.navigation.base.Command;
+import com.ringov.yamblzweather.navigation.base.Navigator;
+import com.ringov.yamblzweather.navigation.base.NavigatorBinder;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenAboutScreen;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenLocationScreen;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherDetails;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherScreen;
+import com.ringov.yamblzweather.presentation.base.BaseMvvmActivity;
+import com.ringov.yamblzweather.presentation.ui.details.DetailsActivity;
+import com.ringov.yamblzweather.presentation.ui.details.DetailsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
 import com.ringov.yamblzweather.presentation.ui.main.location.LocationFragment;
 import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherFragment;
@@ -21,15 +34,28 @@ import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherFragment;
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener,
-        HasSupportFragmentInjector {
+public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
+        NavigationView.OnNavigationItemSelectedListener,
+        HasSupportFragmentInjector,
+        Navigator {
+
+    @Override
+    protected Class<MainViewModel> getViewModelClass() {
+        return MainViewModel.class;
+    }
+
+    @Inject
+    ViewModelProvider.Factory viewModelFactory;
 
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
+
+    @Inject
+    NavigatorBinder navigatorBinder;
 
     @Override
     public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
@@ -38,6 +64,8 @@ public class MainActivity extends BaseActivity
 
     @IdRes
     private static final int FRAGMENT_CONTAINER = R.id.container;
+    @IdRes
+    private static final int FRAGMENT_DETAILS_CONTAINER = R.id.details_container;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -49,6 +77,7 @@ public class MainActivity extends BaseActivity
     private ActionBarDrawerToggle drawerToggle;
 
     private boolean toolBarNavigationListenerIsRegistered = false;
+    private boolean twoPaneMode = false;
 
     @Override
     protected int getLayout() {
@@ -56,10 +85,19 @@ public class MainActivity extends BaseActivity
     }
 
     @Override
+    protected void onViewModelAttach() {
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
+    }
+
+    @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeToolbar();
         initializeDrawer();
+
+        FrameLayout detailsContainer = ButterKnife.findById(this, R.id.details_container);
+        if (detailsContainer != null)
+            twoPaneMode = true;
 
         if (savedInstanceState == null) {
             navigateToWeatherScreen();
@@ -83,18 +121,39 @@ public class MainActivity extends BaseActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_weather:
-                navigateToWeatherScreen();
+                viewModel.onWeatherNavigation();
                 break;
             case R.id.nav_location:
-                navigateToLocationScreen();
+                viewModel.onLocationNavigation();
                 break;
             case R.id.nav_about:
-                navigateToAboutScreen();
+                viewModel.onAboutNavigation();
                 break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        navigatorBinder.setNavigator(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        navigatorBinder.removeNavigator();
+    }
+
+    @Override
+    public boolean executeCommand(Command command) {
+        if (command instanceof CommandOpenWeatherDetails) return openDetailsScreen(command);
+        else if (command instanceof CommandOpenWeatherScreen) return navigateToWeatherScreen();
+        else if (command instanceof CommandOpenLocationScreen) return navigateToLocationScreen();
+        else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
+        else return false;
     }
 
     private void initializeToolbar() {
@@ -132,24 +191,46 @@ public class MainActivity extends BaseActivity
         }
     }
 
+    // Navigation helper methods
     private boolean isNotOnWeatherScreen() {
         return getSupportFragmentManager().findFragmentByTag(WeatherFragment.TAG) == null;
     }
 
-    private void navigateToWeatherScreen() {
+    private boolean navigateToWeatherScreen() {
         if (isNotOnWeatherScreen()) {
             showBackButton(false);
             replaceFragment(WeatherFragment.newInstance(), FRAGMENT_CONTAINER);
         }
+        return true;
     }
 
-    private void navigateToLocationScreen() {
+    private boolean navigateToLocationScreen() {
         showBackButton(true);
         replaceFragment(LocationFragment.newInstance(), FRAGMENT_CONTAINER);
+        return true;
     }
 
-    private void navigateToAboutScreen() {
+    private boolean navigateToAboutScreen() {
         showBackButton(true);
         replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER);
+        return true;
+    }
+
+    private boolean openDetailsScreen(Command command) {
+        CommandOpenWeatherDetails c = (CommandOpenWeatherDetails) command;
+        long time = c.getTime();
+        int cityId = c.getCityId();
+
+        if (twoPaneMode) {
+            replaceFragment(DetailsFragment.newInstance(time, cityId), FRAGMENT_DETAILS_CONTAINER);
+            // TODO replace right fragment with details fragment
+        } else {
+            Intent intent = new Intent(this, DetailsActivity.class);
+            intent.putExtra(DetailsActivity.ARG_TIME, time);
+            intent.putExtra(DetailsActivity.ARG_CITY_ID, cityId);
+            startActivity(intent);
+        }
+
+        return true;
     }
 }

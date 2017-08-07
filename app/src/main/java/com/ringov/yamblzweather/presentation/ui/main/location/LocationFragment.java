@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.jakewharton.rxbinding2.widget.RxAutoCompleteTextView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.dagger.Injectable;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 
 import java.util.List;
@@ -27,7 +26,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class LocationFragment extends BaseMvvmFragment<LocationViewModel> implements Injectable {
+public class LocationFragment extends BaseMvvmFragment<LocationViewModel> {
 
     public static final String TAG = "LocationFragment";
 

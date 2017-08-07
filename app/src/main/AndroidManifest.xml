@@ -26,7 +26,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.ui.main.MainActivity" />
+        <activity
+            android:name=".presentation.ui.main.MainActivity"
+            android:theme="@style/AppTheme.MainScreen" />
+
+        <activity
+            android:name=".presentation.ui.details.DetailsActivity"
+            android:theme="@style/AppTheme.WeatherDetails" />
 
     </application>
 

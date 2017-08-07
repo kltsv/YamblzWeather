@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.Nullable;
 
+import com.ringov.yamblzweather.dagger.Injectable;
+
 import io.reactivex.disposables.CompositeDisposable;
 
 public abstract class BaseMvvmFragment<VM extends BaseViewModel>
-        extends BaseFragment implements LifecycleRegistryOwner {
+        extends BaseFragment implements LifecycleRegistryOwner, Injectable {
 
     protected VM viewModel;
 
@@ -24,9 +26,9 @@ public abstract class BaseMvvmFragment<VM extends BaseViewModel>
         return mLifecycleRegistry;
     }
 
-    // Subscribe for user input events in this method
     protected abstract void onViewModelAttach();
 
+    // Subscribe for user input events in this method
     protected void attachInputListeners() {
     }
 

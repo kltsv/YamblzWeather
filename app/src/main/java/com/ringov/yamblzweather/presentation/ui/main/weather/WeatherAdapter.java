@@ -7,11 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.jakewharton.rxbinding2.view.RxView;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 import com.ringov.yamblzweather.presentation.ui.UIUtils;
 
 import java.util.List;
+
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.subjects.PublishSubject;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
 
@@ -20,6 +25,16 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
 
     private List<UIWeatherList> items;
     private Context context;
+
+    private PublishSubject<UIWeatherList> onItemClickSubject = PublishSubject.create();
+    public Observable<UIWeatherList> getOnItemClickObservable() {
+        return onItemClickSubject;
+    }
+
+    private CompositeDisposable disposables = new CompositeDisposable();
+    public void destroy() {
+        disposables.clear();
+    }
 
     public WeatherAdapter(Context context, List<UIWeatherList> items) {
         this.context = context;
@@ -56,6 +71,9 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
             WeatherItemTodayVH h = (WeatherItemTodayVH) holder;
             h.conditionTextView.setText(item.getCondition().getFriendlyName());
         }
+
+        disposables.add(
+                RxView.clicks(holder.itemView).subscribe(o -> onItemClickSubject.onNext(item)));
     }
 
     @Override

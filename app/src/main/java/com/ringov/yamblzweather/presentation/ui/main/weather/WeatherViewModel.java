@@ -3,8 +3,9 @@ package com.ringov.yamblzweather.presentation.ui.main.weather;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 
-import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.domain.repository.weather.WeatherRepository;
+import com.ringov.yamblzweather.navigation.base.Router;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherDetails;
 import com.ringov.yamblzweather.presentation.base.BaseLiveData;
 import com.ringov.yamblzweather.presentation.base.BaseViewModel;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
@@ -22,10 +23,12 @@ public class WeatherViewModel extends BaseViewModel {
     private BaseLiveData<Throwable> errorData = new BaseLiveData<>();
     //private BaseLiveData<String> cityData = new BaseLiveData<>();
 
+    private Router router;
     private WeatherRepository weatherRepository;
 
     @Inject
-    public WeatherViewModel(WeatherRepository weatherRepo) {
+    public WeatherViewModel(Router router, WeatherRepository weatherRepo) {
+        this.router = router;
         this.weatherRepository = weatherRepo;
 
         disposables.add(
@@ -56,5 +59,9 @@ public class WeatherViewModel extends BaseViewModel {
     // View callbacks
     void onRefresh() {
         // TODO
+    }
+
+    void openWeatherDetails(UIWeatherList weather) {
+        router.execute(new CommandOpenWeatherDetails(weather.getTime(), weather.getCityId()));
     }
 }

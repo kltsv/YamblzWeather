@@ -6,9 +6,9 @@ import android.arch.lifecycle.ViewModelProvider;
 import com.ringov.yamblzweather.dagger.ViewModelKey;
 import com.ringov.yamblzweather.presentation.base.CustomViewModelFactory;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsViewModel;
+import com.ringov.yamblzweather.presentation.ui.main.MainViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.location.LocationViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherViewModel;
-import com.ringov.yamblzweather.presentation.ui.splash.SplashViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -19,8 +19,8 @@ public abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(SplashViewModel.class)
-    abstract ViewModel bindSplashViewModel(SplashViewModel viewModel);
+    @ViewModelKey(MainViewModel.class)
+    abstract ViewModel bindMainViewModel(MainViewModel viewModel);
 
     @Binds
     @IntoMap

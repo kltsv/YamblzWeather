@@ -6,6 +6,7 @@ public class UIWeatherList {
     private float tempMax;
     private float tempMin;
     private long time;
+    private int cityId;
 
     public WeatherCondition getCondition() {
         return condition;
@@ -21,6 +22,10 @@ public class UIWeatherList {
 
     public long getTime() {
         return time;
+    }
+
+    public int getCityId() {
+        return cityId;
     }
 
     public static class Builder {
@@ -48,6 +53,11 @@ public class UIWeatherList {
 
         public Builder time(long time) {
             weather.time = time;
+            return this;
+        }
+
+        public Builder cityId(int id) {
+            weather.cityId = id;
             return this;
         }
 

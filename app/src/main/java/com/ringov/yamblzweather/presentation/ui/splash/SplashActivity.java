@@ -2,7 +2,6 @@ package com.ringov.yamblzweather.presentation.ui.splash;
 
 import android.arch.lifecycle.LifecycleRegistry;
 import android.arch.lifecycle.LifecycleRegistryOwner;
-import android.arch.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,13 +12,9 @@ import android.widget.ImageView;
 
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.R;
-import com.ringov.yamblzweather.dagger.Injectable;
 import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
 import com.ringov.yamblzweather.presentation.base.BaseActivity;
-import com.ringov.yamblzweather.presentation.base.BaseMvvmActivity;
 import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 

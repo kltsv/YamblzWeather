@@ -45,6 +45,7 @@ public final class Mapper {
                 .tempMax(weather.getTempMax())
                 .tempMin(weather.getTempMin())
                 .condition(getConditionById(weather.getCondition()))
+                .cityId(weather.getCityId())
                 .build();
     }
 

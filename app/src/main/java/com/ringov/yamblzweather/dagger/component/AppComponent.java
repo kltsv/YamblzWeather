@@ -5,13 +5,12 @@ import android.app.Application;
 import com.ringov.yamblzweather.App;
 import com.ringov.yamblzweather.dagger.module.ApplicationModule;
 import com.ringov.yamblzweather.dagger.module.DatabaseModule;
-import com.ringov.yamblzweather.dagger.module.MainActivityModule;
+import com.ringov.yamblzweather.dagger.module.ActivityModule;
+import com.ringov.yamblzweather.dagger.module.NavigationModule;
 import com.ringov.yamblzweather.dagger.module.NetworkModule;
 import com.ringov.yamblzweather.dagger.module.RepositoryModule;
 import com.ringov.yamblzweather.dagger.module.RxSchedulerModule;
 import com.ringov.yamblzweather.dagger.module.ViewModelModule;
-import com.ringov.yamblzweather.presentation.ui.main.location.LocationViewModel;
-import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherViewModel;
 
 import javax.inject.Singleton;
 
@@ -22,7 +21,8 @@ import dagger.android.AndroidInjectionModule;
 @Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
-        MainActivityModule.class,
+        NavigationModule.class,
+        ActivityModule.class,
         ApplicationModule.class,
         DatabaseModule.class,
         NetworkModule.class,
@@ -42,8 +42,4 @@ public interface AppComponent {
     }
 
     void inject(App app);
-
-    void inject(WeatherViewModel weatherViewModel);
-
-    void inject(LocationViewModel locationViewModel);
 }
