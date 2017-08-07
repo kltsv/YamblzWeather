@@ -18,7 +18,7 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.subjects.PublishSubject;
 
-public class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
+class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
 
     private static final int TODAY_TYPE = 0;
     private static final int LIST_TYPE = 1;
@@ -27,16 +27,16 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
     private Context context;
 
     private PublishSubject<UIWeatherList> onItemClickSubject = PublishSubject.create();
-    public Observable<UIWeatherList> getOnItemClickObservable() {
+    Observable<UIWeatherList> getOnItemClickObservable() {
         return onItemClickSubject;
     }
 
     private CompositeDisposable disposables = new CompositeDisposable();
-    public void destroy() {
+    void destroy() {
         disposables.clear();
     }
 
-    public WeatherAdapter(Context context, List<UIWeatherList> items) {
+    WeatherAdapter(Context context, List<UIWeatherList> items) {
         this.context = context;
         this.items = items;
     }
@@ -59,10 +59,8 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
         UIWeatherList item = items.get(position);
 
         holder.dateTextView.setText(UIUtils.getFormattedTime(context, item.getTime()));
-        float tempMax = UIUtils.kelvinToCelsius(item.getTempMax());
-        holder.tempMaxTextView.setText(UIUtils.getFormattedTemperature(context, tempMax));
-        float tempMin = UIUtils.kelvinToCelsius(item.getTempMin());
-        holder.tempMinTextView.setText(UIUtils.getFormattedTemperature(context, tempMin));
+        holder.tempMaxTextView.setText(UIUtils.getFormattedTemperature(context, item.getTempMax()));
+        holder.tempMinTextView.setText(UIUtils.getFormattedTemperature(context, item.getTempMin()));
         Glide.with(holder.itemView.getContext())
                 .load(item.getCondition().getConditionImage())
                 .into(holder.conditionImageView);

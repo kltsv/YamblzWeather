@@ -14,6 +14,9 @@
     <!-- Weather fragment -->
     <string name="wthr_swipe_to_update">swipe to update</string>
 
+    <string name="wthr_wind_speed" translatable="false">%1.1f km/h</string>
+    <string name="wthr_pressure" translatable="false">%1.0f hPa</string>
+    <string name="wthr_humidity" translatable="false">%d %%</string>
     <string name="wthr_temperature" translatable="false">%.0f°</string>
     <string name="wthr_notification_message" translatable="false">%1$s, %2$s</string>
 

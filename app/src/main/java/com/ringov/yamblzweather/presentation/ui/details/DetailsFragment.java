@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
+import com.ringov.yamblzweather.presentation.ui.UIUtils;
 
 import javax.inject.Inject;
 
@@ -53,6 +54,22 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     TextView errorTextView;
     @BindView(R.id.im_condition)
     ImageView conditionImageView;
+    @BindView(R.id.tv_date)
+    TextView dateTextView;
+    @BindView(R.id.tv_temp_max)
+    TextView tempMaxTextView;
+    @BindView(R.id.tv_temp_min)
+    TextView tempMinTextView;
+    @BindView(R.id.tv_humidity)
+    TextView humidityTextView;
+    @BindView(R.id.tv_pressure)
+    TextView pressureTextView;
+    @BindView(R.id.im_wind_direction)
+    ImageView windDirectionImageView;
+    @BindView(R.id.tv_wind_direction)
+    TextView windDirectionTextView;
+    @BindView(R.id.tv_wind_speed)
+    TextView windSpeedTextView;
 
     @Override
     protected void onViewModelAttach() {
@@ -80,6 +97,15 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     }
 
     private void showWeatherDetails(UIWeatherDetail weather) {
+        dateTextView.setText(UIUtils.getFormattedTime(getContext(), weather.getTime()));
+        tempMaxTextView.setText(UIUtils.getFormattedTemperature(getContext(), weather.getTempMax()));
+        tempMinTextView.setText(UIUtils.getFormattedTemperature(getContext(), weather.getTempMin()));
+        humidityTextView.setText(UIUtils.getFormattedHumidity(getContext(), weather.getHumidity()));
+        pressureTextView.setText(UIUtils.getFormattedPressure(getContext(), weather.getPressure()));
+        windDirectionTextView.setText(weather.getWindDirection().getFriendlyName());
+        windSpeedTextView.setText(UIUtils.getFormattedWindSpeed(getContext(), weather.getWindSpeed()));
+        windDirectionImageView.setRotation(weather.getWindDirection().getRotation());
+
         Glide.with(getContext())
                 .load(weather.getCondition().getConditionImage())
                 .into(conditionImageView);

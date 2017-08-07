@@ -24,4 +24,13 @@ public enum  WindDirection {
         this.friendlyName = friendlyName;
         this.rotation = rotation;
     }
+
+    @StringRes
+    public int getFriendlyName() {
+        return friendlyName;
+    }
+
+    public int getRotation() {
+        return rotation;
+    }
 }
