@@ -19,11 +19,11 @@ public class DetailsViewModel extends BaseViewModel {
     private WeatherRepository weatherRepository;
 
     @Inject
-    DetailsViewModel(WeatherRepository repository) {
+    public DetailsViewModel(WeatherRepository repository) {
         this.weatherRepository = repository;
     }
 
-    void observe(
+    public void observe(
             LifecycleOwner owner,
             Observer<Boolean> loadingObserver,
             Observer<Throwable> errorObserver,
@@ -35,7 +35,7 @@ public class DetailsViewModel extends BaseViewModel {
     }
 
     // View callbacks
-    void showWeatherFor(long time) {
+    public void showWeatherFor(long time) {
         disposables.add(
                 weatherRepository
                         .getWeather(time)

@@ -27,7 +27,7 @@ public class WeatherViewModel extends BaseViewModel {
     private WeatherRepository weatherRepository;
 
     @Inject
-    WeatherViewModel(Router router, WeatherRepository weatherRepo) {
+    public WeatherViewModel(Router router, WeatherRepository weatherRepo) {
         this.router = router;
         this.weatherRepository = weatherRepo;
 

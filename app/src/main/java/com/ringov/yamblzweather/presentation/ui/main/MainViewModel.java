@@ -13,20 +13,20 @@ public class MainViewModel extends BaseViewModel {
     private Router router;
 
     @Inject
-    MainViewModel(Router router) {
+    public MainViewModel(Router router) {
         this.router = router;
     }
 
     // View callbacks
-    void onWeatherNavigation() {
+    public void onWeatherNavigation() {
         router.execute(new CommandOpenWeatherScreen());
     }
 
-    void onLocationNavigation() {
+    public void onLocationNavigation() {
         router.execute(new CommandOpenLocationScreen());
     }
 
-    void onAboutNavigation() {
+    public void onAboutNavigation() {
         router.execute(new CommandOpenAboutScreen());
     }
 }
