@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.add_city;
+package com.ringov.yamblzweather.presentation.ui.main.add_city;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;

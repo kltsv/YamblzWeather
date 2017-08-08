@@ -95,6 +95,15 @@ public final class Mapper {
                 .build();
     }
 
+    public static List<String> extractCitiesNamesFromDBCity(List<DBCity> cities) {
+        List<String> converted = new ArrayList<>();
+
+        for (DBCity city : cities)
+            converted.add(city.getCity_name());
+
+        return converted;
+    }
+
     // Enum converters
     private static WeatherCondition getConditionById(int weatherId) {
         if (weatherId >= 200 && weatherId <= 232) {

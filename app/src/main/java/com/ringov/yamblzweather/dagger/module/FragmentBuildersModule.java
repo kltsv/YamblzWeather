@@ -1,6 +1,6 @@
 package com.ringov.yamblzweather.dagger.module;
 
-import com.ringov.yamblzweather.presentation.ui.add_city.AddCityFragment;
+import com.ringov.yamblzweather.presentation.ui.main.add_city.AddCityFragment;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastFragment;
 
