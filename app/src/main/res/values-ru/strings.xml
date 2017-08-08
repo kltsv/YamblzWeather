@@ -3,9 +3,10 @@
     <string name="app_name">Погода</string>
 
     <!-- Activity titles -->
-    <string name="title_weather">Погода</string>
+    <string name="title_forecast">Прогноз</string>
     <string name="title_location">Местоположение</string>
     <string name="title_about">О приложении</string>
+    <string name="title_details">Погода на %s</string>
 
     <!-- Nav drawer -->
     <string name="navigation_drawer_open">Открыто боковое меню</string>

@@ -3,9 +3,10 @@
     <string name="app_name">Weather</string>
 
     <!-- Activity titles -->
-    <string name="title_weather">Weather</string>
+    <string name="title_forecast">Forecast</string>
     <string name="title_location">Location</string>
     <string name="title_about">About</string>
+    <string name="title_details">Weather for %s</string>
 
     <!-- Nav drawer -->
     <string name="navigation_drawer_open">Navigation drawer has been opened</string>

@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.main.weather;
+package com.ringov.yamblzweather.presentation.ui.main.forecast;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,7 +10,7 @@ import com.ringov.yamblzweather.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class WeatherItemVH extends RecyclerView.ViewHolder {
+public class ForecastItemVH extends RecyclerView.ViewHolder {
 
     @BindView(R.id.im_condition)
     ImageView conditionImageView;
@@ -21,7 +21,7 @@ public class WeatherItemVH extends RecyclerView.ViewHolder {
     @BindView(R.id.tv_temp_min)
     TextView tempMinTextView;
 
-    public WeatherItemVH(final View itemView) {
+    public ForecastItemVH(final View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }

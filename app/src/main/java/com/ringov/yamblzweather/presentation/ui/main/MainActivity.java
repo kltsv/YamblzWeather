@@ -28,8 +28,8 @@ import com.ringov.yamblzweather.presentation.base.BaseMvvmActivity;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsActivity;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
+import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastFragment;
 import com.ringov.yamblzweather.presentation.ui.main.location.LocationFragment;
-import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherFragment;
 
 import javax.inject.Inject;
 
@@ -96,8 +96,8 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
             twoPaneMode = true;
 
         if (savedInstanceState == null) {
-            navigateToWeatherScreen();
-        } else if (isNotOnWeatherScreen()) {
+            navigateToForecastScreen();
+        } else if (isNotOnForecastScreen()) {
             showBackButton(true);
         }
     }
@@ -107,7 +107,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (toolBarNavigationListenerIsRegistered) {
-            navigateToWeatherScreen();
+            navigateToForecastScreen();
         } else {
             super.onBackPressed();
         }
@@ -116,8 +116,8 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_weather:
-                viewModel.onWeatherNavigation();
+            case R.id.nav_forecast:
+                viewModel.onForecastNavigation();
                 break;
             case R.id.nav_location:
                 viewModel.onLocationNavigation();
@@ -146,7 +146,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @Override
     public boolean executeCommand(Command command) {
         if (command instanceof CommandOpenWeatherDetails) return openDetailsScreen(command);
-        else if (command instanceof CommandOpenWeatherScreen) return navigateToWeatherScreen();
+        else if (command instanceof CommandOpenWeatherScreen) return navigateToForecastScreen();
         else if (command instanceof CommandOpenLocationScreen) return navigateToLocationScreen();
         else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
         else return false;
@@ -196,14 +196,14 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     }
 
     // Navigation helper methods
-    private boolean isNotOnWeatherScreen() {
-        return getSupportFragmentManager().findFragmentByTag(WeatherFragment.TAG) == null;
+    private boolean isNotOnForecastScreen() {
+        return getSupportFragmentManager().findFragmentByTag(ForecastFragment.TAG) == null;
     }
 
-    private boolean navigateToWeatherScreen() {
-        if (isNotOnWeatherScreen()) {
+    private boolean navigateToForecastScreen() {
+        if (isNotOnForecastScreen()) {
             showBackButton(false);
-            replaceFragment(WeatherFragment.newInstance(), FRAGMENT_CONTAINER);
+            replaceFragment(ForecastFragment.newInstance(), FRAGMENT_CONTAINER);
         }
         return true;
     }

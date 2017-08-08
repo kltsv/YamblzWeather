@@ -18,7 +18,7 @@ public class MainViewModel extends BaseViewModel {
     }
 
     // View callbacks
-    public void onWeatherNavigation() {
+    public void onForecastNavigation() {
         router.execute(new CommandOpenWeatherScreen());
     }
 

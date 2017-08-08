@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.main.weather;
+package com.ringov.yamblzweather.presentation.ui.main.forecast;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
@@ -14,7 +14,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class WeatherViewModel extends BaseViewModel {
+public class ForecastViewModel extends BaseViewModel {
 
     // TODO show selected City
 
@@ -27,7 +27,7 @@ public class WeatherViewModel extends BaseViewModel {
     private WeatherRepository weatherRepository;
 
     @Inject
-    public WeatherViewModel(Router router, WeatherRepository weatherRepo) {
+    public ForecastViewModel(Router router, WeatherRepository weatherRepo) {
         this.router = router;
         this.weatherRepository = weatherRepo;
 

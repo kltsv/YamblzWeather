@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.main.weather;
+package com.ringov.yamblzweather.presentation.ui.main.forecast;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -23,20 +23,20 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import timber.log.Timber;
 
-public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
+public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
 
-    public static final String TAG = "WeatherFragment";
+    public static final String TAG = "ForecastFragment";
 
-    public static WeatherFragment newInstance() {
-        return new WeatherFragment();
+    public static ForecastFragment newInstance() {
+        return new ForecastFragment();
     }
 
     @Inject
     ViewModelProvider.Factory viewModelFactory;
 
     @Override
-    protected Class<WeatherViewModel> getViewModelClass() {
-        return WeatherViewModel.class;
+    protected Class<ForecastViewModel> getViewModelClass() {
+        return ForecastViewModel.class;
     }
 
     @Override
@@ -49,20 +49,20 @@ public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
     @BindView(R.id.rv_forecast)
     RecyclerView forecastRecycler;
 
-    private WeatherAdapter weatherAdapter;
+    private ForecastAdapter forecastAdapter;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.title_weather);
+        getActivity().setTitle(R.string.title_forecast);
 
-        weatherAdapter = new WeatherAdapter(getContext(), new ArrayList<>());
+        forecastAdapter = new ForecastAdapter(getContext(), new ArrayList<>());
 
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
 
         forecastRecycler.addItemDecoration(itemDecoration);
         forecastRecycler.setHasFixedSize(true);
-        forecastRecycler.setAdapter(weatherAdapter);
+        forecastRecycler.setAdapter(forecastAdapter);
     }
 
     @Override
@@ -78,7 +78,7 @@ public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
 
         // Listen for item clicks
         disposables.add(
-                weatherAdapter.getOnItemClickObservable()
+                forecastAdapter.getOnItemClickObservable()
                         .subscribe(item -> viewModel.openWeatherDetails(item))
         );
     }
@@ -86,7 +86,7 @@ public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
     @Override
     public void onStop() {
         super.onStop();
-        weatherAdapter.destroy();
+        forecastAdapter.destroy();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class WeatherFragment extends BaseMvvmFragment<WeatherViewModel> {
     }
 
     private void showForecast(List<UIWeatherList> forecast) {
-        weatherAdapter.replace(forecast);
+        forecastAdapter.replace(forecast);
     }
 
     private void showLoading(boolean isLoading) {

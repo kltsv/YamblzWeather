@@ -54,8 +54,6 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     TextView errorTextView;
     @BindView(R.id.im_condition)
     ImageView conditionImageView;
-    @BindView(R.id.tv_date)
-    TextView dateTextView;
     @BindView(R.id.tv_temp_max)
     TextView tempMaxTextView;
     @BindView(R.id.tv_temp_min)
@@ -97,7 +95,6 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     }
 
     private void showWeatherDetails(UIWeatherDetail weather) {
-        dateTextView.setText(UIUtils.getFormattedTime(getContext(), weather.getTime()));
         tempMaxTextView.setText(UIUtils.getFormattedTemperature(getContext(), weather.getTempMax()));
         tempMinTextView.setText(UIUtils.getFormattedTemperature(getContext(), weather.getTempMin()));
         humidityTextView.setText(UIUtils.getFormattedHumidity(getContext(), weather.getHumidity()));

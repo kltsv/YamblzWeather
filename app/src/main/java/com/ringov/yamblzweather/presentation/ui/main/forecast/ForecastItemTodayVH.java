@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.main.weather;
+package com.ringov.yamblzweather.presentation.ui.main.forecast;
 
 import android.view.View;
 import android.widget.TextView;
@@ -7,12 +7,12 @@ import com.ringov.yamblzweather.R;
 
 import butterknife.BindView;
 
-public class WeatherItemTodayVH extends WeatherItemVH {
+public class ForecastItemTodayVH extends ForecastItemVH {
 
     @BindView(R.id.tv_condition)
     TextView conditionTextView;
 
-    public WeatherItemTodayVH(final View itemView) {
+    public ForecastItemTodayVH(final View itemView) {
         super(itemView);
     }
 }

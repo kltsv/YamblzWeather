@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.main.weather;
+package com.ringov.yamblzweather.presentation.ui.main.forecast;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -18,7 +18,7 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.subjects.PublishSubject;
 
-class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
+class ForecastAdapter extends RecyclerView.Adapter<ForecastItemVH> {
 
     private static final int TODAY_TYPE = 0;
     private static final int LIST_TYPE = 1;
@@ -36,26 +36,26 @@ class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
         disposables.clear();
     }
 
-    WeatherAdapter(Context context, List<UIWeatherList> items) {
+    ForecastAdapter(Context context, List<UIWeatherList> items) {
         this.context = context;
         this.items = items;
     }
 
     @Override
-    public WeatherItemVH onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ForecastItemVH onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
         if (viewType == TODAY_TYPE) {
             View view = inflater.inflate(R.layout.item_weather_today, parent, false);
-            return new WeatherItemTodayVH(view);
+            return new ForecastItemTodayVH(view);
         } else {
             View view = inflater.inflate(R.layout.item_weather, parent, false);
-            return new WeatherItemVH(view);
+            return new ForecastItemVH(view);
         }
     }
 
     @Override
-    public void onBindViewHolder(WeatherItemVH holder, int position) {
+    public void onBindViewHolder(ForecastItemVH holder, int position) {
         UIWeatherList item = items.get(position);
 
         holder.dateTextView.setText(UIUtils.getFormattedTime(context, item.getTime()));
@@ -65,8 +65,8 @@ class WeatherAdapter extends RecyclerView.Adapter<WeatherItemVH> {
                 .load(item.getCondition().getConditionImage())
                 .into(holder.conditionImageView);
 
-        if (holder instanceof WeatherItemTodayVH) {
-            WeatherItemTodayVH h = (WeatherItemTodayVH) holder;
+        if (holder instanceof ForecastItemTodayVH) {
+            ForecastItemTodayVH h = (ForecastItemTodayVH) holder;
             h.conditionTextView.setText(item.getCondition().getFriendlyName());
         }
 

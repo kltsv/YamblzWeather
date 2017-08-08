@@ -39,17 +39,17 @@ public class MainViewModelTest {
 
     @Test
     public void navigationQueueTest() {
-        viewModel.onWeatherNavigation();
+        viewModel.onForecastNavigation();
         assertTrue(router.commandsQueue.size() == 1);
-        viewModel.onWeatherNavigation();
+        viewModel.onForecastNavigation();
         assertTrue(router.commandsQueue.size() == 2);
-        viewModel.onWeatherNavigation();
+        viewModel.onForecastNavigation();
         assertTrue(router.commandsQueue.size() == 3);
     }
 
     @Test
     public void isNavigationCorrectTest() {
-        viewModel.onWeatherNavigation();
+        viewModel.onForecastNavigation();
         assertTrue(router.commandsQueue.get(0) instanceof CommandOpenWeatherScreen);
         viewModel.onLocationNavigation();
         assertTrue(router.commandsQueue.get(1) instanceof CommandOpenLocationScreen);

@@ -9,6 +9,7 @@ import android.view.MenuItem;
 
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.base.BaseActivity;
+import com.ringov.yamblzweather.presentation.ui.UIUtils;
 
 import javax.inject.Inject;
 
@@ -45,8 +46,11 @@ public class DetailsActivity extends BaseActivity implements HasSupportFragmentI
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        long time = getIntent().getLongExtra(ARG_TIME, -1);
+        setTitle(getString(R.string.title_details,
+                UIUtils.getFormattedTime(getApplicationContext(), time)));
+
         if (savedInstanceState == null) {
-            long time = getIntent().getLongExtra(ARG_TIME, -1);
             replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_CONTAINER);
         }
     }

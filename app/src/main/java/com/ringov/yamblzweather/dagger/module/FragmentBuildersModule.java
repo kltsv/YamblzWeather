@@ -1,8 +1,8 @@
 package com.ringov.yamblzweather.dagger.module;
 
 import com.ringov.yamblzweather.presentation.ui.details.DetailsFragment;
+import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastFragment;
 import com.ringov.yamblzweather.presentation.ui.main.location.LocationFragment;
-import com.ringov.yamblzweather.presentation.ui.main.weather.WeatherFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -11,7 +11,7 @@ import dagger.android.ContributesAndroidInjector;
 public abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
-    abstract WeatherFragment contributeWeatherFragment();
+    abstract ForecastFragment contributeWeatherFragment();
 
     @ContributesAndroidInjector
     abstract LocationFragment contributeLocationFragment();
