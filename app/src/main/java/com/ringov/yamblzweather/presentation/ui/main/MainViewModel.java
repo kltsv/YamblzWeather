@@ -7,6 +7,7 @@ import com.ringov.yamblzweather.domain.repository.favorite_city.FavoriteCityRepo
 import com.ringov.yamblzweather.navigation.base.Router;
 import com.ringov.yamblzweather.navigation.commands.CommandCloseDrawer;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenAboutScreen;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenAddCityScreen;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenForecastScreen;
 import com.ringov.yamblzweather.presentation.base.BaseLiveData;
 import com.ringov.yamblzweather.presentation.base.BaseViewModel;
@@ -46,7 +47,7 @@ public class MainViewModel extends BaseViewModel {
     }
 
     public void onAddCityNavigation() {
-        // TODO implement
+        router.execute(new CommandOpenAddCityScreen());
     }
 
     public void onRemoveCityClick(UICityFavorite city) {

@@ -31,11 +31,14 @@ public class CitySuggestionsRepositoryImpl extends BaseRepository implements Cit
 
     @Override
     public Single<List<String>> getSuggestions(String input) {
-        return suggestCities(input).map(Mapper::extractCitiesNamesFromDBCity);
+        return suggestCities(input)
+                .map(Mapper::extractCitiesNamesFromDBCity)
+                .subscribeOn(schedulerComputation)
+                .observeOn(schedulerUI);
     }
 
     @WorkerThread
     private Single<List<DBCity>> suggestCities(String input) {
-        return Single.fromCallable(() -> cityDAO.getSuggestions(input, SUGGESTIONS_LIMIT));
+        return Single.fromCallable(() -> cityDAO.getSuggestions(input + "%" , SUGGESTIONS_LIMIT));
     }
 }

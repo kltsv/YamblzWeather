@@ -27,6 +27,7 @@ import com.ringov.yamblzweather.navigation.base.NavigatorBinder;
 import com.ringov.yamblzweather.navigation.commands.CommandCloseDrawer;
 import com.ringov.yamblzweather.navigation.commands.CommandNavigatorAttached;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenAboutScreen;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenAddCityScreen;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherDetails;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenForecastScreen;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmActivity;
@@ -34,6 +35,7 @@ import com.ringov.yamblzweather.presentation.entity.UICityFavorite;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsActivity;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
+import com.ringov.yamblzweather.presentation.ui.main.add_city.AddCityFragment;
 import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastFragment;
 
 import java.util.List;
@@ -162,6 +164,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         if (command instanceof CommandNavigatorAttached) return false;
         else if (command instanceof CommandOpenWeatherDetails) return openDetailsScreen(command);
         else if (command instanceof CommandOpenForecastScreen) return navigateToForecastScreen(true);
+        else if (command instanceof CommandOpenAddCityScreen) return navigateToAddCityScreen();
         else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
         else if (command instanceof CommandCloseDrawer) return closeDrawer();
         else throw new IllegalArgumentException(
@@ -257,6 +260,12 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
             replaceFragment(ForecastFragment.newInstance(), FRAGMENT_CONTAINER);
             closeDrawer();
         }
+        return true;
+    }
+
+    private boolean navigateToAddCityScreen() {
+        showBackButton(true);
+        replaceFragment(AddCityFragment.newInstance(), FRAGMENT_CONTAINER);
         return true;
     }
 

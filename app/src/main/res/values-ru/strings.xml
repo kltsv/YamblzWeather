@@ -34,9 +34,9 @@
     <string name="cond_cloudy">Облачно</string>
     <string name="cond_other">Другое</string>
 
-    <!-- Location fragment -->
-    <string name="location_description">Для какого города показывать погоду</string>
-    <string name="location_changed">Местоположение изменено</string>
+    <!-- Add city fragment -->
+    <string name="add_city_hint">Начните вводить название города</string>
+    <string name="add_city_title">Добавить город</string>
 
     <!-- About fragment -->
     <string name="about_title">О приложении</string>

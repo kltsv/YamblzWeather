@@ -3,6 +3,10 @@ package com.ringov.yamblzweather.presentation.ui.main.add_city;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 
+import com.ringov.yamblzweather.domain.repository.city_suggestions.CitySuggestionsRepository;
+import com.ringov.yamblzweather.domain.repository.favorite_city.FavoriteCityRepository;
+import com.ringov.yamblzweather.navigation.base.Router;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenForecastScreen;
 import com.ringov.yamblzweather.presentation.base.BaseLiveData;
 import com.ringov.yamblzweather.presentation.base.BaseViewModel;
 
@@ -14,46 +18,46 @@ public class AddCityViewModel extends BaseViewModel {
 
     private BaseLiveData<Boolean> loadingData = new BaseLiveData<>();
     private BaseLiveData<List<String>> suggestionsData = new BaseLiveData<>();
-    private BaseLiveData<Throwable> errorData = new BaseLiveData<>();
-    private BaseLiveData<String> cityData = new BaseLiveData<>();
+
+    private Router router;
+    private CitySuggestionsRepository citySuggestionsRepository;
+    private FavoriteCityRepository favoriteCityRepository;
 
     @Inject
-    AddCityViewModel() {
-        /*disposables.add(
-                repository
-                        .getLocation()
-                        .subscribe(s -> cityData.updateValue(s), e -> errorData.updateValue(e))
-        );*/
+    public AddCityViewModel(
+            Router router,
+            CitySuggestionsRepository citySuggestionsRepository,
+            FavoriteCityRepository favoriteCityRepository
+    ) {
+        this.router = router;
+        this.citySuggestionsRepository = citySuggestionsRepository;
+        this.favoriteCityRepository = favoriteCityRepository;
     }
 
-    void observe(
+    public void observe(
             LifecycleOwner owner,
             Observer<Boolean> loadingObserver,
-            Observer<List<String>> suggestionsObserver,
-            Observer<Throwable> errorObserver,
-            Observer<String> cityObserver
+            Observer<List<String>> suggestionsObserver
     ) {
         loadingData.observe(owner, loadingObserver);
         suggestionsData.observe(owner, suggestionsObserver);
-        errorData.observe(owner, errorObserver);
-        cityData.observe(owner, cityObserver);
     }
 
     // Callbacks from view
-    void onCitySelected(String city) {
-        //repository.changeLocation(city);
+    public void onCitySelected(String city) {
+        disposables.add(
+                favoriteCityRepository.add(city)
+                        .subscribe(() -> router.execute(new CommandOpenForecastScreen()))
+        );
     }
 
-    void onInputChanges(String input) {
-        /*disposables.add(
-                repository
+    public void onInputChanges(String input) {
+        disposables.add(
+                citySuggestionsRepository
                         .getSuggestions(input)
                         .doOnSubscribe(disposable -> loadingData.updateValue(true))
                         .doFinally(() -> loadingData.updateValue(false))
-                        .subscribe(
-                                strings -> suggestionsData.updateValue(strings),
-                                throwable -> errorData.updateValue(throwable)
-                        )
-        );*/
+                        .subscribe(strings -> suggestionsData.updateValue(strings))
+        );
     }
 }

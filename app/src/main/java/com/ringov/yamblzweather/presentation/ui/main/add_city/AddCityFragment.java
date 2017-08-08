@@ -3,13 +3,14 @@ package com.ringov.yamblzweather.presentation.ui.main.add_city;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding2.widget.RxAutoCompleteTextView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
@@ -51,6 +52,11 @@ public class AddCityFragment extends BaseMvvmFragment<AddCityViewModel> {
     ProgressBar progressBar;
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        getActivity().setTitle(R.string.add_city_title);
+    }
+
+    @Override
     public void onStop() {
         super.onStop();
 
@@ -59,13 +65,12 @@ public class AddCityFragment extends BaseMvvmFragment<AddCityViewModel> {
 
     @Override
     protected void onViewModelAttach() {
-        viewModel =  ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass());
     }
 
     @Override
     protected void attachInputListeners() {
-        getViewModel().observe(
-                this, this::showLoading, this::showSuggestions, this::showError, this::showCity);
+        getViewModel().observe(this, this::showLoading, this::showSuggestions);
 
         // Listen for user input to provide suggestions
         disposables.add(
@@ -87,14 +92,9 @@ public class AddCityFragment extends BaseMvvmFragment<AddCityViewModel> {
                             TextView textView = (TextView) adapterViewItemClickEvent.clickedView();
                             String chosenValue = textView.getText().toString();
                             getViewModel().onCitySelected(chosenValue);
-                            Toast.makeText(getContext(), R.string.location_changed, Toast.LENGTH_SHORT).show();
                             closeSoftKeyboard();
                         })
         );
-    }
-
-    private void showCity(String city) {
-        locationAtv.setText(city);
     }
 
     private void showLoading(boolean isLoading) {
@@ -110,13 +110,9 @@ public class AddCityFragment extends BaseMvvmFragment<AddCityViewModel> {
         locationAtv.setAdapter(adapter);
     }
 
-    private void showError(Throwable error) {
-        error.printStackTrace();
-        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-    }
-
     private void closeSoftKeyboard() {
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager)
+                getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(locationAtv.getWindowToken(), 0);
     }
 }

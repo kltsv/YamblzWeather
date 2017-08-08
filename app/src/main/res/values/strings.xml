@@ -40,9 +40,9 @@
     <string name="cond_cloudy">Cloudy</string>
     <string name="cond_other">Other</string>
 
-    <!-- Location fragment -->
-    <string name="location_description">For what city show weather for</string>
-    <string name="location_changed">Location changed</string>
+    <!-- Add city fragment -->
+    <string name="add_city_hint">Start typing city name</string>
+    <string name="add_city_title">Add city</string>
 
     <!-- About fragment -->
     <string name="about_title">About</string>
