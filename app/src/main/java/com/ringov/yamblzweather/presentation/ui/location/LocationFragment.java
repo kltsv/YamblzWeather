@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.main.location;
+package com.ringov.yamblzweather.presentation.ui.location;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;

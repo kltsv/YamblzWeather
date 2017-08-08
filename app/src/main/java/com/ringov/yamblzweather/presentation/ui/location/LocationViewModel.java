@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.main.location;
+package com.ringov.yamblzweather.presentation.ui.location;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;

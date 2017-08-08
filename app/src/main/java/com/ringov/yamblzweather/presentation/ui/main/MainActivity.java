@@ -24,6 +24,7 @@ import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.navigation.base.Command;
 import com.ringov.yamblzweather.navigation.base.Navigator;
 import com.ringov.yamblzweather.navigation.base.NavigatorBinder;
+import com.ringov.yamblzweather.navigation.commands.CommandCloseDrawer;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenAboutScreen;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherDetails;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenForecastScreen;
@@ -116,7 +117,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+            closeDrawer();
         } else if (toolBarNavigationListenerIsRegistered) {
             navigateToForecastScreen(false);
         } else {
@@ -132,7 +133,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
                 break;
         }
 
-        drawer.closeDrawer(GravityCompat.START);
+        closeDrawer();
         return true;
     }
 
@@ -159,6 +160,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         if (command instanceof CommandOpenWeatherDetails) return openDetailsScreen(command);
         else if (command instanceof CommandOpenForecastScreen) return navigateToForecastScreen(true);
         else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
+        else if (command instanceof CommandCloseDrawer) return closeDrawer();
         else return false;
     }
 
@@ -236,6 +238,11 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     }
 
     // Navigation helper methods
+    private boolean closeDrawer() {
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
     private boolean isNotOnForecastScreen() {
         return getSupportFragmentManager().findFragmentByTag(ForecastFragment.TAG) == null;
     }
@@ -244,7 +251,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         if (ignore || isNotOnForecastScreen()) {
             showBackButton(false);
             replaceFragment(ForecastFragment.newInstance(), FRAGMENT_CONTAINER);
-            drawer.closeDrawer(GravityCompat.START);
+            closeDrawer();
         }
         return true;
     }

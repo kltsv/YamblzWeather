@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer;
 
 import com.ringov.yamblzweather.domain.repository.favorite_city.FavoriteCityRepository;
 import com.ringov.yamblzweather.navigation.base.Router;
+import com.ringov.yamblzweather.navigation.commands.CommandCloseDrawer;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenAboutScreen;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenForecastScreen;
 import com.ringov.yamblzweather.presentation.base.BaseLiveData;
@@ -14,8 +15,6 @@ import com.ringov.yamblzweather.presentation.entity.UICityFavorite;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import timber.log.Timber;
 
 public class MainViewModel extends BaseViewModel {
 
@@ -53,15 +52,16 @@ public class MainViewModel extends BaseViewModel {
     }
 
     public void onFavoriteCityClick(UICityFavorite city) {
-        if (city.isEnabled())
-            return;
-
-        disposables.add(
-                favoriteCityRepository.select(city)
-                        .subscribe(() -> {
-                            loadFavoriteCities();
-                            router.execute(new CommandOpenForecastScreen());
-                        }));
+        if (city.isEnabled()) {
+            router.execute(new CommandCloseDrawer());
+        } else {
+            disposables.add(
+                    favoriteCityRepository.select(city)
+                            .subscribe(() -> {
+                                loadFavoriteCities();
+                                router.execute(new CommandOpenForecastScreen());
+                            }));
+        }
     }
 
     // Private logic

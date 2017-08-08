@@ -8,7 +8,7 @@ import com.ringov.yamblzweather.presentation.base.CustomViewModelFactory;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.MainViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastViewModel;
-import com.ringov.yamblzweather.presentation.ui.main.location.LocationViewModel;
+import com.ringov.yamblzweather.presentation.ui.location.LocationViewModel;
 
 import dagger.Binds;
 import dagger.Module;
