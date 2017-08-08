@@ -1,5 +1,6 @@
 package com.ringov.yamblzweather.domain;
 
+import com.ringov.yamblzweather.data.database.entity.DBCity;
 import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
 import com.ringov.yamblzweather.data.database.entity.DBWeather;
 import com.ringov.yamblzweather.data.networking.entity.ForecastResponse;
@@ -16,6 +17,10 @@ import java.util.List;
 public final class Mapper {
 
     private Mapper() {
+    }
+
+    public static DBFavoriteCity DBCityToDBFavoriteCity(DBCity city) {
+        return new DBFavoriteCity(city.getCity_name(), city.getCity_id(), 0);
     }
 
     private static DBWeather APItoDB(ResponseWeather responseWeather, int cityId) {

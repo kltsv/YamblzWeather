@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.data.database.dao;
 
 import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -23,11 +24,14 @@ public interface FavoriteCityDAO {
     DBFavoriteCity getEnabled();
 
     @Query("SELECT * FROM " + TABLE_FAVORITE_CITIES + " WHERE " + COLUMN_CITY_ID + " = :id LIMIT 1")
-    DBFavoriteCity getById(long id);
+    DBFavoriteCity getById(int id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(DBFavoriteCity favoriteCity);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertAll(List<DBFavoriteCity> favoriteCities);
+
+    @Delete
+    void delete(DBFavoriteCity city);
 }

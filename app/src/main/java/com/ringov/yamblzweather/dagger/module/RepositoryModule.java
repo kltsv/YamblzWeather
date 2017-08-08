@@ -2,9 +2,12 @@ package com.ringov.yamblzweather.dagger.module;
 
 import com.ringov.yamblzweather.dagger.SchedulerEnum;
 import com.ringov.yamblzweather.dagger.SchedulerType;
+import com.ringov.yamblzweather.data.database.dao.CityDAO;
 import com.ringov.yamblzweather.data.database.dao.FavoriteCityDAO;
 import com.ringov.yamblzweather.data.database.dao.WeatherDAO;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
+import com.ringov.yamblzweather.domain.repository.favorite_city.FavoriteCityRepository;
+import com.ringov.yamblzweather.domain.repository.favorite_city.FavoriteCityRepositoryImpl;
 import com.ringov.yamblzweather.domain.repository.weather.WeatherRepository;
 import com.ringov.yamblzweather.domain.repository.weather.WeatherRepositoryImpl;
 
@@ -25,6 +28,19 @@ public class RepositoryModule {
         return new WeatherRepositoryImpl(
                 schedulerUI, schedulerIO, schedulerComputation,
                 weatherDAO, favoriteCityDAO, weatherAPI
+        );
+    }
+
+    @Provides
+    FavoriteCityRepository provideFavoriteCityRepository(
+            @SchedulerType(scheduler = SchedulerEnum.Main) Scheduler schedulerUI,
+            @SchedulerType(scheduler = SchedulerEnum.IO) Scheduler schedulerIO,
+            @SchedulerType(scheduler = SchedulerEnum.Computation) Scheduler schedulerComputation,
+            FavoriteCityDAO favoriteCityDAO, CityDAO cityDAO
+    ) {
+        return new FavoriteCityRepositoryImpl(
+                schedulerUI, schedulerIO, schedulerComputation,
+                favoriteCityDAO, cityDAO
         );
     }
 }
