@@ -59,11 +59,13 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
      * <p>
      * First, tries to read forecast from cache, if cache has outdated forecast,
      * tries to fetch forecast data from API.
+     *
+     * @param forceRefresh if true, tries to fetch data from server and drops cache
      */
     @Override
-    public Single<List<UIWeatherList>> getForecast() {
+    public Single<List<UIWeatherList>> getForecast(boolean forceRefresh) {
         return getFromCache()
-                .filter(weatherList -> weatherList.size() >= 7)
+                .filter(weatherList -> weatherList.size() >= 7 && !forceRefresh)
                 .switchIfEmpty(getFromAPI().toMaybe())
                 .observeOn(schedulerComputation)
                 .toSingle()

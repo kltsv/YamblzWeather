@@ -66,11 +66,9 @@ public class ForecastViewModel extends BaseViewModel {
 
     // Private logic
     private void loadWeather(boolean forceRefresh) {
-        // TODO use force refresh
-
         disposables.add(
                 weatherRepository
-                        .getForecast()
+                        .getForecast(forceRefresh)
                         .doOnSubscribe(disposable -> loadingData.updateValue(true))
                         .doFinally(() -> loadingData.updateValue(false))
                         .subscribe(

@@ -65,7 +65,7 @@ public class WeatherRepositoryTest {
 
     @Test
     public void getForecastCommon() {
-        weatherRepository.getForecast()
+        weatherRepository.getForecast(false)
                 .subscribe(uiWeatherLists -> assertTrue(!uiWeatherLists.isEmpty()));
     }
 
@@ -74,7 +74,7 @@ public class WeatherRepositoryTest {
         when(weatherAPI.getForecast(CITY_ID))
                 .thenReturn(Single.error(new NoInternetConnectionException()));
 
-        weatherRepository.getForecast()
+        weatherRepository.getForecast(false)
                 .subscribe((uiWeatherLists, throwable) -> {
                     assertTrue(throwable instanceof NoInternetConnectionException);
                 });
@@ -85,7 +85,7 @@ public class WeatherRepositoryTest {
         when(weatherAPI.getForecast(CITY_ID))
                 .thenReturn(Single.just(WeatherRepositoryTestUtils.forecastResponse(0)));
 
-        weatherRepository.getForecast()
+        weatherRepository.getForecast(false)
                 .subscribe((uiWeatherLists, throwable) -> {
                     assertTrue(throwable instanceof EmptyForecastException);
                 });

@@ -9,7 +9,7 @@ import io.reactivex.Single;
 
 public interface WeatherRepository {
 
-    Single<List<UIWeatherList>> getForecast();
+    Single<List<UIWeatherList>> getForecast(boolean forceRefresh);
 
     Single<UIWeatherDetail> getWeather(long time);
 }
