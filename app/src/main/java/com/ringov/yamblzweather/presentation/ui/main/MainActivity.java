@@ -15,22 +15,26 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
+import com.jakewharton.rxbinding2.view.RxView;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.navigation.base.Command;
 import com.ringov.yamblzweather.navigation.base.Navigator;
 import com.ringov.yamblzweather.navigation.base.NavigatorBinder;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenAboutScreen;
-import com.ringov.yamblzweather.navigation.commands.CommandOpenLocationScreen;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherDetails;
-import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherScreen;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenForecastScreen;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmActivity;
+import com.ringov.yamblzweather.presentation.entity.UICityFavorite;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsActivity;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
 import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastFragment;
-import com.ringov.yamblzweather.presentation.ui.main.location.LocationFragment;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -76,6 +80,9 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
+    private RecyclerView citiesRecyclerView;
+    private RelativeLayout addCityView;
+
     private ActionBarDrawerToggle drawerToggle;
 
     private CityAdapter cityAdapter;
@@ -100,7 +107,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
             twoPaneMode = true;
 
         if (savedInstanceState == null) {
-            navigateToForecastScreen();
+            navigateToForecastScreen(false);
         } else if (isNotOnForecastScreen()) {
             showBackButton(true);
         }
@@ -111,7 +118,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else if (toolBarNavigationListenerIsRegistered) {
-            navigateToForecastScreen();
+            navigateToForecastScreen(false);
         } else {
             super.onBackPressed();
         }
@@ -120,12 +127,6 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.nav_forecast:
-                viewModel.onForecastNavigation();
-                break;
-            case R.id.nav_location:
-                viewModel.onLocationNavigation();
-                break;
             case R.id.nav_about:
                 viewModel.onAboutNavigation();
                 break;
@@ -148,10 +149,15 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        cityAdapter.destroy();
+    }
+
+    @Override
     public boolean executeCommand(Command command) {
         if (command instanceof CommandOpenWeatherDetails) return openDetailsScreen(command);
-        else if (command instanceof CommandOpenWeatherScreen) return navigateToForecastScreen();
-        else if (command instanceof CommandOpenLocationScreen) return navigateToLocationScreen();
+        else if (command instanceof CommandOpenForecastScreen) return navigateToForecastScreen(true);
         else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
         else return false;
     }
@@ -162,7 +168,22 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     }
 
     @Override
-    protected void attachInputListeners() {}
+    protected void attachInputListeners() {
+        viewModel.observe(this, this::showCities);
+
+        disposables.add(
+                RxView.clicks(addCityView).subscribe(o -> viewModel.onAddCityNavigation()));
+
+        disposables.add(
+                cityAdapter.getOnItemClickObservable()
+                        .subscribe(cityFavorite -> viewModel.onFavoriteCityClick(cityFavorite))
+        );
+
+        disposables.add(
+                cityAdapter.getOnItemRemoveClickObservable()
+                        .subscribe(cityFavorite -> viewModel.onRemoveCityClick(cityFavorite))
+        );
+    }
 
     private void initToolbar() {
         setSupportActionBar(toolbar);
@@ -175,16 +196,21 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         drawerToggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        citiesRecyclerView = ButterKnife.findById(headerView, R.id.rv_cities);
+        addCityView = ButterKnife.findById(headerView, R.id.rl_add_city);
     }
 
     private void initCitiesRecycler() {
-        RecyclerView citiesRecyclerView =
-                ButterKnife.findById(navigationView.getHeaderView(0), R.id.rv_cities);
-
         cityAdapter = new CityAdapter();
         citiesRecyclerView.setHasFixedSize(true);
         citiesRecyclerView.setNestedScrollingEnabled(false);
         citiesRecyclerView.setAdapter(cityAdapter);
+    }
+
+    private void showCities(List<UICityFavorite> cityFavorites) {
+        cityAdapter.replace(cityFavorites);
     }
 
     /**
@@ -214,17 +240,12 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         return getSupportFragmentManager().findFragmentByTag(ForecastFragment.TAG) == null;
     }
 
-    private boolean navigateToForecastScreen() {
-        if (isNotOnForecastScreen()) {
+    private boolean navigateToForecastScreen(boolean ignore) {
+        if (ignore || isNotOnForecastScreen()) {
             showBackButton(false);
             replaceFragment(ForecastFragment.newInstance(), FRAGMENT_CONTAINER);
+            drawer.closeDrawer(GravityCompat.START);
         }
-        return true;
-    }
-
-    private boolean navigateToLocationScreen() {
-        showBackButton(true);
-        replaceFragment(LocationFragment.newInstance(), FRAGMENT_CONTAINER);
         return true;
     }
 

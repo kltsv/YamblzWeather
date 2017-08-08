@@ -7,6 +7,7 @@
 
     <!-- Cities list -->
     <dimen name="city_remove_button_size">40dp</dimen>
+    <dimen name="city_list_bottom_margin">80dp</dimen>
 
     <!-- Forecast items -->
     <dimen name="item_weather_height">40dp</dimen>

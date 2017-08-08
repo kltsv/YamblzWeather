@@ -6,15 +6,41 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.jakewharton.rxbinding2.view.RxView;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.entity.UICityFavorite;
+import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.Observable;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.subjects.PublishSubject;
+
 public class CityAdapter extends RecyclerView.Adapter<CityViewHolder> {
 
     private List<UICityFavorite> items;
+
+    // Simple on item click
+    private PublishSubject<UICityFavorite> onItemClickSubject = PublishSubject.create();
+
+    Observable<UICityFavorite> getOnItemClickObservable() {
+        return onItemClickSubject;
+    }
+
+    // On item remove button click
+    private PublishSubject<UICityFavorite> onItemRemoveClickSubject = PublishSubject.create();
+
+    Observable<UICityFavorite> getOnItemRemoveClickObservable() {
+        return onItemRemoveClickSubject;
+    }
+
+    private CompositeDisposable disposables = new CompositeDisposable();
+
+    void destroy() {
+        disposables.clear();
+    }
 
     CityAdapter() {
         items = new ArrayList<>();
@@ -40,15 +66,22 @@ public class CityAdapter extends RecyclerView.Adapter<CityViewHolder> {
         else
             holder.cityImageView.setImageResource(R.drawable.ic_city_black_24dp);
 
-        if (position == 0)
+        if (items.size() == 1) {
             holder.removeImageButton.setVisibility(View.GONE);
-        else
+            disposables.add(
+                    RxView.clicks(holder.removeImageButton)
+                            .subscribe(o -> onItemRemoveClickSubject.onNext(item)));
+        } else {
             holder.removeImageButton.setVisibility(View.VISIBLE);
+        }
+
+        disposables.add(
+                RxView.clicks(holder.itemView).subscribe(o -> onItemClickSubject.onNext(item)));
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return items.size();
     }
 
     void replace(List<UICityFavorite> newItems) {

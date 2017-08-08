@@ -3,8 +3,6 @@ package com.ringov.yamblzweather.presentation.ui.main.location;
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
@@ -51,11 +49,6 @@ public class LocationFragment extends BaseMvvmFragment<LocationViewModel> {
     AutoCompleteTextView locationAtv;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.title_location);
-    }
 
     @Override
     public void onStop() {

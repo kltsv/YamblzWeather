@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import io.reactivex.Completable;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
+import timber.log.Timber;
 
 public class FavoriteCityRepositoryImpl extends BaseRepository implements FavoriteCityRepository {
 
@@ -37,35 +38,44 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     @Override
     public Completable select(UICityFavorite city) {
         return getEnabledFavoriteCity()
-                .flatMap(currentEnabled -> {
+                .map(currentEnabled -> {
                     currentEnabled.setEnabled(false);
-                    addFavoriteCity(currentEnabled);
-                    return getCityById(city.getCityId());
+                    return currentEnabled;
                 })
-                .map(Mapper::DBCityToDBFavoriteCity)
-                .flatMapCompletable(newEnabled -> {
+                .flatMapCompletable(this::addFavoriteCity)
+                .andThen(getFavoriteById(city.getCityId()))
+                .map(newEnabled -> {
                     newEnabled.setEnabled(true);
-                    addFavoriteCity(newEnabled);
-                    return Completable.complete();
-                });
+                    return newEnabled;
+                })
+                .flatMapCompletable(this::addFavoriteCity)
+                .subscribeOn(schedulerComputation)
+                .observeOn(schedulerUI);
     }
 
     @Override
     public Single<List<UICityFavorite>> getAll() {
-        return getAllFavorite().map(Mapper::DBtoUIFavoriteCities);
+        return getAllFavorite()
+                .map(Mapper::DBtoUIFavoriteCities)
+                .subscribeOn(schedulerComputation)
+                .observeOn(schedulerUI);
     }
 
     @Override
     public Completable add(UICity city) {
         return getCityById(city.getCityId())
                 .map(Mapper::DBCityToDBFavoriteCity)
-                .flatMapCompletable(this::addFavoriteCity);
+                .flatMapCompletable(this::addFavoriteCity)
+                .subscribeOn(schedulerComputation)
+                .observeOn(schedulerUI);
     }
 
     @Override
     public Completable remove(UICityFavorite city) {
         return getFavoriteById(city.getCityId())
-                .flatMapCompletable(this::removeFavoriteCity);
+                .flatMapCompletable(this::removeFavoriteCity)
+                .subscribeOn(schedulerComputation)
+                .observeOn(schedulerUI);
     }
 
     // DB related methods
@@ -93,6 +103,9 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     private Completable addFavoriteCity(DBFavoriteCity dbFavoriteCity) {
         return Completable.fromCallable(() -> {
             favoriteCityDAO.insert(dbFavoriteCity);
+            Timber.d("Insert favorite city: " + dbFavoriteCity.getCity_name() + " is enabled " + dbFavoriteCity.isEnabled());
+            DBFavoriteCity temp = favoriteCityDAO.getById(dbFavoriteCity.getCity_id());
+            Timber.d("Insert favorite city, check if written successful " + temp.getCity_name() + " is enabled" + temp.isEnabled());
             return true;
         });
     }

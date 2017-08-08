@@ -48,4 +48,31 @@
         android:layout_height="wrap_content"
         app:layoutManager="LinearLayoutManager" />
 
+    <RelativeLayout
+        android:id="@+id/rl_add_city"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/city_list_bottom_margin"
+        android:background="?selectableItemBackground"
+        android:clickable="true">
+
+        <ImageView
+            android:id="@+id/im_add_city"
+            android:layout_width="@dimen/city_remove_button_size"
+            android:layout_height="@dimen/city_remove_button_size"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            app:srcCompat="@drawable/ic_add_city_black_24dp" />
+
+        <TextView
+            android:id="@+id/tv_add_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/im_add_city"
+            android:text="@string/nav_add_favorite_city" />
+
+    </RelativeLayout>
+
 </LinearLayout>
