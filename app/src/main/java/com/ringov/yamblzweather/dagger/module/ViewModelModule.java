@@ -8,7 +8,7 @@ import com.ringov.yamblzweather.presentation.base.CustomViewModelFactory;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.MainViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastViewModel;
-import com.ringov.yamblzweather.presentation.ui.location.LocationViewModel;
+import com.ringov.yamblzweather.presentation.ui.add_city.AddCityViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -29,8 +29,8 @@ public abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(LocationViewModel.class)
-    abstract ViewModel bindLocationViewModel(LocationViewModel viewModel);
+    @ViewModelKey(AddCityViewModel.class)
+    abstract ViewModel bindLocationViewModel(AddCityViewModel viewModel);
 
     @Binds
     @IntoMap

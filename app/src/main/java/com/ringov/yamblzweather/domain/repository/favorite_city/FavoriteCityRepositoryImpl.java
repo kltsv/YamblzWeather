@@ -53,6 +53,14 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     }
 
     @Override
+    public Single<String> getSelectedCityName() {
+        return getEnabledFavoriteCity()
+                .map(DBFavoriteCity::getCity_name)
+                .subscribeOn(schedulerComputation)
+                .observeOn(schedulerUI);
+    }
+
+    @Override
     public Single<List<UICityFavorite>> getAll() {
         return getAllFavorite()
                 .map(Mapper::DBtoUIFavoriteCities)

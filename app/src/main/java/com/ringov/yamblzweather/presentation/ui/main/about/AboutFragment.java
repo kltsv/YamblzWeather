@@ -29,7 +29,7 @@ public class AboutFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.title_about);
+        getActivity().setTitle(R.string.about_title);
 
         tvVersion.setText(getString(R.string.about_version, BuildConfig.VERSION_NAME));
     }

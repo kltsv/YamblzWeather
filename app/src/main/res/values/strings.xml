@@ -2,11 +2,6 @@
 <resources>
     <string name="app_name">Weather</string>
 
-    <!-- Activity titles -->
-    <string name="title_forecast">Forecast</string>
-    <string name="title_about">About</string>
-    <string name="title_details">Weather for %s</string>
-
     <!-- Nav drawer -->
     <string name="navigation_drawer_open">Navigation drawer has been opened</string>
     <string name="navigation_drawer_close">Navigation drawer has been closed</string>
@@ -23,6 +18,8 @@
     <string name="wthr_notification_message" translatable="false">%1$s, %2$s</string>
 
     <!-- Weather details fragment -->
+    <string name="wther_dtls_title">Weather for %s</string>
+
     <string name="wthr_dtls_wind_direction_north">N</string>
     <string name="wthr_dtls_wind_direction_north_east">NE</string>
     <string name="wthr_dtls_wind_direction_east">E</string>
@@ -48,6 +45,7 @@
     <string name="location_changed">Location changed</string>
 
     <!-- About fragment -->
+    <string name="about_title">About</string>
     <string name="about_version">App version: %s</string>
 
     <!-- Error messages -->

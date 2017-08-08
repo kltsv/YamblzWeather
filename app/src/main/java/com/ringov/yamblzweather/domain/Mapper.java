@@ -87,7 +87,7 @@ public final class Mapper {
         return converted;
     }
 
-    private static UICityFavorite DBtoUIFavoriteCity(DBFavoriteCity city) {
+    public static UICityFavorite DBtoUIFavoriteCity(DBFavoriteCity city) {
         return new UICityFavorite.Builder()
                 .enabled(city.isEnabled())
                 .id(city.getCity_id())

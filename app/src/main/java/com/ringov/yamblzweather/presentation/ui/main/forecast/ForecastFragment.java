@@ -40,7 +40,7 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_weather;
+        return R.layout.fragment_forecast;
     }
 
     @BindView(R.id.swipe_layout)
@@ -52,8 +52,6 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        getActivity().setTitle(R.string.title_forecast);
-
         forecastAdapter = new ForecastAdapter();
 
         RecyclerView.ItemDecoration itemDecoration = new
@@ -66,7 +64,8 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
 
     @Override
     protected void attachInputListeners() {
-        getViewModel().observe(this, this::showLoading, this::showForecast, this::showError);
+        getViewModel().observe(
+                this, this::showLoading, this::showForecast, this::showError, this::showSelectedCity);
 
         // Listen for swipe to refresh
         disposables.add(
@@ -104,5 +103,9 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
     private void showError(Throwable error) {
         Timber.e(error);
         Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+    }
+
+    private void showSelectedCity(String city) {
+        getActivity().setTitle(city);
     }
 }

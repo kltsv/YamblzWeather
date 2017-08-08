@@ -47,7 +47,7 @@ public class DetailsActivity extends BaseActivity implements HasSupportFragmentI
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         long time = getIntent().getLongExtra(ARG_TIME, -1);
-        setTitle(getString(R.string.title_details,
+        setTitle(getString(R.string.wther_dtls_title,
                 UIUtils.getFormattedTime(getApplicationContext(), time)));
 
         if (savedInstanceState == null) {

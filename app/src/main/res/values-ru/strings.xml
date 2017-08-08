@@ -2,11 +2,6 @@
 <resources>
     <string name="app_name">Погода</string>
 
-    <!-- Activity titles -->
-    <string name="title_forecast">Прогноз</string>
-    <string name="title_about">О приложении</string>
-    <string name="title_details">Погода на %s</string>
-
     <!-- Nav drawer -->
     <string name="navigation_drawer_open">Открыто боковое меню</string>
     <string name="navigation_drawer_close">Закрыто боковое меню</string>
@@ -17,6 +12,8 @@
     <string name="wthr_swipe_to_update">потяните, чтобы обновить</string>
 
     <!-- Weather details fragment -->
+    <string name="wther_dtls_title">Погода на %s</string>
+
     <string name="wthr_dtls_wind_direction_north">С</string>
     <string name="wthr_dtls_wind_direction_north_east">СВ</string>
     <string name="wthr_dtls_wind_direction_east">В</string>
@@ -42,6 +39,7 @@
     <string name="location_changed">Местоположение изменено</string>
 
     <!-- About fragment -->
+    <string name="about_title">О приложении</string>
     <string name="about_version">Версия приложения: %s</string>
 
     <!-- Error messages -->

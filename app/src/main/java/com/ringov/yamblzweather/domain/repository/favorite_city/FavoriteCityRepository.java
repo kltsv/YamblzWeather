@@ -12,6 +12,8 @@ public interface FavoriteCityRepository {
 
     Single<List<UICityFavorite>> getAll();
 
+    Single<String> getSelectedCityName();
+
     Completable select(UICityFavorite city);
 
     Completable add(UICity city);

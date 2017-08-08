@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.location;
+package com.ringov.yamblzweather.presentation.ui.add_city;
 
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class LocationViewModel extends BaseViewModel {
+public class AddCityViewModel extends BaseViewModel {
 
     private BaseLiveData<Boolean> loadingData = new BaseLiveData<>();
     private BaseLiveData<List<String>> suggestionsData = new BaseLiveData<>();
@@ -18,7 +18,7 @@ public class LocationViewModel extends BaseViewModel {
     private BaseLiveData<String> cityData = new BaseLiveData<>();
 
     @Inject
-    LocationViewModel() {
+    AddCityViewModel() {
         /*disposables.add(
                 repository
                         .getLocation()

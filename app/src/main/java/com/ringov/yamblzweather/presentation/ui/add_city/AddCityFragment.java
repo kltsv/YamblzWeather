@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.presentation.ui.location;
+package com.ringov.yamblzweather.presentation.ui.add_city;
 
 import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
@@ -24,12 +24,12 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 
-public class LocationFragment extends BaseMvvmFragment<LocationViewModel> {
+public class AddCityFragment extends BaseMvvmFragment<AddCityViewModel> {
 
-    public static final String TAG = "LocationFragment";
+    public static final String TAG = "AddCityFragment";
 
-    public static LocationFragment newInstance() {
-        return new LocationFragment();
+    public static AddCityFragment newInstance() {
+        return new AddCityFragment();
     }
 
     @Inject
@@ -37,12 +37,12 @@ public class LocationFragment extends BaseMvvmFragment<LocationViewModel> {
 
     @Override
     protected int getLayout() {
-        return R.layout.fragment_location;
+        return R.layout.fragment_add_city;
     }
 
     @Override
-    protected Class<LocationViewModel> getViewModelClass() {
-        return LocationViewModel.class;
+    protected Class<AddCityViewModel> getViewModelClass() {
+        return AddCityViewModel.class;
     }
 
     @BindView(R.id.atv_location)
