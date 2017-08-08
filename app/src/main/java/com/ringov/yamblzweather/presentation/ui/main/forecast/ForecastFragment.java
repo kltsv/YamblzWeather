@@ -15,7 +15,6 @@ import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -55,7 +54,7 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         getActivity().setTitle(R.string.title_forecast);
 
-        forecastAdapter = new ForecastAdapter(getContext(), new ArrayList<>());
+        forecastAdapter = new ForecastAdapter();
 
         RecyclerView.ItemDecoration itemDecoration = new
                 DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);

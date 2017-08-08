@@ -1,37 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/drawer_header_height"
-    android:background="@color/colorPrimary">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical|end">
+    <FrameLayout
 
-        <TextView
-            android:id="@+id/tv_temp_max"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_header_height"
+        android:background="@color/colorPrimary">
+
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white" />
+            android:layout_gravity="center_vertical|end">
 
-        <TextView
-            android:id="@+id/tv_temp_min"
+            <TextView
+                android:id="@+id/tv_temp_max"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/tv_temp_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_temp_max"
+                android:textColor="@android:color/white" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/drawer_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_temp_max"
-            android:textColor="@android:color/white" />
+            android:layout_gravity="start"
+            android:layout_marginStart="@dimen/drawer_header_image_offset"
+            android:layout_marginTop="@dimen/drawer_header_image_offset"
+            app:srcCompat="@drawable/im_clear" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
-    <ImageView
-        android:id="@+id/drawer_image"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_cities"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="@dimen/drawer_header_image_offset"
-        android:layout_marginTop="@dimen/drawer_header_image_offset"
-        app:srcCompat="@drawable/im_clear" />
+        app:layoutManager="LinearLayoutManager" />
 
-</FrameLayout>
+</LinearLayout>

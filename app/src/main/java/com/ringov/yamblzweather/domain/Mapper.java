@@ -1,8 +1,10 @@
 package com.ringov.yamblzweather.domain;
 
+import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
 import com.ringov.yamblzweather.data.database.entity.DBWeather;
 import com.ringov.yamblzweather.data.networking.entity.ForecastResponse;
 import com.ringov.yamblzweather.data.networking.entity.ResponseWeather;
+import com.ringov.yamblzweather.presentation.entity.UICityFavorite;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 import com.ringov.yamblzweather.presentation.entity.WeatherCondition;
@@ -68,6 +70,23 @@ public final class Mapper {
                 .time(dbWeather.getTime())
                 .windDirection(getWindDirectionByDegrees(dbWeather.getWindDegree()))
                 .windSpeed(dbWeather.getWindSpeed())
+                .build();
+    }
+
+    public static List<UICityFavorite> DBtoUIFavoriteCities(List<DBFavoriteCity> dbFavoriteCities) {
+        List<UICityFavorite> converted = new ArrayList<>();
+
+        for (DBFavoriteCity dbCity : dbFavoriteCities)
+            converted.add(DBtoUIFavoriteCity(dbCity));
+
+        return converted;
+    }
+
+    private static UICityFavorite DBtoUIFavoriteCity(DBFavoriteCity city) {
+        return new UICityFavorite.Builder()
+                .enabled(city.isEnabled())
+                .id(city.getCity_id())
+                .name(city.getCity_name())
                 .build();
     }
 

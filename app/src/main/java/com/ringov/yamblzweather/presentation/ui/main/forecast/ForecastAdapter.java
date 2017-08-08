@@ -12,6 +12,7 @@ import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 import com.ringov.yamblzweather.presentation.ui.UIUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -24,7 +25,6 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastItemVH> {
     private static final int LIST_TYPE = 1;
 
     private List<UIWeatherList> items;
-    private Context context;
 
     private PublishSubject<UIWeatherList> onItemClickSubject = PublishSubject.create();
     Observable<UIWeatherList> getOnItemClickObservable() {
@@ -36,9 +36,8 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastItemVH> {
         disposables.clear();
     }
 
-    ForecastAdapter(Context context, List<UIWeatherList> items) {
-        this.context = context;
-        this.items = items;
+    ForecastAdapter() {
+        items = new ArrayList<>();
     }
 
     @Override
@@ -56,6 +55,7 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastItemVH> {
 
     @Override
     public void onBindViewHolder(ForecastItemVH holder, int position) {
+        Context context = holder.itemView.getContext();
         UIWeatherList item = items.get(position);
 
         holder.dateTextView.setText(UIUtils.getFormattedTime(context, item.getTime()));

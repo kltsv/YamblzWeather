@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -77,6 +78,8 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
 
     private ActionBarDrawerToggle drawerToggle;
 
+    private CityAdapter cityAdapter;
+
     private boolean toolBarNavigationListenerIsRegistered = false;
     private boolean twoPaneMode = false;
 
@@ -88,8 +91,9 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeToolbar();
-        initializeDrawer();
+        initToolbar();
+        initDrawer();
+        initCitiesRecycler();
 
         FrameLayout detailsContainer = ButterKnife.findById(this, R.id.details_container);
         if (detailsContainer != null)
@@ -160,17 +164,27 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @Override
     protected void attachInputListeners() {}
 
-    private void initializeToolbar() {
+    private void initToolbar() {
         setSupportActionBar(toolbar);
     }
 
-    private void initializeDrawer() {
+    private void initDrawer() {
         drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void initCitiesRecycler() {
+        RecyclerView citiesRecyclerView =
+                ButterKnife.findById(navigationView.getHeaderView(0), R.id.rv_cities);
+
+        cityAdapter = new CityAdapter();
+        citiesRecyclerView.setHasFixedSize(true);
+        citiesRecyclerView.setNestedScrollingEnabled(false);
+        citiesRecyclerView.setAdapter(cityAdapter);
     }
 
     /**
