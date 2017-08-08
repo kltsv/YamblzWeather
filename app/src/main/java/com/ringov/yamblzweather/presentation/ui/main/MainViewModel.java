@@ -16,6 +16,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import timber.log.Timber;
+
 public class MainViewModel extends BaseViewModel {
 
     private BaseLiveData<List<UICityFavorite>> citiesData = new BaseLiveData<>();
@@ -48,7 +50,14 @@ public class MainViewModel extends BaseViewModel {
     }
 
     public void onRemoveCityClick(UICityFavorite city) {
-        // TODO implement
+        disposables.add(
+                favoriteCityRepository.remove(city)
+                        .subscribe(() -> {
+                            if (city.isEnabled())
+                                showWeatherForNewCity();
+                            else
+                                loadFavoriteCities();
+                        }));
     }
 
     public void onFavoriteCityClick(UICityFavorite city) {
@@ -57,10 +66,7 @@ public class MainViewModel extends BaseViewModel {
         } else {
             disposables.add(
                     favoriteCityRepository.select(city)
-                            .subscribe(() -> {
-                                loadFavoriteCities();
-                                router.execute(new CommandOpenForecastScreen());
-                            }));
+                            .subscribe(this::showWeatherForNewCity));
         }
     }
 
@@ -69,5 +75,10 @@ public class MainViewModel extends BaseViewModel {
         disposables.add(
                 favoriteCityRepository.getAll().subscribe(
                         uiCityFavorites -> citiesData.updateValue(uiCityFavorites)));
+    }
+
+    private void showWeatherForNewCity() {
+        loadFavoriteCities();
+        router.execute(new CommandOpenForecastScreen());
     }
 }

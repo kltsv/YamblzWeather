@@ -25,6 +25,7 @@ import com.ringov.yamblzweather.navigation.base.Command;
 import com.ringov.yamblzweather.navigation.base.Navigator;
 import com.ringov.yamblzweather.navigation.base.NavigatorBinder;
 import com.ringov.yamblzweather.navigation.commands.CommandCloseDrawer;
+import com.ringov.yamblzweather.navigation.commands.CommandNavigatorAttached;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenAboutScreen;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherDetails;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenForecastScreen;
@@ -43,7 +44,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
-import timber.log.Timber;
 
 public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         NavigationView.OnNavigationItemSelectedListener,
@@ -157,11 +157,15 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
 
     @Override
     public boolean executeCommand(Command command) {
-        if (command instanceof CommandOpenWeatherDetails) return openDetailsScreen(command);
+        // Its critical to check for CommandNavigatorAttached and return false,
+        // otherwise navigation command queue will break.
+        if (command instanceof CommandNavigatorAttached) return false;
+        else if (command instanceof CommandOpenWeatherDetails) return openDetailsScreen(command);
         else if (command instanceof CommandOpenForecastScreen) return navigateToForecastScreen(true);
         else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
         else if (command instanceof CommandCloseDrawer) return closeDrawer();
-        else return false;
+        else throw new IllegalArgumentException(
+                "Trying to execute unknown command: " + command.getClass().getSimpleName());
     }
 
     @Override
@@ -265,7 +269,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     private boolean openDetailsScreen(Command command) {
         CommandOpenWeatherDetails c = (CommandOpenWeatherDetails) command;
         long time = c.getTime();
-        Timber.d("Open weather details, two pane = " + twoPaneMode);
+
         if (twoPaneMode) {
             replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_DETAILS_CONTAINER);
         } else {

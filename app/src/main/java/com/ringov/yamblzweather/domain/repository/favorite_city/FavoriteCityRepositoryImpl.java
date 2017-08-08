@@ -18,7 +18,6 @@ import javax.inject.Inject;
 import io.reactivex.Completable;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
-import timber.log.Timber;
 
 public class FavoriteCityRepositoryImpl extends BaseRepository implements FavoriteCityRepository {
 
@@ -94,6 +93,7 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
         return Single.fromCallable(() -> favoriteCityDAO.getById(id));
     }
 
+    // Important! This method works with regular cities table, not with favorite cities
     @WorkerThread
     private Single<DBCity> getCityById(int id) {
         return Single.fromCallable(() -> cityDAO.getById(id));
@@ -103,9 +103,6 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     private Completable addFavoriteCity(DBFavoriteCity dbFavoriteCity) {
         return Completable.fromCallable(() -> {
             favoriteCityDAO.insert(dbFavoriteCity);
-            Timber.d("Insert favorite city: " + dbFavoriteCity.getCity_name() + " is enabled " + dbFavoriteCity.isEnabled());
-            DBFavoriteCity temp = favoriteCityDAO.getById(dbFavoriteCity.getCity_id());
-            Timber.d("Insert favorite city, check if written successful " + temp.getCity_name() + " is enabled" + temp.isEnabled());
             return true;
         });
     }
@@ -114,6 +111,15 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     private Completable removeFavoriteCity(DBFavoriteCity dbFavoriteCity) {
         return Completable.fromCallable(() -> {
             favoriteCityDAO.delete(dbFavoriteCity);
+            // Check, if was enabled city, so select something instead of it
+            if (dbFavoriteCity.isEnabled()) {
+                // There can be an ArrayOutOfBoundException, if we deleted last FavoriteCity in db,
+                // but this handles in ViewModel - there is no way to delete favorite city
+                // if there is only one favorite city.
+                DBFavoriteCity newEnabled = favoriteCityDAO.getAll().get(0);
+                newEnabled.setEnabled(true);
+                favoriteCityDAO.insert(newEnabled);
+            }
             return true;
         });
     }

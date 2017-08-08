@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.presentation.entity.UICityFavorite;
-import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +17,7 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.subjects.PublishSubject;
 
-public class CityAdapter extends RecyclerView.Adapter<CityViewHolder> {
+class CityAdapter extends RecyclerView.Adapter<CityViewHolder> {
 
     private List<UICityFavorite> items;
 
@@ -68,11 +67,12 @@ public class CityAdapter extends RecyclerView.Adapter<CityViewHolder> {
 
         if (items.size() == 1) {
             holder.removeImageButton.setVisibility(View.GONE);
+        } else {
+            holder.removeImageButton.setVisibility(View.VISIBLE);
+
             disposables.add(
                     RxView.clicks(holder.removeImageButton)
                             .subscribe(o -> onItemRemoveClickSubject.onNext(item)));
-        } else {
-            holder.removeImageButton.setVisibility(View.VISIBLE);
         }
 
         disposables.add(
