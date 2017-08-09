@@ -10,16 +10,22 @@ import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
 
 import java.util.List;
 
+import io.reactivex.Flowable;
+
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_ID;
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_NAME;
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_ENABLED;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_ID;
 import static com.ringov.yamblzweather.data.database.DBContract.TABLE_FAVORITE_CITIES;
 
 @Dao
 public interface FavoriteCityDAO {
 
     @Query("SELECT * FROM " + TABLE_FAVORITE_CITIES)
-    List<DBFavoriteCity> getAll();
+    Flowable<List<DBFavoriteCity>> getAll();
+
+    @Query("SELECT * FROM " + TABLE_FAVORITE_CITIES + " ORDER BY " + COLUMN_ID + " LIMIT 1")
+    DBFavoriteCity getFirst();
 
     @Query("SELECT * FROM " + TABLE_FAVORITE_CITIES + " WHERE " + COLUMN_ENABLED + " = 1 LIMIT 1")
     DBFavoriteCity getEnabled();

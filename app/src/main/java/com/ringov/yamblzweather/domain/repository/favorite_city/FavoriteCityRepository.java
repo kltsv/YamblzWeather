@@ -5,11 +5,12 @@ import com.ringov.yamblzweather.presentation.entity.UICityFavorite;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 public interface FavoriteCityRepository {
 
-    Single<List<UICityFavorite>> getAll();
+    Flowable<List<UICityFavorite>> getAll();
 
     Single<String> getSelectedCityName();
 

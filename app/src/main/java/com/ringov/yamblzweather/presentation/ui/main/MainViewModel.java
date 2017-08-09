@@ -17,8 +17,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import timber.log.Timber;
-
 public class MainViewModel extends BaseViewModel {
 
     private BaseLiveData<List<UICityFavorite>> citiesData = new BaseLiveData<>();
@@ -31,7 +29,11 @@ public class MainViewModel extends BaseViewModel {
         this.router = router;
         this.favoriteCityRepository = favoriteCityRepository;
 
-        loadFavoriteCities();
+        disposables.add(
+                favoriteCityRepository
+                        .getAll()
+                        .subscribe(uiCityFavorites -> citiesData.updateValue(uiCityFavorites))
+        );
     }
 
     public void observe(
@@ -52,34 +54,25 @@ public class MainViewModel extends BaseViewModel {
 
     public void onRemoveCityClick(UICityFavorite city) {
         disposables.add(
-                favoriteCityRepository.remove(city)
-                        .subscribe(() -> {
-                            if (city.isEnabled())
-                                showWeatherForNewCity();
-                            else
-                                loadFavoriteCities();
-                        }));
+                favoriteCityRepository.remove(city).subscribe(() -> {
+                    // If user removes currently selected city, update forecast screen
+                    if (city.isEnabled()) showWeatherForNewCity();
+                }));
     }
 
     public void onFavoriteCityClick(UICityFavorite city) {
         if (city.isEnabled()) {
+            // If user clicks on enabled city there is no reason re-select in again
+            // so just close nav drawer and let user watch forecast.
             router.execute(new CommandCloseDrawer());
         } else {
             disposables.add(
-                    favoriteCityRepository.select(city)
-                            .subscribe(this::showWeatherForNewCity));
+                    favoriteCityRepository.select(city).subscribe(this::showWeatherForNewCity));
         }
     }
 
     // Private logic
-    private void loadFavoriteCities() {
-        disposables.add(
-                favoriteCityRepository.getAll().subscribe(
-                        uiCityFavorites -> citiesData.updateValue(uiCityFavorites)));
-    }
-
     private void showWeatherForNewCity() {
-        loadFavoriteCities();
         router.execute(new CommandOpenForecastScreen());
     }
 }

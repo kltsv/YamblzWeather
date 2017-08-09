@@ -15,6 +15,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import io.reactivex.Completable;
+import io.reactivex.Flowable;
 import io.reactivex.Scheduler;
 import io.reactivex.Single;
 
@@ -62,7 +63,7 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     }
 
     @Override
-    public Single<List<UICityFavorite>> getAll() {
+    public Flowable<List<UICityFavorite>> getAll() {
         return getAllFavorite()
                 .map(Mapper::DBtoUIFavoriteCities)
                 .subscribeOn(schedulerComputation)
@@ -102,8 +103,8 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     }
 
     @WorkerThread
-    private Single<List<DBFavoriteCity>> getAllFavorite() {
-        return Single.fromCallable(() -> favoriteCityDAO.getAll());
+    private Flowable<List<DBFavoriteCity>> getAllFavorite() {
+        return favoriteCityDAO.getAll();
     }
 
     @WorkerThread
@@ -136,9 +137,9 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
             favoriteCityDAO.delete(dbFavoriteCity);
             // Check, if it was enabled city, so select something instead of it
             if (dbFavoriteCity.isEnabled()) {
-                // Here can be an ArrayOutOfBoundException, if we deleted last FavoriteCity in db,
+                // Here can be null, if we deleted last FavoriteCity in db,
                 // but this handles in UI - there is no legal way to delete last favorite city.
-                DBFavoriteCity newEnabled = favoriteCityDAO.getAll().get(0);
+                DBFavoriteCity newEnabled = favoriteCityDAO.getFirst();
                 newEnabled.setEnabled(true);
                 favoriteCityDAO.insert(newEnabled);
             }
