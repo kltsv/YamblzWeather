@@ -27,6 +27,8 @@ import timber.log.Timber;
 
 public class AppDatabaseCreator {
 
+    public static final int DEFAULT_CITY_ID = 524901;
+
     private static AppDatabaseCreator instance;
 
     private final MutableLiveData<Boolean> isDatabaseCreated = new MutableLiveData<>();
@@ -103,7 +105,7 @@ public class AppDatabaseCreator {
             // Populate Cities table with pre filled data
             readDataFromRaw(context);
             // Select default city
-            DBCity dbCity = mDb.cityDAO().getById(Const.DEFAULT_CITY_ID);
+            DBCity dbCity = mDb.cityDAO().getById(DEFAULT_CITY_ID);
             DBFavoriteCity dbFavoriteCity =
                     new DBFavoriteCity(dbCity.getCity_name(), dbCity.getCity_id(), 1);
             mDb.favoriteCityDAO().insert(dbFavoriteCity);

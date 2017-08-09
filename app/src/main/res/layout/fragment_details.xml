@@ -13,49 +13,73 @@
             android:id="@+id/ll_weather_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <ImageView
                 android:id="@+id/im_condition"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:adjustViewBounds="true" />
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:padding="8dp" />
 
             <TextView
                 android:id="@+id/tv_temp_max"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:textAppearance="?android:textAppearanceLarge" />
 
             <TextView
                 android:id="@+id/tv_temp_min"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp"
+                android:textAppearance="?android:textAppearanceMedium" />
 
             <TextView
                 android:id="@+id/tv_humidity"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp" />
 
             <TextView
                 android:id="@+id/tv_pressure"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="8dp" />
 
-            <ImageView
-                android:id="@+id/im_wind_direction"
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_wind_direction_black_24dp" />
+                android:layout_gravity="center"
+                android:padding="8dp">
 
-            <TextView
-                android:id="@+id/tv_wind_direction"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <ImageView
+                    android:id="@+id/im_wind_direction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_wind_direction_black_24dp" />
 
-            <TextView
-                android:id="@+id/tv_wind_speed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/tv_wind_direction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/im_wind_direction"
+                    android:textAppearance="?android:textAppearanceMedium" />
+
+                <TextView
+                    android:id="@+id/tv_wind_speed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/im_wind_direction" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 

@@ -41,8 +41,7 @@ public class SplashActivity extends BaseActivity implements LifecycleRegistryOwn
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().setBackgroundDrawable(null);
-
+        // DB init on first app launch may take some time
         AppDatabaseCreator.getInstance().isDatabaseCreated().observe(this, this::onDatabaseLoaded);
     }
 
