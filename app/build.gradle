@@ -112,6 +112,8 @@ dependencies {
     // Support lib
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile "com.android.support:design:$supportLibVersion"
+    compile "com.android.support:preference-v7:$supportLibVersion"
+    compile "com.android.support:preference-v14:$supportLibVersion"
 
     // architecture components
     compile "android.arch.lifecycle:runtime:$architectureComponentsVersion"

@@ -9,7 +9,6 @@ import com.ringov.yamblzweather.presentation.ui.details.DetailsViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.MainViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastViewModel;
 import com.ringov.yamblzweather.presentation.ui.main.add_city.AddCityViewModel;
-import com.ringov.yamblzweather.presentation.ui.main.settings.SettingsViewModel;
 
 import dagger.Binds;
 import dagger.Module;
@@ -37,11 +36,6 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DetailsViewModel.class)
     abstract ViewModel bindDetailsViewModel(DetailsViewModel viewModel);
-
-    @Binds
-    @IntoMap
-    @ViewModelKey(SettingsViewModel.class)
-    abstract ViewModel bindSettingsViewModel(SettingsViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(CustomViewModelFactory factory);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="prefs_push_key" translatable="false">prefs_push_key</string>
+    <bool name="prefs_push_default" translatable="false">true</bool>
+
+    <string name="prefs_interval_key" translatable="false">prefs_interval_key</string>
+    <string name="prefs_interval_default" translatable="false">60</string>
+    <string-array name="prefs_interval_values" translatable="false">
+        <item>1</item>
+        <item>3</item>
+        <item>6</item>
+    </string-array>
+
+</resources>
