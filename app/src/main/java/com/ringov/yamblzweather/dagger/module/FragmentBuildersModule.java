@@ -3,6 +3,7 @@ package com.ringov.yamblzweather.dagger.module;
 import com.ringov.yamblzweather.presentation.ui.main.add_city.AddCityFragment;
 import com.ringov.yamblzweather.presentation.ui.details.DetailsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastFragment;
+import com.ringov.yamblzweather.presentation.ui.main.settings.SettingsFragment;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -18,4 +19,7 @@ public abstract class FragmentBuildersModule {
 
     @ContributesAndroidInjector
     abstract DetailsFragment contributeDetailsFragment();
+
+    @ContributesAndroidInjector
+    abstract SettingsFragment contributeSettingsFragment();
 }

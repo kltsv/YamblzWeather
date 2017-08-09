@@ -28,6 +28,7 @@ import com.ringov.yamblzweather.navigation.commands.CommandCloseDrawer;
 import com.ringov.yamblzweather.navigation.commands.CommandNavigatorAttached;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenAboutScreen;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenAddCityScreen;
+import com.ringov.yamblzweather.navigation.commands.CommandOpenSettingsScreen;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenWeatherDetails;
 import com.ringov.yamblzweather.navigation.commands.CommandOpenForecastScreen;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmActivity;
@@ -37,6 +38,7 @@ import com.ringov.yamblzweather.presentation.ui.details.DetailsFragment;
 import com.ringov.yamblzweather.presentation.ui.main.about.AboutFragment;
 import com.ringov.yamblzweather.presentation.ui.main.add_city.AddCityFragment;
 import com.ringov.yamblzweather.presentation.ui.main.forecast.ForecastFragment;
+import com.ringov.yamblzweather.presentation.ui.main.settings.SettingsFragment;
 
 import java.util.List;
 
@@ -134,6 +136,9 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.nav_settings:
+                viewModel.onSettingsNavigation();
+                break;
             case R.id.nav_about:
                 viewModel.onAboutNavigation();
                 break;
@@ -170,6 +175,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         else if (command instanceof CommandOpenForecastScreen) return navigateToForecastScreen(true);
         else if (command instanceof CommandOpenAddCityScreen) return navigateToAddCityScreen();
         else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
+        else if (command instanceof CommandOpenSettingsScreen) return navigateToSettingsScreen();
         else if (command instanceof CommandCloseDrawer) return closeDrawer();
         else throw new IllegalArgumentException(
                     "Trying to execute unknown command: " + command.getClass().getSimpleName());
@@ -287,6 +293,12 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     private boolean navigateToAboutScreen() {
         showBackButton(true);
         replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER);
+        return true;
+    }
+
+    private boolean navigateToSettingsScreen() {
+        showBackButton(true);
+        replaceFragment(SettingsFragment.newInstance(), FRAGMENT_CONTAINER);
         return true;
     }
 

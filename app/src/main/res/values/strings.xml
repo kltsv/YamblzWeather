@@ -51,6 +51,9 @@
     <string name="about_title">About</string>
     <string name="about_version">App version: %s</string>
 
+    <!-- Settings fragment -->
+    <string name="settings_title">Settings</string>
+
     <!-- Error messages -->
     <string name="no_internet_connection">No Internet connection</string>
 

@@ -45,6 +45,9 @@
     <string name="about_title">О приложении</string>
     <string name="about_version">Версия приложения: %s</string>
 
+    <!-- Settings fragment -->
+    <string name="settings_title">Настройки</string>
+
     <!-- Error messages -->
     <string name="no_internet_connection">Отсутсвует соединение с интернетом</string>
 
