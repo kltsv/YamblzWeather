@@ -19,6 +19,7 @@
     <string name="wthr_notification_message" translatable="false">%1$s, %2$s</string>
 
     <string name="wthr_today">today</string>
+    <string name="wthr_swipe_to_update">Swipe to update</string>
 
     <!-- Weather details fragment -->
     <string name="wther_dtls_title">Weather for %s</string>
@@ -55,6 +56,7 @@
     <string name="settings_title">Settings</string>
 
     <!-- Error messages -->
-    <string name="no_internet_connection">No Internet connection</string>
+    <string name="error_no_internet_connection">No internet connection</string>
+    <string name="error_request_failed">Request failed</string>
 
 </resources>

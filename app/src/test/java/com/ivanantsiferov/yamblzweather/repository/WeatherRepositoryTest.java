@@ -4,7 +4,6 @@ import com.ringov.yamblzweather.data.database.dao.FavoriteCityDAO;
 import com.ringov.yamblzweather.data.database.dao.WeatherDAO;
 import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
-import com.ringov.yamblzweather.domain.exceptions.EmptyForecastException;
 import com.ringov.yamblzweather.domain.exceptions.NoInternetConnectionException;
 import com.ringov.yamblzweather.domain.repository.weather.WeatherRepository;
 import com.ringov.yamblzweather.domain.repository.weather.WeatherRepositoryImpl;
@@ -86,8 +85,7 @@ public class WeatherRepositoryTest {
                 .thenReturn(Single.just(WeatherRepositoryTestUtils.forecastResponse(0)));
 
         weatherRepository.getForecast(false)
-                .subscribe((uiWeatherLists, throwable) -> {
-                    assertTrue(throwable instanceof EmptyForecastException);
-                });
+                .subscribe((uiWeatherLists, throwable) ->
+                        assertTrue(throwable instanceof IllegalArgumentException));
     }
 }

@@ -8,19 +8,21 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.LinearLayout;
 
 import com.jakewharton.rxbinding2.support.v4.widget.RxSwipeRefreshLayout;
 import com.ringov.yamblzweather.R;
+import com.ringov.yamblzweather.domain.exceptions.NoInternetConnectionException;
+import com.ringov.yamblzweather.domain.exceptions.StubException;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
+import java.net.UnknownHostException;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import timber.log.Timber;
 
 public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
 
@@ -47,6 +49,8 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
     SwipeRefreshLayout swipeLayout;
     @BindView(R.id.rv_forecast)
     RecyclerView forecastRecycler;
+    @BindView(R.id.ll_empty)
+    LinearLayout emptyLinearLayout;
 
     private ForecastAdapter forecastAdapter;
 
@@ -93,6 +97,7 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
     }
 
     private void showForecast(List<UIWeatherList> forecast) {
+        showHideEmptyState(forecast.isEmpty());
         forecastAdapter.replace(forecast);
     }
 
@@ -101,11 +106,27 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
     }
 
     private void showError(Throwable error) {
-        Timber.e(error);
-        Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+        // Because this method get called with old data each time, when fragment resumes,
+        // stub exception is thrown to override previous exception, that has been shown to user
+        if (error instanceof StubException)
+            return;
+
+        if (error instanceof NoInternetConnectionException)
+            toast(R.string.error_no_internet_connection);
+        else if (error instanceof UnknownHostException)
+            toast(R.string.error_request_failed);
+        else
+            throw new RuntimeException(error);
     }
 
     private void showSelectedCity(String city) {
         getActivity().setTitle(city);
+    }
+
+    private void showHideEmptyState(boolean show) {
+        if (show)
+            emptyLinearLayout.setVisibility(View.VISIBLE);
+        else
+            emptyLinearLayout.setVisibility(View.GONE);
     }
 }

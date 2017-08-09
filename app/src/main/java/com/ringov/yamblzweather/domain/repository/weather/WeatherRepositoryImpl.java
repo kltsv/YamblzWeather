@@ -9,7 +9,6 @@ import com.ringov.yamblzweather.data.database.entity.DBWeather;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
 import com.ringov.yamblzweather.domain.repository.BaseRepository;
 import com.ringov.yamblzweather.domain.Mapper;
-import com.ringov.yamblzweather.domain.exceptions.EmptyForecastException;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
@@ -113,7 +112,7 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
     @WorkerThread
     private void saveCache(List<DBWeather> weatherToCache) {
         if (weatherToCache.isEmpty()) {
-            throw new EmptyForecastException("Trying to cache empty forecast list");
+            throw new IllegalArgumentException("Trying to cache empty forecast list");
         } else {
             int cityId = weatherToCache.get(0).getCityId();
             // Remove all previous weather data for that city

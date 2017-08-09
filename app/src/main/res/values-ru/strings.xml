@@ -13,6 +13,7 @@
 
     <!-- Weather fragment -->
     <string name="wthr_today">cегодня</string>
+    <string name="wthr_swipe_to_update">Потяните, чтобы обновить</string>
 
     <!-- Weather details fragment -->
     <string name="wther_dtls_title">Погода на %s</string>
@@ -49,6 +50,7 @@
     <string name="settings_title">Настройки</string>
 
     <!-- Error messages -->
-    <string name="no_internet_connection">Отсутсвует соединение с интернетом</string>
+    <string name="error_no_internet_connection">Нет соединения с интернетом</string>
+    <string name="error_request_failed">Запрос неудался</string>
 
 </resources>

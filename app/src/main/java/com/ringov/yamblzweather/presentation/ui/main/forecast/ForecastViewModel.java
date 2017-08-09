@@ -3,6 +3,7 @@ package com.ringov.yamblzweather.presentation.ui.main.forecast;
 import android.arch.lifecycle.LifecycleOwner;
 import android.arch.lifecycle.Observer;
 
+import com.ringov.yamblzweather.domain.exceptions.StubException;
 import com.ringov.yamblzweather.domain.repository.favorite_city.FavoriteCityRepository;
 import com.ringov.yamblzweather.domain.repository.weather.WeatherRepository;
 import com.ringov.yamblzweather.navigation.base.Router;
@@ -11,13 +12,12 @@ import com.ringov.yamblzweather.presentation.base.BaseLiveData;
 import com.ringov.yamblzweather.presentation.base.BaseViewModel;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class ForecastViewModel extends BaseViewModel {
-
-    // TODO show selected City
 
     private BaseLiveData<Boolean> loadingData = new BaseLiveData<>();
     private BaseLiveData<List<UIWeatherList>> weatherData = new BaseLiveData<>();
@@ -37,6 +37,9 @@ public class ForecastViewModel extends BaseViewModel {
         this.router = router;
         this.weatherRepository = weatherRepo;
         this.favoriteCityRepository = favoriteCityRepository;
+
+        // Sens empty array list to show empty state view
+        weatherData.updateValue(new ArrayList<>());
 
         loadWeather(false);
         loadEnabledCity();
@@ -73,7 +76,10 @@ public class ForecastViewModel extends BaseViewModel {
                         .doFinally(() -> loadingData.updateValue(false))
                         .subscribe(
                                 uiWeather -> weatherData.updateValue(uiWeather),
-                                throwable -> errorData.updateValue(throwable)
+                                throwable -> {
+                                    errorData.updateValue(throwable);
+                                    errorData.updateValue(new StubException());
+                                }
                         )
         );
     }
