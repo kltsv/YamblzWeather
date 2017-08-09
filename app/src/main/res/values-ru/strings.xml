@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">Погода</string>
 
+    <!-- Push notifications -->
+    <string name="push_content">Прогноз: %.0f°</string>
+
     <!-- Nav drawer -->
     <string name="navigation_drawer_open">Открыто боковое меню</string>
     <string name="navigation_drawer_close">Закрыто боковое меню</string>

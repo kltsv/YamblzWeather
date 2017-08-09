@@ -4,6 +4,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:name=".App"
@@ -24,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
 
             </intent-filter>
+
         </activity>
 
         <activity
@@ -33,6 +35,21 @@
         <activity
             android:name=".presentation.ui.details.DetailsActivity"
             android:theme="@style/AppTheme.WeatherDetails" />
+
+
+        <receiver android:name=".data.background.AlarmReceiver" />
+
+        <receiver android:name=".data.background.BootReceiver">
+
+            <intent-filter>
+
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+
+            </intent-filter>
+
+        </receiver>
+
+        <service android:name=".data.background.BackgroundService" />
 
     </application>
 

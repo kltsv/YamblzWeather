@@ -27,7 +27,7 @@ import timber.log.Timber;
 
 public class AppDatabaseCreator {
 
-    public static final int DEFAULT_CITY_ID = 524901;
+    private static final int DEFAULT_CITY_ID = 524901;
 
     private static AppDatabaseCreator instance;
 

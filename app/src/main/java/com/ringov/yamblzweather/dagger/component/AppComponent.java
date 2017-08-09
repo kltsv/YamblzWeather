@@ -10,6 +10,7 @@ import com.ringov.yamblzweather.dagger.module.NavigationModule;
 import com.ringov.yamblzweather.dagger.module.NetworkModule;
 import com.ringov.yamblzweather.dagger.module.RepositoryModule;
 import com.ringov.yamblzweather.dagger.module.RxSchedulerModule;
+import com.ringov.yamblzweather.dagger.module.ServiceModule;
 import com.ringov.yamblzweather.dagger.module.ViewModelModule;
 
 import javax.inject.Singleton;
@@ -21,6 +22,7 @@ import dagger.android.AndroidInjectionModule;
 @Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
+        ServiceModule.class,
         NavigationModule.class,
         ActivityModule.class,
         ApplicationModule.class,

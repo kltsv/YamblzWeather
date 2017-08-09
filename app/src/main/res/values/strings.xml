@@ -2,6 +2,9 @@
 <resources>
     <string name="app_name">Weather</string>
 
+    <!-- Push notifications -->
+    <string name="push_content">Forecast: %.0f°</string>
+
     <!-- Nav drawer -->
     <string name="navigation_drawer_open">Navigation drawer has been opened</string>
     <string name="navigation_drawer_close">Navigation drawer has been closed</string>
@@ -49,6 +52,6 @@
     <string name="about_version">App version: %s</string>
 
     <!-- Error messages -->
-    <string name="no_internet_connection">No Internet</string>
+    <string name="no_internet_connection">No Internet connection</string>
 
 </resources>
