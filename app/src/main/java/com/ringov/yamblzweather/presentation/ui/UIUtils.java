@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.ringov.yamblzweather.R;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public final class UIUtils {
@@ -21,9 +22,16 @@ public final class UIUtils {
     }
 
     public static String getFormattedTime(Context context, long time) {
-        java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
-        Date date = new Date(time * 1000);
-        return dateFormat.format(date);
+        Calendar now = Calendar.getInstance();
+        Calendar someTime = Calendar.getInstance();
+        someTime.setTimeInMillis(time * 1000);
+        if (now.get(Calendar.DATE) == someTime.get(Calendar.DATE)) {
+            return context.getString(R.string.wthr_today);
+        } else {
+            java.text.DateFormat dateFormat = android.text.format.DateFormat.getDateFormat(context);
+            Date date = new Date(time * 1000);
+            return dateFormat.format(date);
+        }
     }
 
     public static String getFormattedTemperature(Context context, float temperature) {
