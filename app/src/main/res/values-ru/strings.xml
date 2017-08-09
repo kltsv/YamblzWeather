@@ -9,7 +9,7 @@
     <string name="nav_add_favorite_city">Добавить город</string>
 
     <!-- Weather fragment -->
-    <string name="wthr_swipe_to_update">потяните, чтобы обновить</string>
+    <string name="wthr_today">cегодня</string>
 
     <!-- Weather details fragment -->
     <string name="wther_dtls_title">Погода на %s</string>

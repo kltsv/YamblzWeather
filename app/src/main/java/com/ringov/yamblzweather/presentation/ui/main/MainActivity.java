@@ -83,6 +83,10 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     @BindView(R.id.navigation_view)
     NavigationView navigationView;
 
+    @Nullable
+    @BindView(R.id.details_container)
+    FrameLayout detailsContainer;
+
     private RecyclerView citiesRecyclerView;
     private RelativeLayout addCityView;
 
@@ -168,7 +172,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         else if (command instanceof CommandOpenAboutScreen) return navigateToAboutScreen();
         else if (command instanceof CommandCloseDrawer) return closeDrawer();
         else throw new IllegalArgumentException(
-                "Trying to execute unknown command: " + command.getClass().getSimpleName());
+                    "Trying to execute unknown command: " + command.getClass().getSimpleName());
     }
 
     @Override
@@ -226,6 +230,8 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
      * See https://stackoverflow.com/questions/36579799/
      */
     private void showBackButton(boolean enable) {
+        showHideDetailsContainer(!enable);
+
         if (enable) {
             drawerToggle.setDrawerIndicatorEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -248,6 +254,15 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     private boolean closeDrawer() {
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void showHideDetailsContainer(boolean show) {
+        if (twoPaneMode && detailsContainer != null) {
+            if (show)
+                detailsContainer.setVisibility(View.VISIBLE);
+            else
+                detailsContainer.setVisibility(View.GONE);
+        }
     }
 
     private boolean isNotOnForecastScreen() {

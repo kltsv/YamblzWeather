@@ -6,33 +6,12 @@
     android:orientation="vertical">
 
     <FrameLayout
-
         android:layout_width="match_parent"
         android:layout_height="@dimen/drawer_header_height"
         android:background="@color/colorPrimary">
 
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end">
-
-            <TextView
-                android:id="@+id/tv_temp_max"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white" />
-
-            <TextView
-                android:id="@+id/tv_temp_min"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/tv_temp_max"
-                android:textColor="@android:color/white" />
-
-        </RelativeLayout>
-
         <ImageView
-            android:id="@+id/drawer_image"
+            android:id="@+id/im_condition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
