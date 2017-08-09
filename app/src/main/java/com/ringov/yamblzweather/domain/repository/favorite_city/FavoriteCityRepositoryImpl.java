@@ -20,6 +20,8 @@ import io.reactivex.Single;
 
 public class FavoriteCityRepositoryImpl extends BaseRepository implements FavoriteCityRepository {
 
+    // TODO auto select new added city
+
     private FavoriteCityDAO favoriteCityDAO;
     private CityDAO cityDAO;
 
@@ -33,19 +35,19 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
         this.cityDAO = cityDAO;
     }
 
+    /**
+     * 1. Get current selected city
+     * 2. Disable it and update in DB
+     * 3. From DB get city, that need to be selected
+     * 4. Enable it and update in DB
+     */
     @Override
     public Completable select(UICityFavorite city) {
         return getEnabledFavoriteCity()
-                .map(currentEnabled -> {
-                    currentEnabled.setEnabled(false);
-                    return currentEnabled;
-                })
+                .map(Mapper::disableFavoriteCity)
                 .flatMapCompletable(this::addFavoriteCity)
                 .andThen(getFavoriteById(city.getCityId()))
-                .map(newEnabled -> {
-                    newEnabled.setEnabled(true);
-                    return newEnabled;
-                })
+                .map(Mapper::enableFavoriteCity)
                 .flatMapCompletable(this::addFavoriteCity)
                 .subscribeOn(schedulerComputation)
                 .observeOn(schedulerUI);
@@ -67,11 +69,20 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
                 .observeOn(schedulerUI);
     }
 
+    /**
+     * 1. Get city by name from CITIES table
+     * 2. Map to proper entity and add to FAVORITE_CITIES table
+     * 3. Get it from favorite cities table
+     * 4. Map to UI entity and switch to select method of this repo
+     */
     @Override
     public Completable add(String cityName) {
         return getCityByName(cityName)
                 .map(Mapper::DBCityToDBFavoriteCity)
                 .flatMapCompletable(this::addFavoriteCity)
+                .andThen(getFavoriteByName(cityName))
+                .map(Mapper::DBtoUIFavoriteCity)
+                .flatMapCompletable(this::select)
                 .subscribeOn(schedulerComputation)
                 .observeOn(schedulerUI);
     }
@@ -93,6 +104,11 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     @WorkerThread
     private Single<List<DBFavoriteCity>> getAllFavorite() {
         return Single.fromCallable(() -> favoriteCityDAO.getAll());
+    }
+
+    @WorkerThread
+    private Single<DBFavoriteCity> getFavoriteByName(String name) {
+        return Single.fromCallable(() -> favoriteCityDAO.getByName(name));
     }
 
     @WorkerThread
@@ -118,11 +134,10 @@ public class FavoriteCityRepositoryImpl extends BaseRepository implements Favori
     private Completable removeFavoriteCity(DBFavoriteCity dbFavoriteCity) {
         return Completable.fromCallable(() -> {
             favoriteCityDAO.delete(dbFavoriteCity);
-            // Check, if was enabled city, so select something instead of it
+            // Check, if it was enabled city, so select something instead of it
             if (dbFavoriteCity.isEnabled()) {
                 // Here can be an ArrayOutOfBoundException, if we deleted last FavoriteCity in db,
-                // but this handles in ViewModel - there is no way to delete favorite city
-                // if there is only one favorite city.
+                // but this handles in UI - there is no legal way to delete last favorite city.
                 DBFavoriteCity newEnabled = favoriteCityDAO.getAll().get(0);
                 newEnabled.setEnabled(true);
                 favoriteCityDAO.insert(newEnabled);

@@ -11,6 +11,7 @@ import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
 import java.util.List;
 
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_ID;
+import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_CITY_NAME;
 import static com.ringov.yamblzweather.data.database.DBContract.COLUMN_ENABLED;
 import static com.ringov.yamblzweather.data.database.DBContract.TABLE_FAVORITE_CITIES;
 
@@ -25,6 +26,9 @@ public interface FavoriteCityDAO {
 
     @Query("SELECT * FROM " + TABLE_FAVORITE_CITIES + " WHERE " + COLUMN_CITY_ID + " = :id LIMIT 1")
     DBFavoriteCity getById(int id);
+
+    @Query("SELECT * FROM " + TABLE_FAVORITE_CITIES + " WHERE " + COLUMN_CITY_NAME + " = :name LIMIT 1")
+    DBFavoriteCity getByName(String name);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(DBFavoriteCity favoriteCity);

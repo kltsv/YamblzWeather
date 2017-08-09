@@ -95,6 +95,16 @@ public final class Mapper {
                 .build();
     }
 
+    public static DBFavoriteCity enableFavoriteCity(DBFavoriteCity dbFavoriteCity) {
+        dbFavoriteCity.setEnabled(true);
+        return dbFavoriteCity;
+    }
+
+    public static DBFavoriteCity disableFavoriteCity(DBFavoriteCity dbFavoriteCity) {
+        dbFavoriteCity.setEnabled(false);
+        return dbFavoriteCity;
+    }
+
     public static List<String> extractCitiesNamesFromDBCity(List<DBCity> cities) {
         List<String> converted = new ArrayList<>();
 

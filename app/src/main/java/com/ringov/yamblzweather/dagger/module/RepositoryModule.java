@@ -13,6 +13,8 @@ import com.ringov.yamblzweather.domain.repository.favorite_city.FavoriteCityRepo
 import com.ringov.yamblzweather.domain.repository.weather.WeatherRepository;
 import com.ringov.yamblzweather.domain.repository.weather.WeatherRepositoryImpl;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 import io.reactivex.Scheduler;
@@ -34,6 +36,7 @@ public class RepositoryModule {
     }
 
     @Provides
+    @Singleton
     FavoriteCityRepository provideFavoriteCityRepository(
             @SchedulerType(scheduler = SchedulerEnum.Main) Scheduler schedulerUI,
             @SchedulerType(scheduler = SchedulerEnum.IO) Scheduler schedulerIO,
