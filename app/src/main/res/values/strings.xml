@@ -66,6 +66,13 @@
         <item>6 hours</item>
     </string-array>
 
+    <string name="prefs_units_title">Units system</string>
+    <string name="prefs_units_summary">For temperature and wind speed</string>
+    <string-array name="prefs_units_entries">
+        <item>Metric</item>
+        <item>Imperial</item>
+    </string-array>
+
     <!-- Error messages -->
     <string name="error_no_internet_connection">No internet connection</string>
     <string name="error_request_failed">Request failed</string>

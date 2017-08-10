@@ -60,6 +60,13 @@
         <item>6 часов</item>
     </string-array>
 
+    <string name="prefs_units_title">Система измерений</string>
+    <string name="prefs_units_summary">Для температуры и скорости ветра</string>
+    <string-array name="prefs_units_entries">
+        <item>Метрическая</item>
+        <item>Имперская</item>
+    </string-array>
+
     <!-- Error messages -->
     <string name="error_no_internet_connection">Нет соединения с интернетом</string>
     <string name="error_request_failed">Запрос неудался</string>

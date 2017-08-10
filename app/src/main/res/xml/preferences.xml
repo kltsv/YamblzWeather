@@ -15,4 +15,12 @@
         android:summary="@string/prefs_interval_summary"
         android:title="@string/prefs_interval_title" />
 
+    <android.support.v7.preference.ListPreference
+        android:defaultValue="@string/prefs_units_default"
+        android:entries="@array/prefs_units_entries"
+        android:entryValues="@array/prefs_units_values"
+        android:key="@string/prefs_units_key"
+        android:summary="@string/prefs_units_summary"
+        android:title="@string/prefs_units_title" />
+
 </PreferenceScreen>
