@@ -111,6 +111,7 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
         if (error instanceof StubException)
             return;
 
+        // TODO handle SocketTimeoutException exception
         if (error instanceof NoInternetConnectionException)
             toast(R.string.error_no_internet_connection);
         else if (error instanceof UnknownHostException)

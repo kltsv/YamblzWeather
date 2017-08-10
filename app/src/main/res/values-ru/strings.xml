@@ -16,8 +16,10 @@
     <string name="wthr_wind_speed_metric">%1.1f м/с</string>
     <string name="wthr_wind_speed_imperial">%1.1f миль/час</string>
 
-    <string name="wthr_pressure">%1.0f гПа</string>
+    <string name="wthr_pressure">Давление %1.0f гПа</string>
+    <string name="wthr_humidity">Влажность %d %%</string>
 
+    <string name="wthr_wind">Ветер</string>
     <string name="wthr_today">cегодня</string>
     <string name="wthr_swipe_to_update">Потяните, чтобы обновить</string>
 

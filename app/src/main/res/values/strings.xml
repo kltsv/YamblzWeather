@@ -16,13 +16,14 @@
     <string name="wthr_wind_speed_metric">%1.1f meter/sec</string>
     <string name="wthr_wind_speed_imperial">%1.1f miles/hour</string>
 
-    <string name="wthr_pressure">%1.0f hPa</string>
+    <string name="wthr_pressure">Pressure %1.0f hPa</string>
+    <string name="wthr_humidity">Humidity %d %%</string>
 
-    <string name="wthr_humidity" translatable="false">%d %%</string>
-    <string name="wthr_temperature" translatable="false">%.0f°</string>
-
+    <string name="wthr_wind">Wind</string>
     <string name="wthr_today">today</string>
     <string name="wthr_swipe_to_update">Swipe to update</string>
+
+    <string name="wthr_temperature" translatable="false">%.0f°</string>
 
     <!-- Weather details fragment -->
     <string name="wther_dtls_title">Weather for %s</string>

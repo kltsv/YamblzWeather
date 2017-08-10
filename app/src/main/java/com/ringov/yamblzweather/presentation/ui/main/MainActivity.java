@@ -278,7 +278,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     private boolean navigateToForecastScreen(boolean ignore) {
         if (ignore || isNotOnForecastScreen()) {
             showBackButton(false);
-            replaceFragment(ForecastFragment.newInstance(), FRAGMENT_CONTAINER);
+            replaceFragment(ForecastFragment.newInstance(), FRAGMENT_CONTAINER, true);
             closeDrawer();
         }
         return true;
@@ -286,19 +286,19 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
 
     private boolean navigateToAddCityScreen() {
         showBackButton(true);
-        replaceFragment(AddCityFragment.newInstance(), FRAGMENT_CONTAINER);
+        replaceFragment(AddCityFragment.newInstance(), FRAGMENT_CONTAINER, true);
         return true;
     }
 
     private boolean navigateToAboutScreen() {
         showBackButton(true);
-        replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER);
+        replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER, true);
         return true;
     }
 
     private boolean navigateToSettingsScreen() {
         showBackButton(true);
-        replaceFragment(SettingsFragment.newInstance(), FRAGMENT_CONTAINER);
+        replaceFragment(SettingsFragment.newInstance(), FRAGMENT_CONTAINER, true);
         return true;
     }
 
@@ -307,7 +307,7 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
         long time = c.getTime();
 
         if (twoPaneMode) {
-            replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_DETAILS_CONTAINER);
+            replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_DETAILS_CONTAINER, true);
         } else {
             Intent intent = new Intent(this, DetailsActivity.class);
             intent.putExtra(DetailsActivity.ARG_TIME, time);

@@ -68,6 +68,8 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     TextView windDirectionTextView;
     @BindView(R.id.tv_wind_speed)
     TextView windSpeedTextView;
+    @BindView(R.id.tv_condition)
+    TextView conditionTextView;
 
     @Override
     protected void onViewModelAttach() {
@@ -92,9 +94,13 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     private void showError(Throwable error) {
         errorTextView.setText(error.getMessage());
         errorTextView.setVisibility(View.VISIBLE);
+
+        // TODO handle known errors
+        throw new RuntimeException(error);
     }
 
     private void showWeatherDetails(UIWeatherDetail weather) {
+        conditionTextView.setText(weather.getCondition().getFriendlyName());
         tempMaxTextView.setText(UIUtils.getFormattedTemperature(getContext(), weather.getTempMax()));
         tempMinTextView.setText(UIUtils.getFormattedTemperature(getContext(), weather.getTempMin()));
         humidityTextView.setText(UIUtils.getFormattedHumidity(getContext(), weather.getHumidity()));

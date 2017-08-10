@@ -6,6 +6,7 @@ import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
@@ -23,11 +24,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    protected void replaceFragment(Fragment fragment, @IdRes int containerId) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
-                .replace(containerId, fragment, fragment.getClass().getSimpleName())
-                .commit();
+    protected void replaceFragment(Fragment fragment, @IdRes int containerId, boolean animate) {
+        FragmentTransaction fts =  getSupportFragmentManager().beginTransaction();
+
+        if (animate)
+            fts.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
+
+        fts.replace(containerId, fragment, fragment.getClass().getSimpleName()).commit();
     }
 }

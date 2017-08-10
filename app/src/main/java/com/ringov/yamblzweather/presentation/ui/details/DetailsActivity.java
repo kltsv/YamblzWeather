@@ -51,7 +51,7 @@ public class DetailsActivity extends BaseActivity implements HasSupportFragmentI
                 UIUtils.getFormattedTime(getApplicationContext(), time)));
 
         if (savedInstanceState == null) {
-            replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_CONTAINER);
+            replaceFragment(DetailsFragment.newInstance(time), FRAGMENT_CONTAINER, false);
         }
     }
 

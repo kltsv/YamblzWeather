@@ -18,6 +18,6 @@
     <dimen name="item_weather_side_margin">8dp</dimen>
 
     <!-- Weather details -->
-    <dimen name="details_layout_min_height">192dp</dimen>
+
 
 </resources>
