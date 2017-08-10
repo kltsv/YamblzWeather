@@ -64,7 +64,7 @@
                     android:id="@+id/im_wind_direction"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_wind_direction_black_24dp" />
+                    app:srcCompat="@drawable/ic_wind_direction_24dp" />
 
                 <TextView
                     android:id="@+id/tv_wind_direction"

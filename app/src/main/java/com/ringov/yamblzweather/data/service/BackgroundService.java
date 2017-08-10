@@ -93,7 +93,7 @@ public class BackgroundService extends IntentService implements HasServiceInject
         String title = getApplicationContext()
                 .getString(weather.getCondition().getFriendlyName());
         int icon = weather.getCondition().getConditionImage();
-        int color = ContextCompat.getColor(getApplicationContext(), R.color.colorPrimary);
+        int color = ContextCompat.getColor(getApplicationContext(), R.color.color_primary);
 
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this)

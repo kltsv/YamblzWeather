@@ -14,7 +14,7 @@
         android:layout_gravity="center_vertical"
         android:adjustViewBounds="true"
         android:scaleType="center"
-        app:srcCompat="@drawable/ic_city_black_24dp" />
+        app:srcCompat="@drawable/ic_city_24dp" />
 
     <TextView
         android:id="@+id/tv_city_name"
@@ -28,6 +28,6 @@
         android:layout_width="@dimen/city_remove_button_size"
         android:layout_height="@dimen/city_remove_button_size"
         android:background="?selectableItemBackground"
-        app:srcCompat="@drawable/ic_remove_city_black_24dp" />
+        app:srcCompat="@drawable/ic_remove_city_24dp" />
 
 </LinearLayout>

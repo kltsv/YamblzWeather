@@ -61,9 +61,9 @@ class CityAdapter extends RecyclerView.Adapter<CityViewHolder> {
         holder.nameTextView.setText(item.getCityName());
 
         if (item.isEnabled())
-            holder.cityImageView.setImageResource(R.drawable.ic_chosen_city_black_24dp);
+            holder.cityImageView.setImageResource(R.drawable.ic_chosen_city_24dp);
         else
-            holder.cityImageView.setImageResource(R.drawable.ic_city_black_24dp);
+            holder.cityImageView.setImageResource(R.drawable.ic_city_24dp);
 
         if (items.size() == 1) {
             holder.removeImageButton.setVisibility(View.GONE);

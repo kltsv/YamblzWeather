@@ -2,12 +2,10 @@
 <resources>
 
     <!-- Navigation drawer -->
-    <dimen name="drawer_header_height">160dp</dimen>
-    <dimen name="drawer_header_image_offset">-56dp</dimen>
+    <dimen name="drawer_header_height">96dp</dimen>
 
     <!-- Cities list -->
     <dimen name="city_remove_button_size">40dp</dimen>
-    <dimen name="city_list_bottom_margin">80dp</dimen>
 
     <!-- Forecast items -->
     <dimen name="item_weather_height">40dp</dimen>
