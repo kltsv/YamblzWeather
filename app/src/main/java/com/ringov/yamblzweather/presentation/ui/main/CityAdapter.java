@@ -1,6 +1,7 @@
 package com.ringov.yamblzweather.presentation.ui.main;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,15 +56,18 @@ class CityAdapter extends RecyclerView.Adapter<CityViewHolder> {
 
     @Override
     public void onBindViewHolder(CityViewHolder holder, int position) {
-        //Context context = holder.itemView.getContext();
+        Context context = holder.itemView.getContext();
         UICityFavorite item = items.get(position);
 
         holder.nameTextView.setText(item.getCityName());
 
-        if (item.isEnabled())
+        if (item.isEnabled()) {
             holder.cityImageView.setImageResource(R.drawable.ic_chosen_city_24dp);
-        else
+            holder.nameTextView.setTextColor(ContextCompat.getColor(context, R.color.color_accent_secondary));
+        } else {
             holder.cityImageView.setImageResource(R.drawable.ic_city_24dp);
+            holder.nameTextView.setTextColor(ContextCompat.getColor(context, R.color.color_text_primary));
+        }
 
         if (items.size() == 1) {
             holder.removeImageButton.setVisibility(View.GONE);

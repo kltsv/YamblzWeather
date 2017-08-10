@@ -79,10 +79,6 @@ class ForecastAdapter extends RecyclerView.Adapter<ForecastItemVH> {
         return items.size();
     }
 
-    public boolean isEmpty() {
-        return items.isEmpty();
-    }
-
     @Override
     public int getItemViewType(int position) {
         if (position == 0) {

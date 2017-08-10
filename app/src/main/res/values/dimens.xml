@@ -2,7 +2,7 @@
 <resources>
 
     <!-- Navigation drawer -->
-    <dimen name="drawer_header_height">96dp</dimen>
+    <dimen name="drawer_header_height">160dp</dimen>
 
     <!-- Cities list -->
     <dimen name="city_remove_button_size">40dp</dimen>

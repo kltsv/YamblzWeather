@@ -1,28 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="color_primary">@color/color_green_main</color>
-    <color name="color_primary_dark">@color/color_green_dark</color>
-    <color name="color_accent">@color/color_blue_main</color>
-
-    <color name="color_yellow_main">#FFCC00</color>
-    <color name="color_yellow_light">#FFDE5A</color>
-    <color name="color_yellow_dark">#EBA704</color>
-
-    <color name="color_blue_main">#0077FF</color>
-    <color name="color_blue_light">#5FCEF9</color>
-    <color name="color_blue_dark">#0065D9</color>
-
-    <color name="color_green_main">#00B341</color>
-    <color name="color_green_light">#63E693</color>
-    <color name="color_green_dark">#008C33</color>
-
-    <color name="color_red_main">#FF3333</color>
-    <color name="color_red_light">#FF6666</color>
-    <color name="color_red_dark">#E00000</color>
-
-    <color name="color_grey_main">#CCCCCC</color>
-    <color name="color_grey_light">#E2E2E2</color>
-    <color name="color_grey_dark">#A6A6A6</color>
+    <color name="color_primary">#00B341</color>
+    <color name="color_primary_dark">#008C33</color>
+    <color name="color_accent">#0077FF</color>
+    <color name="color_accent_secondary">#FFCC00</color>
+    <color name="color_warning">#E00000</color>
+    <color name="color_text_primary">#616161</color>
 
 </resources>

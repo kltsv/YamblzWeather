@@ -8,7 +8,17 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/drawer_header_height"
-        android:background="@color/color_primary" />
+        android:background="@color/color_primary">
+
+        <ImageView
+            android:id="@+id/im_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/im_nav_drawer_header" />
+
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_cities"
@@ -34,6 +44,7 @@
 
         <TextView
             android:id="@+id/tv_add_city"
+            style="@style/Text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
