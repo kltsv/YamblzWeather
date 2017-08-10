@@ -11,8 +11,10 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 
 import com.ringov.yamblzweather.App;
+import com.ringov.yamblzweather.Prefs;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
+import com.ringov.yamblzweather.data.service.AlarmReceiver;
 import com.ringov.yamblzweather.presentation.base.BaseActivity;
 import com.ringov.yamblzweather.presentation.ui.main.MainActivity;
 
@@ -70,6 +72,16 @@ public class SplashActivity extends BaseActivity implements LifecycleRegistryOwn
             // Build dagger module after DB initialization to avoid NPE
             App app = (App) getApplication();
             app.initDagger();
+            // Enable push notifications, if needed
+            final boolean push = Prefs.getBoolean(
+                    getApplicationContext(), R.string.prefs_push_key, R.bool.prefs_push_default);
+            if (push) {
+                AlarmReceiver alarmReceiver = new AlarmReceiver();
+                final String interval = Prefs.getString(
+                        getApplicationContext(),
+                        R.string.prefs_interval_key, R.string.prefs_interval_default);
+                alarmReceiver.setAlarm(getApplicationContext(), Integer.valueOf(interval));
+            }
             // Open main and finish splash activity
             startActivity(new Intent(this, MainActivity.class));
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);

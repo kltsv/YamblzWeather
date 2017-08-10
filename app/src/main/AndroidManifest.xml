@@ -37,9 +37,9 @@
             android:theme="@style/AppTheme.WeatherDetails" />
 
 
-        <receiver android:name=".data.background.AlarmReceiver" />
+        <receiver android:name=".data.service.AlarmReceiver" />
 
-        <receiver android:name=".data.background.BootReceiver">
+        <receiver android:name=".data.service.BootReceiver">
 
             <intent-filter>
 
@@ -49,7 +49,7 @@
 
         </receiver>
 
-        <service android:name=".data.background.BackgroundService" />
+        <service android:name=".data.service.BackgroundService" />
 
     </application>
 

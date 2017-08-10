@@ -3,7 +3,7 @@
     <string name="app_name">Weather</string>
 
     <!-- Push notifications -->
-    <string name="push_content">Forecast: %.0f°</string>
+    <string name="push_content">Forecast: %s</string>
 
     <!-- Nav drawer -->
     <string name="navigation_drawer_open">Navigation drawer has been opened</string>

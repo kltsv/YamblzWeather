@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.data.background;
+package com.ringov.yamblzweather.data.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -31,9 +31,10 @@ public class AlarmReceiver extends WakefulBroadcastReceiver {
             Intent intent = new Intent(context, AlarmReceiver.class);
             alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
 
+            // Interval in hours
             alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     5000,
-                    interval * 1000, alarmIntent);
+                    interval * 1000 * 60 * 60, alarmIntent);
 
             ComponentName receiver = new ComponentName(context, BootReceiver.class);
             PackageManager pm = context.getPackageManager();

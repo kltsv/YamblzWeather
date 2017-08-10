@@ -1,6 +1,6 @@
 package com.ringov.yamblzweather.dagger.module;
 
-import com.ringov.yamblzweather.data.background.BackgroundService;
+import com.ringov.yamblzweather.data.service.BackgroundService;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;

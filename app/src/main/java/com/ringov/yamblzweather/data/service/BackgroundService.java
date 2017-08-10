@@ -1,4 +1,4 @@
-package com.ringov.yamblzweather.data.background;
+package com.ringov.yamblzweather.data.service;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -20,6 +20,7 @@ import com.ringov.yamblzweather.data.database.entity.DBWeather;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
 import com.ringov.yamblzweather.domain.Mapper;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherDetail;
+import com.ringov.yamblzweather.presentation.ui.UIUtils;
 import com.ringov.yamblzweather.presentation.ui.splash.SplashActivity;
 
 import java.util.List;
@@ -85,8 +86,10 @@ public class BackgroundService extends IntentService implements HasServiceInject
     }
 
     private void showPushNotification(UIWeatherDetail weather) {
+        String formattedTemp = UIUtils.getFormattedTemperature(
+                getApplicationContext(), weather.getTempMax());
         String content = getApplicationContext()
-                .getString(R.string.push_content, weather.getTempMax());
+                .getString(R.string.push_content, formattedTemp);
         String title = getApplicationContext()
                 .getString(weather.getCondition().getFriendlyName());
         int icon = weather.getCondition().getConditionImage();

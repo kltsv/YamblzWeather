@@ -1,8 +1,11 @@
-package com.ringov.yamblzweather.data.background;
+package com.ringov.yamblzweather.data.service;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.ringov.yamblzweather.Prefs;
+import com.ringov.yamblzweather.R;
 
 /**
  * This BroadcastReceiver automatically (re)starts the alarm when the device is
@@ -17,12 +20,13 @@ public class BootReceiver extends BroadcastReceiver {
 
     AlarmReceiver alarm = new AlarmReceiver();
 
-    // TODO get updating interval from external source
-
     @Override
     public void onReceive(Context context, Intent intent) {
+        final String interval = Prefs.getString(
+                context, R.string.prefs_interval_key, R.string.prefs_interval_default);
+
         if (intent.getAction().equals(BOOT_COMPLETED)) {
-            alarm.setAlarm(context, 600); // Второй параметр это интервал в секундах
+            alarm.setAlarm(context, Integer.valueOf(interval));
         }
     }
 }
