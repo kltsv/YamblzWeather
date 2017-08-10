@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Generic dimens -->
+    <dimen name="generic_small">4dp</dimen>
+    <dimen name="generic">8dp</dimen>
+    <dimen name="generic_medium">16dp</dimen>
+
     <!-- Navigation drawer -->
     <dimen name="drawer_header_height">160dp</dimen>
 

@@ -1,23 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <AutoCompleteTextView
-        android:id="@+id/atv_location"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="@string/add_city_hint"
-        android:imeOptions="actionSearch"
-        android:inputType="text" />
+        android:layout_margin="8dp">
 
-    <ProgressBar
-        android:id="@+id/progress_bar"
+        <AutoCompleteTextView
+            android:id="@+id/atv_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:hint="@string/add_city_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical|end"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:visibility="gone" />
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/generic_medium"
+        app:srcCompat="@drawable/ic_yandex_logo_ru" />
 
 </LinearLayout>

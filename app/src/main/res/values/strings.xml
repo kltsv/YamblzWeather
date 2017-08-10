@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Weather</string>
 
     <!-- Push notifications -->
@@ -52,7 +53,11 @@
 
     <!-- About fragment -->
     <string name="about_title">About</string>
-    <string name="about_version">App version: %s</string>
+    <string name="about_app">App developed for first stage of Yandex.Mobilization 2017 by Ivan Antsiferov.</string>
+    <string name="about_version">Version: %s</string>
+    <string name="about_app_icon">App icon from flaticon.com</string>
+    <string name="about_weather_icons">Weather conditions icons made by Google.</string>
+    <string name="about_nav_drawer_image">Navigation drawer header by Lunae Luman.</string>
 
     <!-- Prefs fragment -->
     <string name="prefs_title">Settings</string>

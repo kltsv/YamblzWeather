@@ -76,8 +76,9 @@ public class AddCityFragment extends BaseMvvmFragment<AddCityViewModel> {
         disposables.add(
                 RxTextView
                         .textChanges(locationAtv)
-                        .skipInitialValue() // First emitted value is equals to current chosen city
+                        .skipInitialValue()
                         .filter(charSequence -> charSequence.length() >= 3)
+                        .doOnNext(charSequence -> showLoading(true))
                         .debounce(400, TimeUnit.MILLISECONDS)
                         .map(CharSequence::toString)
                         .observeOn(AndroidSchedulers.mainThread()) // Because debounce runs on Computation thread

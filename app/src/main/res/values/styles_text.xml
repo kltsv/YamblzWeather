@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <style name="Text">
-        <item name="android:textColor">@color/color_text_primary</item>
-    </style>
-
-</resources>

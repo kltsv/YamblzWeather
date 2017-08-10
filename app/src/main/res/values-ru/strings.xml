@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Погода</string>
 
     <!-- Push notifications -->
@@ -49,7 +50,11 @@
 
     <!-- About fragment -->
     <string name="about_title">О приложении</string>
-    <string name="about_version">Версия приложения: %s</string>
+    <string name="about_app">Приложение разработал Иван Анциферов для первого этапа проекта Яндекс.Мобилизация 2017.</string>
+    <string name="about_version">Версия: %s</string>
+    <string name="about_app_icon">Иконка приложения с flaticon.com</string>
+    <string name="about_weather_icons">Изображения погодных условий сделал Google.</string>
+    <string name="about_nav_drawer_image">Картинка в боковом меню - Lunae Luman.</string>
 
     <!-- Prefs fragment -->
     <string name="prefs_title">Настройки</string>
