@@ -9,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
 
-import com.ringov.yamblzweather.Const;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.data.database.entity.DBCity;
 import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
@@ -98,8 +97,10 @@ public class AppDatabaseCreator {
      */
     private void checkIsFirstLaunch(Context context) {
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        final String KEY = Const.PREFS_KEYS.FIRST_LAUNCH;
-        boolean firstLaunch = sharedPrefs.getBoolean(KEY, true);
+        final String KEY = context.getString(R.string.prefs_first_launch_key);
+        final boolean DEFAULT = context.getResources()
+                .getBoolean(R.bool.prefs_first_launch_default);
+        boolean firstLaunch = sharedPrefs.getBoolean(KEY, DEFAULT);
 
         if (firstLaunch) {
             // Populate Cities table with pre filled data

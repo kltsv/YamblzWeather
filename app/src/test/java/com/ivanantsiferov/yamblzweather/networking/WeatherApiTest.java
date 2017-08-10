@@ -1,7 +1,6 @@
 package com.ivanantsiferov.yamblzweather.networking;
 
 import com.ringov.yamblzweather.BuildConfig;
-import com.ringov.yamblzweather.Const;
 import com.ringov.yamblzweather.data.networking.BaseInterceptor;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
 
@@ -27,8 +26,8 @@ public class WeatherApiTest {
     public void prepare() {
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(new BaseInterceptor())
-                .readTimeout(Const.TIMEOUT, TimeUnit.MILLISECONDS)
-                .connectTimeout(Const.TIMEOUT, TimeUnit.MILLISECONDS)
+                .readTimeout(5000, TimeUnit.MILLISECONDS)
+                .connectTimeout(5000, TimeUnit.MILLISECONDS)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()

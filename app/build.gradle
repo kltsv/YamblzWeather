@@ -53,6 +53,7 @@ android {
 
         buildTypes.each {
             it.buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
+            it.buildConfigField "String", "API_KEY", '"b3f1079128fa7ee84d98e92fecc133fa"'
         }
     }
 

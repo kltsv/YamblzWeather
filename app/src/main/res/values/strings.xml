@@ -56,10 +56,10 @@
     <string name="prefs_title">Settings</string>
 
     <string name="prefs_push_title">Enable notifications</string>
-    <string name="prefs_push_summary">Push</string>
+    <string name="prefs_push_summary">App will send push notifications with current forecast</string>
 
     <string name="prefs_interval_title">Notifications Interval</string>
-    <string name="prefs_interval_summary">Blablabla</string>
+    <string name="prefs_interval_summary">How often send notification with fresh forecast</string>
     <string-array name="prefs_interval_entries">
         <item>1 hour</item>
         <item>3 hours</item>

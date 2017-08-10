@@ -2,7 +2,7 @@ package com.ringov.yamblzweather.data.networking;
 
 import android.support.annotation.NonNull;
 
-import com.ringov.yamblzweather.Const;
+import com.ringov.yamblzweather.BuildConfig;
 
 import java.io.IOException;
 
@@ -14,13 +14,13 @@ import okhttp3.Response;
 public class BaseInterceptor implements Interceptor {
 
     /**
-     * Add api key to each HTTP request params
+     * Adds api key params to each HTTP request
      */
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request request = chain.request();
         HttpUrl newUrl = request.url().newBuilder()
-                .addQueryParameter(Const.API.KEY_FIELD, Const.API.KEY)
+                .addQueryParameter(APIContract.PARAM_API_KEY, BuildConfig.API_KEY)
                 .build();
         Request newRequest = request.newBuilder().url(newUrl).build();
         return chain.proceed(newRequest);

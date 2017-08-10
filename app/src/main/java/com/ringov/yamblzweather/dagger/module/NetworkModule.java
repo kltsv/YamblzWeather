@@ -3,7 +3,6 @@ package com.ringov.yamblzweather.dagger.module;
 import android.content.Context;
 
 import com.ringov.yamblzweather.BuildConfig;
-import com.ringov.yamblzweather.Const;
 import com.ringov.yamblzweather.data.networking.BaseInterceptor;
 import com.ringov.yamblzweather.data.networking.ConnectivityInterceptor;
 import com.ringov.yamblzweather.data.networking.WeatherAPI;
@@ -23,6 +22,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Module(includes = ApplicationModule.class)
 public class NetworkModule {
 
+    private static final int TIMEOUT = 5000; // Milliseconds
+
     @Provides
     @Singleton
     OkHttpClient provideOkHttpClient(Context context) {
@@ -34,8 +35,8 @@ public class NetworkModule {
                 .addInterceptor(new BaseInterceptor())
                 .addInterceptor(new ConnectivityInterceptor(context))
                 .addInterceptor(loggingInterceptor)
-                .readTimeout(Const.TIMEOUT, TimeUnit.MILLISECONDS)
-                .connectTimeout(Const.TIMEOUT, TimeUnit.MILLISECONDS)
+                .readTimeout(TIMEOUT, TimeUnit.MILLISECONDS)
+                .connectTimeout(TIMEOUT, TimeUnit.MILLISECONDS)
                 .build();
     }
 

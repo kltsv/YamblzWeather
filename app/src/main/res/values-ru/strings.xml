@@ -49,6 +49,17 @@
     <!-- Settings fragment -->
     <string name="prefs_title">Настройки</string>
 
+    <string name="prefs_push_title">Включить уведомления</string>
+    <string name="prefs_push_summary">Приложение будет слать уведомления с текущим прогнозом</string>
+
+    <string name="prefs_interval_title">Частота уведомлений</string>
+    <string name="prefs_interval_summary">Как часто приложение будет слать свежий прогноз</string>
+    <string-array name="prefs_interval_entries">
+        <item>1 час</item>
+        <item>3 часа</item>
+        <item>6 часов</item>
+    </string-array>
+
     <!-- Error messages -->
     <string name="error_no_internet_connection">Нет соединения с интернетом</string>
     <string name="error_request_failed">Запрос неудался</string>

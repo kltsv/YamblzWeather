@@ -10,5 +10,6 @@ final class APIContract {
     static final String ENDPOINT_DAILY = "forecast/daily";
 
     // Query params
+    static final String PARAM_API_KEY = "appid";
     static final String PARAM_CITY_ID = "id";
 }
