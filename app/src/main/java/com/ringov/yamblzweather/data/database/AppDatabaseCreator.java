@@ -4,11 +4,10 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.persistence.room.Room;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
 
+import com.ringov.yamblzweather.Prefs;
 import com.ringov.yamblzweather.R;
 import com.ringov.yamblzweather.data.database.entity.DBCity;
 import com.ringov.yamblzweather.data.database.entity.DBFavoriteCity;
@@ -96,11 +95,8 @@ public class AppDatabaseCreator {
      * Check if app is launched for first time and populate DB with data if so
      */
     private void checkIsFirstLaunch(Context context) {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-        final String KEY = context.getString(R.string.prefs_first_launch_key);
-        final boolean DEFAULT = context.getResources()
-                .getBoolean(R.bool.prefs_first_launch_default);
-        boolean firstLaunch = sharedPrefs.getBoolean(KEY, DEFAULT);
+        boolean firstLaunch = Prefs.getBoolean(context,
+                R.string.prefs_first_launch_key, R.bool.prefs_first_launch_default);
 
         if (firstLaunch) {
             // Populate Cities table with pre filled data
@@ -111,9 +107,7 @@ public class AppDatabaseCreator {
                     new DBFavoriteCity(dbCity.getCity_name(), dbCity.getCity_id(), 1);
             mDb.favoriteCityDAO().insert(dbFavoriteCity);
             // Set first launch to false
-            SharedPreferences.Editor editor = sharedPrefs.edit();
-            editor.putBoolean(KEY, false);
-            editor.apply();
+            Prefs.putBoolean(context, R.string.prefs_first_launch_key, false);
         }
     }
 

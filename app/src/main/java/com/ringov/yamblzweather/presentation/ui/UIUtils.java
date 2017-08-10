@@ -2,6 +2,7 @@ package com.ringov.yamblzweather.presentation.ui;
 
 import android.content.Context;
 
+import com.ringov.yamblzweather.Prefs;
 import com.ringov.yamblzweather.R;
 
 import java.util.Calendar;
@@ -9,8 +10,15 @@ import java.util.Date;
 
 public final class UIUtils {
 
+    private static final float MPH_COEFFICIENT = 2.236936f;
+
     public static String getFormattedWindSpeed(Context context, float speed) {
-        return context.getString(R.string.wthr_wind_speed, speed);
+        if (isImperial(context)) {
+            speed *= MPH_COEFFICIENT;
+            return context.getString(R.string.wthr_wind_speed_imperial, speed);
+        } else {
+            return context.getString(R.string.wthr_wind_speed_metric, speed);
+        }
     }
 
     public static String getFormattedPressure(Context context, float pressure) {
@@ -36,10 +44,26 @@ public final class UIUtils {
 
     public static String getFormattedTemperature(Context context, float temperature) {
         temperature = kelvinToCelsius(temperature);
+
+        if (isImperial(context))
+            temperature = celsiusToFahrenheit(temperature);
+
         return context.getString(R.string.wthr_temperature, temperature);
     }
 
+    // Helper methods
     private static float kelvinToCelsius(float kelvin) {
         return kelvin - 273.15f;
+    }
+
+    private static float celsiusToFahrenheit(float celsius) {
+        return ((celsius * 9) / 5) + 32;
+    }
+
+    private static boolean isImperial(Context context) {
+        final String units = Prefs.getString(
+                context, R.string.prefs_units_key, R.string.prefs_units_default);
+        final String imperial = context.getString(R.string.prefs_units_imperial);
+        return units.equals(imperial);
     }
 }
