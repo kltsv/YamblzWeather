@@ -13,6 +13,7 @@
             android:id="@+id/ll_top_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:baselineAligned="false"
             android:orientation="horizontal">
 
             <RelativeLayout
@@ -116,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/im_wind_direction"
-                android:textAppearance="?android:textAppearanceMedium"
+                android:padding="@dimen/generic_small"
                 android:textStyle="bold" />
 
             <TextView
@@ -124,7 +125,8 @@
                 style="@style/TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/im_wind_direction" />
+                android:layout_below="@id/im_wind_direction"
+                android:layout_centerHorizontal="true" />
 
         </RelativeLayout>
 

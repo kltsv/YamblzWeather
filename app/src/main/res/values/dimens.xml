@@ -10,11 +10,11 @@
     <dimen name="drawer_header_height">160dp</dimen>
 
     <!-- Cities list -->
-    <dimen name="city_remove_button_size">40dp</dimen>
+    <dimen name="city_remove_button_size">56dp</dimen>
 
     <!-- Forecast items -->
     <dimen name="item_weather_height">40dp</dimen>
-    <dimen name="item_weather_image_size">24dp</dimen>
+    <dimen name="item_weather_image_size">32dp</dimen>
     <dimen name="item_weather_side_margin">8dp</dimen>
 
     <!-- Weather details -->
