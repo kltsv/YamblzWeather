@@ -21,8 +21,6 @@ import io.reactivex.Single;
 
 public class FavoriteCityRepositoryImpl extends BaseRepository implements FavoriteCityRepository {
 
-    // TODO auto select new added city
-
     private FavoriteCityDAO favoriteCityDAO;
     private CityDAO cityDAO;
 

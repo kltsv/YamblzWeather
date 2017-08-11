@@ -50,8 +50,6 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
 
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
-    @BindView(R.id.tv_error)
-    TextView errorTextView;
     @BindView(R.id.im_condition)
     ImageView conditionImageView;
     @BindView(R.id.tv_temp_max)
@@ -83,7 +81,6 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
         viewModel.observe(this, this::showLoading, this::showError, this::showWeatherDetails);
     }
 
-
     private void showLoading(boolean loading) {
         if (loading)
             progressBar.setVisibility(View.VISIBLE);
@@ -92,10 +89,6 @@ public class DetailsFragment extends BaseMvvmFragment<DetailsViewModel> {
     }
 
     private void showError(Throwable error) {
-        errorTextView.setText(error.getMessage());
-        errorTextView.setVisibility(View.VISIBLE);
-
-        // TODO handle known errors
         throw new RuntimeException(error);
     }
 
