@@ -26,6 +26,8 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
     // Weather forecast will become outdated after 3 hours
     private static final long CACHE_INVALIDATION_TIME = TimeUnit.HOURS.toSeconds(12);
 
+    private static final int FORECAST_DAYS = 16;
+
     private WeatherDAO weatherDAO;
     private FavoriteCityDAO favoriteCityDAO;
     private WeatherAPI weatherAPI;
@@ -64,7 +66,7 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
     @Override
     public Single<List<UIWeatherList>> getForecast(boolean forceRefresh) {
         return getFromCache()
-                .filter(weatherList -> weatherList.size() >= 7 && !forceRefresh)
+                .filter(weatherList -> weatherList.size() >= FORECAST_DAYS && !forceRefresh)
                 .switchIfEmpty(getFromAPI().toMaybe())
                 .observeOn(schedulerComputation)
                 .toSingle()
@@ -76,7 +78,7 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
     @WorkerThread
     private Single<List<DBWeather>> getFromAPI() {
         return getCurrentCityId()
-                .flatMap(cityId -> weatherAPI.getDailyForecast(cityId))
+                .flatMap(cityId -> weatherAPI.getDailyForecast(cityId, FORECAST_DAYS))
                 .map(Mapper::APItoDB)
                 .doOnSuccess(this::saveCache)
                 .subscribeOn(schedulerIO)

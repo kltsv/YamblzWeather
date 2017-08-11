@@ -37,6 +37,8 @@ public class BackgroundService extends IntentService implements HasServiceInject
     private static final String SERVICE_NAME = "YamblzWeatherService";
     private static final int FORECAST_NOTIFICATION_ID = 5739;
 
+    private static final int FORECAST_DAYS = 16;
+
     @Inject
     DispatchingAndroidInjector<Service> dispatchingServiceInjector;
 
@@ -70,7 +72,7 @@ public class BackgroundService extends IntentService implements HasServiceInject
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
         int currentCityId = favoriteCityDAO.getEnabled().getCity_id();
-        weatherAPI.getDailyForecast(currentCityId)
+        weatherAPI.getDailyForecast(currentCityId, FORECAST_DAYS)
                 .map(Mapper::APItoDB)
                 .subscribe(forecastResponse -> {
                     // Delete old cache and save fetched data

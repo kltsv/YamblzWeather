@@ -69,12 +69,20 @@
 
         </LinearLayout>
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/ll_top_container"
+            android:layout_margin="@dimen/generic_medium"
+            android:background="@color/color_text_primary" />
+
         <TextView
             android:id="@+id/tv_humidity"
             style="@style/TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ll_top_container"
+            android:layout_below="@id/divider"
             android:layout_centerHorizontal="true"
             android:padding="8dp"
             android:textSize="18sp" />
