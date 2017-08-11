@@ -39,12 +39,6 @@ public class FavoriteCityTableTest {
     }
 
     @Test
-    public void checkIfMockDataWrittenSuccessfully() {
-        List<DBFavoriteCity> citiesDb = favoriteCityDAO.getAll();
-        assertEquals(FavoriteCityTableTestUtil.getAll().size(), citiesDb.size());
-    }
-
-    @Test
     public void checkEnabled() {
         DBFavoriteCity moscowMock = FavoriteCityTableTestUtil.Moscow();
         DBFavoriteCity moscowDb = favoriteCityDAO.getEnabled();

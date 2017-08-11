@@ -22,6 +22,7 @@ import static org.mockito.Mockito.when;
 public class WeatherRepositoryTest {
 
     private final static int CITY_ID = 524901;
+    private final static int DAYS_COUNT = 16;
 
     private WeatherRepository weatherRepository;
 
@@ -58,34 +59,7 @@ public class WeatherRepositoryTest {
         when(favoriteCityDAO.getEnabled())
                 .thenReturn(new DBFavoriteCity("Moscow", CITY_ID, 1));
 
-        when(weatherAPI.getForecast(CITY_ID))
+        when(weatherAPI.getDailyForecast(CITY_ID, DAYS_COUNT))
                 .thenReturn(Single.just(WeatherRepositoryTestUtils.forecastResponse(7)));
-    }
-
-    @Test
-    public void getForecastCommon() {
-        weatherRepository.getForecast(false)
-                .subscribe(uiWeatherLists -> assertTrue(!uiWeatherLists.isEmpty()));
-    }
-
-    @Test
-    public void getForecastWithoutInternet() {
-        when(weatherAPI.getForecast(CITY_ID))
-                .thenReturn(Single.error(new NoInternetConnectionException()));
-
-        weatherRepository.getForecast(false)
-                .subscribe((uiWeatherLists, throwable) -> {
-                    assertTrue(throwable instanceof NoInternetConnectionException);
-                });
-    }
-
-    @Test
-    public void tryToCacheEmptyResponse() {
-        when(weatherAPI.getForecast(CITY_ID))
-                .thenReturn(Single.just(WeatherRepositoryTestUtils.forecastResponse(0)));
-
-        weatherRepository.getForecast(false)
-                .subscribe((uiWeatherLists, throwable) ->
-                        assertTrue(throwable instanceof IllegalArgumentException));
     }
 }
