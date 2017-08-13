@@ -17,6 +17,7 @@ import com.ringov.yamblzweather.domain.exceptions.StubException;
 import com.ringov.yamblzweather.presentation.base.BaseMvvmFragment;
 import com.ringov.yamblzweather.presentation.entity.UIWeatherList;
 
+import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.List;
 
@@ -111,10 +112,11 @@ public class ForecastFragment extends BaseMvvmFragment<ForecastViewModel> {
         if (error instanceof StubException)
             return;
 
-        // TODO handle SocketTimeoutException exception
         if (error instanceof NoInternetConnectionException)
             toast(R.string.error_no_internet_connection);
         else if (error instanceof UnknownHostException)
+            toast(R.string.error_request_failed);
+        else if (error instanceof SocketTimeoutException)
             toast(R.string.error_request_failed);
         else
             throw new RuntimeException(error);

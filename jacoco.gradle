@@ -1,7 +1,8 @@
 apply plugin: 'jacoco'
 
 /**
- * Report can be found in '.../app/build/reports/jacoco/jacocoTestReport/html/index.html'
+ * Full report can be found at '.../app/build/reports/jacoco/jacocoTestReport/html/index.html'
+ * Instrumentation report can be found at '../app/build/reports/coverage/debug/index.html'
  */
 task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
 
@@ -34,7 +35,8 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
     sourceDirectories = files([mainSrc])
     classDirectories = files([debugTree])
     executionData = fileTree(dir: "$buildDir", includes: [
-            "jacoco/testDebugUnitTest.exec",
-            "outputs/code-coverage/connected/*coverage.ec"
+            "jacoco/testDebugUnitTest.exec"//,
+            // TODO include in all report
+            //"outputs/code-coverage/connected/*coverage.ec"
     ])
 }
