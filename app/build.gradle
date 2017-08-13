@@ -7,6 +7,7 @@ def appKeyPassword = (new JsonSlurper().parseText(file(fileName).text)).keyPassw
 
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply from: '../jacoco.gradle'
 
 android {
 
@@ -49,6 +50,7 @@ android {
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
+            testCoverageEnabled true
         }
 
         buildTypes.each {

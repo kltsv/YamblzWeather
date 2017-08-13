@@ -41,14 +41,8 @@ public class WeatherApiTest {
     }
 
     @Test
-    public void getForecast() {
-        weatherAPI.getForecast(CITY_ID)
-                .subscribe((forecastResponse, throwable) -> assertTrue(forecastResponse.getForecast().size() > 0));
-    }
-
-    @Test
     public void getDailyForecast() {
-        weatherAPI.getDailyForecast(CITY_ID)
+        weatherAPI.getDailyForecast(CITY_ID, 16)
                 .subscribe((forecastResponse, throwable) -> assertTrue(forecastResponse.getForecast().size() > 0));
     }
 }

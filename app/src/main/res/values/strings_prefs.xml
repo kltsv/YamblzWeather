@@ -3,8 +3,8 @@
 
     <!-- Untranslatable strings used in preferences -->
 
-    <string name="prefs_first_launch_key">prefs_first_launch_key</string>
-    <bool name="prefs_first_launch_default">true</bool>
+    <string name="prefs_first_launch_key" translatable="false">prefs_first_launch_key</string>
+    <bool name="prefs_first_launch_default" translatable="false">true</bool>
 
     <string name="prefs_push_key" translatable="false">prefs_push_key</string>
     <bool name="prefs_push_default" translatable="false">true</bool>
