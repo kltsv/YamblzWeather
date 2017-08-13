@@ -14,7 +14,6 @@
             android:id="@+id/atv_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:hint="@string/add_city_hint"
             android:imeOptions="actionSearch"
             android:inputType="text" />

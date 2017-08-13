@@ -28,6 +28,8 @@ import static junit.framework.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class NavigationTest {
 
+    private static final String DEFAULT_CITY = "Moscow";
+
     private Context context;
 
     @Rule
@@ -44,11 +46,14 @@ public class NavigationTest {
     }
 
     @Test
-    public void openLocationScreen() throws InterruptedException {
+    public void checkHasDefaultCityValue() {
+        assertEquals(DEFAULT_CITY, mainActivityTestRule.getActivity().getTitle());
+    }
+
+    @Test
+    public void openAddCityScreen() {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
         onView(withId(R.id.rl_add_city)).perform(click());
-
-        Thread.sleep(1000);
 
         String activityTitle = mainActivityTestRule.getActivity().getTitle().toString();
         String expectedTitle = context.getString(R.string.add_city_title);
@@ -65,7 +70,7 @@ public class NavigationTest {
         onView(withId(R.id.drawer_layout)).perform(DrawerActions.open());
         onView(withId(R.id.navigation_view)).perform(NavigationViewActions.navigateTo(R.id.nav_settings));
 
-        Thread.sleep(1000);
+        Thread.sleep(600);
 
         String activityTitle = mainActivityTestRule.getActivity().getTitle().toString();
         String expectedTitle = context.getString(R.string.prefs_title);
