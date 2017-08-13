@@ -27,7 +27,7 @@ public class CityTableTest {
     @Before
     public void createDb() {
         Context context = InstrumentationRegistry.getTargetContext();
-        db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
+        db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).allowMainThreadQueries().build();
         cityDAO = db.cityDAO();
         // Fill DB with data
         List<DBCity> citiesMock = CityTableTestUtil.getAll();

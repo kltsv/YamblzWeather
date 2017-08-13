@@ -34,7 +34,7 @@ public class AppDatabaseTest {
     @Before
     public void createDb() {
         Context context = InstrumentationRegistry.getTargetContext();
-        db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
+        db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).allowMainThreadQueries().build();
         cityDAO = db.cityDAO();
         favoriteCityDAO = db.favoriteCityDAO();
         weatherDAO = db.weatherDAO();
@@ -43,7 +43,7 @@ public class AppDatabaseTest {
         cityDAO.insertAll(citiesMock);
         List<DBFavoriteCity> favoriteCitiesMock = FavoriteCityTableTestUtil.getAll();
         favoriteCityDAO.insertAll(favoriteCitiesMock);
-        List<DBWeather> forecastMock = ForecastTableTestUtil.getAll();
+        List<DBWeather> forecastMock = WeatherTableTestUtil.getAll();
         weatherDAO.insertAll(forecastMock);
     }
 

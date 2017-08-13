@@ -20,7 +20,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
-public class ForecastTableTest {
+public class WeatherTableTest {
 
     private WeatherDAO weatherDAO;
     private AppDatabase db;
@@ -28,11 +28,11 @@ public class ForecastTableTest {
     @Before
     public void createDb() {
         Context context = InstrumentationRegistry.getTargetContext();
-        db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).build();
+        db = Room.inMemoryDatabaseBuilder(context, AppDatabase.class).allowMainThreadQueries().build();
 
         weatherDAO = db.weatherDAO();
         // Fill DB with data
-        List<DBWeather> forecastMock = ForecastTableTestUtil.getAll();
+        List<DBWeather> forecastMock = WeatherTableTestUtil.getAll();
         weatherDAO.insertAll(forecastMock);
     }
 
@@ -44,18 +44,18 @@ public class ForecastTableTest {
     @Test
     public void checkIfMockDataWrittenSuccessfully() {
         List<DBWeather> weatherDb = weatherDAO.getAll();
-        assertEquals(ForecastTableTestUtil.getAll().size(), weatherDb.size());
+        assertEquals(WeatherTableTestUtil.getAll().size(), weatherDb.size());
     }
 
     @Test
     public void checkEntities() {
-        DBWeather moscowCurrentMock = ForecastTableTestUtil.MoscowCurrent();
+        DBWeather moscowCurrentMock = WeatherTableTestUtil.MoscowCurrent();
         DBWeather moscowCurrentDb = weatherDAO.getCurrentWeather(524901);
 
         assertEquals(moscowCurrentMock.getHumidity(), moscowCurrentDb.getHumidity());
         assertEquals(moscowCurrentMock.getCondition(), moscowCurrentDb.getCondition());
 
-        DBWeather kievCurrentMock = ForecastTableTestUtil.KievCurrent();
+        DBWeather kievCurrentMock = WeatherTableTestUtil.KievCurrent();
         DBWeather kievCurrentDb = weatherDAO.getCurrentWeather(703448);
 
         assertEquals(kievCurrentMock.getTempMax(), kievCurrentDb.getTempMax());
@@ -72,7 +72,7 @@ public class ForecastTableTest {
     public void forecastQuery() {
         List<DBWeather> forecast = weatherDAO.getForecast(524901);
 
-        DBWeather moscowTomorrowMock = ForecastTableTestUtil.MoscowTomorrow();
+        DBWeather moscowTomorrowMock = WeatherTableTestUtil.MoscowTomorrow();
         DBWeather moscowTomorrowDb = forecast.get(1);
 
         assertEquals(moscowTomorrowMock.getPressure(), moscowTomorrowDb.getPressure());
@@ -96,5 +96,20 @@ public class ForecastTableTest {
         assertTrue(!all.isEmpty());
         weatherDAO.deleteAll(all);
         assertEquals(0, weatherDAO.getAll().size());
+    }
+
+    @Test
+    public void getByCityId() {
+        List<DBWeather> weather = weatherDAO.getByCiyId(524901);
+        assertEquals(2, weather.size());
+    }
+
+    @Test
+    public void insertAndDelete() {
+        DBWeather temp = weatherDAO.getCurrentWeather(524901);
+        weatherDAO.delete(temp);
+        assertEquals(2, weatherDAO.getAll().size());
+        weatherDAO.insert(temp);
+        assertEquals(3, weatherDAO.getAll().size());
     }
 }

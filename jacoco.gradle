@@ -26,12 +26,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'crea
             '**/*Module*.*',
             '**/*Component*.*',
             '**/*_Factory.*',
-            '**/*_MembersInjector.*',
-            // Base classes
-            '**/Base*.*',
-            // Android architecture components
-            '**/CustomViewModelFactory.*'
-
+            '**/*_MembersInjector.*'
     ]
     def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"

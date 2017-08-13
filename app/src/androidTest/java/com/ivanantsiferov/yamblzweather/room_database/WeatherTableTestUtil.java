@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-final class ForecastTableTestUtil {
+final class WeatherTableTestUtil {
 
-    private ForecastTableTestUtil() {
+    private WeatherTableTestUtil() {
     }
 
     static List<DBWeather> getAll() {

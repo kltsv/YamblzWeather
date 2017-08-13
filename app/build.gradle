@@ -100,6 +100,7 @@ dependencies {
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
+    // Instrumentation test
     androidTestCompile("com.android.support.test.espresso:espresso-core:$espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -110,7 +111,12 @@ dependencies {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'design'
     }
+    androidTestCompile("android.arch.persistence.room:testing:$architectureComponentsVersion") {
+        exclude group: 'com.google.code.gson', module: 'gson'
+    }
+    androidTestCompile "android.arch.core:core-testing:$architectureComponentsVersion"
 
+    // Unit test
     testCompile "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-core:${mockitoVersion}"
 
