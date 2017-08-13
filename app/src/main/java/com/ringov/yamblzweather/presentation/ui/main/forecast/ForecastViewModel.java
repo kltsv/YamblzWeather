@@ -45,7 +45,7 @@ public class ForecastViewModel extends BaseViewModel {
         loadEnabledCity();
     }
 
-    void observe(
+    public void observe(
             LifecycleOwner owner,
             Observer<Boolean> loadingObserver,
             Observer<List<UIWeatherList>> weatherObserver,
@@ -59,11 +59,11 @@ public class ForecastViewModel extends BaseViewModel {
     }
 
     // View callbacks
-    void onRefresh() {
+    public void onRefresh() {
         loadWeather(true);
     }
 
-    void openWeatherDetails(UIWeatherList weather) {
+    public void openWeatherDetails(UIWeatherList weather) {
         router.execute(new CommandOpenWeatherDetails(weather.getTime()));
     }
 
