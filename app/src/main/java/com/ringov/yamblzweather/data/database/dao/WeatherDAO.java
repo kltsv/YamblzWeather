@@ -24,7 +24,7 @@ public interface WeatherDAO {
     List<DBWeather> getByTime(long time);
 
     @Query("SELECT * FROM " + TABLE_FORECAST + " WHERE " + COLUMN_CITY_ID + " = :cityId")
-    List<DBWeather> getByCiyId(int cityId);
+    List<DBWeather> getByCityId(int cityId);
 
     @Query("SELECT * FROM " + TABLE_FORECAST + " WHERE " + COLUMN_CITY_ID + " = :cityId " +
             " ORDER BY " + COLUMN_TIME + " ASC")

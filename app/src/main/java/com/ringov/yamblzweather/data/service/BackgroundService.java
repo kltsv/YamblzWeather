@@ -76,7 +76,7 @@ public class BackgroundService extends IntentService implements HasServiceInject
                 .map(Mapper::APItoDB)
                 .subscribe(forecastResponse -> {
                     // Delete old cache and save fetched data
-                    List<DBWeather> oldCache = weatherDAO.getByCiyId(currentCityId);
+                    List<DBWeather> oldCache = weatherDAO.getByCityId(currentCityId);
                     weatherDAO.deleteAll(oldCache);
                     weatherDAO.insertAll(forecastResponse);
 

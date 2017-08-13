@@ -100,7 +100,7 @@ public class WeatherTableTest {
 
     @Test
     public void getByCityId() {
-        List<DBWeather> weather = weatherDAO.getByCiyId(524901);
+        List<DBWeather> weather = weatherDAO.getByCityId(524901);
         assertEquals(2, weather.size());
     }
 

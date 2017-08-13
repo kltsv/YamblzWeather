@@ -118,7 +118,7 @@ public class WeatherRepositoryImpl extends BaseRepository implements WeatherRepo
         } else {
             int cityId = weatherToCache.get(0).getCityId();
             // Remove all previous weather data for that city
-            List<DBWeather> oldCache = weatherDAO.getByCiyId(cityId);
+            List<DBWeather> oldCache = weatherDAO.getByCityId(cityId);
             weatherDAO.deleteAll(oldCache);
             weatherDAO.insertAll(weatherToCache);
             Timber.d("Delete cache size " + oldCache.size() + " for city id " + cityId);
