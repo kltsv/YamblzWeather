@@ -10,6 +10,7 @@ import com.ringov.yamblzweather.navigation.base.Router;
 import com.ringov.yamblzweather.navigation.commands.CommandNavigatorAttached;
 
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import io.reactivex.subjects.PublishSubject;
 
@@ -24,20 +25,21 @@ public class RouterHolder implements Router, NavigatorBinder {
     private PublishSubject<Command> commandsFeed;
 
     @Nullable
-    private Navigator navigator;
+    public Navigator navigator;
 
-    private ArrayList<Command> commandsQueue;
+    public CopyOnWriteArrayList<Command> commandsQueue;
 
     public RouterHolder() {
         commandsFeed = PublishSubject.create();
         navigator = null;
-        commandsQueue = new ArrayList<>();
+        commandsQueue = new CopyOnWriteArrayList<>();
 
         subscribeToCommandsFeed();
     }
 
     private void subscribeToCommandsFeed() {
         commandsFeed
+                .toSerialized()
                 .filter(command -> !runCommand(command)) // If command executed, skip
                 .filter(command -> !runQueue(command)) // If new navigator attached, skip
                 .subscribe(this::addToQueue);
@@ -80,7 +82,7 @@ public class RouterHolder implements Router, NavigatorBinder {
             // Tries to execute commands queue, if success, remove executed command from queue
             for (Command c : commandsQueue)
                 if (runCommand(c))
-                    commandsQueue.remove(c);
+                    removeFromQueue(c);
             return true;
         } else {
             return false;
