@@ -40,15 +40,15 @@ public abstract class BaseMvvmFragment<VM extends BaseViewModel>
 
     @Override
     @CallSuper
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         attachInputListeners();
     }
 
     @Override
     @CallSuper
-    public void onStop() {
-        super.onStop();
+    public void onPause() {
+        super.onPause();
         disposables.clear();
     }
 

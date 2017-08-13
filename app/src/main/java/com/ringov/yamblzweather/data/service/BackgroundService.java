@@ -82,7 +82,7 @@ public class BackgroundService extends IntentService implements HasServiceInject
 
                     showPushNotification(
                             Mapper.DBWeather_to_UIWeatherDetail(forecastResponse.get(0)));
-                });
+                }, Throwable::printStackTrace);
 
         AlarmReceiver.completeWakefulIntent(intent);
     }

@@ -38,20 +38,6 @@ public abstract class BaseMvvmActivity<VM extends BaseViewModel>
 
     protected abstract void onViewModelAttach();
 
-    @Override
-    @CallSuper
-    protected void onStart() {
-        super.onStart();
-        attachInputListeners();
-    }
-
-    @Override
-    @CallSuper
-    protected void onStop() {
-        super.onStop();
-        disposables.clear();
-    }
-
     protected VM getViewModel() {
         return viewModel;
     }

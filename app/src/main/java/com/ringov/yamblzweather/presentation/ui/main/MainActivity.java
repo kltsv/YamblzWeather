@@ -144,20 +144,21 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
                 break;
         }
 
-        closeDrawer();
         return true;
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
+        attachInputListeners();
         navigatorBinder.setNavigator(this);
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         navigatorBinder.removeNavigator();
+        disposables.clear();
     }
 
     @Override
@@ -291,12 +292,14 @@ public class MainActivity extends BaseMvvmActivity<MainViewModel> implements
     }
 
     private boolean navigateToAboutScreen() {
+        closeDrawer();
         showBackButton(true);
         replaceFragment(AboutFragment.newInstance(), FRAGMENT_CONTAINER, true);
         return true;
     }
 
     private boolean navigateToSettingsScreen() {
+        closeDrawer();
         showBackButton(true);
         replaceFragment(SettingsFragment.newInstance(), FRAGMENT_CONTAINER, true);
         return true;
