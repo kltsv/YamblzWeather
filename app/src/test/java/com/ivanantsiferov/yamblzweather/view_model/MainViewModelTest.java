@@ -8,11 +8,14 @@ import com.ringov.yamblzweather.presentation.ui.main.MainViewModel;
 
 import static junit.framework.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+
+import io.reactivex.Flowable;
 
 public class MainViewModelTest {
 
@@ -37,6 +40,9 @@ public class MainViewModelTest {
         this.router = new RouterMock();
         this.favoriteCityRepository = mock(FavoriteCityRepository.class);
         Router router = this.router;
+
+        when(favoriteCityRepository.getAll()).thenReturn(Flowable.just(new ArrayList<>()));
+
         viewModel = new MainViewModel(router, favoriteCityRepository);
     }
 
