@@ -17,9 +17,9 @@ import io.reactivex.schedulers.Schedulers;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -48,21 +48,21 @@ public class WeatherRepositoryTest {
         );
 
         when(weatherAPI.getDailyForecast(CITY_ID, DAYS_COUNT))
-                .thenReturn(Single.just(RepositoryTestUtil.forecastResponse(DAYS_COUNT)));
+                .thenReturn(Single.just(RepositoryTestUtils.forecastResponse(DAYS_COUNT)));
 
-        when(favoriteCityDAO.getEnabled()).thenReturn(RepositoryTestUtil.enabledCity());
+        when(favoriteCityDAO.getEnabled()).thenReturn(RepositoryTestUtils.enabledCity());
 
         when(weatherDAO.getForecast(CITY_ID))
-                .thenReturn(RepositoryTestUtil.dbWeatherList(DAYS_COUNT));
+                .thenReturn(RepositoryTestUtils.dbWeatherList(DAYS_COUNT));
 
         when(weatherDAO.getByCityId(CITY_ID))
-                .thenReturn(RepositoryTestUtil.dbWeatherList(0));
+                .thenReturn(RepositoryTestUtils.dbWeatherList(0));
 
         when(weatherDAO.getByTime(anyLong()))
-                .thenReturn(RepositoryTestUtil.dbWeatherList(0));
+                .thenReturn(RepositoryTestUtils.dbWeatherList(0));
 
         when(weatherDAO.getWeather(anyInt(), anyLong()))
-                .thenReturn(RepositoryTestUtil.dbWeather());
+                .thenReturn(RepositoryTestUtils.dbWeather());
     }
 
     @Test
@@ -70,7 +70,7 @@ public class WeatherRepositoryTest {
         weatherRepository.getWeather(0L).test()
                 .assertValue(uiWeatherDetail -> uiWeatherDetail != null)
                 .assertComplete();
-        verify(weatherDAO, atLeastOnce()).getWeather(anyInt(), anyLong());
+        verify(weatherDAO, times(1)).getWeather(anyInt(), anyLong());
     }
 
     @Test
@@ -78,8 +78,8 @@ public class WeatherRepositoryTest {
         weatherRepository.getForecast(false).test()
                 .assertValue(uiWeatherLists -> uiWeatherLists.size() == DAYS_COUNT)
                 .assertComplete();
-        verify(weatherDAO, atLeastOnce()).getForecast(anyInt());
-        verify(favoriteCityDAO, atLeastOnce()).getEnabled();
+        verify(weatherDAO, times(1)).getForecast(anyInt());
+        verify(favoriteCityDAO, times(1)).getEnabled();
         verify(weatherAPI, never()).getDailyForecast(anyInt(), anyInt());
     }
 
@@ -88,10 +88,10 @@ public class WeatherRepositoryTest {
         weatherRepository.getForecast(true).test()
                 .assertValue(uiWeatherLists -> uiWeatherLists.size() == DAYS_COUNT)
                 .assertComplete();
-        verify(favoriteCityDAO, atLeastOnce()).getEnabled();
-        verify(weatherAPI, atLeastOnce()).getDailyForecast(anyInt(), anyInt());
-        verify(weatherDAO, atLeastOnce()).getByCityId(anyInt());
-        verify(weatherDAO, atLeastOnce()).deleteAll(anyList());
-        verify(weatherDAO, atLeastOnce()).insertAll(anyList());
+        verify(favoriteCityDAO, times(2)).getEnabled();
+        verify(weatherAPI, times(1)).getDailyForecast(anyInt(), anyInt());
+        verify(weatherDAO, times(1)).getByCityId(anyInt());
+        verify(weatherDAO, times(1)).deleteAll(anyList());
+        verify(weatherDAO, times(1)).insertAll(anyList());
     }
 }

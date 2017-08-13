@@ -119,6 +119,7 @@ dependencies {
     // Unit test
     testCompile "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-core:${mockitoVersion}"
+    testCompile "android.arch.core:core-testing:$architectureComponentsVersion"
 
     //leak canary
     debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"

@@ -12,9 +12,9 @@ import com.ringov.yamblzweather.data.networking.entity.Weather;
 import java.util.ArrayList;
 import java.util.List;
 
-class RepositoryTestUtil {
+class RepositoryTestUtils {
 
-    private RepositoryTestUtil() {
+    private RepositoryTestUtils() {
     }
 
     static List<DBCity> suggestions() {

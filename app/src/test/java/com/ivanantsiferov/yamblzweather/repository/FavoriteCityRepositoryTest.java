@@ -16,10 +16,8 @@ import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -40,51 +38,50 @@ public class FavoriteCityRepositoryTest {
         favoriteCityRepository = new FavoriteCityRepositoryImpl(
                 scheduler, scheduler, scheduler, favoriteCityDAO, cityDAO);
 
-        when(favoriteCityDAO.getEnabled()).thenReturn(RepositoryTestUtil.enabledCity());
+        when(favoriteCityDAO.getEnabled()).thenReturn(RepositoryTestUtils.enabledCity());
         when(favoriteCityDAO.getAll())
-                .thenReturn(Flowable.just(RepositoryTestUtil.dbFavoriteCityList()));
-        when(favoriteCityDAO.getFirst()).thenReturn(RepositoryTestUtil.favoriteCity());
-        when(favoriteCityDAO.getById(524901)).thenReturn(RepositoryTestUtil.enabledCity());
-        when(favoriteCityDAO.getById(123456)).thenReturn(RepositoryTestUtil.favoriteCity());
+                .thenReturn(Flowable.just(RepositoryTestUtils.dbFavoriteCityList()));
+        when(favoriteCityDAO.getFirst()).thenReturn(RepositoryTestUtils.favoriteCity());
+        when(favoriteCityDAO.getById(524901)).thenReturn(RepositoryTestUtils.enabledCity());
+        when(favoriteCityDAO.getById(123456)).thenReturn(RepositoryTestUtils.favoriteCity());
 
-        when(cityDAO.getByName("Kathmandu")).thenReturn(RepositoryTestUtil.dbCityKathmandu());
+        when(cityDAO.getByName("Kathmandu")).thenReturn(RepositoryTestUtils.dbCityKathmandu());
     }
 
     @Test
     public void allSortsOfGet() {
         favoriteCityRepository.getAll().test()
                 .assertValue(uiCityFavorites -> uiCityFavorites.size() == 2);
-        verify(favoriteCityDAO, atLeastOnce()).getAll();
+        verify(favoriteCityDAO, times(1)).getAll();
 
         favoriteCityRepository.getSelectedCityName().test()
-                .assertValue(s -> s.equals(RepositoryTestUtil.enabledCity().getCity_name()))
+                .assertValue(s -> s.equals(RepositoryTestUtils.enabledCity().getCity_name()))
                 .assertComplete();
     }
 
     @Test
     public void removeEnabled() {
-        UICityFavorite uiCityFavorite = Mapper.DBtoUIFavoriteCity(RepositoryTestUtil.enabledCity());
+        UICityFavorite uiCityFavorite = Mapper.DBtoUIFavoriteCity(RepositoryTestUtils.enabledCity());
         favoriteCityRepository.remove(uiCityFavorite).test().assertComplete();
-        verify(favoriteCityDAO, atLeastOnce()).getById(uiCityFavorite.getCityId());
-        verify(favoriteCityDAO, atLeastOnce()).delete(any());
-        verify(favoriteCityDAO, atLeastOnce()).getFirst();
-        verify(favoriteCityDAO, atLeastOnce()).insert(any());
+        verify(favoriteCityDAO, times(1)).getById(uiCityFavorite.getCityId());
+        verify(favoriteCityDAO, times(1)).delete(any());
+        verify(favoriteCityDAO, times(1)).getFirst();
+        verify(favoriteCityDAO, times(1)).insert(any());
     }
 
     @Test
     public void add() {
         favoriteCityRepository.add("Kathmandu").test();
-        verify(cityDAO, atLeastOnce()).getByName("Kathmandu");
-        verify(favoriteCityDAO, atLeastOnce()).insert(any());
+        verify(cityDAO, times(1)).getByName("Kathmandu");
+        verify(favoriteCityDAO, times(1)).insert(any());
     }
 
     @Test
     public void select() {
-        UICityFavorite uiCityFavorite = Mapper.DBtoUIFavoriteCity(RepositoryTestUtil.favoriteCity());
+        UICityFavorite uiCityFavorite = Mapper.DBtoUIFavoriteCity(RepositoryTestUtils.favoriteCity());
         favoriteCityRepository.select(uiCityFavorite).test();
-        verify(favoriteCityDAO, atLeastOnce()).getEnabled();
-        verify(favoriteCityDAO, atLeastOnce()).insert(any());
-        verify(favoriteCityDAO, atLeastOnce()).getById(uiCityFavorite.getCityId());
-        verify(favoriteCityDAO, atLeastOnce()).insert(any());
+        verify(favoriteCityDAO, times(1)).getEnabled();
+        verify(favoriteCityDAO, times(2)).insert(any());
+        verify(favoriteCityDAO, times(1)).getById(uiCityFavorite.getCityId());
     }
 }

@@ -13,8 +13,8 @@ import io.reactivex.schedulers.Schedulers;
 
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,13 +35,13 @@ public class CitySuggestionsRepositoryTest {
         );
 
         when(cityDAO.getSuggestions(anyString(), anyInt()))
-                .thenReturn(RepositoryTestUtil.suggestions());
+                .thenReturn(RepositoryTestUtils.suggestions());
     }
 
     @Test
     public void testSuggestions() {
         citySuggestionsRepository.getSuggestions("string")
                 .test().assertValue(strings -> strings.get(0).equals("Moscow"));
-        verify(cityDAO, atLeastOnce()).getSuggestions(anyString(), anyInt());
+        verify(cityDAO, times(1)).getSuggestions(anyString(), anyInt());
     }
 }
