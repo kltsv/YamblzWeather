@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Generic dimens -->
+    <dimen name="generic_small">4dp</dimen>
+    <dimen name="generic">8dp</dimen>
+    <dimen name="generic_medium">16dp</dimen>
+
+    <!-- Navigation drawer -->
+    <dimen name="drawer_header_height">160dp</dimen>
+
+    <!-- Cities list -->
+    <dimen name="city_remove_button_size">56dp</dimen>
+
+    <!-- Forecast items -->
+    <dimen name="item_weather_height">56dp</dimen>
+    <dimen name="item_weather_image_size">32dp</dimen>
+    <dimen name="item_weather_side_margin">8dp</dimen>
+
+    <!-- Weather details -->
+
+
+</resources>

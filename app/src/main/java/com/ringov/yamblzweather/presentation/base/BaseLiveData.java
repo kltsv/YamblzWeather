@@ -1,14 +1,11 @@
 package com.ringov.yamblzweather.presentation.base;
 
 import android.arch.lifecycle.LiveData;
-
-/**
- * Created by ringov on 12.07.17.
- */
+import android.support.annotation.NonNull;
 
 public class BaseLiveData<T> extends LiveData<T> {
 
-    public void updateValue(T value) {
+    public void updateValue(@NonNull T value) {
         setValue(value);
     }
 }

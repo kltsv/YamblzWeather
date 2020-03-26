@@ -2,17 +2,25 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <android.support.v7.preference.SwitchPreferenceCompat
-        android:defaultValue="@string/update_notifications_default"
-        android:key="@string/update_notifications_key"
-        android:summary="@string/update_notifications_summary"
-        android:title="@string/update_notifications_title" />
+        android:defaultValue="@bool/prefs_push_default"
+        android:key="@string/prefs_push_key"
+        android:summary="@string/prefs_push_summary"
+        android:title="@string/prefs_push_title" />
 
     <android.support.v7.preference.ListPreference
-        android:defaultValue="@string/default_update_intervals_value"
-        android:entries="@array/update_intervals"
-        android:entryValues="@array/update_intervals_values"
-        android:key="@string/update_intervals_key"
-        android:summary="@string/update_intervals_summary"
-        android:title="@string/update_intervals_title" />
+        android:defaultValue="@string/prefs_interval_default"
+        android:entries="@array/prefs_interval_entries"
+        android:entryValues="@array/prefs_interval_values"
+        android:key="@string/prefs_interval_key"
+        android:summary="@string/prefs_interval_summary"
+        android:title="@string/prefs_interval_title" />
+
+    <android.support.v7.preference.ListPreference
+        android:defaultValue="@string/prefs_units_default"
+        android:entries="@array/prefs_units_entries"
+        android:entryValues="@array/prefs_units_values"
+        android:key="@string/prefs_units_key"
+        android:summary="@string/prefs_units_summary"
+        android:title="@string/prefs_units_title" />
 
 </PreferenceScreen>

@@ -1,43 +1,41 @@
 package com.ringov.yamblzweather;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Application;
-import android.content.Context;
+import android.app.Service;
 
-import com.evernote.android.job.JobManager;
-import com.ringov.yamblzweather.di.app.AppComponent;
-import com.ringov.yamblzweather.di.app.DaggerAppComponent;
-import com.ringov.yamblzweather.model.background_service.WeatherUpdateJobCreator;
-import com.ringov.yamblzweather.model.db.city.CityDatabaseCreator;
+import com.ringov.yamblzweather.dagger.AppInjector;
+import com.ringov.yamblzweather.data.database.AppDatabaseCreator;
 import com.squareup.leakcanary.LeakCanary;
 
+import javax.inject.Inject;
+
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasActivityInjector;
+import dagger.android.HasServiceInjector;
 import timber.log.Timber;
 
-/**
- * Created by ringov on 12.07.17.
- */
+public class App extends Application implements HasActivityInjector, HasServiceInjector {
 
-public class App extends Application {
+    @Inject
+    DispatchingAndroidInjector<Activity> dispatchingAndroidInjector;
+    @Inject
+    DispatchingAndroidInjector<Service> dispatchingServiceInjector;
 
-    @SuppressLint("StaticFieldLeak")
-    private static Context context;
-    public static Context getContext() {
-        return context;
+    @Override
+    public DispatchingAndroidInjector<Activity> activityInjector() {
+        return dispatchingAndroidInjector;
     }
 
-    private static AppComponent component;
-    private AppComponent buildComponent() {
-        return DaggerAppComponent.builder()
-                .build();
-    }
-    public static AppComponent getComponent() {
-        return component;
+    @Override
+    public AndroidInjector<Service> serviceInjector() {
+        return dispatchingServiceInjector;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this.getApplicationContext();
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
             return;
@@ -46,9 +44,10 @@ public class App extends Application {
 
         Timber.plant(new Timber.DebugTree());
 
-        CityDatabaseCreator.getInstance().createDb(this);
+        AppDatabaseCreator.getInstance().createDb(this);
+    }
 
-        component = buildComponent();
-        JobManager.create(this).addJobCreator(new WeatherUpdateJobCreator());
+    public void initDagger() {
+        AppInjector.init(this);
     }
 }

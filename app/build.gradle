@@ -7,6 +7,7 @@ def appKeyPassword = (new JsonSlurper().parseText(file(fileName).text)).keyPassw
 
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply from: '../jacoco.gradle'
 
 android {
 
@@ -17,15 +18,19 @@ android {
         applicationId "com.ringov.yamblzweather"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 4
-        versionName "0.1"
+        versionCode 6
+        versionName "0.8.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
 
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
+
     signingConfigs {
-        
-        config {
+
+        release {
             storeFile file('weather_key.jks')
             keyAlias appKeyAlias
             keyPassword appKeyPassword
@@ -37,28 +42,36 @@ android {
 
         release {
             minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            signingConfig signingConfigs.release
         }
 
         debug {
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
+            testCoverageEnabled true
         }
 
         buildTypes.each {
             it.buildConfigField "String", "BASE_URL", '"http://api.openweathermap.org/data/2.5/"'
+            it.buildConfigField "String", "API_KEY", '"b3f1079128fa7ee84d98e92fecc133fa"'
         }
-    }
-
-    lintOptions {
-        // in order to be able to set release and debug strings separately
-        disable 'MissingTranslation', 'ExtraTranslation'
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests.returnDefaultValues = true
+
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
+        }
     }
 }
 
@@ -80,12 +93,14 @@ ext {
     rxBindingVersion = '2.0.0'
     androidJobVersion = '1.1.11'
     timberVersion = '4.5.1'
+    glideVersion = '4.0.0'
 }
 
 dependencies {
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
 
+    // Instrumentation test
     androidTestCompile("com.android.support.test.espresso:espresso-core:$espressoVersion", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -96,9 +111,15 @@ dependencies {
         exclude group: 'com.android.support', module: 'appcompat-v7'
         exclude group: 'com.android.support', module: 'design'
     }
+    androidTestCompile("android.arch.persistence.room:testing:$architectureComponentsVersion") {
+        exclude group: 'com.google.code.gson', module: 'gson'
+    }
+    androidTestCompile "android.arch.core:core-testing:$architectureComponentsVersion"
 
+    // Unit test
     testCompile "junit:junit:$junitVersion"
     testCompile "org.mockito:mockito-core:${mockitoVersion}"
+    testCompile "android.arch.core:core-testing:$architectureComponentsVersion"
 
     //leak canary
     debugCompile "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
@@ -107,14 +128,15 @@ dependencies {
     // Support lib
     compile "com.android.support:appcompat-v7:$supportLibVersion"
     compile "com.android.support:design:$supportLibVersion"
-    compile "com.android.support:preference-v14:$supportLibVersion"
     compile "com.android.support:preference-v7:$supportLibVersion"
+    compile "com.android.support:preference-v14:$supportLibVersion"
 
     // architecture components
     compile "android.arch.lifecycle:runtime:$architectureComponentsVersion"
     compile "android.arch.lifecycle:extensions:$architectureComponentsVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$architectureComponentsVersion"
     compile "android.arch.persistence.room:runtime:$architectureComponentsVersion"
+    compile "android.arch.persistence.room:rxjava2:$architectureComponentsVersion"
     annotationProcessor "android.arch.persistence.room:compiler:$architectureComponentsVersion"
 
     // butter-knife
@@ -123,23 +145,26 @@ dependencies {
 
     // dagger 2
     compile "com.google.dagger:dagger:$daggerVersion"
+    compile "com.google.dagger:dagger-android:$daggerVersion"
+    compile "com.google.dagger:dagger-android-support:$daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     // retrofit 2
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:3.8.1"
 
     // rx
     compile "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     compile "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     compile "com.jakewharton.rxbinding2:rxbinding:$rxBindingVersion"
-    compile "com.jakewharton.rxbinding2:rxbinding-support-v4:${rxBindingVersion}"
-
-    //android-job
-    compile "com.evernote:android-job:$androidJobVersion"
-    compile "com.google.android.gms:play-services-gcm:11.0.2"
+    compile "com.jakewharton.rxbinding2:rxbinding-support-v4:$rxBindingVersion"
 
     // Logging
-    compile "com.jakewharton.timber:timber:${timberVersion}"
+    compile "com.jakewharton.timber:timber:$timberVersion"
+
+    // Images
+    compile "com.github.bumptech.glide:glide:$glideVersion"
 }

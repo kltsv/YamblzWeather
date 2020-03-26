@@ -1,50 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ЯмблзПогода</string>
 
-    <string name="weather">Погода</string>
-    <string name="settings">Настройки</string>
-    <string name="about">О приложении</string>
+    <string name="app_name">Погода</string>
 
+    <!-- Push notifications -->
+    <string name="push_content">Прогноз: %s</string>
+
+    <!-- Nav drawer -->
     <string name="navigation_drawer_open">Открыто боковое меню</string>
     <string name="navigation_drawer_close">Закрыто боковое меню</string>
-    <string name="version">Версия приложения: %s</string>
 
-    <string name="cloudy">Пасмурно</string>
-    <string name="clear">Ясно</string>
-    <string name="rainy">Дождливо</string>
-    <string name="thunderstorm">Гроза</string>
-    <string name="snow">Снег</string>
-    <string name="atmospherically">Атмосферненько</string>
-    <string name="extreme">Экстримальненько</string>
-    <string name="windy">Ветренно</string>
-    <string name="calm">Спокойно</string>
-    <string name="other">Другое</string>
+    <string name="nav_add_favorite_city">Добавить город</string>
 
-    <string name="update_intervals_title">Частота обновления</string>
-    <string name="update_intervals_summary">Как часто получать обновления погоды</string>
+    <!-- Weather fragment -->
+    <string name="wthr_wind_speed_metric">%1.1f м/с</string>
+    <string name="wthr_wind_speed_imperial">%1.1f миль/час</string>
 
-    <string-array name="update_intervals">
-        <item>15 минут</item>
-        <item>2 часа</item>
+    <string name="wthr_pressure">Давление %1.0f гПа</string>
+    <string name="wthr_humidity">Влажность %d %%</string>
+
+    <string name="wthr_wind">Ветер</string>
+    <string name="wthr_today">cегодня</string>
+    <string name="wthr_swipe_to_update">Потяните, чтобы обновить</string>
+
+    <!-- Weather details fragment -->
+    <string name="wther_dtls_title">Погода на %s</string>
+
+    <string name="wthr_dtls_wind_direction_north">С</string>
+    <string name="wthr_dtls_wind_direction_north_east">СВ</string>
+    <string name="wthr_dtls_wind_direction_east">В</string>
+    <string name="wthr_dtls_wind_direction_south_east">ЮВ</string>
+    <string name="wthr_dtls_wind_direction_south">Ю</string>
+    <string name="wthr_dtls_wind_direction_south_west">ЮЗ</string>
+    <string name="wthr_dtls_wind_direction_west">З</string>
+    <string name="wthr_dtls_wind_direction_north_west">СЗ</string>
+
+    <!-- Weather conditions -->
+    <string name="cond_storm">Шторм</string>
+    <string name="cond_light_rain">Легкий дождь</string>
+    <string name="cond_rain">Дождь</string>
+    <string name="cond_snow">Снег</string>
+    <string name="cond_fog">Туман</string>
+    <string name="cond_clear">Ясно</string>
+    <string name="cond_light_clouds">Легкая облачность</string>
+    <string name="cond_cloudy">Облачно</string>
+    <string name="cond_other">Другое</string>
+
+    <!-- Add city fragment -->
+    <string name="add_city_hint">Начните вводить название города</string>
+    <string name="add_city_title">Добавить город</string>
+
+    <!-- About fragment -->
+    <string name="about_title">О приложении</string>
+    <string name="about_app">Приложение разработал Иван Анциферов для первого этапа проекта Яндекс.Мобилизация 2017.</string>
+    <string name="about_version">Версия: %s</string>
+    <string name="about_app_icon">Иконка приложения с flaticon.com</string>
+    <string name="about_weather_icons">Изображения погодных условий сделал Google.</string>
+    <string name="about_nav_drawer_image">Картинка в боковом меню - Lunae Luman.</string>
+
+    <!-- Prefs fragment -->
+    <string name="prefs_title">Настройки</string>
+
+    <string name="prefs_push_title">Включить уведомления</string>
+    <string name="prefs_push_summary">Приложение будет слать уведомления с текущим прогнозом</string>
+
+    <string name="prefs_interval_title">Частота уведомлений</string>
+    <string name="prefs_interval_summary">Как часто приложение будет слать свежий прогноз</string>
+    <string-array name="prefs_interval_entries">
+        <item>1 час</item>
         <item>3 часа</item>
-        <item>5 часов</item>
-        <item>8 часов</item>
-        <item>12 часов</item>
-        <item>24 часов</item>
+        <item>6 часов</item>
     </string-array>
 
-    <string name="update_notifications_title">Уведомление об обновлении</string>
-    <string name="update_notifications_summary">Уведомлять о получении обновления погоды</string>
+    <string name="prefs_units_title">Система измерений</string>
+    <string name="prefs_units_summary">Для температуры и скорости ветра</string>
+    <string-array name="prefs_units_entries">
+        <item>Метрическая</item>
+        <item>Имперская</item>
+    </string-array>
 
-    <string name="right_now">Только что</string>
-
-    <string name="swipe_to_update">потяните, чтобы обновить</string>
-
-    <string name="no_internet_connection">Интернет недоступен</string>
-
-    <string name="location_title">Местоположение</string>
-    <string name="location_description">Для какого города показывать погоду</string>
-    <string name="location_changed">Местоположение изменено</string>
+    <!-- Error messages -->
+    <string name="error_no_internet_connection">Нет соединения с интернетом</string>
+    <string name="error_request_failed">Запрос неудался</string>
 
 </resources>

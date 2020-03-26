@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Untranslatable strings used in preferences -->
+
+    <string name="prefs_first_launch_key" translatable="false">prefs_first_launch_key</string>
+    <bool name="prefs_first_launch_default" translatable="false">true</bool>
+
+    <string name="prefs_push_key" translatable="false">prefs_push_key</string>
+    <bool name="prefs_push_default" translatable="false">true</bool>
+
+    <string name="prefs_interval_key" translatable="false">prefs_interval_key</string>
+    <string name="prefs_interval_default" translatable="false">3</string>
+    <string-array name="prefs_interval_values" translatable="false">
+        <item>1</item>
+        <item>3</item>
+        <item>6</item>
+    </string-array>
+
+    <string name="prefs_units_key" translatable="false">prefs_units_key</string>
+    <string name="prefs_units_default" translatable="false">@string/prefs_units_metric</string>
+    <string name="prefs_units_metric" translatable="false">metric</string>
+    <string name="prefs_units_imperial" translatable="false">imperial</string>
+    <string-array name="prefs_units_values">
+        <item>@string/prefs_units_metric</item>
+        <item>@string/prefs_units_imperial</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/about_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_app"
+            style="@style/TextView.About"
+            android:padding="@dimen/generic"
+            android:text="@string/about_app"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            style="@style/TextView.About"
+            android:layout_gravity="center"
+            android:textStyle="italic" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_margin="@dimen/generic"
+            android:background="@color/color_text_primary" />
+
+        <TextView
+            android:id="@+id/tv_app_icon"
+            style="@style/TextView.About"
+            android:text="@string/about_app_icon" />
+
+        <TextView
+            android:id="@+id/tv_weather_icons"
+            style="@style/TextView.About"
+            android:text="@string/about_weather_icons" />
+
+        <TextView
+            android:id="@+id/tv_nav_drawer_image"
+            style="@style/TextView.About"
+            android:text="@string/about_nav_drawer_image" />
+
+    </LinearLayout>
+
+</ScrollView>

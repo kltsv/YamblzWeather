@@ -1,0 +1,40 @@
+apply plugin: 'jacoco'
+
+/**
+ * Report can be found at '.../app/build/reports/jacoco/jacocoTestReport/html/index.html'
+ */
+task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest', 'createDebugCoverageReport']) {
+
+    reports {
+        xml.enabled = true
+        html.enabled = true
+    }
+
+    def fileFilter = [
+            // Android
+            '**/R.class',
+            '**/R$*.class',
+            '**/BuildConfig.*',
+            '**/Manifest*.*',
+            '**/*Test*.*',
+            'android/**/*.*',
+            // Butterknife
+            '**/*_ViewBinding.*',
+            // Dagger 2
+            'com/ringov/yamblzweather/dagger/**',
+            '**/Dagger*.*',
+            '**/*Module*.*',
+            '**/*Component*.*',
+            '**/*_Factory.*',
+            '**/*_MembersInjector.*'
+    ]
+    def debugTree = fileTree(dir: "${buildDir}/intermediates/classes/debug", excludes: fileFilter)
+    def mainSrc = "${project.projectDir}/src/main/java"
+
+    sourceDirectories = files([mainSrc])
+    classDirectories = files([debugTree])
+    executionData = fileTree(dir: "$buildDir", includes: [
+            "jacoco/testDebugUnitTest.exec",
+            "outputs/code-coverage/connected/*coverage.ec"
+    ])
+}

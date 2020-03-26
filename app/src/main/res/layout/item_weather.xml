@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_weather_height"
+    android:background="?selectableItemBackground"
+    android:clickable="true">
+
+    <ImageView
+        android:id="@+id/im_condition"
+        android:layout_width="@dimen/item_weather_image_size"
+        android:layout_height="@dimen/item_weather_image_size"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/item_weather_side_margin"
+        android:layout_marginStart="@dimen/item_weather_side_margin" />
+
+    <TextView
+        android:id="@+id/tv_date"
+        style="@style/TextView.ForecastItem"
+        android:layout_toEndOf="@id/im_condition" />
+
+    <TextView
+        android:id="@+id/tv_temp_max"
+        style="@style/TextView.ForecastItem"
+        android:layout_toStartOf="@+id/tv_temp_min" />
+
+    <TextView
+        android:id="@+id/tv_temp_min"
+        style="@style/TextView.ForecastItem"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
